@@ -1,19 +1,28 @@
-\documentclass[11pt,a4paper]{article}
+\documentclass[12pt]{report}
 \usepackage[utf8]{inputenc}
-\usepackage[spanish,es-tabla]{babel}
+\usepackage[spanish, es-tabla]{babel}
+\usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
-\usepackage{graphicx}
-
 \usepackage{vmargin}
 
-\title{Diseño e implementación de un prototipo de estacionamient inteligente}
-\author{Martin, Santiago Emanuel \\
-Saez, Lautaro Andres}
-\date{}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{biblatex}
+\usepackage{setspace}  
+\spacing{1.5}
+
+\graphicspath{ {imgs/} }
+
+\addbibresource{references.bib}
 
 \begin{document}
-    \maketitle
-    \include{./seccions/void-plate.tex}
+    \include{title.tex}
+    \include{chapters/acknowledgements.tex}
+    \include{chapters/abstract.tex}
+    \tableofcontents
+    \listoffigures
+    \listoftables
 \end{document}
