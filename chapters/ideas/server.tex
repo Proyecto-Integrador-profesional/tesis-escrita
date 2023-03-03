@@ -1,19 +1,51 @@
 \section{Server}
 
-En este apartado se busca hablar sobre el servidor, su arquitectura basada en microservicios usando docker, y la base de datos. \\
+En este apartado se busca hablar sobre el servidor, su arquitectura basada en microservicios usando docker, y la base de datos.
 
-microservicios \\
+\subsection{Microservicios}
 
-que es un microservicio, que microservicios tiene el servidor (base de datos, servidor web en nestjs), aca se habla de docker y el uso de docker compose, con la posibilidad de migrar a kubernetes si el sistema crece. [se van agregar explicaciones y documentacion necesaria para el
-        entendimiento de dichas tecnologias] \\
 
-frontend vs backend \\
+Que es un microservicio, que microservicios tiene el servidor (base de datos, servidor web en nestjs), aca se habla de docker y el uso de docker compose, con la posibilidad de migrar a kubernetes si el sistema crece. [se van agregar explicaciones y documentacion necesaria para el
+                entendimiento de dichas tecnologias] \\
+
+El servidor cuenta con los siguientes microservicios:
+
+\begin{enumerate}
+        \item Base de datos
+        \item Applicacion backend con nestjs
+              \subitem Usuarios
+              \subitem Barreras
+              \subitem Parques de estacionamiento
+              \subitem Registros
+        \item Frontend con ReactJS
+        \item Applicacion backend con Flask (analisis de patente online)
+        \item [no implementada] Grafana para usuarios
+\end{enumerate}
+
+\subsection{Frontend vs Backend}
 
 comparacion de los servicios frontend y backend explicando sus diferencias \\
 
-servidor con nestjs \\
+\subsubsection*{Backend con NestJS}
 
-Se tratara en mayor profundidad sobre el servicio web del backend, nombrando endpoints y tecnologias utilizadas, describiendo las funcionalidades y su por qué. \\
+
+Para la autenticación se utilizo el module de Passport JS, el cual permite crear estrategias para los diferentes tipos de autenticación, las estrategias utilizadas son:
+
+\begin{enumerate}
+        \item Local
+        \item Apikey aplicaciones de terceros
+        \item Apikey para las barreras
+        \item JWT
+\end{enumerate}
+
+La estrategia Local, hace un logging del usuario segun su nombre de usuario y su contraseña.
+
+Los servicios de apikey buscan que la apikey sea valida, es decir, se encuentre en la base de datos vinculada a una barrera, o este dentro de las apikeys validas de aplicaciones, en este caso solo 2 servicios se encuentran habilitados para realizar peticiones (Frontend y Grafana)
+
+Un JSON Web Token es un estandar qué esta dentro del documento RFC 7519, este define un mecanismo para enviar información entre 2 partes, en este caso cliente-servidor de forma segura (utilizando cifrado). Los datos son codificados en un objeto de javascript (JSON), 
+
+Se tratara en mayor profundidad sobre el servicio web del backend, nombrando endpoints y tecnologias utilizadas, describiendo las funcionalidades y su por qué.
+
 
 Base de datos [mongodb] \\
 
