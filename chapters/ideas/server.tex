@@ -2,11 +2,51 @@
 
 En este apartado se busca hablar sobre el servidor, su arquitectura basada en microservicios usando docker, y la base de datos.
 
+\subsection{Un viaje rapido por el servidor}
+
+El servidor posee una arquitectura de microservicios Fig \ref{fig:server}, donde todos los servicios corren en bajo Docker. Las barreras interactuan hacia el servicio de NestJS donde ellas suben registros de entrada/salida, para luego se procesan las imagenes (Solo en el SL mini) mediante el servicio de Flask, para obtener la patente como texto. Los clientes pueden acceder a Grafana para visualizar datos tales como (DAR EJEMPLOS CUANDO ESTEN). La base de datos se mantiene aislada del exterior, por lo que no es posible acceder a ella directamente, y solo se puede interactuar mediante el servicio de NestJS.
+
+\begin{figure}
+        \centering
+        \includegraphics[width=.5\textwidth]{imgs/uncoma.png}
+        \caption{Arquicetura del servidor}
+        \label{fig:server}
+\end{figure}
+
+\subsection{Docker}
+
+Docker es una plataforma de software que permite crear, probar e implementar aplicaciones mediante el uso de contenedores.
+
+\subsubsection*{Contenedores}
+
+
+Un contenedor de Docker funciona como una maquina virtual, practicamente aislada del sistema. La gran diferencia entre un contenedor y una maquina virtual es que el contenedor solo realiza una virtualización de capas por encima del sistema operativo, por lo que el contenedor comparte el kernel con el sistema padre, mientras que la maquina virtual emula todo incluido el kernel del sistema, esto produce que los contenedores sean más eficientes en el uso del hardware, pero altamente dependientes del kernel del sistema padre. Es por ello que un SO Windows no puede correr contenedores Linux de una forma sencilla y debe recurrir a una virtualización del kernel Linux Fig. \ref{fig:docker-funcinamiento}.
+
+
+\begin{figure}
+        \centering
+        \includegraphics[width=.5\textwidth]{imgs/contenedores-docker.png}
+        \caption{Funcionamiento de Docker}
+        \label{fig:docker-funcinamiento}
+
+\end{figure}
+
+Una pregunta frecuente es: como guardo información que tengo en mi contenedor de docker en mi maquina? la solución a esta pregunta son los volumenes los cuales son un puente entre una carpeta de nuestra pc y una carpeta del contenedor, esto nos permite que cualquier archivo que contenga la carpeta de nuestra PC se encuentre en el contenedor, y viceversa. Esta comunicacíon entre el contenedor y nuestra PC nos permite realizar varias tareas, como realizar backups de la base de datos, compartir archivos de configuración para los diferente servicios.
+
+\subsection{Docker compose}
+
+A la hora de manejar varios contenedores el uso del interfaz de linea de comandos o CLI (por sus siglas en inglés) de Docker se vuelve engorrozo, es por ello que existen varios sistemas que tratan de simplificar y automatizar la tarea de levantar contenedores o servicios como los llamaremos de aquí en adelante. Una de estas tecnologías es Docker compose la cual permite definir dentro de un archivo yaml la arquitectura de los diferentes servicios [https://docs.docker.com/compose/], junto los volumenes y redes internas.
+
+Cabe destacar que Docker compose crea una red interna en la cual (salvo que definamos de otra manera) todos los contenedores estan interconectados y podemos relacionarnos usando el nombre del servicio como url.
+
+\subsection{Frontend vs Backend}
+
+comparacion de los servicios frontend y backend explicando sus diferencias \\
+
+
 \subsection{Microservicios}
 
-
-Que es un microservicio, que microservicios tiene el servidor (base de datos, servidor web en nestjs), aca se habla de docker y el uso de docker compose, con la posibilidad de migrar a kubernetes si el sistema crece. [se van agregar explicaciones y documentacion necesaria para el
-                entendimiento de dichas tecnologias] \\
+La arquitectura de microservicios es una unión de servicios autónomos y pequeños. Esto nos permite que cada servicio utilice una tecnología diferente, siempre que sea necesario. En este trabajo se utiliza un servicio principal que utiliza NestJS (Javascript) y otro que utiliza Flask (Python), ya que Python posee una gran cantidad de herramienta para analisis de datos, mientras que Javascript junto con NestJS permite el desarrollo de un Backend mucho más confiable y rapido. Cada uno de estos servicios corre sobre un contenedor Docker indivual.
 
 El servidor cuenta con los siguientes microservicios:
 
@@ -22,9 +62,6 @@ El servidor cuenta con los siguientes microservicios:
         \item [no implementada] Grafana para usuarios
 \end{enumerate}
 
-\subsection{Frontend vs Backend}
-
-comparacion de los servicios frontend y backend explicando sus diferencias \\
 
 \subsubsection*{Backend con NestJS}
 
@@ -42,7 +79,7 @@ La estrategia Local, hace un logging del usuario segun su nombre de usuario y su
 
 Los servicios de apikey buscan que la apikey sea valida, es decir, se encuentre en la base de datos vinculada a una barrera, o este dentro de las apikeys validas de aplicaciones, en este caso solo 2 servicios se encuentran habilitados para realizar peticiones (Frontend y Grafana)
 
-Un JSON Web Token es un estandar qué esta dentro del documento RFC 7519, este define un mecanismo para enviar información entre 2 partes, en este caso cliente-servidor de forma segura (utilizando cifrado). Los datos son codificados en un objeto de javascript (JSON), 
+Un JSON Web Token es un estandar qué esta dentro del documento RFC 7519, este define un mecanismo para enviar información entre 2 partes, en este caso cliente-servidor de forma segura (utilizando cifrado). Los datos son codificados en un objeto de javascript (JSON),
 
 Se tratara en mayor profundidad sobre el servicio web del backend, nombrando endpoints y tecnologias utilizadas, describiendo las funcionalidades y su por qué.
 
