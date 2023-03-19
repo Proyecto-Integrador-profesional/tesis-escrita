@@ -1,18 +1,29 @@
 \section{Redes}
 
-luego del capitulo 1 (plan de pip)\\
-Introduccion a las redes.
-Como se comentó uno los ejes de este trabajo se va a basar en la utilización de redes neuronales para la detección y reconocimiento de patentes y sus correspondientes caracteres, entonces ¿ Qué es una red neuronal?, a grandes rasgos una red neuronal en un algoritmo computacional,en otras palabras es un sistema de computación compuesto por un gran numero de elementos simples que se encuentran interconectados, los cuales procesan la información por medio de estados dinámicos, respondiendo a entradas externas.[acá iría referencia]
-Podemos resaltar que, debido a su comportamiento y construcción, las redes neuronales, presentan una cierta semejanza con el cerebro humano, por lo que a la unidad básica dentro de la red se le asigna el nombre de neurona, que al interconectarlas conforman la red.
-Cada neuronal artificial tendrá ramificaciones, elemento de interconexion con las demás neuronas y un núcleo que procesa la información entrante de la neurona anterior y la entrega a la neurona siguiente. El procesar la informacion entrante es similar a los procesos de sinapsis que se realizan en las neuronas reales, por lo que se suele utilizar el mismo nombre.
-Dependiendo el numero de capas de neuronas internas que posea la red se las puede clasificar como redes del tipo simple o del tipo profunda (deep learning), en el caso de las redes que utilizaremos que son la YOLO-V4 Y una red de conversión de caracteres a texto CNN-OCR .
-[aca va la foto de redes].
+\subsection{Introducción a las redes}
+
+Como se comentó uno los ejes de este trabajo se va a basar en la utilización de redes neuronales para la detección y reconocimiento de patentes y sus correspondientes caracteres, entonces ¿Qué es una red neuronal?, a grandes rasgos una red neuronal en un algoritmo computacional que intenta imitar el cerebro humano, en otras palabras es un sistema de computación compuesto por un gran numero de elementos simples que se encuentran interconectados, los cuales procesan la información por medio de estados dinámicos, respondiendo a entradas externas.[acá iría referencia]
+
+Debido a la semenjanza que existe entre los algoritmos de deep learning y el cerebro humano, a la unidad fundamental de estos sistemas se la denomina neurona.
+Cada neurona procesa la información de la capa de anterior y la entrega a la siguiente capa. Este proceso se puede entender como la sinapsis neuronal de los seres vivos.
+La sinamsis es una suma poderada que puede ser expresada como $Y = W^T\dot X + b$ donde $W$ representa los pesos de la neurona, $b$ es un bias y $X$ es el vector de entrada.
+
+Una capa es un arreglo en paralelo de neuronas, las capas se interconectan para crear redes más complejas capaces de realizar tareas más especificas [agregar figura de una red y sus partes].
+Debido a que en esencia el proceso que realiza la neurona es una transformación lineal, al interconectar capas la resultante sigue siendo una transformación lineal. Este problema de linealidad se soluciona apilcando una función de activación luego de la transformación lineal, obteniendo $Y=f(W^T \dot X + b)$. [agregar grafico de funciones de activación].
+
+HABLAR DE TIPOS DE NEURONAS CONVOLUCIONALES.
+
+FALTA EXPLICAR EL ALGORITMO DE ENTRENAMIENTO MEDIANTE DATASETS Y BACKPROPAGATION.
+
+Existen diversos tipos clasificación aunque la más utilizada es por el rol que la red puede desempeñar, existen redes reunorales convolucionales o CNN por sus siglas en inglés (comúnmente utilizadas para clasificación de imagenes),
+reder reuronales recurrenter o RNN (utilizadas para predicción de texto de largo variable), entre otras. Otra clasificación que es posible utilizal es según la cantidad de capas que esta posea, existiendo 2 clasificaciones, simple las cuales no poseen capas ocultas y profundas las cuales si poseen capas ocultas.
+
 A continuación se dará un breve resumen de como se crean estas capas de neuronas, para ello vamos explicar de manera sencilla y concisa como funciona una red neuronal:
 \begin{itemize}
-\item Una capa recibe valores, llamados inputs,si se trata de la primera capa esos valores vendrán definidos por los datos de entrada, mientras que el resto de capas recibirán el resultado de la capa anterior.
-\item Luego se realiza una suma ponderada de todos los valores provenientes de la entrada, para ellos se necesita una matriz de pesos llamada W, la matriz tiene filas igual al numero de de capas anterior y columnas igual como neuronas tiene la capa actual.
-\item Al resultado de la suma ponderada se le sumará otro parámetro, conocido como bias o, simplemente, b. Cada neurona tiene su propio bias, por lo que las dimensiones del vector bias depende de la capa, por lo que será una columna y tantas filas como neuronas tiene esa capa.
-\item Luego se requiere de una función de activación, uno de los elementos mas importantes dentro de la red. Ya que hasta ahora solo tenemos una regresión lineal. Para evitar esto, al resultado de la suma anterior se le aplica una función, conocido como función de activación. El resultado de esta función será el resultado de la neurona.
+    \item Una capa recibe valores, llamados inputs,si se trata de la primera capa esos valores vendrán definidos por los datos de entrada, mientras que el resto de capas recibirán el resultado de la capa anterior.
+    \item Luego se realiza una suma ponderada de todos los valores provenientes de la entrada, para ellos se necesita una matriz de pesos llamada W, la matriz tiene filas igual al numero de de capas anterior y columnas igual como neuronas tiene la capa actual.
+    \item Al resultado de la suma ponderada se le sumará otro parámetro, conocido como bias o, simplemente, b. Cada neurona tiene su propio bias, por lo que las dimensiones del vector bias depende de la capa, por lo que será una columna y tantas filas como neuronas tiene esa capa.
+    \item Luego se requiere de una función de activación, uno de los elementos mas importantes dentro de la red. Ya que hasta ahora solo tenemos una regresión lineal. Para evitar esto, al resultado de la suma anterior se le aplica una función, conocido como función de activación. El resultado de esta función será el resultado de la neurona.
 \end{itemize}
 
 Una vez que se realiza la suma ponderada, lo que tenemos es básicamente una transformación lineal, por lo que para evitar esto, se introduce una función que modifica estos datos, conocida como función de activación, que ademas de sacar linealidad a la red, le permite resolver problemas mas complejos, algunas de las mas usadas son la funcion escalon, la funcion sigmoide, la funcion rectificadora ReLU y la funcion tangete hiperbolica.[poner graficos]
@@ -31,6 +42,3 @@ explicación del algoritmo paso a paso \\
 
 se pretende explicar como funciona la cada parte de nuestro algoritmo, y que hace cada una de las redes, mostrando que la red que reconoce los caracteres no lo hace de forma consistente si la imagen no es recortada previamente. Hablamos sobre la yolo v4 y sus ventajas junto con su arquitectura.
 
-comunicacion con el servidor \\
-
-aca se habla sobre la comunicacion via wifi con el server para la persistencia de datos \\

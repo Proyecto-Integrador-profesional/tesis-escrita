@@ -4,7 +4,7 @@ En este apartado se busca hablar sobre el servidor, su arquitectura basada en mi
 
 \subsection{Un viaje rapido por el servidor}
 
-El servidor posee una arquitectura de microservicios Fig \ref{fig:server}, donde todos los servicios corren en bajo Docker. Las barreras interactuan hacia el servicio de NestJS donde ellas suben registros de entrada/salida, para luego se procesan las imagenes (Solo en el SL mini) mediante el servicio de Flask, para obtener la patente como texto. Los clientes pueden acceder a Grafana para visualizar datos tales como (DAR EJEMPLOS CUANDO ESTEN). La base de datos se mantiene aislada del exterior, por lo que no es posible acceder a ella directamente, y solo se puede interactuar mediante el servicio de NestJS.
+El servidor posee una arquitectura de microservicios Fig \ref{fig:server}, donde todos los servicios corren en Docker. Las barreras interactuan hacia el servicio de NestJS donde se suben los registros de entrada/salida, para luego procesar las imagenes (Solo en el caso del SL mini) mediante el servicio de Flask, para obtener la patente como texto. Los clientes pueden acceder a Grafana para visualizar datos tales como (DAR EJEMPLOS CUANDO ESTEN). La base de datos se mantiene aislada del exterior, por lo que no es posible acceder a ella directamente, y solo se puede interactuar mediante el servicio de NestJS.
 
 \begin{figure}
         \centering
@@ -48,7 +48,7 @@ comparacion de los servicios frontend y backend explicando sus diferencias \\
 
 La arquitectura de microservicios es una unión de servicios autónomos y pequeños. Esto nos permite que cada servicio utilice una tecnología diferente, siempre que sea necesario. En este trabajo se utiliza un servicio principal que utiliza NestJS (Javascript) y otro que utiliza Flask (Python), ya que Python posee una gran cantidad de herramienta para analisis de datos, mientras que Javascript junto con NestJS permite el desarrollo de un Backend mucho más confiable y rapido. Cada uno de estos servicios corre sobre un contenedor Docker indivual.
 
-El servidor cuenta con los siguientes microservicios:
+El servidor cuenta con los siguientes microservicios:           
 
 \begin{enumerate}
         \item Base de datos
