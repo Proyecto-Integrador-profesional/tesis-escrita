@@ -1,18 +1,33 @@
 \section{Redes}
 
 luego del capitulo 1 (plan de pip)\\
+Introduccion a las redes.
+Como se comentó uno los ejes de este trabajo se va a basar en la utilización de redes neuronales para la detección y reconocimiento de patentes y sus correspondientes caracteres, entonces ¿ Qué es una red neuronal?, a grandes rasgos una red neuronal en un algoritmo computacional,en otras palabras es un sistema de computación compuesto por un gran numero de elementos simples que se encuentran interconectados, los cuales procesan la información por medio de estados dinámicos, respondiendo a entradas externas.[acá iría referencia]
+Podemos resaltar que, debido a su comportamiento y construcción, las redes neuronales, presentan una cierta semejanza con el cerebro humano, por lo que a la unidad básica dentro de la red se le asigna el nombre de neurona, que al interconectarlas conforman la red.
+Cada neuronal artificial tendrá ramificaciones, elemento de interconexion con las demás neuronas y un núcleo que procesa la información entrante de la neurona anterior y la entrega a la neurona siguiente. El procesar la informacion entrante es similar a los procesos de sinapsis que se realizan en las neuronas reales, por lo que se suele utilizar el mismo nombre.
+Dependiendo el numero de capas de neuronas internas que posea la red se las puede clasificar como redes del tipo simple o del tipo profunda (deep learning), en el caso de las redes que utilizaremos que son la YOLO-V4 Y una red de conversión de caracteres a texto CNN-OCR .
+[aca va la foto de redes].
+A continuación se dará un breve resumen de como se crean estas capas de neuronas, para ello vamos explicar de manera sencilla y concisa como funciona una red neuronal:
+\begin{itemize}
+\item Una capa recibe valores, llamados inputs,si se trata de la primera capa esos valores vendrán definidos por los datos de entrada, mientras que el resto de capas recibirán el resultado de la capa anterior.
+\item Luego se realiza una suma ponderada de todos los valores provenientes de la entrada, para ellos se necesita una matriz de pesos llamada W, la matriz tiene filas igual al numero de de capas anterior y columnas igual como neuronas tiene la capa actual.
+\item Al resultado de la suma ponderada se le sumará otro parámetro, conocido como bias o, simplemente, b. Cada neurona tiene su propio bias, por lo que las dimensiones del vector bias depende de la capa, por lo que será una columna y tantas filas como neuronas tiene esa capa.
+\item Luego se requiere de una función de activación, uno de los elementos mas importantes dentro de la red. Ya que hasta ahora solo tenemos una regresión lineal. Para evitar esto, al resultado de la suma anterior se le aplica una función, conocido como función de activación. El resultado de esta función será el resultado de la neurona.
+\end{itemize}
 
-vamos a hablar sobre redes neuronales basadas en imagenes (CNN) y sobre yolo v4.
+Una vez que se realiza la suma ponderada, lo que tenemos es básicamente una transformación lineal, por lo que para evitar esto, se introduce una función que modifica estos datos, conocida como función de activación, que ademas de sacar linealidad a la red, le permite resolver problemas mas complejos, algunas de las mas usadas son la funcion escalon, la funcion sigmoide, la funcion rectificadora ReLU y la funcion tangete hiperbolica.[poner graficos]
+
+
+vamos a hablar sobre redes neuronales basadas en imágenes (CNN) y sobre yolo v4.
 
 nuestro algoritmo de entrada/salida \\
 
 explicar como van a funcionar los sensores SL y SL mini a nivel de control de entrada salida,
 como lo vamos a hacer, es decir hablar de las 2 redes que vamos a usar. \\
 
-introduccion a las redes neuronales \\
-desde que es una neurona, que es una capa, aca van tipos capas de las que usamos, y como se conectan. Tambien hablaremos sobre las funciones de activacion y como se entrena a las mismas. \\
 
-explicacion del algoritmo paso a paso \\
+
+explicación del algoritmo paso a paso \\
 
 se pretende explicar como funciona la cada parte de nuestro algoritmo, y que hace cada una de las redes, mostrando que la red que reconoce los caracteres no lo hace de forma consistente si la imagen no es recortada previamente. Hablamos sobre la yolo v4 y sus ventajas junto con su arquitectura.
 
