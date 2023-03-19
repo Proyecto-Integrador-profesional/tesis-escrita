@@ -3,3 +3,9 @@
 *.pdf
 *.aux
 *.dvi
+*.bcf
+*.lof
+*.lot
+*.run.xml
+*.gz
+*.toc
