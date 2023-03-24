@@ -41,14 +41,14 @@ Cabe destacar que Docker compose crea una red interna en la cual (salvo que defi
 
 \subsection{Frontend vs Backend}
 
-comparacion de los servicios frontend y backend explicando sus diferencias \\
+comparacion de los servicios frontend y backend explicando sus diferencias
 
 
 \subsection{Microservicios}
 
 La arquitectura de microservicios es una unión de servicios autónomos y pequeños. Esto nos permite que cada servicio utilice una tecnología diferente, siempre que sea necesario. En este trabajo se utiliza un servicio principal que utiliza NestJS (Javascript) y otro que utiliza Flask (Python), ya que Python posee una gran cantidad de herramienta para analisis de datos, mientras que Javascript junto con NestJS permite el desarrollo de un Backend mucho más confiable y rapido. Cada uno de estos servicios corre sobre un contenedor Docker indivual.
 
-El servidor cuenta con los siguientes microservicios:           
+El servidor cuenta con los siguientes microservicios:
 
 \begin{enumerate}
         \item Base de datos
@@ -63,7 +63,7 @@ El servidor cuenta con los siguientes microservicios:
 \end{enumerate}
 
 
-\subsubsection*{Backend con NestJS}
+\subsection{Backend con NestJS}
 
 
 Para la autenticación se utilizo el module de Passport JS, el cual permite crear estrategias para los diferentes tipos de autenticación, las estrategias utilizadas son:
@@ -83,7 +83,26 @@ Un JSON Web Token es un estandar qué esta dentro del documento RFC 7519, este d
 
 Se tratara en mayor profundidad sobre el servicio web del backend, nombrando endpoints y tecnologias utilizadas, describiendo las funcionalidades y su por qué.
 
+\subsection{Frontend con ReactJS}
 
-Base de datos [mongodb] \\
+Basicamente se va a hablar del panel admin y algun funciones para los clientes. junto con las librerias implementadas como ZOD,
+
+\begin{enumerate}
+        \item Manejo de estado global: https://docs.pmnd.rs/zustand/getting-started/comparison
+        \item ZOD: https://zod.dev/
+\end{enumerate}
+
+
+\subsection{Grafana}
+
+Hablar sobre los dashboard
+
+\subsection{Mqtt broker}
+
+hablar sobre el protocolo, sus utilidades y para que se usa en el sistema. Su funcion principal es que la barrera avise al servidor cada X tiempo que esta activa,
+esto sirva para en el futuro implementar sistemas de aviso cuando una barrera deberia estar prendida y no lo esta o viceversa. Ademas se utiliza para enviar las configuraciones de la misma ante algun cambio que el usuario desee.
+
+
+\subsection{Base de datos}
 
 explicacion de base de datos relacional y no relacional, por qué elegimos mongoDB para el almacenamiento de datos. Y qué es lo que se guarda. Tambien se explicara como se guardan las imagenes. \\
