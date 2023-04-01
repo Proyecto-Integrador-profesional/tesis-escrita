@@ -81,7 +81,10 @@ Los servicios de apikey buscan que la apikey sea valida, es decir, se encuentre 
 
 Un JSON Web Token es un estandar qué esta dentro del documento RFC 7519, este define un mecanismo para enviar información entre 2 partes, en este caso cliente-servidor de forma segura (utilizando cifrado). Los datos son codificados en un objeto de javascript (JSON),
 
-Se tratara en mayor profundidad sobre el servicio web del backend, nombrando endpoints y tecnologias utilizadas, describiendo las funcionalidades y su por qué.
+\subsection{El cerebro de la aplicación}
+
+Si bien, las barreras procesan datos antes de enviarlos, la logica del sistema se encuentra implementada en el server, corriendo bajo el servicio de NestJS, es decir el backend de nuestra app. Este servicio se encarga de interconectar la base de datos con lo requerido por los clientes, y las barreas. La idea es describir como maneja las peticiones mas importantes, que serian desde grafana, desde una app externa (como la pagina donde el usuario pide las barreras), y las peticiones de la misma barrera, siendo esta un apartado meramente tecnico de detalles de implementacion.
+
 
 \subsection{Frontend con ReactJS}
 
@@ -106,3 +109,5 @@ esto sirva para en el futuro implementar sistemas de aviso cuando una barrera de
 \subsection{Base de datos}
 
 explicacion de base de datos relacional y no relacional, por qué elegimos mongoDB para el almacenamiento de datos. Y qué es lo que se guarda. Tambien se explicara como se guardan las imagenes. \\
+
+
