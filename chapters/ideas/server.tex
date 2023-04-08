@@ -48,7 +48,7 @@ comparacion de los servicios frontend y backend explicando sus diferencias \\
 
 La arquitectura de microservicios es una unión de servicios autónomos y pequeños. Esto nos permite que cada servicio utilice una tecnología diferente, siempre que sea necesario. En este trabajo se utiliza un servicio principal que utiliza NestJS (Javascript) y otro que utiliza Flask (Python), ya que Python posee una gran cantidad de herramienta para analisis de datos, mientras que Javascript junto con NestJS permite el desarrollo de un Backend mucho más confiable y rapido. Cada uno de estos servicios corre sobre un contenedor Docker indivual.
 
-El servidor cuenta con los siguientes microservicios:           
+El servidor cuenta con los siguientes microservicios:
 
 \begin{enumerate}
         \item Base de datos
@@ -84,6 +84,19 @@ Un JSON Web Token es un estandar qué esta dentro del documento RFC 7519, este d
 Se tratara en mayor profundidad sobre el servicio web del backend, nombrando endpoints y tecnologias utilizadas, describiendo las funcionalidades y su por qué.
 
 
-Base de datos [mongodb] \\
+\subsection{Base de datos}
+
+La base de datos del servicio es una base de datos no relacional basada en documentos [mongodb docs]. A la forma de los documentos en la base de datos se los denomina esquemas. Los esquemas que se implementaron fueron:
+
+\begin{enumerate}
+        \item Lugares
+        \item Usuarios
+        \item Barreras
+        \item Datos de autenticación de las barreras
+\end{enumerate}
+
+La informacion que almacena cada documento, es decir, el esquema se muestra detalla acontinuación.
+
+
 
 explicacion de base de datos relacional y no relacional, por qué elegimos mongoDB para el almacenamiento de datos. Y qué es lo que se guarda. Tambien se explicara como se guardan las imagenes. \\
