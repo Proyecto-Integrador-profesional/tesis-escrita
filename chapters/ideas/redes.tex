@@ -11,6 +11,14 @@ La sinamsis es una suma poderada que puede ser expresada como $Y = W^T\dot X + b
 Una capa es un arreglo en paralelo de neuronas, las capas se interconectan para crear redes más complejas capaces de realizar tareas más especificas [agregar figura de una red y sus partes].
 Debido a que en esencia el proceso que realiza la neurona es una transformación lineal, al interconectar capas la resultante sigue siendo una transformación lineal. Este problema de linealidad se soluciona apilcando una función de activación luego de la transformación lineal, obteniendo $Y=f(W^T \dot X + b)$. [agregar grafico de funciones de activación].
 
+Para lo que a procesamiento de imagen y extracción de características las redes mas utilizadas son las CNN , ya que su diseño se vaso en la estructura de la corteza visual animal, esta imitación se consigue utilizando la convolución en 2 dimensiones.
+La convolución es 2 dimensiones es similar al caso conocido en  1 dimensión con algunas modificaciones, por ejemplo se habla de sistemas LSI (lineales de espacio invariante) en vez de LTI, para tenerla presente se procede a explicar la definición de convolución discreta en 2 dimensiones
+Se define filtro o núcleo  o matriz de convolución a la respuesta de un sistema LSI discreto, el filtro es dimensión $2k x 2k$ donde $k$ es un valor establecido arbitrario (usualmente son matrices cuadradas de $3x3$ o $5x5$) que define cuantos valores habra de la muestra.
+Se define a $h[n]$ como un filtro de dimension $2k x 2k$ e $I$ una imagen a escala de grises, donde cada punto de coordenadas $(i,j)$ es el resultado de la convolucion entre $h$ e $I$ dado por 
+\begin{equation}
+O(i,j)= \sum_{u=-k}^{k}n
+\end{equation}
+
 HABLAR DE TIPOS DE NEURONAS CONVOLUCIONALES.
 
 FALTA EXPLICAR EL ALGORITMO DE ENTRENAMIENTO MEDIANTE DATASETS Y BACKPROPAGATION.
