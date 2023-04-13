@@ -16,9 +16,12 @@ La convolución es 2 dimensiones es similar al caso conocido en  1 dimensión co
 Se define filtro o núcleo  o matriz de convolución a la respuesta de un sistema LSI discreto, el filtro es dimensión $2k x 2k$ donde $k$ es un valor establecido arbitrario (usualmente son matrices cuadradas de $3x3$ o $5x5$) que define cuantos valores habra de la muestra.
 Se define a $h[n]$ como un filtro de dimension $2k x 2k$ e $I$ una imagen a escala de grises, donde cada punto de coordenadas $(i,j)$ es el resultado de la convolucion entre $h$ e $I$ dado por 
 \begin{equation}
-O(i,j)= \sum_{u=-k}^{k}n
+O(i,j)= \sum_{u=-k}^{k} \sum_{v=-k}^{k} h(u,v)I(i-u,j-v)
 \end{equation}
-
+ 
+Esta operacion consiste en filtrar una imagen de dimension $(2k+1)x(2k+1)$ en la imagen $I$ y para cada pixel centrado en dicha imagen, calculando la operacion de convolucion.
+Es necesario definir algunos conceptos antes de continuar:
+\
 HABLAR DE TIPOS DE NEURONAS CONVOLUCIONALES.
 
 FALTA EXPLICAR EL ALGORITMO DE ENTRENAMIENTO MEDIANTE DATASETS Y BACKPROPAGATION.
