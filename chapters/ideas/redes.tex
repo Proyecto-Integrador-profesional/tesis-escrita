@@ -21,13 +21,16 @@ O(i,j)= \sum_{u=-k}^{k} \sum_{v=-k}^{k} h(u,v)I(i-u,j-v)
  
 Esta operacion consiste en filtrar una imagen de dimension $(2k+1)x(2k+1)$ en la imagen $I$ y para cada pixel centrado en dicha imagen, calculando la operacion de convolucion.
 Es necesario definir algunos conceptos antes de continuar:
-\
+\begin{itemize}
+\item Paso $S_{w,h}$ distancia en pixeles que se da entre aplicacones sucesivas de la convolucion.
+\item Relleno cero $P_{w,h}$ numero de ceros que se deben añadir como borde al resultado de la convolucion.
+\end{itemize}
 HABLAR DE TIPOS DE NEURONAS CONVOLUCIONALES.
 
 FALTA EXPLICAR EL ALGORITMO DE ENTRENAMIENTO MEDIANTE DATASETS Y BACKPROPAGATION.
 
 Existen diversos tipos clasificación aunque la más utilizada es por el rol que la red puede desempeñar, existen redes reunorales convolucionales o CNN por sus siglas en inglés (comúnmente utilizadas para clasificación de imagenes),
-reder reuronales recurrenter o RNN (utilizadas para predicción de texto de largo variable), entre otras. Otra clasificación que es posible utilizal es según la cantidad de capas que esta posea, existiendo 2 clasificaciones, simple las cuales no poseen capas ocultas y profundas las cuales si poseen capas ocultas.
+redes neuronales recurrenter o RNN (utilizadas para predicción de texto de largo variable), entre otras. Otra clasificación que es posible utilizal es según la cantidad de capas que esta posea, existiendo 2 clasificaciones, simple las cuales no poseen capas ocultas y profundas las cuales si poseen capas ocultas.
 
 A continuación se dará un breve resumen de como se crean estas capas de neuronas, para ello vamos explicar de manera sencilla y concisa como funciona una red neuronal:
 \begin{itemize}
