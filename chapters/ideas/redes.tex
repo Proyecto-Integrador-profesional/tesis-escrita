@@ -24,7 +24,13 @@ Es necesario definir algunos conceptos antes de continuar:
 \begin{itemize}
 \item Paso $S_{w,h}$ distancia en pixeles que se da entre aplicacones sucesivas de la convolucion.
 \item Relleno cero $P_{w,h}$ numero de ceros que se deben añadir como borde al resultado de la convolucion.
-\end{itemize}
+\end{itemize} 
+(revisar si esto queda o no)
+
+El ajustes de los filtros necesarios para extraer caracteristicas puede resultar un proceso largo y tedioso que no siempre conduce a los resultados que uno esperaria, por lo que se puede utilizar machine learning para obtener los valores de los filtros, para que se pueden extrar de manera satisfactoria las caracteristicas de las imagenes.
+Para esta tarea, al colocar la neuronas en cuadriculas de $2k x 2k$, pueden usarse como filtros de convolucion para la extracion de caracteristicas y modificar sus valores durante la propagacion hacia atras (back propagation, metodo de entrenamiento que sera explicado mas adelante)(ver tema de filtros en paralelo F_d profunidad de filtro hiperparametro)
+
+
 HABLAR DE TIPOS DE NEURONAS CONVOLUCIONALES.
 
 FALTA EXPLICAR EL ALGORITMO DE ENTRENAMIENTO MEDIANTE DATASETS Y BACKPROPAGATION.
