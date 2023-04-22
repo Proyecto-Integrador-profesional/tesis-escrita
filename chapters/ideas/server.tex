@@ -1,6 +1,6 @@
 \section{Server}
 
-En este apartado se busca hablar sobre el servidor, su arquitectura basada en microservicios usando docker, y la base de datos.
+En este apartado se busca hablar sobre el servidor, su arquitectura basada en microservicios usando docker, y docker-compose.
 
 \subsection{Un viaje rapido por el servidor}
 
@@ -103,7 +103,7 @@ La web para los clientes tienen una pagina de autenticación (ver figura), en es
 
 En esta web los clientes pueden a los lugares que tiene a cargo, ya que se permite más de un lugar por usuario. Si el cliente posee lugares puede acceder a la tienda para encargar barreras, como minimo un lugar debe poseer 2 barreras.
 
-Ademas los clientes pueden configurar las barreras de manera atravez de la plataforma web, los parametros de configuración [deben haber sido nombrados en la sección del algoritmo de la barrera]. 
+Ademas los clientes pueden configurar las barreras de manera atravez de la plataforma web, los parametros de configuración [deben haber sido nombrados en la sección del algoritmo de la barrera]. Falta agregar imagenes del servicio web, donde sea posible visualizar las distintas vistas que posee la misma.
 
 \subsection{Grafana}
 
@@ -114,9 +114,10 @@ Hablar sobre los dashboard
 hablar sobre el protocolo, sus utilidades y para que se usa en el sistema. Su funcion principal es que la barrera avise al servidor cada X tiempo que esta activa,
 esto sirva para en el futuro implementar sistemas de aviso cuando una barrera deberia estar prendida y no lo esta o viceversa. Ademas se utiliza para enviar las configuraciones de la misma ante algun cambio que el usuario desee.
 
-
 \subsection{Base de datos}
 
-explicacion de base de datos relacional y no relacional, por qué elegimos mongoDB para el almacenamiento de datos. Y qué es lo que se guarda. Tambien se explicara como se guardan las imagenes. \\
+explicacion de base de datos relacional y no relacional, por qué elegimos mongoDB para el almacenamiento de datos. Y qué es lo que se guarda. Tambien se explicara como se guardan las imagenes y porque no se guardan en la base de datos.
+
+
 
 
