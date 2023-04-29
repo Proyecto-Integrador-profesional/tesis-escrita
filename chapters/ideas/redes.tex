@@ -32,10 +32,10 @@ Para esta tarea, al colocar la neuronas en cuadriculas de $2k x 2k$, pueden usar
 
 En este apartado se explicara como se compone una red CNN
 \begin{itemize}
-\item Capa convolucional: capa principal dw
-\item Capa de agrupacion
-\item Capa de activacion
-\item capa completamente conectada
+\item Capa convolucional: capa principal de de las CNN, sus parametros son basicamente filtros entrenables de tamaño reducido, cada una de ellas produce un mapa de activacion bidimensional. Cada uno de estos filtros se activara segun la caracteristica que se busque.
+\item Capa de agrupacion: se coloca entre las capas de convolucion, toma los mapas de caracteristicas producidos por la capa de convolucion y los agrupa en una imagen. En esta capa se produce una reduccion de la dimesion, lo que reduce la complejidad para evitar el sobreajuste de los parametros.
+\item Capa de activacion: la unica funcion de esta capa es la de aumentar la no linealidad sin modificar los parametros, no son entrenables por lo que por ella solo se propagan los errores calculados.
+\item capa completamente conectada: tiene la estructura comun de una capa de nueronas pero con las particularidad que todas las neuronas de esta capa estan conectadas a todas las neuronas de la capa anterior.
 \item capa de perdida
 \end{itemize}
 
