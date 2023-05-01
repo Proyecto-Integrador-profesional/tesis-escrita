@@ -1,0 +1,37 @@
+\section{Barreras}
+
+Las barreras de SL (basada en la NVIDIA Jetson TX1), y la SL mini (basada Raspberry Pi 3 B+), poseen drivers diferentes, aunque como las dos poseen procesadores ARM, poseen una gran similitud en el manejo de los perifericos. Cada barreras posee una llave para poder enviar y recibir datos al servidor, además de un id único que permite comunicar los cambios de configuración en tiempo real mediante el uso del protocolo MQTT.
+
+\subsection{protocolos}
+
+Aca deberiamos hablar sobre el protocolo MQTT, y quizas sobre el protocolo HTTP junto con el verbo POST que es el que vamos a utilizar.
+
+\subsection{Sensores utilizados}
+
+Ambas barreras utilizan una camara usb, ya que permite una gran versatilidad entre placas y por la gran variedad en el mercado. Por otro lado, para determinar la distancia a la que se encuentra el objetivo, se utilizar un sensor US100 (dejar referencia al us100). EN ESTE APARTADO SE BUSCA HABLAR SOBRE COMO FUNCIONA CADA SENSOR, SOBRE TODO EL US100.
+
+\subsection{Software de las barreras}
+
+El software de las barreras esta construido para funcionar en Python 3.9, debido a que ambas sistemas operativos. Los requisitos del software se describen acontinuación:
+
+\begin{enumerate}
+    \item Lectura de archivo de configuración en formato JSON.
+    \item Conexión a un servidor MQTT para recibir cambios de configuración en medio del funcionamiento.
+    \item Envio de datos por HTTP (foto y patente en el caso de las barreras SL).
+\end{enumerate}
+
+Para las utilidades generales de las barreras, es decir, lectura del archivo de configuración, conexión al servicio broker MQTT, y envio de datos al server se implemento un modulo en Python llamado \textit{slutils}, el cual utiliza la librerias \textit{paho-mqtt} para la conexión con el broker MQTT, \textit{requests} para la conexión con el servidor http (del cual se habla más adelante) y \textit{opencv} para el manejo de la camara. Esta libreria implementa la logica necesaria para que cuando llega un mensaje por el topico \textit{id}/config estas configuraciones sean cambiadas y guardadas, por otro lado trae las funciones para sacar las imagenes, por ultimo implementa las funciones para enviar por HTTP utilizando el verbo POST en la petición enviar la foto del vehiculo.
+
+Otras libreria implementada es la US100, la cual utiliza \textit{pyserial} para la comunicación con el puerto serie, además para evitar ruido por una persona que esta pasando, la función que devuelve distancia no devuelve la distancia del sensor, sino que hace un promedio de las últimas cinco mediciones.
+
+Todas las librerias fueron compiladas con la libreria setuptools de Python, para lograr que el uso de las librerias sea lo más sencillos posible, otra ventaja de este modelo de trabajo, es que cualquier cambio en la implementación de las librerias es independiente del driver de cada barreras, sumado a que permite desarrollar con mayor facilidad cambios de en las diferentes librerias.
+
+\subsubsection{SL mini}
+
+La barrera SL mini posee un driver sencillo que implemente una muestra cada 100ms, y cuando la distancia del objetivo es menor a la configurada, entre 60cm y 90cm, se realiza una captura y se envia al servidor, si la respuesta del servidor es tiene un estado 200, entonces el vehiculo puede pasar.
+
+\subsubsection{SL}
+
+El código particular de la barrera SL, es muy similar al del SL mini, pero luego de capturar la imagen, y antes de enviarla al servidor, se procesa la imagen por el algoritmo descripto en (nombrar capitulo del algoritmo de redes), en caso de detectar una patente se envia al servidor la imagen junto con la patente, para ahorrar tiempo de procesamiento.
+
+
