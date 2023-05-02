@@ -104,9 +104,7 @@ En esta web los clientes pueden a los lugares que tiene a cargo, ya que se permi
 
 \subsection{Mqtt broker}
 
-hablar sobre el protocolo, sus utilidades y para que se usa en el sistema. Su funcion principal es que la barrera avise al servidor cada X tiempo que esta activa,
-esto sirva para en el futuro implementar sistemas de aviso cuando una barrera deberia estar prendida y no lo esta o viceversa. Ademas se utiliza para enviar las configuraciones de la misma ante algun cambio que el usuario desee.
-
+Debido a la facilidad de manejar servicios en Docker, el broker mqtt que se utilizo es mosquito (documentación de mosquitto), como fue nombrado con anterioridad, este broker se encarga de conectar las barreras con el servidor backend. Actualmente el único topico que esta siendo utilizado es el de configuración de las barreras.
 \subsection{Base de datos}
 
 explicacion de base de datos relacional y no relacional, por qué elegimos mongoDB para el almacenamiento de datos. Y qué es lo que se guarda. Tambien se explicara como se guardan las imagenes y porque no se guardan en la base de datos.
