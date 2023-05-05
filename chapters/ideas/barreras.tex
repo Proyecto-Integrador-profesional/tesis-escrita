@@ -2,13 +2,35 @@
 
 Las barreras de SL (basada en la NVIDIA Jetson TX1), y la SL mini (basada Raspberry Pi 3 B+), poseen drivers diferentes, aunque como las dos poseen procesadores ARM, poseen una gran similitud en el manejo de los perifericos. Cada barreras posee una llave para poder enviar y recibir datos al servidor, además de un id único que permite comunicar los cambios de configuración en tiempo real mediante el uso del protocolo MQTT.
 
+\subsection{Elección de Placas}
+
+Como se menciono en el apartado anterior se procedió a trabajar sobre 2 placas embebidas, basadas en la misma arquitectura de procesador, pero con capacidades de procesamiento sumamente diferentes. A continuacion se dara una breve descripcion de cada placa y la justificacion de su eleccion.
+\subsubsection{Barrera SL mini}
+La placa de la barrera SL mini es una Raspberry Pi 3 B+, la cual cuenta con un procesador Broadcom BCM2837B0 y un Cortex A53 acompañado de 1 GB de ram LPDDR2, lo cual es mas que aceptable para correr un sistema operativo Raspberry Pi OS(anteriormente conocido como Raspian) basado en Debian(distribución de Linux), lo que era un requisito a cumplir desde el comienzo del diseño del trabajo.
+Otro de los puntos importantes que destacan de la placa son los pines GPIO, pines de entrada/salida de propósito general por sus siglas en ingles, lo que la hace sumamente sensilla a la hora de utilizar  junto sensores comerciales.
+La amplia conectividad integrada que posee fue un punto que la destaco sobre otras posibles placas de desarrollo, ya que al contar con puertos de conexión USB 2.0, puerto Gigabit Ethernet, conexión wifi 2,4 y 5,8 GHz y comunicacion Bluetooth 4.2, suple la necesidad de brindar conexión a internet de manera nativa sin necesidad de contar con periféricos extras que puedan encarecer y obstaculizar el correcto funcionamiento del sistema.
+La disponibilidad de la placa en el mercado, fue un punto importante que se considero, ya que pensando en una futura implementacion del sistema a mediana o gran escala o la necesidad de cambio por rotura de la misma,podian dejar el proyecto parado o inutilizado generando otros inconvenientes.
+\subsubsection{Barrera SL}
+La placa de la barrera SL es una Nvidia Jetson TX1, la cual cuenta con un procesador Cortex A57, pero cuenta con la caracteristica de contar con nucleos de procesamiento de imagen, mas específicamente posee 256 nucleos Nvidia Maxwell, lo que la vuelve una opcion excelente en lo que se refiere al trabajo con imagenes y videos, ademas su 4GB de ram LPDDR4, la hacen una opción mucho mas potente en capacidad de computo que la Raspberry Pi3 b+.
+Para la realización del presente trabajo se conto con el kit de desarrollo provisto por la empresa Nvidia para el uso del sistema embebido, en él se pueden encontrar todas las conexiones mencionadas en la barrera Sl mini, lo que permite el paso de los sensores de una placa a otra con suma facilidad.
+Este modelo de barrera cuenta con un sistema operativo JetPack 4.6.3 basado en Ubuntu 18.04(distribucion de linux) que como se hizo mención era requisito de diseño.
+
 \subsection{protocolos}
 
 Aca deberiamos hablar sobre el protocolo MQTT, y quizas sobre el protocolo HTTP junto con el verbo POST que es el que vamos a utilizar.
 
 \subsection{Sensores utilizados}
 
-Ambas barreras utilizan una camara usb, ya que permite una gran versatilidad entre placas y por la gran variedad en el mercado. Por otro lado, para determinar la distancia a la que se encuentra el objetivo, se utilizar un sensor US100 (dejar referencia al us100). EN ESTE APARTADO SE BUSCA HABLAR SOBRE COMO FUNCIONA CADA SENSOR, SOBRE TODO EL US100.
+Ambas barreras utilizan una camara usb, ya que permite una gran versatilidad entre placas y por la gran variedad en el mercado. Por otro lado, para el mecanismo de activación de la camara se contemplaron diferentes opciones, las cuales fueron:
+\begin{itemize}
+\item Barrera infrarroja: mediante la utilizacion de un haz de luz infrarroja se indice sobre un receptor, por lo cual al acercar el vehiculo a la barrera el haz se ve interrumpido generando un cambio en el receptor que accionaria la camara. Este mecanismo cuenta con varios incovenientes como la sensibilidad del receptor a radiacion del ambiente, la posible interrupción del haz por suciedad (recordando que el sistema puede encontrarse a la intemperie), entre los mas destacados, por lo que esta opcion fue descartada.
+\item Placa de presión : un sistema simple que usa un placa sobre el terreno que al ser pisada por el vehículo genera una señal de activación, el incoveniente se encuentra en la instalacion de la plancha, debido a que no todos los accesos tienen la capacidad de permitirlo, por lo que esta opcion se descarto.
+\item Sensores capacitivos: estos generan campos magneticos que en presencia de objetos se ven afectos, con lo que con una calibracion correcta podria ajustarse para detectar vehiculos, la dificil adquisicion de los mismos o dificultad para crearlos llevaron a descartar esta opcion
+\item Sensores ultrasonico: Estos miden la distancia mediante la emision de una onda ultrasonica por un transmisor y mediante el tiempo que tarda la onda emitida en llegar a un receptor se estima la distancia. Esta fue la opcion elegida ya que es una opcion de un costo no muy elevado y relativa facilidad de integracion a diversas placas embebidos.
+\end{itemize}
+El sensor elegido para el diseño de ambos prototipos de barreras fue el sensor ultrasonico US-100, el cual permite un rango de medicion de 2cm a 350cm, compensado por temperatura, voltaje de alimentacion entre 3V-5V y protocolo de comunicacion UART. Por lo es integrable a ambas placas por medio del puerto GPIO sin necesidad de requerir de conversores de nivel logico ni hardware de alimentacion adicional.
+
+
 
 \subsection{Software de las barreras}
 
