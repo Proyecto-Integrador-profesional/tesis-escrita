@@ -10,8 +10,11 @@
 \usepackage{caption}
 \usepackage{subcaption}
 
-\usepackage{biblatex}
-\usepackage{setspace}  
+\usepackage{setspace}
+
+\usepackage[style=ieee,backend=biber]{biblatex}
+\addbibresource{references.bib}
+
 \spacing{1.5}
 
 \graphicspath{ {imgs/} }
@@ -26,4 +29,6 @@
 \listoffigures
 \listoftables
 \include{chapters/ideas.tex}
+
+\printbibliography
 \end{document}

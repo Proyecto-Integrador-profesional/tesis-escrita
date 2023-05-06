@@ -1,6 +1,6 @@
 \section{Server}
 
-En este apartado se busca hablar sobre el servidor, su arquitectura basada en microservicios usando docker, y la base de datos.
+En este apartado se busca hablar sobre el servidor, su arquitectura basada en microservicios usando docker, y docker-compose.
 
 \subsection{Un viaje rapido por el servidor}
 
@@ -41,7 +41,7 @@ Cabe destacar que Docker compose crea una red interna en la cual (salvo que defi
 
 \subsection{Frontend vs Backend}
 
-comparacion de los servicios frontend y backend explicando sus diferencias \\
+comparacion de los servicios frontend y backend explicando sus diferencias
 
 
 \subsection{Microservicios}
@@ -59,11 +59,10 @@ El servidor cuenta con los siguientes microservicios:
               \subitem Registros
         \item Frontend con ReactJS
         \item Applicacion backend con Flask (analisis de patente online)
-        \item [no implementada] Grafana para usuarios
 \end{enumerate}
 
 
-\subsubsection*{Backend con NestJS}
+\subsection{Backend con NestJS}
 
 
 Para la autenticación se utilizo el module de Passport JS, el cual permite crear estrategias para los diferentes tipos de autenticación, las estrategias utilizadas son:
@@ -81,9 +80,38 @@ Los servicios de apikey buscan que la apikey sea valida, es decir, se encuentre 
 
 Un JSON Web Token es un estandar qué esta dentro del documento RFC 7519, este define un mecanismo para enviar información entre 2 partes, en este caso cliente-servidor de forma segura (utilizando cifrado). Los datos son codificados en un objeto de javascript (JSON),
 
-Se tratara en mayor profundidad sobre el servicio web del backend, nombrando endpoints y tecnologias utilizadas, describiendo las funcionalidades y su por qué.
+\subsection{El cerebro de la aplicación}
+
+Si bien, las barreras procesan datos antes de enviarlos, la logica del sistema se encuentra implementada en el server, corriendo bajo el servicio de NestJS, es decir el backend de nuestra app. Este servicio se encarga de interconectar la base de datos con lo requerido por los clientes, y las barreas. La idea es describir como maneja las peticiones mas importantes, que serian desde grafana, desde una app externa (como la pagina donde el usuario pide las barreras), y las peticiones de la misma barrera, siendo esta un apartado meramente tecnico de detalles de implementacion.
 
 
+\subsection{Frontend con ReactJS}
+
+Basicamente se va a hablar del panel admin y algun funciones para los clientes. junto con las librerias implementadas como ZOD,
+
+\begin{enumerate}
+        \item Manejo de estado global: https://docs.pmnd.rs/zustand/getting-started/comparison
+        \item ZOD: https://zod.dev/
+\end{enumerate}
+
+Existen 2 clientes frontend uno para la adminitracion y otro para los clientes.
+
+\subsubsection{Clientes}
+
+La web para los clientes tienen una pagina de autenticación (ver figura), en esta web los clientes pueden darse de alta y entrar a su session, el manejo de la session se hace atravez de json web token, como fue nombrado en el apartado de backend.
+
+En esta web los clientes pueden a los lugares que tiene a cargo, ya que se permite más de un lugar por usuario. Cada estacionamiento posee un panel para ver y configurar las barreras que posee, además cada barrera posee una descripción para que sea más sencillo que el usuario sepa a que barrera se refiere (hay que agregar figuras de como quedo la web). Los clientes pueden ver los registros de manera individual, asociados a cada lugar (figura de la web de registros y una figura del registro individual). La pagina más útil para sintetizar los datos es un panel de visualización de datos, el que permite ver horas totales utilizadas en el estacionamiento, y cantidad de autos, ambos graficos pueden ser trabajados por día, mes y año, ademas de poder filtrar por fechas (figura del dashboad).
+
+\subsection{Mqtt broker}
+
+Debido a la facilidad de manejar servicios en Docker, el broker mqtt que se utilizo es mosquito (documentación de mosquitto), como fue nombrado con anterioridad, este broker se encarga de conectar las barreras con el servidor backend. Actualmente el único topico que esta siendo utilizado es el de configuración de las barreras.
+\subsection{Base de datos}
+
+explicacion de base de datos relacional y no relacional, por qué elegimos mongoDB para el almacenamiento de datos. Y qué es lo que se guarda. Tambien se explicara como se guardan las imagenes y porque no se guardan en la base de datos.
+
+
+
+<<<<<<< HEAD
 \subsection{Base de datos}
 
 La base de datos del servicio es una base de datos no relacional basada en documentos [mongodb docs]. A la forma de los documentos en la base de datos se los denomina esquemas. Los esquemas que se implementaron fueron:
@@ -98,5 +126,6 @@ La base de datos del servicio es una base de datos no relacional basada en docum
 La informacion que almacena cada documento, es decir, el esquema se muestra detalla acontinuación.
 
 
+=======
+>>>>>>> ideas/server
 
-explicacion de base de datos relacional y no relacional, por qué elegimos mongoDB para el almacenamiento de datos. Y qué es lo que se guarda. Tambien se explicara como se guardan las imagenes. \\
