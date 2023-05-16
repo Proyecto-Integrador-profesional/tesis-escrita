@@ -1,10 +1,14 @@
 \section{Pruebas}
+Para la correcta verificación del funcionamiento de ambos conjuntos de software y hardware se planificaron una serie de pruebas que pongan a corroboren que el diseño cumple su labor de manera optima.
+Por lo que luego de analizar que parámetros son los que mas influyen a la hora de la colocación del pack sensor-cámara, se llego a la conclusión de que los parámetros que mas influyen son 3, distancia entre vehículo y la cámara, angulo de la cámara y la intensidad de luz necesaria para que el algoritmo reconozca las patentes.
 
-En este apartado se busca ir mostrando y comparando resultados, mostrando los beneficios y limitaciones del sistema de barreras.
+\subsection{Prueba de ángulos y distancia}
+Para esta prueba se busco obtener la distancia y angulo optima para que el algoritmo pueda obtener la patente sin perjudicar el acceso al estacionamiento, la misma se realizara en un mismo día, en el que las condiciones climáticas sea lo mas optimas posibles para no perjudicar la prueba.
+La primer parte de la prueba consta de obtener una imagen desde el mismo angulo aumentando la distancia en intervalos regulares, comenzando por $poner distancia minima$ para luego ir aumentando en $poner distancia$, hasta el punto que el algoritmo no sea capaz de obtener los caracteres de la patente.
+Los resultados se pueden observar en la tabla (acá va la referencia la tabla) junto con los caracteres obtenidos.
+Con la primer parte concluida y los resultados obtenidos se toma el valor considerado mas optimo para manterlo fijo e ir cambiando la posición de la cámara sobre una circunferencia para modificar el angulo respecto a la patente.
+Como el resultado de angulo $0$ ya se tiene se ira realizando un barrido en angulo equiespaciado a razon de $poner cantidad$ hasta llegar a que el angulo sea $90$.
 
-\subsection{Prueba de angulos y distancia}
-
-En esta parte se pretende armar pruebas de angulo y distancia para probar la red y el sistema basado en la distancia y el angulo al que se saca la fotografia.
 
 \subsection{Pruebas a diferente luz}
 
