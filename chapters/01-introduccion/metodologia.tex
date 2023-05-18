@@ -1,0 +1,27 @@
+\section{Metodología}
+
+Se desarrollará una investigación sobre la transformación de la imagen de la patente a texto mediante algoritmos de OCR. Para ello se plantea la implementación de algoritmos de deep learning ya entrenados. El eje central de la implementación se hará pensando que el sistema pueda correr en hardware embebido como Raspberry Pi y NVIDIA Jetson TX1. Además, se incluirá un servidor externo para el almacenaje y visualización de información de entrada y salida, con la posibilidad de clasificar por sensor y por franja horaria.
+
+Luego se procederá a la implementación del software utilizando Docker [8], haciendo que el sistema desarrollado sea fácil de instalar y replicar en otros modelos de placas embebidas.
+Finalmente, se volcarán los resultados en un informe.
+
+Todos los subproyectos serán almacenados en GitHub con la finalidad de emular un entorno de desarrollo real.
+
+A continuación se detallan las actividades a realizar:
+
+Etapa 1 - Estudio de algoritmos de OCR: Se profundizará en bibliografía, principalmente en algoritmos que utilicen redes neuronales.
+
+Etapa 2 - Desarrollo del algoritmo de reconocimiento en tiempo real: Se deberá desarrollar un algoritmo que sea capaz de capturar una fotografía desde una cámara y procesarla utilizando un algoritmo estudiado en la Etapa 1. El resultado final debe ser un algoritmo capaz de correr en un SO basado en Linux.
+
+Etapa 3 -  Desarrollo del software para el servidor: En esta etapa se desarrollará el software que pueda correr en un servidor para almacenar los datos de los sensores, junto con la aplicación web que permita la visualización de datos.
+
+Etapa 4 - Evaluación de los sensores: En esta etapa se pretende realizar una evaluación de los sensores necesarios para el funcionamiento del sistema, haciendo foco en la cámara que se utilizara para la obtener las imágenes.
+
+Etapa 5 - Diseño de hardware: Se diseñará el hardware donde irá montado el sistema, teniendo en cuenta la alimentación, según los requerimientos de consumo que este posea.
+
+Etapa 6 - Montaje del hardware del sistema: Se montarán al menos 2 versiones de prueba, una que incluirá una Raspberry Pi (sistema SL mini) y otra que utilizará la NVIDIA Jetson TX1 (sistema SL). En esta etapa se definirán los requerimientos de la cámara que poseerán los sensores.
+
+Etapa 7 - Implementación de los algoritmos en entornos de prueba: Se ejecutará y probará el rendimiento de la etapa 1 en los sensores SL y SL mini, realizando un análisis de costo, teniendo en cuenta costos energéticos y económicos.
+
+
+
