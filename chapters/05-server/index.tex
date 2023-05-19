@@ -1,19 +1,47 @@
 \chapter{Diseño e implementación del servidor}
 
-\section{Actualidad de los servicios web}
+En este capítulo abarcaremos todo lo circundante al diseño e implementación del servidor, describiendo cada servicio de forma particular.
 
+    [Incluir imagen de usted esta aqui basada en el esquema del sistema general version final].
+
+\section{Actualidad del desarrollo web}
+
+En la web existen dos grandes mundos, el frontend el cual es la parte de la web con la que interactuan los usuarios o clientes. Por otro lado tenemos al Backend que es la parte que se conecta con la base de datos y ejecuta las validaciones necesarias para leer o escribir información. En general, el frontend y el backend suelen ser 2 proyectos separados y pueden ser construidos en diferentes lenguajes. Los lenguajes más utilizados son: JavaScript (JS), Python, Ruby, entre otros [referencia al blog de back4app].
+
+Hoy en día la web se a transformado en la base de cualquier empresa u organización, hace años las empresas solian usar aplicaciones de escritorio, pero en la actualidad las aplicaciones web han ganado el mercado.
+De esta necesitdad de implementar aplicaciones webs para todo, nace la necesidad de desacoplar los servicios de una web en partes más pequeñas, lo que se denomina microservicios y suelen correr en lo que se llama una red de contenedores, usualmente bajo Docker \cite{noauthor_documentacion_2023}.
 \section{Qué es un servicio?}
+
+Un servicio es una aplicación que corre de forma aislada al resto, existen una diversidad de servicios, como por ejemplo bases de datos, aplicaciones de Python, JS, servidores MQTT, entre otros.
 
 \section{Docker}
 
+Docker es una tecnología open source desarrollada por Docker Inc, la cual permite correr código de forma aislada en contenedores. Un contenedor funciona casi como una maquina virtual, pero sin entorno gráfico y compartiendo el Kernel [cita de keepcoding sobre que es el kernel] con el sistema que lo hospeda, lo que hace que los contenedores sean más libianos y mucho más rapidos que una maquina virtual, ya que estan últimas emulan todo el sistema e incluyen un puente entren el kernel del sistema padre y el sistema emulado.
+
+Docker al ser una tecnología muy versatil posee una gran cantidad de herramientas que lo rodean, la más conocida, y muy utilizada en el mundo del desarrollo es Kubernetes [cita a kubernetes]. Debido a que el sistema no es lo suficientemente grande y se cuenta con multiples servidores para alojar los servicios, se implementaron utilizando Docker compose \cite{noauthor_docker_2023}, el cual cumple un rol muy similar a Kubernetes, pero sin tanta complejidad extra que trae la opción de administrar multiples servidores.
+
 \section{Servicios}
 
+Una vez descripta como es la arquitectura actual de las aplicaciones web, y que sabemos que es Docker pasaremos a explicar en profundidad de cada servicio y sus usos, junto con cada tecnología aplicada.
+
+\subsection{Base de datos}
 \subsection{Backend}
+
+Existen 2 aplicaciones Backend, la principal fue escrita en NestJS [cita nestjs] la cual se encarga de conectarse con la MongoDB, el Backend de Python y escucha las peticiones del frontend y de las barreras, la segunda es el Backend de Python, el cual ejecuta el algoritmo de OCR.
+
+El servicio de NestJS, utiliza el Swagger [cita  a la documentacion de swagger], lo que genera documentación de los endpoints HTTP de forma automatica, facilitando la tarea de agregar más personas al proyecto y poder visualizar información necesaria por los endpoints para su llamada, además de mostrar el verbo HTTP con el que se debe llamar el mismo [agregar figura de swagger]. Un eje fundamental a la hora de implementar este servicio, fue la seguridad, es por ello que se utilizo PassportJS [cita a documentacion de passport], en sintesis, esta librerira permite implementar métodos de autenticación de forma facíl y sencilla, en este proyecto se implementaron los siguientes métodos:
+
+\begin{enumerate}
+    \item Usuario y contraseña: Utilizado principalmente para los usuarios que entran/registran desde la web.
+    \item ApiKey de terceros: Una forma de validar si la aplicación que pide datos esta autorizada o no.
+    \item ApiKey para barreras: Permite validar si la información del registro de entrada/salida esta siendo enviada por una barrera autorizada, además nos permite saber que barrera es la que envia los datos.
+    \item Json Web Token o JWT: Se utiliza una vez que el usuario entra a la app, y es un hash generado por el servidor, los tokens poseen un tiempo de vida, en nuestro caso 1 día.
+\end{enumerate}
 
 \subsection{Frontend}
 
 \subsection{Broker MQTT}
 
-\subsection{Base de datos}
+
 
 \subsection{Nginx}
