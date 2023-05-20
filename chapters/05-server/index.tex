@@ -25,6 +25,9 @@ Docker al ser una tecnología muy versatil posee una gran cantidad de herramient
 Una vez descripta como es la arquitectura actual de las aplicaciones web, y que sabemos que es Docker pasaremos a explicar en profundidad de cada servicio y sus usos, junto con cada tecnología aplicada.
 
 \subsection{Base de datos}
+
+La base de datos elejida fue Mongo DB [documentacion de mongo], debido a que una de las bases de datos más utilizadas en el mundo basada en documentos. Mongo almacena los datos en un formato denominado BSON (binary JSON), le cual hace más fácil la transferencia de datos. Por otro lado, nos permite escalar de forma horizontal de forma mucho más sencilla, ya que se suelen usar identificadores únicos y no incrementales, como es frecuente en bases de datos sequenciales.
+
 \subsection{Backend}
 
 Existen 2 aplicaciones Backend, la principal fue escrita en NestJS [cita nestjs] la cual se encarga de conectarse con la MongoDB, el Backend de Python y escucha las peticiones del frontend y de las barreras, la segunda es el Backend de Python, el cual ejecuta el algoritmo de OCR.
@@ -36,6 +39,12 @@ El servicio de NestJS, utiliza el Swagger [cita  a la documentacion de swagger],
     \item ApiKey de terceros: Una forma de validar si la aplicación que pide datos esta autorizada o no.
     \item ApiKey para barreras: Permite validar si la información del registro de entrada/salida esta siendo enviada por una barrera autorizada, además nos permite saber que barrera es la que envia los datos.
     \item Json Web Token o JWT: Se utiliza una vez que el usuario entra a la app, y es un hash generado por el servidor, los tokens poseen un tiempo de vida, en nuestro caso 1 día.
+\end{enumerate}
+
+La conexión con la base de datos se hace atravez de la libreria Mongoose [cita de mongoose], la cual permite manejar la escritura y lectura de datos de forma más simple. Los datos almanecenados en Mongo DB fueron:
+
+\begin{enumerate}
+    \item
 \end{enumerate}
 
 \subsection{Frontend}
