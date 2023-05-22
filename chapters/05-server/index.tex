@@ -28,11 +28,15 @@ Una vez descripta como es la arquitectura actual de las aplicaciones web, y que 
 
 La base de datos elejida fue Mongo DB [documentacion de mongo], debido a que una de las bases de datos más utilizadas en el mundo basada en documentos. Mongo almacena los datos en un formato denominado BSON (binary JSON), le cual hace más fácil la transferencia de datos. Por otro lado, nos permite escalar de forma horizontal de forma mucho más sencilla, ya que se suelen usar identificadores únicos y no incrementales, como es frecuente en bases de datos sequenciales.
 
+\subsection{Broker MQTT}
+
+Debido a que Mosquitto es el broker MQTT más utilizado, el cual utiliza la versión 5.0 del protocolo. Elúnico tópico implementado en el de configuración de las barreras, este tópico tiene la forma de ``\textit{id}/config" donde \textit{id} es el id único de la barrera, esto permite de que existan tantos tópicos como barreras, y solo pueden escuchar los cambios de configuracíón de ellas, lo que permite ahorrar procesamiento de datos en la barrera.
+
 \subsection{Backend}
 
 Existen 2 aplicaciones Backend, la principal fue escrita en NestJS [cita nestjs] la cual se encarga de conectarse con la MongoDB, el Backend de Python y escucha las peticiones del frontend y de las barreras, la segunda es el Backend de Python, el cual ejecuta el algoritmo de OCR.
 
-El servicio de NestJS, utiliza el Swagger [cita  a la documentacion de swagger], lo que genera documentación de los endpoints HTTP de forma automatica, facilitando la tarea de agregar más personas al proyecto y poder visualizar información necesaria por los endpoints para su llamada, además de mostrar el verbo HTTP con el que se debe llamar el mismo [agregar figura de swagger]. Un eje fundamental a la hora de implementar este servicio, fue la seguridad, es por ello que se utilizo PassportJS [cita a documentacion de passport], en sintesis, esta librerira permite implementar métodos de autenticación de forma facíl y sencilla, en este proyecto se implementaron los siguientes métodos:
+El servicio de NestJS, fue implementado junto con Swagger [cita  a la documentacion de swagger], lo que genera documentación de los endpoints HTTP de forma automatica, facilitando la tarea de agregar más personas al proyecto y poder visualizar información necesaria por los endpoints para su llamada, además de mostrar el verbo HTTP con el que se debe llamar el mismo [agregar figura de swagger]. Un eje fundamental a la hora de implementar este servicio, fue la seguridad, es por ello que se utilizo PassportJS [cita a documentacion de passport], en sintesis, esta librerira permite implementar métodos de autenticación de forma facíl y sencilla, en este proyecto se implementaron los siguientes métodos:
 
 \begin{enumerate}
     \item Usuario y contraseña: Utilizado principalmente para los usuarios que entran/registran desde la web.
@@ -41,15 +45,24 @@ El servicio de NestJS, utiliza el Swagger [cita  a la documentacion de swagger],
     \item Json Web Token o JWT: Se utiliza una vez que el usuario entra a la app, y es un hash generado por el servidor, los tokens poseen un tiempo de vida, en nuestro caso 1 día.
 \end{enumerate}
 
-La conexión con la base de datos se hace atravez de la libreria Mongoose [cita de mongoose], la cual permite manejar la escritura y lectura de datos de forma más simple. Los datos almanecenados en Mongo DB fueron:
+{\huge no sabemos que hablar del backend, deberiamos poner algo de los endpoints?}
 
-\begin{enumerate}
-    \item
-\end{enumerate}
+El servicio de Python, es una API implementada con Flask [documentacion de flask], este servicio recibe una foto grafia y la procesa utilizando el algoritmo de OCR descripto en el capítulo 2.
+
+
 
 \subsection{Frontend}
 
-\subsection{Broker MQTT}
+El frontend fue construido enterament en ReactJS [documentacion de React], la cual es una de las librerias de JavaScript más utilizadas en la industria. La idea principal de este servicio es brindar un centro de control de las barreras, y visualización de registros y datos de interes. Además permite a los administradores crear barreras, y ver el estado de las mismas.
+
+\subsubsection*{Pagínas para los usuarios}
+
+Los usuarios puede registrarse y entrar a la plataforma como se ve en [referencia a figura de login y registro]. Luego del entrar pueden visualizar los estacionamientos que ellos poseen [figura del home], además de poder configurar los parametros de las barreras en tiempo real [figura de la configuracion de las barreras]. Los ususarios cuentan con un dashboard que les permite ver información resumida por el momento pueden ver horas estacionadas y vehiculos estacionados, separados por estacionamiento y visulizando el tiempo por día, mes o año [figura del dashboard].
+
+\subsubsection*{Pagínas para los administradores}
+
+
+
 
 
 
