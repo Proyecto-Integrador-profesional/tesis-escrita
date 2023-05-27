@@ -8,15 +8,18 @@ En este capítulo abarcaremos todo lo circundante al diseño e implementación d
 
 En la web existen dos grandes mundos, el frontend el cual es la parte de la web con la que interactuan los usuarios o clientes. Por otro lado tenemos al Backend que es la parte que se conecta con la base de datos y ejecuta las validaciones necesarias para leer o escribir información. En general, el frontend y el backend suelen ser 2 proyectos separados y pueden ser construidos en diferentes lenguajes. Los lenguajes más utilizados son: JavaScript (JS), Python, Ruby, entre otros [referencia al blog de back4app].
 
-Hoy en día la web se a transformado en la base de cualquier empresa u organización, hace años las empresas solian usar aplicaciones de escritorio, pero en la actualidad las aplicaciones web han ganado el mercado.
-De esta necesitdad de implementar aplicaciones webs para todo, nace la necesidad de desacoplar los servicios de una web en partes más pequeñas, lo que se denomina microservicios y suelen correr en lo que se llama una red de contenedores, usualmente bajo Docker \cite{noauthor_documentacion_2023}.
+Hoy en día la web se a transformado en la base de cualquier organización, hace años las organizaciones solian usar aplicaciones de escritorio, pero en la actualidad las aplicaciones web han ganado el mercado.
+De este estandar de implementar aplicaciones en forma de webs, nace la necesidad de desacoplar los servicios de una web en partes más pequeñas, lo que se denomina microservicios y suelen correr en lo que se llama una red de contenedores, usualmente bajo Docker \cite{noauthor_documentacion_2023}.
+
+La principal ventaja de la arquitectura de microservicios es la independecia de tecnologías, siendo posible implementar sistemas en lenguajes muy diversos, por ejemplo, los sistemas de recomendación o reconocimiento suelen estar implementados en Python debido a la gran cantidad de librerias de analisis de datos desarrolladas para este lenguaje. Pero por otro lado servicios relacionados a la busqueda y clasificación de informacion pueden ser implementados en Javascript, Ruby, o Go, entre otros.
+
 \section{Qué es un servicio?}
 
-Un servicio es una aplicación que corre de forma aislada al resto, existen una diversidad de servicios, como por ejemplo bases de datos, aplicaciones de Python, JS, servidores MQTT, entre otros.
+Un servicio se puede entender como una aplicación desarrollada para cumplir una serie de tareas. Existen una gran diversidad de tipos de servicios, tales como bases de datos, sistemas de recomendación, aplicaciones backend, paginas webs, brokers MQTT, etc. Los servicios suelen establecer interfaces de comunicación, para que los otros servicios o aplicaciones que se conecten sepan donde deben pedir la información y que van a recibir.
 
 \section{Docker}
 
-Docker es una tecnología open source desarrollada por Docker Inc, la cual permite correr código de forma aislada en contenedores. Un contenedor funciona casi como una maquina virtual, pero sin entorno gráfico y compartiendo el Kernel [cita de keepcoding sobre que es el kernel] con el sistema que lo hospeda, lo que hace que los contenedores sean más libianos y mucho más rapidos que una maquina virtual, ya que estan últimas emulan todo el sistema e incluyen un puente entren el kernel del sistema padre y el sistema emulado.
+Docker es una tecnología open source desarrollada por Docker Inc, la cual permite correr servicios de forma aislada en contenedores. Un contenedor funciona casi como una maquina virtual, pero sin entorno gráfico y compartiendo el Kernel [cita de keepcoding sobre que es el kernel] con el sistema que lo hospeda, lo que hace que los contenedores sean más libianos y mucho más rapidos que una maquina virtual, ya que estan últimas emulan todo el sistema e incluyen un puente entren el kernel del sistema padre y el sistema emulado.
 
 Docker al ser una tecnología muy versatil posee una gran cantidad de herramientas que lo rodean, la más conocida, y muy utilizada en el mundo del desarrollo es Kubernetes [cita a kubernetes]. Debido a que el sistema no es lo suficientemente grande y se cuenta con multiples servidores para alojar los servicios, se implementaron utilizando Docker compose \cite{noauthor_docker_2023}, el cual cumple un rol muy similar a Kubernetes, pero sin tanta complejidad extra que trae la opción de administrar multiples servidores.
 
@@ -27,6 +30,8 @@ Una vez descripta como es la arquitectura actual de las aplicaciones web, y que 
 \subsection{Base de datos}
 
 La base de datos elejida fue Mongo DB [documentacion de mongo], debido a que una de las bases de datos más utilizadas en el mundo basada en documentos. Mongo almacena los datos en un formato denominado BSON (binary JSON), le cual hace más fácil la transferencia de datos. Por otro lado, nos permite escalar de forma horizontal de forma mucho más sencilla, ya que se suelen usar identificadores únicos y no incrementales, como es frecuente en bases de datos sequenciales.
+
+El esquema de base de datos [figura de la base de datos].
 
 \subsection{Broker MQTT}
 
@@ -47,8 +52,7 @@ El servicio de NestJS, fue implementado junto con Swagger [cita  a la documentac
 
 {\huge no sabemos que hablar del backend, deberiamos poner algo de los endpoints?}
 
-El servicio de Python, es una API implementada con Flask [documentacion de flask], este servicio recibe una foto grafia y la procesa utilizando el algoritmo de OCR descripto en el capítulo 2.
-
+El servicio de Python, es una API implementada con Flask [documentacion de flask], este servicio recibe una fotografía y la procesa utilizando el algoritmo de OCR descripto en el capítulo 2 para devolver la patente.
 
 
 \subsection{Frontend}
@@ -61,6 +65,7 @@ Los usuarios puede registrarse y entrar a la plataforma como se ve en [referenci
 
 \subsubsection*{Pagínas para los administradores}
 
+Los administradores poseen una pagina para visualizar las barreras según lugar, permitiendo un prefiltado según clientes lo que hace más sencillo encontrar alguna barrera [figura de la pagina]. Por último, poseen una pagína para agregar barreras a un lugar [figura del form de agregar barrreras].
 
 
 
