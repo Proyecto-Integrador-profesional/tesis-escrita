@@ -38,8 +38,10 @@ Ambos algoritmo poseen un pequeño incoveniente a la hora de extender el proyect
 
  {\huge quizas tengamos que agregar una seccion antes con la teoria de protocolo HTTP}
 
-Una vez diseñado y comprendido como esta compuesto el sistema a grandes razgos, es importante entender las partes del mismo y lograr diferencias que parte del algortimo se ejecutara en la barrera y cual en el servidor. [agregar diagrama de la separación del sistema según server/barrera usar la SL como barrera]. Es importante destacar que la comunicación entre el servidor y las barreras se dará por 2 protocolos (Http y Mqtt).
+Una vez diseñado y comprendido como esta compuesto el sistema a grandes razgos, es importante entender las partes del mismo y lograr diferencias que parte del algortimo se ejecutara en la barrera y cual en el servidor. [agregar diagrama de la separación del sistema según server/barrera usar la SL como barrera]. Es importante destacar que la comunicación entre el servidor y las barreras se dará por 2 protocolos (HTTP y MQTT).
 
 El envío de registros, tanto entrada como salida, es mediante HTTP, por otro lado las configuraciones de las barreras se hacen mendiante MQTT, lo que permite que el servidor envie los cambios de forma automatica, sin que la barrera tenga que realizar una petición HTTP cada cierto tiempo.
 
 El esquema del sistema final, contemplando las barreras y el servidor se puede observar en ... [agregar diagrama final del sistema].
+
+Esta versión del sistema ira desarrollando en los capítulos siguientes, yendo desde la transformación de foto a patente, la comunicación entre las diferentes partes del sistema, y otros detalles de implementación del sistema.
