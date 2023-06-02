@@ -29,7 +29,7 @@ Otra problematica a la hora de pensar en un sistema automatico, es ¿Comó podem
 
 \begin{figure}
     \centering
-    \includegraphics[width=.8\textwidth]{imgs/sistema-con-sensor.png}
+    \includegraphics[width=.3\textwidth]{imgs/sistema-con-sensor.png}
     \caption{Sistema con sensor de distancia y camara}
     \label{fig:sistema-completa}
 \end{figure}
@@ -71,6 +71,13 @@ Una vez diseñado y comprendido como esta compuesto el sistema a grandes razgos,
 
 El envío de registros, tanto entrada como salida, es mediante HTTP, por otro lado las configuraciones de las barreras se hacen mendiante MQTT, lo que permite que el servidor envie los cambios de forma automatica, sin que la barrera tenga que realizar una petición HTTP cada cierto tiempo.
 
-El esquema del sistema final, contemplando las barreras y el servidor se puede observar en ... [agregar diagrama final del sistema].
+El esquema del sistema final, contemplando las barreras y el servidor se puede observar en Fig. \ref{fig:sistema-server-barrera}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=.4\textwidth]{imgs/sistema-server-barrera}
+    \caption{Sistema separado en barrera y servidor.}
+    \label{fig:sistema-server-barrera}
+\end{figure}
 
 Esta versión del sistema ira desarrollando en los capítulos siguientes, yendo desde la transformación de foto a patente, la comunicación entre las diferentes partes del sistema, y otros detalles de implementación del sistema.

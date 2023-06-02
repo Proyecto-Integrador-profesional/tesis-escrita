@@ -6,10 +6,10 @@ En este capítulo abarcaremos todo lo circundante al diseño e implementación d
 
 \section{Actualidad del desarrollo web}
 
-En la web existen dos grandes mundos, el frontend el cual es la parte de la web con la que interactuan los usuarios o clientes. Por otro lado tenemos al Backend que es la parte que se conecta con la base de datos y ejecuta las validaciones necesarias para leer o escribir información. En general, el frontend y el backend suelen ser 2 proyectos separados y pueden ser construidos en diferentes lenguajes. Los lenguajes más utilizados son: JavaScript (JS), Python, Ruby, entre otros \cite{noauthor_10_2021}.
+En la web existen dos grandes mundos, el frontend el cual es la parte de la web con la que interactuan los usuarios o clientes. Por otro lado tenemos al Backend que es la parte que se conecta con la base de datos y ejecuta las validaciones necesarias para leer o escribir información. En general, el frontend y el backend suelen ser 2 proyectos separados y pueden ser construidos en diferentes lenguajes. Los lenguajes más utilizados son: JavaScript (JS), Python, Ruby, entre otros \cite{presta_10_2021}.
 
 Hoy en día la web se a transformado en la base de cualquier organización, hace años las organizaciones solian usar aplicaciones de escritorio, pero en la actualidad las aplicaciones web han ganado el mercado.
-De este estandar de implementar aplicaciones en forma de webs, nace la necesidad de desacoplar los servicios de una web en partes más pequeñas, lo que se denomina microservicios y suelen correr en lo que se llama una red de contenedores, usualmente bajo Docker \cite{noauthor_documentacion_2023}.
+De este estandar de implementar aplicaciones en forma de webs, nace la necesidad de desacoplar los servicios de una web en partes más pequeñas, lo que se denomina microservicios y suelen correr en lo que se llama una red de contenedores, usualmente bajo Docker \cite{docker_inc_documentacion_2023}.
 
 La principal ventaja de la arquitectura de microservicios es la independecia de tecnologías, siendo posible implementar sistemas en lenguajes muy diversos, por ejemplo, los sistemas de recomendación o reconocimiento suelen estar implementados en Python debido a la gran cantidad de librerias de analisis de datos desarrolladas para este lenguaje. Pero por otro lado servicios relacionados a la busqueda y clasificación de informacion pueden ser implementados en Javascript, Ruby, o Go, entre otros.
 
@@ -19,9 +19,9 @@ Un servicio se puede entender como una aplicación desarrollada para cumplir una
 
 \section{Docker}
 
-Docker es una tecnología open source desarrollada por Docker Inc, la cual permite correr servicios de forma aislada en contenedores. Un contenedor funciona casi como una maquina virtual, pero sin entorno gráfico y compartiendo el Kernel \cite{httpswwwfacebookcomgrokkeepcoding_que_2022} con el sistema que lo hospeda, lo que hace que los contenedores sean más libianos y mucho más rapidos que una maquina virtual, ya que estan últimas emulan todo el sistema e incluyen un puente entren el kernel del sistema padre y el sistema emulado.
+Docker es una tecnología open source desarrollada por Docker Inc, la cual permite correr servicios de forma aislada en contenedores. Un contenedor funciona casi como una maquina virtual, pero sin entorno gráfico y compartiendo el Kernel \cite{keepcoding_que_2022} con el sistema que lo hospeda, lo que hace que los contenedores sean más libianos y mucho más rapidos que una maquina virtual, ya que estan últimas emulan todo el sistema e incluyen un puente entren el kernel del sistema padre y el sistema emulado.
 
-Docker al ser una tecnología muy versatil posee una gran cantidad de herramientas que lo rodean, la más conocida, y muy utilizada en el mundo del desarrollo es Kubernetes [cita a kubernetes]. Debido a que el sistema no es lo suficientemente grande y se cuenta con multiples servidores para alojar los servicios, se implementaron utilizando Docker compose \cite{noauthor_docker_2023}, el cual cumple un rol muy similar a Kubernetes, pero sin tanta complejidad extra que trae la opción de administrar multiples servidores.
+Docker al ser una tecnología muy versatil posee una gran cantidad de herramientas que lo rodean, la más conocida, y muy utilizada en el mundo del desarrollo es Kubernetes [cita a kubernetes]. Debido a que el sistema no es lo suficientemente grande y se cuenta con multiples servidores para alojar los servicios, se implementaron utilizando Docker compose \cite{docker_inc_docker_2023}, el cual cumple un rol muy similar a Kubernetes, pero sin tanta complejidad extra que trae la opción de administrar multiples servidores.
 
 \section{Servicios}
 
@@ -39,7 +39,7 @@ Debido a que Mosquitto es el broker MQTT más utilizado, el cual utiliza la vers
 
 \subsection{Backend}
 
-Existen 2 aplicaciones Backend, la principal fue escrita en NestJS \cite{noauthor_documentacion_nodate-1} la cual se encarga de conectarse con la MongoDB, el Backend de Python y escucha las peticiones del frontend y de las barreras, la segunda es el Backend de Python, el cual ejecuta el algoritmo de OCR.
+Existen 2 aplicaciones Backend, la principal fue escrita en NestJS \cite{noauthor_documentacion_nodate} la cual se encarga de conectarse con la MongoDB, el Backend de Python y escucha las peticiones del frontend y de las barreras, la segunda es el Backend de Python, el cual ejecuta el algoritmo de OCR.
 
 El servicio de NestJS, fue implementado junto con Swagger [cita  a la documentacion de swagger], lo que genera documentación de los endpoints HTTP de forma automatica, facilitando la tarea de agregar más personas al proyecto y poder visualizar información necesaria por los endpoints para su llamada, además de mostrar el verbo HTTP con el que se debe llamar el mismo [agregar figura de swagger]. Un eje fundamental a la hora de implementar este servicio, fue la seguridad, es por ello que se utilizo PassportJS [cita a documentacion de passport], en sintesis, esta librerira permite implementar métodos de autenticación de forma facíl y sencilla, en este proyecto se implementaron los siguientes métodos:
 
