@@ -19,13 +19,22 @@ Un servicio se puede entender como una aplicación desarrollada para cumplir una
 
 \section{Docker}
 
-Docker es una tecnología open source desarrollada por Docker Inc, la cual permite correr servicios de forma aislada en contenedores. Un contenedor funciona casi como una maquina virtual, pero sin entorno gráfico y compartiendo el Kernel \cite{keepcoding_que_2022} con el sistema que lo hospeda, lo que hace que los contenedores sean más libianos y mucho más rapidos que una maquina virtual, ya que estan últimas emulan todo el sistema e incluyen un puente entren el kernel del sistema padre y el sistema emulado.
+Docker es una tecnología open source desarrollada por Docker Inc, la cual permite correr servicios de forma aislada en contenedores. Un contenedor funciona casi como una maquina virtual, pero sin entorno gráfico y compartiendo el Kernel \cite{keepcoding_que_2022} con el sistema que lo hospeda, lo que hace que los contenedores sean más livianos y mucho más rapidos que una maquina virtual, ya que estan últimas emulan todo el sistema e incluyen un puente entren el kernel del sistema padre y el sistema emulado.
 
 Docker al ser una tecnología muy versatil posee una gran cantidad de herramientas que lo rodean, la más conocida, y muy utilizada en el mundo del desarrollo es Kubernetes [cita a kubernetes]. Debido a que el sistema no es lo suficientemente grande y se cuenta con multiples servidores para alojar los servicios, se implementaron utilizando Docker compose \cite{docker_inc_docker_2023}, el cual cumple un rol muy similar a Kubernetes, pero sin tanta complejidad extra que trae la opción de administrar multiples servidores.
 
+Docker compose genera una red interna para interconectar los contenedores, lo que conlleva a un contenedor de nombre \textit{api} pueda acceder a una base de datos montada en un contenedor con el nombre \textit{db} utilizando como nombre de dominio la palabra \textit{db} junto con el puerto correspondiente, en caso de bases de datos Mongo el puerto por defecto es el 27017, en dicho caso la url de conexión queda dada como \textit{``mongodb://db:27017/database"}.
+
 \section{Servicios}
 
-Una vez descripta como es la arquitectura actual de las aplicaciones web, y que sabemos que es Docker pasaremos a explicar en profundidad de cada servicio y sus usos, junto con cada tecnología aplicada.
+Una vez descripta como es la arquitectura actual de las aplicaciones web, y que sabemos que es Docker pasaremos a explicar en profundidad de cada servicio y sus usos, junto con cada tecnología aplicada. La arquitecura del servidor se puede observar en la Fig. \ref{fig:server-esquema} junto con el flujo simplificado de información.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=.8\textwidth]{imgs/server-esquema.png}
+    \caption{Esquema del servidor junto con la conexión de clientes y barreras.}
+    \label{fig:server-esquema}
+\end{figure}
 
 \subsection{Base de datos}
 
@@ -53,7 +62,6 @@ El servicio de NestJS, fue implementado junto con Swagger [cita  a la documentac
 {\huge no sabemos que hablar del backend, deberiamos poner algo de los endpoints?}
 
 El servicio de Python, es una API implementada con Flask [documentacion de flask], este servicio recibe una fotografía y la procesa utilizando el algoritmo de OCR descripto en el capítulo 2 para devolver la patente.
-
 
 \subsection{Frontend}
 
