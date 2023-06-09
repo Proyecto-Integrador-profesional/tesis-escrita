@@ -71,9 +71,10 @@ que solo poseen 6 caracteres, todos los terminos descriptos anteriormente seran 
 Como se viene mencionando durante las secciones anteriores se usara una red neuronal del tipo convolucional para realizar el algoritmo de OCR,
 pero bien para comprender como trabaja un red convolucional es necesario saber primero que es una red neuronal y como esta se constituye.
 
-Entonces ¿qué es una red nueronal?, se define entonces como red neuronal a un algoritmo computacional que intenta imitar el cerebro 
+Entonces ¿qué es una red nueronal?, se define entonces como red neuronal a un algoritmo computacional recursivo que intenta imitar el cerebro 
 humano, en otras palabras es un algoritmo de computación compuesto por un gran numero de elementos simples que se 
-encuentran interconectados, los cuales procesan la información por medio de estados dinámicos, respondiendo a entradas externas,esquematizado en 
+encuentran interconectados, los cuales procesan la información por medio de estados dinámicos, respondiendo a entradas externas, que permite 
+clasificar datos en un numero finito de clases o categorias.esquematizado en 
  la Fig. \ref*{fig:esquema-redes}.
 \begin{figure}[h]
     \centering
@@ -110,32 +111,42 @@ Fig. \ref*{fig:funciones-activacion}.
     \label{fig:funciones-activacion}
     \caption{Funciones de activacion más comunes.}
 \end{figure}
+En forma resumida podemos decir que la red funciona de la siguiente manera, se realiza la multiplacion de la entrada y los pesos de la red,
+luego los resultados son ingresados a la funcion de activacion para quitar las linealidades, a su vez se calcula una funcion de costo que se obtiene 
+con los valores obtenidos y los que se espera obtener, esta funcion es usada principalmente en el ajuste de los pesos de la red, es decir el 
+entrenamiento de la misma.
 Como este trabajo esta centrando en el trabajo con imagenes las redes mas utilizadas son las redes neuronales de convolución o 
 CNN Convolutional Neuronal Network por sus siglas en inglés, ya que su diseño se basa en la estructura de la corteza visual animal, esta 
 imitación se consigue utilizando convoluciones bidimensionales. Este tipo de redes poseen caracteristicas que las hacen unicas, por lo que 
 se prodece a continuacion a enumerar las partes que la componen y se muestra un esquema de la misma en la Fig. \ref*{fig:esquema-CNN}
 \begin{itemize}
-    \item Capa convolucional: capa principal de de las CNN, sus parametros son basicamente filtros entrenables de tamaño reducido, cada una 
-    de ellas produce un mapa de activacion bidimensional. Cada uno de estos filtros se activara segun la caracteristica que se busque.
+    \item Capa convolucional: capa principal de las CNN, sus parametros son basicamente filtros entrenables de dimesiones determindas por el 
+    usuario,realizando una multiplicacion punto a punto recorriendo toda la dimesion, produciendo un mapa de activacion bidimensional, en la 
+    Fig. \ref{fig:esquema-capa-convolucional} se ve el funcionamiento de esta capa. Cada uno de estos filtros se activara segun la 
+    caracteristica que se busque.
     \item Capa de agrupacion: se coloca entre las capas de convolucion, toma los mapas de caracteristicas producidos por la capa de 
     convolucion y los agrupa en una imagen. En esta capa se produce una reduccion de la dimesion, lo que reduce la complejidad para evitar el sobreajuste de los parametros.
     \item Capa de activacion: la unica funcion de esta capa es la de aumentar la no linealidad sin modificar los parametros, no son entrenables 
     por lo que por ella solo se propagan los errores calculados.
     \item capa completamente conectada: tiene la estructura comun de una capa de nueronas pero con las particularidad que todas las neuronas 
     de esta capa estan conectadas a todas las neuronas de la capa anterior.
-    \item capa de perdida
 \end{itemize}
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{imgs/capa-convolucional.jpeg}
+    \label{fig:esquema-capa-convolucional}
+    \caption{Esquema de funcionamiento de una capa convolucional.}
+\end{figure}
 \begin{figure}
     \centering
     \includegraphics[width=1\textwidth]{imgs/CNN-completa.jpg}
     \label{fig:esquema-CNN}
     \caption{Esquema de un red del tipo CNN.}
 \end{figure}
-Antes de continuar haremos una pausa para explicar el comportamiento de la convolución bidimensional, es similar al caso conocido en 1D con 
-algunas modificaciones, por ejemplo se habla de sistemas LSI (lineales de espacio invariante) en vez de sistemas Lineales invariantes 
-en el tiempo, para tenerla presente se procede a explicar la definición de convolución discreta en 2  dimensiones.
+Antes de continuar haremos una pausa para explicar el comportamiento de la convolución bidimensional, es similar al caso conocido en 1D pero 
+en este caso se desplaza una submatriz de un tamaño predefinido, comunmente denonimado kernel.
 
-Se define filtro, núcleo ó matriz de convolución a la respuesta de un sistema LSI discreto, el filtro es dimensión $2k x 2k$ donde $k$ es un 
+Se define filtro, o kernel a la respuesta de un sistema discreto, el filtro es de dimensión $2k x 2k$ donde $k$ es un 
 valor establecido arbitrario (usualmente son matrices cuadradas de $3x3$ o $5x5$) que define cuantos valores habra de la muestra.
 
 Se define a $h[n]$ como un filtro de dimension $2k x 2k$ e $I$ una imagen a escala de grises, donde cada punto de coordenadas $(i,j)$ es el 
@@ -144,16 +155,15 @@ resultado de la convolucion entre $h$ e $I$ dado por
     O(i,j)= \sum_{u=-k}^{k} \sum_{v=-k}^{k} h(u,v)I(i-u,j-v)
 \end{equation}
 
-Esta operacion consiste en filtrar una imagen de dimension $(2k+1)x(2k+1)$ en la imagen $I$ y para cada pixel centrado en dicha imagen, 
+Esta operacion consiste en filtrar una imagen de dimension $(2k+1)x(2k+1)$ en la imagen $I$ para cada pixel centrado en dicha imagen, 
 calculando la operacion de convolucion.
-
 El ajustes de los filtros necesarios para extraer caracteristicas puede resultar un proceso largo y tedioso que no siempre conduce a los 
-resultados que uno esperaria, por lo que se puede utilizar machine learning para obtener los valores de los filtros, 
-para que se pueden extrar de manera satisfactoria las caracteristicas de las imagenes.
-
-Para esta tarea, al colocar la neuronas en cuadriculas de $2k x 2k$, pueden usarse como filtros de convolucion para 
-la extracion de caracteristicas y modificar sus valores durante la propagacion hacia atras (backpropagation, metodo de entrenamiento 
-que sera explicado mas adelante)(ver tema de filtros en paralelo $F_d$ profunidad de filtro hiperparametro).
+resultados que uno esperaria, por lo que se puede utilizar machine learning para obtener los valores optimos de los filtros.
+Este bloque de filtros es el que se denomino bloque de convolucion que fue nombrado en la seccion anterior.
+Otro de los bloques que necesitamos mencionar es el de Batch-Normalization, este puede ser definido como una tecnica que busca 
+reducir el cambio de covariables internas o internal covariate shift, esto con la finalidad de hacer mas robusta la red a una mala eleccion
+de valores iniciales. El internal covariate shift se define como el cambio en la distribucion de la activacion de la red, esto se logra en la etapa
+del entrenamiento,ingresando pequeños grupos de datos de entrada o mini-batches
 
 
 
