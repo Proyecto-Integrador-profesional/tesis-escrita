@@ -64,7 +64,7 @@ mercosur del año 2015, las cuales se pueden ver en la Fig. \ref{fig:patentes-ar
 
 Este algoritmo como se menciono al inicio del capitulo fue entrenado por Ankandrew, el cual es un modelo convencional de red convolucional
 formada por un bloque convolucional, luego un bloque Batch-Normalization, una funcion de activacion, seguida por un bloque de MaxPooling
-continuada por un bloque GlobalAvgPooling para finalizar en una fully Conected Layer de 37x7, esto surge de que maximo se poseen 7 caracteres
+continuada por un bloque GlobalAvgPooling para finalizar en una bloque softmax conectado mediante una Fully Connect Layer de 37x7, esto surge de que maximo se poseen 7 caracteres
 de salida y el 37 de la suma de las 26 letras del abcedario, los 10 numeros del 0 al 9 y el simbolo $\_$ utilizado para el caso de las patentes antiguas
 que solo poseen 6 caracteres, todos los terminos descriptos anteriormente seran explicados en la siguiente seccíon.
 
@@ -109,8 +109,8 @@ Fig. \ref*{fig:funciones-activacion}.
 \begin{figure}
     \centering
     \includegraphics[width=1\textwidth]{imgs/Funciones-de-activacion.jpg}
-    \label{fig:funciones-activacion}
     \caption{Funciones de activacion más comunes.}
+    \label{fig:funciones-activacion}
 \end{figure}
 En forma resumida podemos decir que la red funciona de la siguiente manera, se realiza la multiplacion de la entrada y los pesos de la red,
 luego los resultados son ingresados a la funcion de activacion para quitar las linealidades, a su vez se calcula una funcion de costo que se obtiene
@@ -126,7 +126,8 @@ se prodece a continuacion a enumerar las partes que la componen y se muestra un 
           Fig. \ref{fig:esquema-capa-convolucional} se ve el funcionamiento de esta capa. Cada uno de estos filtros se activara segun la
           caracteristica que se busque.
     \item Capa de agrupacion: se coloca entre las capas de convolucion, toma los mapas de caracteristicas producidos por la capa de
-          convolucion y los agrupa en una imagen. En esta capa se produce una reduccion de la dimesion, lo que reduce la complejidad para evitar el sobreajuste de los parametros.
+          convolucion y los agrupa en una imagen. En esta capa se produce una reduccion de la dimesion, lo que reduce la complejidad 
+          para evitar el sobreajuste de los parametros.
     \item Capa de activacion: la unica funcion de esta capa es la de aumentar la no linealidad sin modificar los parametros, no son entrenables
           por lo que por ella solo se propagan los errores calculados.
     \item capa completamente conectada: tiene la estructura comun de una capa de nueronas pero con las particularidad que todas las neuronas
@@ -135,14 +136,14 @@ se prodece a continuacion a enumerar las partes que la componen y se muestra un 
 \begin{figure}
     \centering
     \includegraphics[width=1\textwidth]{imgs/capa-convolucional.jpeg}
-    \label{fig:esquema-capa-convolucional}
     \caption{Esquema de funcionamiento de una capa convolucional.}
+    \label{fig:esquema-capa-convolucional}
 \end{figure}
 \begin{figure}
     \centering
     \includegraphics[width=1\textwidth]{imgs/CNN-completa.jpg}
-    \label{fig:esquema-CNN}
     \caption{Esquema de un red del tipo CNN.}
+    \label{fig:esquema-CNN}
 \end{figure}
 Antes de continuar haremos una pausa para explicar el comportamiento de la convolución bidimensional, es similar al caso conocido en 1D pero
 en este caso se desplaza una submatriz de un tamaño predefinido, comunmente denonimado kernel.
@@ -161,14 +162,44 @@ calculando la operacion de convolucion.
 El ajustes de los filtros necesarios para extraer caracteristicas puede resultar un proceso largo y tedioso que no siempre conduce a los
 resultados que uno esperaria, por lo que se puede utilizar machine learning para obtener los valores optimos de los filtros.
 Este bloque de filtros es el que se denomino bloque de convolucion que fue nombrado en la seccion anterior.
-Otro de los bloques que necesitamos mencionar es el de Batch-Normalization, este puede ser definido como una tecnica que busca
-reducir el cambio de covariables internas o internal covariate shift, esto con la finalidad de hacer mas robusta la red a una mala eleccion
-de valores iniciales. El internal covariate shift se define como el cambio en la distribucion de la activacion de la red, esto se logra en la etapa
-del entrenamiento,ingresando pequeños grupos de datos de entrada o mini-batches
+Otro de los bloques que necesitamos mencionar es el de Batch-Normalization[https://keepcoding.io/blog/batch-normalization-red-convolucional/], 
+este puede ser definido como una tecnica que busca reducir el cambio de covariables internas o internal covariate shift, esto con la finalidad 
+de hacer mas robusta la red a una mala eleccion de valores iniciales. El internal covariate shift se define como el cambio en la distribucion de la activacion de la red, 
+esto se logra en la etapa del entrenamiento,ingresando pequeños grupos de datos de entrada o mini-batches.
 
+En términos matemáticos, lo que se hace es centrar y normalizar cada mini-batch ingresa a la red con una media y 
+desviación estándar calculadas con el mini-batch, para luego re-escalar y descentrar los datos de nuevo con parámetros 
+aprendidos por la red a través del entrenamiento.
 
+Continuada del bloque anterior se encuentra conectada una funcion de activacion, que como se menciono en parrafos previos, tienen como finalidad 
+proveeder a la de red de no linealidades, que le permiten a la red ser capaz de resolver problemas mas complejos. Existe una amplia variedad 
+de tipos de funciones de activacion, como se puede ver en el a Fig. \ref{fig:funciones-activacion} algunas de ellas dejan pasar la informacion
+como esta(la funcion lineal), otras introducen umbrales (sigmoide y escalon) y otras recortan parte de la informacion y dejan igual el resto(funcion Relu).
 
+Es normal entre la capas de convolucion colocar una capa de Pooling,en el caso de la red utilizada es precisamente una capa de MaxPooling,
+no es mas que que una capa que realiza un proceso de reduccion de dimesiones de las matrices que le ingresan, en otras palabras la capa de maxpooling 
+es un submuestreador que toma un conjunto de valores(pixeles al tratarse de imagenes) y devuelve el valor mas representativo, achicando significativamente 
+los mapas de activacion, lo que implica menor cantidad de parametros y costo computacional de la red.
 
+En la Fig. \ref{fig:ejemplo-mp} se puede apreciar el comportamiento de una capa de maxpooling, luego de la capa de convolucion, se divide la matriz
+en pequeñas matrices de 2x2 para este caso y se extrae el valor mas representativo de cada submatriz, reduciendo la matriz del ejemplo de un tamaño de 
+5x5 a una de 3x3.
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{imgs/ej-maxpooling.jpg}
+    \caption{Ejemplo de funcionamiento de Maxpooling.}
+    \label{fig:ejemplo-mp}
+\end{figure}
+ 
+Como capa siguiente se tiene un capa GlobalAvgPooling o Global Average Pooling, esta reemplaza las fully conect layers o capaz completamente 
+conectada, por lo general se tiene una capa del tipo fully conect unida a todo los mapas de activacion, pero al colocar una capa GlobalAvgPooling
+se busca obtener un unico mapa de activacion para cada categoria buscada,es decir se toma el promedio de cada mapa y se coloca en un vector directamente 
+conectado a una funcion softmax. Esta configuracion reduce la necesidad de ajustar nuevos parametros por lo que se reduce la posibilidad de 
+realizar overfitting(sobre entrenamiento) en la red.[https://arxiv.org/pdf/1312.4400.pdf]
+
+Como capa final de la red se coloca una funcion Softmax, es una de las mas utilizadas como capa final de redes neuronales que buscan realizar
+categorizacion, ya que esta permite obtener la probabilidad de obtener la categorizacion correcta dado que se sabe cual es la categoria correcta.
+ 
 \section{Requerimientos necesarios de la red}
 
 \section{Implementación del algoritmo en Python 3}
