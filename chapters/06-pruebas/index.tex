@@ -1,1 +1,18 @@
 \chapter{Pruebas de integración y fiabilidad}
+
+El eje fundamental de este capítulo es mostrar el rendimiento del sistema en diferentes circuntancias, y probar que el mismo es capaz de deselvolverse de forma satisfactoria en la mayoria de escenarios posibles.
+
+\section{Prueba de exterior}
+
+Esta prueba se realizo con una cámara Kanon [Incluir data de la camara, es del santi] en el estacionamiento de Ingenieria de la Universidad Nacional del Comahue entre las 8 y 9 de la mañana, el martes 6 de Junio del 2023. La prueba se realizo colocando la cámara en un tripode con una altura de Ycm respecto del suelo, y se procedio a filmar los vehiculos que entraban en el estacionamiento o pasaban por la calle. De este proceso de medición se obtuvieron dos videos de una duración aproximada de 40min.
+
+Teniendo en cuenta que el algoritmo de OCR tarda 1200ms en procesar un frame es neceario realizar un filtrado, ya que los 40min de filmación equivalen en 72000 imagenes, y la mayoria no poseen vehiculos o la patente no esta enfocada. El proceso de filtrado consistio en un recorte manual de las partes donde no había ningún vehiculo, lo que termino dejando Mmin de filmación, si bien este número es bajo llevo a obtener un total de 35 vehiculos, suficientes para este analisis. Posteriormente se convirtio el video en frames, utilizando Open CV, para luego procesar las 11000 fotografias y eliminar las que no era posible reconocer la patente del vehículo. Luego se obtuevieron 3600 fotografias validas, las cuales se procesaron por el algoritmo de OCR y se descarcataron todas las imagenes que tenian un porcentaje de seguridad inferior al 50\%, las imagenes que no se descartaron se guardaron en una carpeta con cuyo nombre era la patente que le asigno la red. Finalmente se agruparon las
+Del procesamineto podemos generar el resumen de errores por patente Tab. \ref{tab:resumen-patente}.
+
+\begin{table}
+    \centering
+    \input{chapters/06-pruebas/plate-resume-table.tex}
+    \caption{Resumen de las patentes reconocidas.}
+    \label{tab:resumen-patente}
+\end{table}
+
