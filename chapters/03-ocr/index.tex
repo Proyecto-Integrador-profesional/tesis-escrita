@@ -201,5 +201,71 @@ Como capa final de la red se coloca una funcion Softmax, es una de las mas utili
 categorizacion, ya que esta permite obtener la probabilidad de obtener la categorizacion correcta dado que se sabe cual es la categoria correcta.
  
 \section{Requerimientos necesarios de la red}
+Una vez que tenemos las bases teoricas para comprender el funcionamiento de una CNN, vamos a meternos en los requerimientos propios que posee 
+la red que es utilizada durante este trabajo, segun los datos provistos por el autor la red necesita como entrada una red imagen de la patente
+en blanco y negro de dimensiones 70x140 pixeles.
+Por lo que se ve que es necesario realizarle un tratamiento previo a las imagenes obtenidas antes de ingresalas por la red que realizara el 
+algoritmo de OCR, el tratamiento necesario lo podemos ver en la \ref{fig:Comparativa-imagenes}.
+\begin{figure}[!tbp]
+ \centering
+    \begin{subfigure}[b]{0.49\textwidth}
+        \includegraphics[width=\textwidth, height=\textwidth]{imgs/imagen-obtenida.jpg}
+        \caption{Imagen obtenida por la camara.}
+        \label{fig:imagen-obtenida}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\textwidth}
+        \includegraphics[width=0.7\textwidth, height=0.7\textwidth]{imgs/imagen-requerida.jpg}
+        \caption{Imagen requerida por la red.}
+        \label{fig:imagen-requerida}
+    \end{subfigure}
+ \caption{Compartiva imagenes a)Obtenida por la camara b)Requerida por la red.}
+ \label{fig:Comparativa-imagenes}
+\end{figure}
+
+Para logralo, es necesario utilizar otra red nueronal, para que detecte la ubicacion de la patente, y asi poder realizar el recorte e ingresarla 
+a la CNN para que obtenga los caracteres, dicha red es la Yolo (You Only Look Once ) en su version 4. 
+
+Este difiere con otro tipo de detectores en que no utiliza la imagen completa y se queda con las regiones en la que obtuvo mayor puntaje y las 
+considera como objeto detectado si no que, mediante una red neuronal tambien del tipo CNN toma la imagen completa, dibuja una serie de cuadrados
+en diversas capas junto con su clasificacion, estas capas deben mesclarse para realizar la correcta deteccion, dicha implementacion se ve en la 
+Fig. \ref{fig:funcionamiento-yolo}, una vez que se tiene la ubicacion del objeto una CNN clasifica la imagen. Esta implementación de YoloV4 
+utiliza el marco Darknet.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{imgs/funcionamiento-yolo.png}
+    \caption{Funcionamiento del proceso de deteccion de la YoloV4.}
+    \label{fig:funcionamiento-yolo}
+    %%https://blog.roboflow.com/a-thorough-breakdown-of-yolov4/
+\end{figure}
 
 \section{Implementación del algoritmo en Python 3}
+
+Para la implementacion del algoritmo se utilizo el lenguaje Python3, ya que este permite una rapida integracion de diversas librerias necesarias
+para el funcionamiento del sistema completo, como es necesario el uso de una camara para la obtencion de las imagenes se utilizo la libreria 
+OpenCv [https://github.com/opencv/opencv] para integrarla al algoritmo, a su vez como se requiere un activador para iniciar la camara, 
+se construyo una libreria para usar un sensor de distancia ultrasonico US-100, esto se vera a detalle en la seccion siguiente.
+
+Entonces la primer parte del algorimo se basa en la obtencion de la imagen, se espera la activacion del sensor mediante un umbral programable 
+por el usuario y dependiendo de la ubicacion del conjunto sensor-camara, una vez que un vehiculo se detecta, se toma una imagen que dependiendo
+del equipo que se este utilizando ya sea sensor SL o sensor SL mini, la existencia de estos 2 dispositivos se vera mejor en la siguiente 
+seccion,se realizan 2 posibles acciones, en el caso del sensor SL, por su capacidades de hardware pueden correr dentro de el ambas redes, por lo
+que el procesamiento de la imagen se realiza dentro de la propia placa, y se envia a un servidor sola la informacion relevante, como lo es la patente y 
+la fecha y hora de ingreso o egreso dependiendo donde se encuentre el sensor. En el caso del sensor SL mini cuyas prestaciones de computo son 
+inferiores este solo se encarga de tomar la foto y enviarla al servidor para que este procese la imagen y devuelva al sensor la habilitacion para el
+ingreso o egreso.
+
+En ambos casos la secuencia del algoritmo es la siguiente: 
+\begin{itemize}
+    \item cada un tiempo periodico se chequea si ingreso una nueva imagen para procesarla, esto se realiza mirando el contenido de una carpeta especifica.
+    \item Cuando se encuentra una nueva imagen, se ingresa la imagen a la YoloV4, para que detecte la ubicacion de la patente, aqui ocurren 2 posibles acciones, si 
+    se detecto patente se obtiene las coordenadas para realizar el recorte y en el caso de no detectar patente se envia un codigo de error al servidor y se descarta la imagen.
+    \item se realiza el recorte de la imagen.
+    \item Se envia la imagen de la patente recortada para la que la CNN realice la deteccion de caracteres.
+    \item obtenida la patente se envia al servidor para los chequeos de validacion, y registro de horario.
+    \item se recibe del servidor la validacion, y se admite la circulacion del vehiculo.
+\end{itemize}
+
+
+
+
