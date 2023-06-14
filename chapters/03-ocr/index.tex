@@ -228,15 +228,16 @@ Por lo que es necesario realizarle un tratamiento previo a las imagenes obtenida
     \label{fig:Comparativa-imagenes}
 \end{figure}
 
-\subsection{Recorte}
+\subsection{Obtención del recorte de la patente}
 
-Para lograr obtener el recorte, el autor de la CNN-OCR recomienda utilizar otra red para que detecte la ubicación de la patente, para luego ingresarla a la CNN-OCR para que obtenga los caracteres, dicha red es la Yolo (You Only Look Once) en su versión 4. [agregar link a github de la yolo]
+Para lograr obtener el recorte, el autor de la CNN-OCR recomienda utilizar otra red para que detecte la ubicación de la patente, para luego ingresarla a la CNN-OCR para que obtenga los caracteres, dicha red es la Yolo (You Only Look Once) en su versión 4 desde ahora en más a esta arquitectura se le llamará YoloV4. [agregar link a github de la yolo]
+
+El modelo de la YoloV4 es un sistema de código abierto el cual se centra en la detección de objetos, el cual utiliza una CNN con la arquitectura Darknet [incluir link a la arquitectura]. El objetivo de este algoritmo es encontrar una caja que contenga el objeto a indentificar, para este trabajo la implementación de la YoloV4 buscara la ubicación de patentes en la imagen, siendo capaz de detectar más de una patente por imagen. Para llevar a cabo la tarea de reconociento por bloques,
 
 Este difiere con otro tipo de detectores en que no utiliza la imagen completa y se queda con las regiones en la que obtuvo mayor puntaje y las
 considera como objeto detectado si no que, mediante una red neuronal tambien del tipo CNN toma la imagen completa, dibuja una serie de cuadrados
 en diversas capas junto con su clasificacion, estas capas deben mesclarse para realizar la correcta deteccion, dicha implementacion se ve en la
-Fig. \ref{fig:funcionamiento-yolo}, una vez que se tiene la ubicacion del objeto una CNN clasifica la imagen. Esta implementación de YoloV4
-utiliza el marco Darknet.
+Fig. \ref{fig:funcionamiento-yolo}, una vez que se tiene la ubicacion del objeto una CNN clasifica la imagen. Esta implementación de YoloV4.
 \begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{imgs/funcionamiento-yolo.png}
@@ -247,10 +248,16 @@ utiliza el marco Darknet.
 
 \section{Implementación del algoritmo en Python 3}
 
-Para la implementacion del algoritmo se utilizo el lenguaje Python3, ya que este permite una rapida integracion de diversas librerias necesarias
-para el funcionamiento del sistema completo, como es necesario el uso de una camara para la obtencion de las imagenes se utilizo la libreria
-OpenCv [https://github.com/opencv/opencv] para integrarla al algoritmo, a su vez como se requiere un activador para iniciar la camara,
-se construyo una libreria para usar un sensor de distancia ultrasonico US-100, esto se vera a detalle en la seccion siguiente.
+Para la implementación del algoritmo se utilizó el lenguaje Python 3, ya que este permite una rapida integración de diversas librerias necesarias para el funcionamiento del sistema completo. La implementación del algoritmo se puede observar en Fig. \ref{fig:algoritmo-ocr}, se describe de forma general.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=.25\textwidth]{imgs/flujo-algoritmo-ocr.png}
+    \caption{Algoritmo general de OCR.}
+    \label{fig:algoritmo-ocr}
+\end{figure}
+
+La lectura u obtención de una fotografía se realizó mediante OpenCV [https://github.com/opencv/opencv] ya que permite utilizar una gran varidad de fuentes tales como cámaras y archivos. Luego se procesa la YoloV4 mediande el comando
 
 Entonces la primer parte del algorimo se basa en la obtencion de la imagen, se espera la activacion del sensor mediante un umbral programable
 por el usuario y dependiendo de la ubicacion del conjunto sensor-camara, una vez que un vehiculo se detecta, se toma una imagen que dependiendo
