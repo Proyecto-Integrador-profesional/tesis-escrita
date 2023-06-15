@@ -74,7 +74,7 @@ La neurona es la unidad fundamental dentro de la red, y su nombre viene debido a
 La sinapsis entre nueronas es una suma poderada que puede ser expresada como $y =W^T X + b$ donde $y$ es el valor de salida de la nuerona,
 $W$ representa los pesos de la neurona y se define como un vector columna de dimensión $N$, $b$ es un bias y $X$ es el vector columna de dimensión $N$. Si bien la neurona es muy util, sola no es de mucha utilidad, es por ello que a los arreglos en paralelo de neuronas se los denomina capa, a las capas de neuronas simples se las denomina capas totalmente conectadas.
 
-\section{La red neuronal}
+\section{Redees neuronales}
 
 A la hora de resolver problema complejos es usual necesitar más de una capa, es por ello que es posible interconectar capas para formar una red neuronal en la Fig. \ref{fig:esquema-redes} se observa una red con más de una capa. La interconexión se realiza pasando toda los resultados de la capa anterior como entrada de la capa siguiente.
 
@@ -97,16 +97,9 @@ Fig. \ref{fig:funciones-activacion}.
     \label{fig:funciones-activacion}
 \end{figure}
 
-{
-\huge REEVER esta parte
-}
+En resumen una red funciona de la siguiente manera, se realiza la multiplación de la entrada por los pesos de la red, luego los resultados son ingresados a la función de activación para quitar las linealidades. Posteriormente esta información se pasa a la capa siguiente y se realiza el mismo proceso, este proceso se repite hasta llegar a la capa de salida, donde en tareas de clasificación se suelen colocar tantas neuronas como salidas posibles.
 
-En forma resumida podemos decir que la red funciona de la siguiente manera, se realiza la multiplacion de la entrada y los pesos de la red,
-luego los resultados son ingresados a la funcion de activacion para quitar las linealidades, a su vez se calcula una funcion de costo que se obtiene
-con los valores obtenidos y los que se espera obtener, esta funcion es usada principalmente en el ajuste de los pesos de la red, es decir el
-entrenamiento de la misma.
-
-\section{La red neuronal de convolución}
+\section{Redes neuronales de convolución}
 
 Si bien, hasta ahora hemos visto solo las capas totalmente conectadas existen una gran cantidad de capas diferentes, para este trabajo daremos una breve introducción las redes de convolución que desde ahora llamaremos CNN.
 
@@ -153,14 +146,7 @@ resultado de la convolucion entre $h$ e $I$ dado por
     O(i,j)= \sum_{u=-k}^{k} \sum_{v=-k}^{k} h[u,v]I[i-u,j-v]
 \end{equation}
 
-{
-\huge Ver esto
-}
-
-Esta operacion consiste en filtrar una imagen de dimension $(2k+1)\times(2k+1)$ en la imagen $I$ para cada pixel centrado en dicha imagen,
-calculando la operacion de convolucion.
-El ajustes de los filtros necesarios para extraer caracteristicas es un proceso largo y tedioso que no siempre conduce a los
-resultados que uno esperaria, por lo que es usual utilizar tecnicas machine learning para obtener los valores óptimos de los filtros.
+Esta operacion consiste en filtrar una subimagen de dimension $(2k+1)\times(2k+1)$ en la imagen $I$ original para cada pixel centrado en dicha imagen, calculando la operación de convolución y dando como resultado un pixel de la imagen de salida $O$.
 
 \subsection{Capa de agrupación}
 
@@ -200,7 +186,7 @@ Otro elemento a destacar de la red son las 7 capas densas conectadas en pararelo
 
 Como aclaración para el resto del trabajo cada vez que se refiera a CNN-OCR nos estaremos refiriendo a esta red.
 
-\section{Requerimientos necesarios de la red}
+\subsection{Requerimientos}
 
 Si bien la CNN es muy útil para la tarea a resolver, posee una serie de requisitos previos en la imagen de entrada.
 Según el autor la CNN necesita como entrada una red imagen de la patente en blanco y negro de dimensiones $70 \times 140$ pixeles.
@@ -214,13 +200,15 @@ Por lo que es necesario realizarle un tratamiento previo a las imagenes obtenida
 \begin{figure}[!tbp]
     \centering
     \begin{subfigure}[b]{0.49\textwidth}
-        \includegraphics[width=\textwidth, height=\textwidth]{imgs/imagen-obtenida.jpg}
+        \centering
+        \includegraphics[width=\textwidth]{imgs/imagen-obtenida.jpg}
         \caption{Imagen obtenida por la camara.}
         \label{fig:imagen-obtenida}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.49\textwidth}
-        \includegraphics[width=0.7\textwidth, height=0.7\textwidth]{imgs/imagen-requerida.jpg}
+        \centering
+        \includegraphics[width=0.7\textwidth]{imgs/imagen-requerida.jpg}
         \caption{Imagen requerida por la red.}
         \label{fig:imagen-requerida}
     \end{subfigure}
@@ -228,11 +216,11 @@ Por lo que es necesario realizarle un tratamiento previo a las imagenes obtenida
     \label{fig:Comparativa-imagenes}
 \end{figure}
 
-\subsection{Obtención del recorte de la patente}
+\subsubsection*{Obtención del recorte de la patente}
 
 Para lograr obtener el recorte, el autor de la CNN-OCR recomienda utilizar otra red para que detecte la ubicación de la patente, para luego ingresarla a la CNN-OCR para que obtenga los caracteres, dicha red es la Yolo (You Only Look Once) en su versión 4 desde ahora en más a esta arquitectura se le llamará YoloV4. [agregar link a github de la yolo]
 
-El modelo de la YoloV4 es un sistema de código abierto el cual se centra en la detección de objetos, el cual utiliza una CNN con la arquitectura Darknet [incluir link a la arquitectura]. El objetivo de este algoritmo es encontrar una caja que contenga el objeto a indentificar, para este trabajo la implementación de la YoloV4 buscara la ubicación de patentes en la imagen, siendo capaz de detectar más de una patente por imagen. Para llevar a cabo la tarea de reconociento por bloques,
+El modelo de la YoloV4 es un sistema de código abierto el cual se centra en la detección de objetos, el cual utiliza una CNN con la arquitectura Darknet [incluir link a la arquitectura]. El objetivo de este algoritmo es encontrar una caja que contenga el objeto a indentificar, para este trabajo la implementación de la YoloV4 buscara la ubicación de patentes en la imagen, siendo capaz de detectar más de una patente por imagen. Para llevar a cabo la tarea de reconociento por bloques.
 
 Este difiere con otro tipo de detectores en que no utiliza la imagen completa y se queda con las regiones en la que obtuvo mayor puntaje y las
 considera como objeto detectado si no que, mediante una red neuronal tambien del tipo CNN toma la imagen completa, dibuja una serie de cuadrados
@@ -248,7 +236,7 @@ Fig. \ref{fig:funcionamiento-yolo}, una vez que se tiene la ubicacion del objeto
 
 \section{Implementación del algoritmo en Python 3}
 
-Para la implementación del algoritmo se utilizó el lenguaje Python 3, ya que este permite una rapida integración de diversas librerias necesarias para el funcionamiento del sistema completo. La implementación del algoritmo se puede observar en Fig. \ref{fig:algoritmo-ocr}, se describe de forma general.
+Para la implementación del algoritmo se utilizó el lenguaje Python 3, ya que este cuenta con una gran cantidad de librerias necesarias para el funcionamiento del sistema completo. La descripción general del algoritmo se puede observar en Fig. \ref{fig:algoritmo-ocr}.
 
 \begin{figure}
     \centering
@@ -257,27 +245,17 @@ Para la implementación del algoritmo se utilizó el lenguaje Python 3, ya que e
     \label{fig:algoritmo-ocr}
 \end{figure}
 
-La lectura u obtención de una fotografía se realizó mediante OpenCV [https://github.com/opencv/opencv] ya que permite utilizar una gran varidad de fuentes tales como cámaras y archivos. Luego se procesa la YoloV4 mediande el comando
+La lectura u obtención de una fotografía se realizó mediante OpenCV [https://github.com/opencv/opencv] ya que permite utilizar una gran varidad de fuentes tales como cámaras y archivo. Luego se procesa mediante la YoloV4 la cual devuelve las ubicación relativa de patente en la imagen en un archivo de texto plano, para posteriormente leer el archivo de texto, junto con las dimensiones de la imagen y poder obtener la patente recortada este proceso se puede observar en Fig. \ref{fig:yolo-car-to-plate}. Antes de pasar el recorte a la CNN-OCR se la cambia a escala de grises y se la lleva al tamaño de $70 \times 140$ utilizando una interpolación lineal y se normalizan los valores de la imagen entre 0 y 1. Finalmente se procesa la imagen por la CNN-OCR obteniendo la patente en texto. En capitulos posteriores se explicara en mayor detalle que sucede con la imagen, y la patente obtenidas.
 
-Entonces la primer parte del algorimo se basa en la obtencion de la imagen, se espera la activacion del sensor mediante un umbral programable
-por el usuario y dependiendo de la ubicacion del conjunto sensor-camara, una vez que un vehiculo se detecta, se toma una imagen que dependiendo
-del equipo que se este utilizando ya sea sensor SL o sensor SL mini, la existencia de estos 2 dispositivos se vera mejor en la siguiente
-seccion,se realizan 2 posibles acciones, en el caso del sensor SL, por su capacidades de hardware pueden correr dentro de el ambas redes, por lo
-que el procesamiento de la imagen se realiza dentro de la propia placa, y se envia a un servidor sola la informacion relevante, como lo es la patente y
-la fecha y hora de ingreso o egreso dependiendo donde se encuentre el sensor. En el caso del sensor SL mini cuyas prestaciones de computo son
-inferiores este solo se encarga de tomar la foto y enviarla al servidor para que este procese la imagen y devuelva al sensor la habilitacion para el
-ingreso o egreso.
+\begin{figure}
+    \centering
 
-En ambos casos la secuencia del algoritmo es la siguiente:
-\begin{itemize}
-    \item cada un tiempo periodico se chequea si ingreso una nueva imagen para procesarla, esto se realiza mirando el contenido de una carpeta especifica.
-    \item Cuando se encuentra una nueva imagen, se ingresa la imagen a la YoloV4, para que detecte la ubicacion de la patente, aqui ocurren 2 posibles acciones, si
-          se detecto patente se obtiene las coordenadas para realizar el recorte y en el caso de no detectar patente se envia un codigo de error al servidor y se descarta la imagen.
-    \item se realiza el recorte de la imagen.
-    \item Se envia la imagen de la patente recortada para la que la CNN realice la deteccion de caracteres.
-    \item obtenida la patente se envia al servidor para los chequeos de validacion, y registro de horario.
-    \item se recibe del servidor la validacion, y se admite la circulacion del vehiculo.
-\end{itemize}
+    \caption{Ejempleficación del proceso realizado para obtener el recorte de la patente.}
+    \label{fig:yolo-car-to-plate}
+\end{figure}
+
+
+
 
 
 
