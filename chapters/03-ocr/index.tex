@@ -23,7 +23,7 @@ del estado actual.
     \centering
     \includegraphics[width=0.5\textwidth]{imgs/diagrama-lstm.png}
     \label{fig:diagrama-LSTM}
-    \caption{Diagrama basico red LSTM.}
+    \caption{Diagrama del bloque LSTM.}
 \end{figure}
 
 Este tipo de redes son las más utilizadas actualmente para realizar reconocimiento de caracteres, pero cuentan con la desventaja de una alto costo computacional, lo que hace que se uso sea desaconsejable en sistemas embedidos.
@@ -31,12 +31,6 @@ Este tipo de redes son las más utilizadas actualmente para realizar reconocimie
 La otra alternativa que se utiliza es la de Redes Neuronales del tipo convulucional, que mediante filtros bidimensionales y una serie de capas totalmente conectadas se predice el texto más probable.
 Al no requerir almacenar información ni trabajar de forma recursiva, la implementación
 de este tipo de redes pueden ser implementadas en equipos con un hardware de menor potencia,menor tamaño y por consiguiente menor costo. La mayor desventaja es que el tamaño del texto debe estar previamente definido.
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.25\textwidth]{imgs/CNN-diagrama.jpg}
-    \label{fig:diagrama-CNN}
-    \caption{Diagrama simplificado de una red con capas de convolución.}
-\end{figure}
 
 Debido a que las patentes tanto las lanzadas en 1994 y 2015 en Argentina Fig. \ref{fig:patentes-arg} puden ser consideradas de siete caracteres contando el último caracter de las de 1994 como un ``\_", es posible construir una red capaz de correr en hardware embedido, y es por ello que se opto por una red que implemente capaz de convolución sobre la opción de la LSTM.
 
@@ -66,15 +60,15 @@ La neurona es la unidad fundamental dentro de la red, y su nombre viene debido a
 \begin{figure}[h]
     \centering
     \includegraphics[width=1\textwidth]{imgs/comparacion-neurona-red.png}
-    \caption{Comparacion neurona biologica con nuerona artificial.}
+    \caption{Comparacion neurona biologica con neurona artificial.}
     \label{fig:comparativa-neuronas}
     %https://futurelab.mx/redes%20neuronales/inteligencia%20artificial/2019/06/25/intro-a-redes-neuronales-pt-1/
 \end{figure}
 
-La sinapsis entre nueronas es una suma poderada que puede ser expresada como $y =W^T X + b$ donde $y$ es el valor de salida de la nuerona,
+La sinapsis entre neuronas es una suma poderada que puede ser expresada como $y =W^T \cdot X + b$ donde $y$ es el valor de salida de la neurona,
 $W$ representa los pesos de la neurona y se define como un vector columna de dimensión $N$, $b$ es un bias y $X$ es el vector columna de dimensión $N$. Si bien la neurona es muy util, sola no es de mucha utilidad, es por ello que a los arreglos en paralelo de neuronas se los denomina capa, a las capas de neuronas simples se las denomina capas totalmente conectadas.
 
-\section{Redees neuronales}
+\section{Redes neuronales}
 
 A la hora de resolver problema complejos es usual necesitar más de una capa, es por ello que es posible interconectar capas para formar una red neuronal en la Fig. \ref{fig:esquema-redes} se observa una red con más de una capa. La interconexión se realiza pasando toda los resultados de la capa anterior como entrada de la capa siguiente.
 
@@ -87,8 +81,7 @@ A la hora de resolver problema complejos es usual necesitar más de una capa, es
 
 Debido a que en esencia el proceso que realiza la neurona es una transformación lineal, al interconectar capas la resultante sigue siendo una transformación lineal.
 Este problema de linealidad se soluciona aplicando una transformacion no lineal, la cual se suele llamar función de activación,
-luego de que la información es procesada por la neurona, obteniendo $y= f(W^T X + b)$, las funciones de activación más conocidan se pueden observar en la
-Fig. \ref{fig:funciones-activacion}.
+luego de que la información es procesada por la neurona, obteniendo $y= f(W^T X + b)$, las funciones de activación más conocidan se pueden observar en la Fig. \ref{fig:funciones-activacion}.
 
 \begin{figure}
     \centering
@@ -218,9 +211,12 @@ Por lo que es necesario realizarle un tratamiento previo a las imagenes obtenida
 
 \subsubsection*{Obtención del recorte de la patente}
 
-Para lograr obtener el recorte, el autor de la CNN-OCR recomienda utilizar otra red para que detecte la ubicación de la patente, para luego ingresarla a la CNN-OCR para que obtenga los caracteres, dicha red es la Yolo (You Only Look Once) en su versión 4 desde ahora en más a esta arquitectura se le llamará YoloV4. [agregar link a github de la yolo]
+
+Debido a la complejidad de esta etapa se realiza una explicación a detalle, con la idea de poder comprender esta etapa. Para lograr obtener el recorte, el autor de la CNN-OCR recomienda utilizar otra red para que detecte la ubicación de la patente, para luego ingresarla a la CNN-OCR para que obtenga los caracteres, dicha red es la Yolo (You Only Look Once) en su versión 4 desde ahora en más a esta arquitectura se le llamará YoloV4. [agregar link a github de la yolo]
 
 El modelo de la YoloV4 es un sistema de código abierto el cual se centra en la detección de objetos, el cual utiliza una CNN con la arquitectura Darknet [incluir link a la arquitectura]. El objetivo de este algoritmo es encontrar una caja que contenga el objeto a indentificar, para este trabajo la implementación de la YoloV4 buscara la ubicación de patentes en la imagen, siendo capaz de detectar más de una patente por imagen. Para llevar a cabo la tarea de reconociento por bloques.
+La implementación de la YoloV4 se realizó siguiendo los pasos del tutorial.
+
 
 Este difiere con otro tipo de detectores en que no utiliza la imagen completa y se queda con las regiones en la que obtuvo mayor puntaje y las
 considera como objeto detectado si no que, mediante una red neuronal tambien del tipo CNN toma la imagen completa, dibuja una serie de cuadrados
@@ -233,6 +229,8 @@ Fig. \ref{fig:funcionamiento-yolo}, una vez que se tiene la ubicacion del objeto
     \label{fig:funcionamiento-yolo}
     %%https://blog.roboflow.com/a-thorough-breakdown-of-yolov4/
 \end{figure}
+
+
 
 \section{Implementación del algoritmo en Python 3}
 
