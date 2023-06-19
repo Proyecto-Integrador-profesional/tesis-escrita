@@ -60,7 +60,52 @@ soportar protocolos de comunicacion (i2c,spi o UART) para el acople de sensores 
 etherner/wifi, soporte para el uso de Python3.
 
 \section{Selección de placas}
-Teniendo en cuenta los requisitos minimos planteandos en la seccion anterior, surgieron varios opciones posibles 
+Teniendo en cuenta los requisitos minimos planteandos en la seccion anterior, se presentan varias opciones posibles, 
+placas de la empresa Raspberry Pi, embebidos de la serie STM32 e incluso placas de la marca Arduino en sus versiones mas 
+potentes, por nombrar las mas conocidas. Aqui es donde nos surge el primero de los incovenientes para tomar la decision,
+cual seria la mejor opcion que cumpla tanto las necesidades que debemos cubrir, como tambien que sea accesible por nosotros
+para poder realizar las pruebas y testeos correspondientes.
+Por lo que empezamos a investigar con que variedad de placas contabamos y podiamos llegar a conseguir de manera sensilla, 
+y tomamos la decision de quedarnos con 2 placas que decidimos llamar modelo SL y SL mini.
+\subsection{Modelo SL mini}
+La placa de la barrera SL mini es una Raspberry Pi 3 B+,Fig.\ref{fig:raspberry} la cual cuenta con un procesador 
+Broadcom BCM2837B0 y un Cortex A53 acompañado de 1 GB de ram LPDDR2, lo cual es mas que aceptable para correr un sistema operativo Raspberry Pi 
+OS(anteriormente conocido como Raspian) basado en Debian(distribución de Linux), lo que era un requisito a cumplir desde 
+el comienzo del diseño del trabajo.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{imgs/Raspberry-pi3b+.jpg}
+    \caption{Sistema embedido Raspberry Pi 3B+.}
+    \label{fig:raspberry}
+\end{figure}
+Otro de los puntos importantes que destacan de la placa son los pines GPIO, pines de entrada/salida de propósito general 
+por sus siglas en ingles, lo que la hace sumamente sensilla a la hora de utilizar junto a sensores comerciales.
+La amplia conectividad integrada que posee fue un punto que la destaco sobre otras posibles placas de desarrollo, ya que 
+cuenta con puertos de conexión USB 2.0, puerto Gigabit Ethernet, conexión wifi 2,4 y 5,8 GHz y comunicacion Bluetooth 4.2,
+suple la necesidad de brindar conexión a internet de manera nativa sin necesidad de contar con periféricos extras que 
+puedan encarecer y obstaculizar el correcto funcionamiento del sistema.
+
+La disponibilidad de la placa en el mercado, fue un punto importante que se considero, ya que pensando en una futura 
+implementacion del sistema a mediana o gran escala o la necesidad de cambio por rotura de la misma,podian dejar el 
+proyecto parado o inutilizado generando otros inconvenientes, ademas de que la placa es de nuestra propiedad, dandonos
+completa disponibilidad para su uso.
+\subsection{Modelo SL}
+La placa de la barrera SL es una Nvidia Jetson TX1,Fig.\ref{fig:JTX1} la cual cuenta con un procesador Cortex A57, pero 
+cuenta con la caracteristica de contar con nucleos de procesamiento de imagen, mas específicamente posee 256 nucleos Nvidia Maxwell, 
+lo que la vuelve una opcion excelente en lo que se refiere al trabajo con imagenes y videos, ademas su 4GB de ram LPDDR4, 
+la hacen una opción mucho mas potente en capacidad de computo que la Raspberry Pi3 b+.
+
+Para la realización del presente trabajo se conto con el kit de desarrollo provisto por la empresa Nvidia para el uso 
+del sistema embebido, en él se pueden encontrar todas las conexiones mencionadas en la barrera Sl mini, lo que permite 
+el paso de los sensores de una placa a otra con suma facilidad.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{imgs/JTX1-developerkit.png}
+    \caption{Sistema embedido Nvidia Jetson TX1 developer kit.}
+    \label{fig:JTX1}
+\end{figure}
+Este modelo de barrera cuenta con un sistema operativo JetPack 4.6.3 basado en Ubuntu 18.04(distribucion de linux) que 
+como se hizo mención era requisito de diseño.
 
 \section{Evalución y selección de sensores}
 
