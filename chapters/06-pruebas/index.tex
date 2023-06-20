@@ -1,13 +1,13 @@
 \chapter{Pruebas de integración y fiabilidad}
 
-El eje fundamental de este capítulo es mostrar el rendimiento del sistema en diferentes circuntancias, y probar que el mismo es capaz de deselvolverse de forma satisfactoria en la mayoria de escenarios posibles.
+El eje fundamental de este capítulo es mostrar el rendimiento del sistema en diferentes circunstancias, y probar que el mismo es capaz de desenvolverse de forma satisfactoria en la mayoría de escenarios posibles.
 
 \section{Prueba de exterior}
 
-Esta prueba se realizo con una cámara Kanon [Incluir data de la camara, es del santi] en el estacionamiento de Ingenieria de la Universidad Nacional del Comahue entre las 8 y 9 de la mañana, el martes 6 de Junio del 2023. La prueba se realizo colocando la cámara en un tripode con una altura de Ycm respecto del suelo, y se procedio a filmar los vehiculos que entraban en el estacionamiento o pasaban por la calle. De este proceso de medición se obtuvieron dos videos de una duración aproximada de 40min.
+Esta prueba se realizó con una cámara Kanon [Incluir data de la camara, es del santi] en el estacionamiento de Ingeniería de la Universidad Nacional del Comahue entre las 8 y 9 de la mañana, el martes 6 de junio del 2023. La prueba se realizó colocando la cámara en un trípode con una altura de Ycm respecto del suelo, y se procedió a filmar los vehículos que entraban en el estacionamiento o pasaban por la calle. De este proceso de medición se obtuvieron dos videos de una duración aproximada de 40min.
 
-Teniendo en cuenta que el algoritmo de OCR tarda 1200ms en procesar un frame es neceario realizar un filtrado, ya que los 40min de filmación equivalen en 72000 imagenes, y la mayoria no poseen vehiculos o la patente no esta enfocada. El proceso de filtrado consistio en un recorte manual de las partes donde no había ningún vehiculo, lo que termino dejando Mmin de filmación, si bien este número es bajo llevo a obtener un total de 35 vehiculos, suficientes para este analisis. Posteriormente se convirtio el video en frames, utilizando Open CV, para luego procesar las 11000 fotografias y eliminar las que no era posible reconocer la patente del vehículo. Luego se obtuevieron 3600 fotografias validas, las cuales se procesaron por el algoritmo de OCR y se descarcataron todas las imagenes que tenian un porcentaje de seguridad inferior al 50\%, las imagenes que no se descartaron se guardaron en una carpeta con cuyo nombre era la patente que le asigno la red. Finalmente se agruparon las
-Del procesamineto podemos generar el resumen de errores por patente Tab. \ref{tab:resumen-patente}.
+Teniendo en cuenta que el algoritmo de OCR tarda 1200ms en procesar un frame es necesario realizar un filtrado, ya que los 40min de filmación equivalen en 72000 imágenes, y la mayoría no poseen vehículos o la patente no está enfocada. El proceso de filtrado consistió en un recorte manual de las partes donde no había ningún vehículo, lo que termino dejando Mmin de filmación, si bien este número es bajo llevo a obtener un total de 35 vehículos, suficientes para este análisis. Posteriormente se convirtió el video en frames, utilizando Open CV, para luego procesar las 11000 fotografías y eliminar las que no era posible reconocer la patente del vehículo. Luego se obtuvieron 3600 fotografías válidas, las cuales se procesaron por el algoritmo de OCR y se descartaron todas las imágenes que tenían un porcentaje de seguridad inferior al 50\%, las imágenes que no se descartaron se guardaron en una carpeta con cuyo nombre era la patente que le asigno la red.
+Finalmente se contabilizaron los errores generando el resumen de Tab. \ref{tab:resumen-patente}.
 
 \begin{table}
     \centering
@@ -15,4 +15,42 @@ Del procesamineto podemos generar el resumen de errores por patente Tab. \ref{ta
     \caption{Resumen de las patentes reconocidas.}
     \label{tab:resumen-patente}
 \end{table}
+
+\subsection{Análisis de resultados}
+
+\section{Pruebas de distancia y ángulo}
+
+Para realizar esta serie de pruebas se colocó un Volkswagen Up modelo 2015 con patente PEY232 en una posición fija, se procedio a medir con una cinta métrica de error 1cm. El ángulo de $0^\circ$ corresponde al centro de la patente, mientras que el origen se tomó desde el inicio desde la finalización de la patente, en Fig. \ref{fig:sistema-medicion-angulos} se puede apreciar un esquema del sistema de ejes. La medición para una distancia y ángulo se realizó capturando una fotografía con la cámara de los sistemas SL para luego procesarla por el algoritmo de OCR. Las distancias utilizadas fueron desde 50cm hasta 3m con un paso de 50cm, mientras que los ángulos elegidos fueron desde $-120^\circ$ hasta $120^\circ$ con un paso de $30^\circ$, dando como resultados la Tab. \ref{tab:resumen-angulo-distancia}, en la Fig. \ref{fig:angulo-distancia} se observan las fotos.
+
+\begin{figure}
+    \centering
+
+    \caption{Sistema de referencia.}
+    \label{fig:sistema-medicion-angulos}
+\end{figure}
+
+\begin{table}
+    \centering
+
+    \caption[short]{Resumen de la prueba de ángulos y distancia.}
+    \label{tab:resumen-angulo-distancia}
+\end{table}
+
+\begin{figure}
+    \centering
+
+    \caption{Fotografías a diferente distancia y ángulo.}
+    \label{fig:angulo-distancia}
+\end{figure}
+
+
+\subsection{Análisis de resultados}
+
+\section{Prueba de integración}
+
+Para terminar con este capítulo se montó el sistema de con una SL mini configurada para la entrada y una SL como salida en el estacionamiento de ingeniería de la Universidad Nacional del Comahue con la idea de simular un estacionamiento real y poder visualizar la actualización de los registros en tiempo real, comprobando el correcto funcionamiento del sistema pudiendo enviar y recibir las peticiones HTTP.
+
+
+\subsection{Análisis de resultados}
+
 
