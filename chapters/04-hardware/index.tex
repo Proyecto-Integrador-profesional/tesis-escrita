@@ -172,7 +172,7 @@ mediante el tiempo que tarda la onda emitida en llegar a un receptor se estima l
 de un costo no muy elevado, relativa facilidad de integración a diversas placas embebidas y cuenta con la ventaja de tener una variedad de modelos
 disponibles en el mercado que se adaptan a los diferentes protocolos de comunicación.
 \end{itemize}
-El sensor elegido para el diseño de ambos prototipos fue el sensor ultrasónico US-100,Fig. \ref{fig:sensor-US100} el cual permite un 
+El sensor elegido para el diseño de ambos prototipos fue el sensor ultrasónico US-100,Fig. \ref{fig:sensor-US100}, el cual permite un 
 rango de medición de 2 cm a 350 cm, compensado por temperatura, voltaje de alimentación entre 3V-5V y protocolo de 
 comunicación UART. Por lo que es integrable a ambas placas por medio del puerto GPIO sin necesidad de requerir de conversores de nivel lógico 
 ni hardware de alimentación adicional.
@@ -185,4 +185,33 @@ ni hardware de alimentación adicional.
 
 \section{Consumo energético}
 
+El gasto energético es un punto que fue analizado, ya que, pensando en el uso racional de la energía, queríamos que nuestros prototipos no
+presentaran un consumo excesivo, y que en un futuro si alguien lo deseaba sean alimentando por un panel solar junto con una batería.
+Como la energía suministrada al conjunto cámara-sensor viene dada por las placas, solo se indicara el consumo requerido por las placas SL y SL mini.
+\subsection{Consumo energético Modelo SL}
+
+El requerimiento energético previsto por el fabricante para el kit de desarrollo de la Nvidia Jetson TX1 como se indica 
+en el cargador que viene dentro del kit es de 19 volts y 4,74 ampers (máximo 90 Watts).
+
+Lo que podría ser alimentado con el uso de una batería de 12 volts o 24 volts y un algún circuito externo que regule la 
+tensión a los 19 volts solicitados, siempre y cuanto este sea capaz de suministrar la corriente necesaria.
+
+\subsection{Consumo energético Modelo SL mini}
+
+En el caso de la versión SL mini, tiene un consumo similar al de un cargador de celular moderno, es decir unos 5 volts y
+2 ampers, ya que una corriente menor lleva a una notificación por parte de la placa, indicando que la energía no es la 
+suficiente reduciendo la frecuencia de su procesador, ralentizando el equipo.
+
+Este consumo reducido es fácilmente lograble con un sistema de carga de celular portátil, por lo que sería más sencillo 
+alimentarlo en caso de no disponer una toma de corriente de la red doméstica.
+
 \section{Diseño y ensamble}
+
+Para la colocación del conjunto de prueba cámara-sensor, se diseñó e imprimió un contenedor en 3D,Fig. \ref{fig:contenedor-camara}
+que sera soportado por un tripode o puede ser anclado a una pared o poste cercano a la zona de acceso.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{imgs/contenedor-camara.png}
+    \caption{Modelo 3D del contendor del paquete cámara-sensor.}
+    \label{fig:contenedor-camara}
+\end{figure}
