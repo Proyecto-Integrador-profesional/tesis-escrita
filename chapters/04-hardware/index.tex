@@ -12,7 +12,7 @@ razones por las que estas fueron descartadas.
 Hoy en día el sistema de uso de barreras para el control de ingreso y egreso a distintos recintos suelen generar molestias
 en muchos de los usuarios, por la necesidad de realizar alguna acción extra, con esto nos referimos a la necesidad de
 en muchas ocasiones de obtener y guardar algún tipo de ticket, este sistema lo vemos en la Fig. \ref{fig:sistema-tradicional}
- que en caso de perderlo se tenga que pagar una multa económica, o bien de acercarse a un determinado lugar para poder realizar el pago por el tiempo de permanencia.
+que en caso de perderlo se tenga que pagar una multa económica, o bien de acercarse a un determinado lugar para poder realizar el pago por el tiempo de permanencia.
 
 En este tipo de metodologías es donde queremos realizar un aporte a la reducción del impacto ecológico, ya que si se quita
 la necesidad de imprimir uno o más tickets por cada vehículo que ingresa, se estaría disminuyendo considerablemente la
@@ -64,10 +64,9 @@ Ethernet/wifi, soporte para el uso de Python 3.
 Teniendo en cuenta los requisitos mínimos planteados en la sección anterior, se presentan varias opciones posibles,
 placas de la empresa Raspberry Pi, embebidos de la serie STM32 e incluso placas de la marca Arduino en sus versiones más
 potentes, por nombrar las más conocidas. Aquí es donde nos surge el primero de los inconvenientes para tomar la decisión,
-cuál sería la mejor opción que cumpla tanto las necesidades que debemos cubrir, como también que sea accesible por nosotros
-para poder realizar las pruebas y testeos correspondientes.
+cuál sería la mejor opción que cumpla tanto las necesidades que debemos cubrir, como también que sea accesible para poder realizar las pruebas y testeos correspondientes.
 Por lo que empezamos a investigar con qué variedad de placas contábamos y podíamos llegar a conseguir de manera sencilla,
-y tomamos la decisión de quedarnos con 2 placas que decidimos llamar modelo SL y SL mini.
+y se tomo la decisión de quedarnos con 2 placas que decidimos llamar modelo SL y SL mini.
 
 \subsection{Modelo SL mini}
 La placa de la barrera SL mini es una Raspberry Pi 3 B+,Fig.\ref{fig:raspberry} la cual cuenta con un procesador
@@ -208,10 +207,40 @@ alimentarlo en caso de no disponer una toma de corriente de la red doméstica.
 \section{Diseño y ensamble}
 
 Para la colocación del conjunto de prueba cámara-sensor, se diseñó e imprimió un contenedor en 3D,Fig. \ref{fig:contenedor-camara}
-que sera soportado por un tripode o puede ser anclado a una pared o poste cercano a la zona de acceso.
+que sera soportado por un trípode o puede ser anclado a una pared o poste cercano a la zona de acceso.
 \begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{imgs/contenedor-camara.png}
     \caption{Modelo 3D del contendor del paquete cámara-sensor.}
     \label{fig:contenedor-camara}
 \end{figure}
+
+Al tratarse de un prototipo se buscó que el diseño sea lo más simple posible, permitiendo ser fácilmente modificable, en el caso de necesitar
+modificarlo en un futuro, ya sea por cambio de hardware o una necesidad de un punto de colocación diferente.
+
+Se optó por colocar el sensor de proximidad en la zona inferior, ya que el ideal es colocar el contenedor a una altura de unos 60 cm 
+aproximadamente, con lo que al tener el sensor en la zona baja se garantiza que la lectura que se tome sea de la trompa del automóvil y se 
+obtenga un valor certero de la distancia.
+
+Esto deja a la cámara en la zona superior del contendor dando una imagen lo más completa de la trompa del vehículo, tomando así la vista 
+completa de la patente, esto con el fin de evitar que la patente salga recortada impidiendo que esta sea reconocida por el algoritmo.
+
+Se dispuso un orificio en la zona inferior de la caja con la finalidad de colocar un eje, que permita la orientación del dispositivo, dependiendo 
+el lugar donde se desee instalarlo, para la sujeción al eje se realizaron 2 pequeños orificios que permitan el paso de 2 tornillos que dejen fijo
+el contenedor al eje.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{imgs/contenedor-camara.png}
+    \caption{sistema de sujeción del contenedor.}
+    \label{fig:sujecion-contenedor}
+\end{figure}
+
+En la Fig. \ref{fig:contenedor-camara-real} se puede apreciar el contenedor ya con la camara y el sensor instalados.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{imgs/contenedor-camara.png}
+    \caption{Contendor del paquete cámara-sensor.}
+    \label{fig:contenedor-camara-real}
+\end{figure}
+
