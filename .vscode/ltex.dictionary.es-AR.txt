@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Raspberry
 Raspbian
 RF
@@ -6,3 +7,10 @@ RFID
 GPIO
 Jetson
 JetPack
+=======
+YoloV4
+Darknet
+Yolo
+convolucional
+convolucionales
+>>>>>>> capitulo/ocr

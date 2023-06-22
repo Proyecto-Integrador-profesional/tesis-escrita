@@ -1,138 +1,118 @@
 \chapter{Detección óptica de caracteres (OCR)}
-En este capitulo se pretende explicar que es el OCR, obtener una idea basica
-de los distintos algorimos que se pueden implementar para
-utilizar esta tecnica, para luego centrarnos en la red convolucional entrenada por
+
+En este capítulo se pretende explicar que es el OCR, obtener una idea básica
+de los distintos algoritmos que se pueden implementar para
+utilizar esta técnica, para luego centrarnos en la red convolucional entrenada por
 Ankandrew [referencia al git], con la idea de finalizar en un algoritmo en Python 3
 que permita obtener los caracteres de una patente mediante una imagen.
 
 \section{Algoritmos de OCR}
-Como primera instancia vamos a definir que es OCR, por sus siglas en ingles Optical character
-Recognition o en español Reconocimiento Optico de caracteres, es una tecnica que permite
-obtener texto en un formato editable para una maquina(ASCII o Unicode)a partir de una imagen
-de texto.
-Para logarlo el software inspecciona la imagen buscando formas que coincidan con la forma
-de los caracteres, y dependiendo del tipo de software las compara con una base disponible
-para el programa o trata de identificarlos mediante el analisis de sus caracteristicas.
-La tecnologia más utiliza para realizar el OCR es la de Redes Neuronales, ya sea
+Como primera instancia vamos a definir que es OCR, por sus siglas en inglés Optical Character
+Recognition o en español Reconocimiento Óptico de Caracteres, es una técnica que permite
+obtener texto en formato ASCII a partir de una imagen.
+Para lograrlo se debe inspeccionar la imagen buscando formas que características de los símbolos previamente definidos.
+La tecnología más utiliza para realizar el OCR es la de Redes Neuronales, ya sea
 mediante redes LSTM por sus siglas en ingles Long-Short Term Memory, que son una variedad de Redes
-neuronales recurrentes o bien CNN por sus siglas en ingles Convolutional Neural Network, o en español Red
+neuronales recurrentes o bien CNN por sus siglas en inglés Convolutional Neural Network, o en español Red
 Neuronal Convolucional.
 
-Si bien el fin ultimo de ambos tipos de red es obtener los caracteres a partir de la imagen,la forma en
-trabajan difiere significamente, las redes LSTM almacenan informacion de estados anteriores mediante bucles,
-lo que les permite realizar predicciones de estados futuros usando informacion pasada almacenada y la informacion
+Si bien el fin último de ambos tipos de red es obtener los caracteres a partir de la imagen, la forma en
+la que trabajan difiere significativamente, las redes LSTM almacenan información de estados anteriores mediante bucles,
+lo que les permite realizar predicciones de estados futuros usando información pasada almacenada y la información
 del estado actual.
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.25\textwidth]{imgs/LSTM-diagrama.jpg}
+    \includegraphics[width=0.5\textwidth]{imgs/diagrama-lstm.png}
     \label{fig:diagrama-LSTM}
-    \caption{Diagrama basico red LSTM.}
-\end{figure}
-Este tipo de redes son las mas utilizadas actualmente para realizar reconocimiento de
-caracteres, pero cuentan con la desventaja de requerir mayor poder de computo, por la necesidad
-almacenar y anidar datos anteriores.
-
-La otra alternativa que se utiliza es la de Redes Neuronales del tipo convulucional, que mediante
-el uso de convoluciones entre los pixeles de la imagen y una serie de matrices establecidas
-extrae caracteristicas utilizadas para comparar la imagen con una lista de valores posibles,
-dando por resultado el caracter que mas similitud tenga con el set de comparacion.
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.25\textwidth]{imgs/CNN-diagrama.jpg}
-    \label{fig:diagrama-CNN}
-    \caption{Diagrama basico red CNN.}
+    \caption{Diagrama del bloque LSTM.}
 \end{figure}
 
-Al no requerir almacenar informacion ni trabajar de forma recursiva, la implementacion
-de este tipo de redes pueden ser implementadas en equipos con un hardware de menor potencia,menor tamaño y
-por consiguiente menor costo.
+Este tipo de redes son las más utilizadas actualmente para realizar reconocimiento de caracteres, pero cuentan con la desventaja de un alto costo computacional, lo que hace que se usó sea desaconsejable en sistemas embebidos.
 
-Por lo que esta ultima opcion es de las mas utilizadas a la hora de colocar en sistemas embedidos de baja
-potencia, o que por cuestiones de energia tengan un consumo menos reducido. Como el objetivo de nuestro PIP el diseño
-de un sistema que pueda ser utilizado en diferentes entornos, se considero que esta era la mejor opcion para
-el desarrollo.
+La otra alternativa que se utiliza es la de Redes Neuronales del tipo convolucional, que mediante filtros bidimensionales y una serie de capas totalmente conectadas se predice el texto más probable.
+Al no requerir almacenar información ni trabajar de forma recursiva, la implementación
+de este tipo de redes pueden ser implementadas en equipos con un hardware de menor potencia, menor tamaño y por consiguiente menor costo. La mayor desventaja es que el tamaño del texto debe estar previamente definido.
 
-De varios algoritmos encontrados que realizan OCR mediante redes neuronales convolucionales, se encontro uno
-preentrenado para la deteccion de patentes argentinas, tanto para la versiones antiguas del año 1994 como para la version moderna del
-mercosur del año 2015, las cuales se pueden ver en la Fig. \ref{fig:patentes-arg}. [https://www.iprofesional.com/autos/376250-como-saber-el-ano-de-un-auto-por-la-patente-en-argentina]
+Debido a que las patentes tanto las lanzadas en 1994 y 2015 en Argentina Fig. \ref{fig:patentes-arg} pueden ser consideradas de siete caracteres contando el último carácter de las de 1994 como un ``\_", es posible construir una red capaz de correr en hardware embebido, y es por ello que se optó por una red que implemente capaz de convolución sobre la opción de la LSTM.
+
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\textwidth]{imgs/patentes-arg.png}
-    \caption{evolucion Patentes Argentinas.}
+    \caption{Evolución patentes Argentinas a lo largo de los años.}
     \label{fig:patentes-arg}
 \end{figure}
 
-Este algoritmo como se menciono al inicio del capitulo fue entrenado por Ankandrew, el cual es un modelo convencional de red convolucional
-formada por un bloque convolucional, luego un bloque Batch-Normalization, una funcion de activacion, seguida por un bloque de MaxPooling
-continuada por un bloque GlobalAvgPooling para finalizar en una bloque softmax conectado mediante una Fully Connect Layer de 37x7, esto surge de que maximo se poseen 7 caracteres
-de salida y el 37 de la suma de las 26 letras del abcedario, los 10 numeros del 0 al 9 y el simbolo $\_$ utilizado para el caso de las patentes antiguas
-que solo poseen 6 caracteres, todos los terminos descriptos anteriormente seran explicados en la siguiente seccíon.
 
-\section{Marco teórico}
-Como se viene mencionando durante las secciones anteriores se usara una red neuronal del tipo convolucional para realizar el algoritmo de OCR,
-pero bien para comprender como trabaja un red convolucional es necesario saber primero que es una red neuronal y como esta se constituye.
+\section{Qué es una red neuronal?}
 
-Entonces ¿qué es una red nueronal?, se define entonces como red neuronal a un algoritmo computacional recursivo que intenta imitar el cerebro
-humano, en otras palabras es un algoritmo de computación compuesto por un gran numero de elementos simples que se
-encuentran interconectados, los cuales procesan la información por medio de estados dinámicos, respondiendo a entradas externas, que permite
-clasificar datos en un numero finito de clases o categorias.esquematizado en
-la Fig. \ref{fig:esquema-redes}.
+Se entiende como red neuronal a un algoritmo computacional que intenta imitar el cerebro humano, en otras palabras es un algoritmo de computación compuesto por un gran número de elementos simples que se
+encuentran interconectados, los cuales procesan la información por medio de estados dinámicos, respondiendo a entradas externas, que permite realizar diversas tareas.
+En este caso se centrará el trabajo a la tarea de clasificación de datos.
+Debido a la semenjanza que existe entre los algoritmos de Deep Learning (algoritmos de aprendizaje profundo o
+Machine learning [Referencia https://www.ibm.com/topics/machine-learning] compuesto por redes neuronales
+de 3 o más capas)[Referencia https://www.ibm.com/es-es/topics/deep-learning] y el cerebro humano, a la
+unidad fundamental de estos sistemas se la denomina neurona.
+
+
+\subsection{La neurona}
+
+La neurona es la unidad fundamental dentro de la red, y su nombre viene debido a la similud que existe entre este elemento y una neurona humana, esta similitud se puede apreciar en Fig. \ref{fig:comparativa-neuronas}. La tarea de la neurona es procesar la información que le entra para producir un valor de salida, a este proceso se lo conoce como sinapsis.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{imgs/comparacion-neurona-red.png}
+    \caption{Comparación neurona con neurona artificial.}
+    \label{fig:comparativa-neuronas}
+    %https://futurelab.mx/redes%20neuronales/inteligencia%20artificial/2019/06/25/intro-a-redes-neuronales-pt-1/
+\end{figure}
+
+La sinapsis entre neuronas es una suma ponderada que puede ser expresada como $y =W^T \cdot X + b$ donde $y$ es el valor de salida de la neurona,
+$W$ representa los pesos de la neurona y se define como un vector columna de dimensión $N$, $b$ es un bias y $X$ es el vector columna de dimensión $N$. Si bien la neurona es muy útil, sola no es de mucha utilidad, es por ello que a los arreglos en paralelo de neuronas se los denomina capa, a las capas de neuronas simples se las denomina capas totalmente conectadas.
+
+\section{Redes neuronales}
+
+A la hora de resolver problemas más complejos es usual necesitar más de una capa, es por ello que es posible interconectar capas para formar una red neuronal en la Fig. \ref{fig:esquema-redes} se observa una red con más de una capa. La interconexión se realiza pasando todos los resultados de la capa anterior como entrada de la capa siguiente.
+
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\textwidth]{imgs/Redes-esquema.jpg}
     \caption{Esquema simplificado de una red neuronal.}
     \label{fig:esquema-redes}
 \end{figure}
-Debido a la semenjanza que existe entre los algoritmos de Deep Learning (algoritmos de aprendizaje computacional o
-Machine learning [Referencia https://www.ibm.com/topics/machine-learning] compuesto por redes neuronales
-de 3 o mas capas)[Referencia https://www.ibm.com/es-es/topics/deep-learning] y el cerebro humano , a la
-unidad fundamental de estos sistemas se la denomina neurona, apreciado en la Fig. \ref{fig:comparativa-neuronas}
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=1\textwidth]{imgs/comparacion-neurona-red.png}
-    \caption{Comparacion neurona biologica con nuerona artificial.}
-    \label{fig:comparativa-neuronas}
-    %https://futurelab.mx/redes%20neuronales/inteligencia%20artificial/2019/06/25/intro-a-redes-neuronales-pt-1/
-\end{figure}
-Cada neurona o unidad fundamental de la red procesa la información de un grupo de neuronas previas y la entrega al siguiente grupo,este proceso
-se puede entender como la sinapsis neuronal de los seres vivos.
 
-La sinapsis entre nueronas es una suma poderada que puede ser expresada como $Y =W^T\dot X + b$ donde $Y$ es el vector de salida de la nuerona,
-$W$ representa los pesos de la neurona, $b$ es un bias y $X$ es el vector de entrada.
-Es posible realizar un arreglo en paralelo de neuronas, lo cual recibe el nombre de capa,las capas se interconectan para crear redes
-más complejas capaces de realizar tareas más especificas Fig.\ref*{fig:esquema-redes}.
+Debido a que en esencia el proceso que realiza la neurona es una transformación lineal, al interconectar capas la resultante sigue siendo una transformación lineal.
+Este problema de linealidad se soluciona aplicando una transformación no lineal, la cual se suele llamar función de activación,
+luego de que la información es procesada por la neurona, obteniendo $y= f(W^T X + b)$, las funciones de activación más conocidas se pueden observar en la Fig. \ref{fig:funciones-activacion}.
 
-Debido a que en esencia el proceso que realiza la neurona es una transformación lineal, al interconectar capas la resultante sigue siendo
-una transformación lineal. Este problema de linealidad se soluciona aplicando una función de activación o transformacion no lineal,
-luego de la transformación lineal, obteniendo $Y= f(W^T \dot X + b)$, algunas de estas funciones las podemos ver en la
-Fig. \ref*{fig:funciones-activacion}.
 \begin{figure}
     \centering
     \includegraphics[width=1\textwidth]{imgs/Funciones-de-activacion.jpg}
-    \caption{Funciones de activacion más comunes.}
+    \caption{Funciones de activación más comunes.}
     \label{fig:funciones-activacion}
 \end{figure}
-En forma resumida podemos decir que la red funciona de la siguiente manera, se realiza la multiplacion de la entrada y los pesos de la red,
-luego los resultados son ingresados a la funcion de activacion para quitar las linealidades, a su vez se calcula una funcion de costo que se obtiene
-con los valores obtenidos y los que se espera obtener, esta funcion es usada principalmente en el ajuste de los pesos de la red, es decir el
-entrenamiento de la misma.
-Como este trabajo esta centrando en el trabajo con imagenes las redes mas utilizadas son las redes neuronales de convolución o
-CNN Convolutional Neuronal Network por sus siglas en inglés, ya que su diseño se basa en la estructura de la corteza visual animal, esta
-imitación se consigue utilizando convoluciones bidimensionales. Este tipo de redes poseen caracteristicas que las hacen unicas, por lo que
-se prodece a continuacion a enumerar las partes que la componen y se muestra un esquema de la misma en la Fig. \ref*{fig:esquema-CNN}
+
+En resumen una red funciona de la siguiente manera, se realiza la multiplicación de la entrada por los pesos de la red, luego los resultados son ingresados a la función de activación para quitar las linealidades. Posteriormente esta información se pasa a la capa siguiente y se realiza el mismo proceso, este proceso se repite hasta llegar a la capa de salida, donde en tareas de clasificación se suelen colocar tantas neuronas como salidas posibles.
+
+\section{Redes neuronales de convolución}
+
+Si bien, hasta ahora hemos visto solo las capas totalmente conectadas existen una gran cantidad de capas diferentes, para este trabajo daremos una breve introducción las redes de convolución que desde ahora llamaremos CNN.
+
+La función principal de las capas de convolución es poder extraer información de una imagen, es por ello que nace la semejanza entre las CNN y la corteza visual de los animales.
+Este tipo de redes poseen características que las hacen únicas, por lo que
+estudiaremos las partes que la componen y en Fig. \ref{fig:esquema-CNN} se observa un esquema de la misma.
 \begin{itemize}
-    \item Capa convolucional: capa principal de las CNN, sus parametros son basicamente filtros entrenables de dimesiones determindas por el
-          usuario,realizando una multiplicacion punto a punto recorriendo toda la dimesion, produciendo un mapa de activacion bidimensional, en la
-          Fig. \ref{fig:esquema-capa-convolucional} se ve el funcionamiento de esta capa. Cada uno de estos filtros se activara segun la
-          caracteristica que se busque.
-    \item Capa de agrupacion: se coloca entre las capas de convolucion, toma los mapas de caracteristicas producidos por la capa de
-          convolucion y los agrupa en una imagen. En esta capa se produce una reduccion de la dimesion, lo que reduce la complejidad 
-          para evitar el sobreajuste de los parametros.
-    \item Capa de activacion: la unica funcion de esta capa es la de aumentar la no linealidad sin modificar los parametros, no son entrenables
-          por lo que por ella solo se propagan los errores calculados.
-    \item capa completamente conectada: tiene la estructura comun de una capa de nueronas pero con las particularidad que todas las neuronas
-          de esta capa estan conectadas a todas las neuronas de la capa anterior.
+    \item Capa convolucional: capa principal de las CNN, sus parámetros son básicamente filtros entrenables de dimensiones determinadas por el
+          usuario, realizando una multiplicación punto a punto recorriendo toda la imagen y produciendo un mapa de activación bidimensional, en otras palabras otra imagen, en la
+          Fig. \ref{fig:esquema-capa-convolucional} se ve el funcionamiento de esta capa. Cada uno de estos filtros se activará según la característica que aprenda la red.
+    \item Capa de agrupación: se coloca entre las capas de convolución, toma los mapas de características producidos por la capa de
+          convolución y los agrupa en una imagen. En esta capa se produce una reducción de la dimensión, lo que reduce la complejidad para evitar el sobreajuste de los parámetros.
+    \item Función de activación.
+    \item Capa de aplanamiento o Flatten: Antes de pasar las salidas de las capas convolucionales se produce un aplanamiento de las imágenes, esta capa transforma las imágenes o matrices de dimensión $NxN$ en un vector columna $2NM$ donde $M$ es la cantidad de filtros de la capa anterior.
+    \item Capa completamente conectada: Se encargan de procesar la información de los filtros para obtener la cantidad de salidas esperadas.
 \end{itemize}
+
+Si bien la descripción de las capas de convolución, agrupación y función de activación se realizaron de forma separa, se implementan juntas, ya que es común tener varias capas de convolución conectadas en serie, permitiendo extraer información más especifica de la red.
+
 \begin{figure}
     \centering
     \includegraphics[width=1\textwidth]{imgs/capa-convolucional.jpeg}
@@ -142,129 +122,139 @@ se prodece a continuacion a enumerar las partes que la componen y se muestra un 
 \begin{figure}
     \centering
     \includegraphics[width=1\textwidth]{imgs/CNN-completa.jpg}
-    \caption{Esquema de un red del tipo CNN.}
+    \caption{Esquema de una CNN.}
     \label{fig:esquema-CNN}
 \end{figure}
-Antes de continuar haremos una pausa para explicar el comportamiento de la convolución bidimensional, es similar al caso conocido en 1D pero
-en este caso se desplaza una submatriz de un tamaño predefinido, comunmente denonimado kernel.
 
-Se define filtro, o kernel a la respuesta de un sistema discreto, el filtro es de dimensión $2k x 2k$ donde $k$ es un
-valor establecido arbitrario (usualmente son matrices cuadradas de $3x3$ o $5x5$) que define cuantos valores habra de la muestra.
+\subsection{Convolución en 2D}
 
-Se define a $h[n]$ como un filtro de dimension $2k x 2k$ e $I$ una imagen a escala de grises, donde cada punto de coordenadas $(i,j)$ es el
-resultado de la convolucion entre $h$ e $I$ dado por
+Antes de continuar haremos una pausa para explicar el comportamiento de la convolución bidimensional, es similar al caso conocido en 1D, pero
+en este caso se desplaza una submatriz de un tamaño predefinido, comúnmente denominado kernel.
+
+Se define filtro, o kernel a la respuesta de un sistema discreto, el filtro es de dimensión $2k \times 2k$ donde $k$ es un
+valor establecido arbitrario (usualmente se utilizan matrices de $3 \times 3$ o $5 \times 5$) que define cuantos valores habrá de la muestra.
+
+Se define a $h[n,m]$ como un filtro de dimension $2k \times 2k$ e $I$ una imagen a escala de grises, donde cada punto de coordenadas $(i,j)$ es el
+resultado de la convolución entre $h$ e $I$ dado por
 \begin{equation}
-    O(i,j)= \sum_{u=-k}^{k} \sum_{v=-k}^{k} h(u,v)I(i-u,j-v)
+    O(i,j)= \sum_{u=-k}^{k} \sum_{v=-k}^{k} h[u,v]I[i-u,j-v]
 \end{equation}
 
-Esta operacion consiste en filtrar una imagen de dimension $(2k+1)x(2k+1)$ en la imagen $I$ para cada pixel centrado en dicha imagen,
-calculando la operacion de convolucion.
-El ajustes de los filtros necesarios para extraer caracteristicas puede resultar un proceso largo y tedioso que no siempre conduce a los
-resultados que uno esperaria, por lo que se puede utilizar machine learning para obtener los valores optimos de los filtros.
-Este bloque de filtros es el que se denomino bloque de convolucion que fue nombrado en la seccion anterior.
-Otro de los bloques que necesitamos mencionar es el de Batch-Normalization[https://keepcoding.io/blog/batch-normalization-red-convolucional/], 
-este puede ser definido como una tecnica que busca reducir el cambio de covariables internas o internal covariate shift, esto con la finalidad 
-de hacer mas robusta la red a una mala eleccion de valores iniciales. El internal covariate shift se define como el cambio en la distribucion de la activacion de la red, 
-esto se logra en la etapa del entrenamiento,ingresando pequeños grupos de datos de entrada o mini-batches.
+Esta operación consiste en filtrar una subimagen de dimensión $(2k+1)\times(2k+1)$ en la imagen $I$ original para cada pixel centrado en dicha imagen, calculando la operación de convolución y dando como resultado un pixel de la imagen de salida $O$.
 
-En términos matemáticos, lo que se hace es centrar y normalizar cada mini-batch ingresa a la red con una media y 
-desviación estándar calculadas con el mini-batch, para luego re-escalar y descentrar los datos de nuevo con parámetros 
-aprendidos por la red a través del entrenamiento.
+\subsection{Capa de agrupación}
 
-Continuada del bloque anterior se encuentra conectada una funcion de activacion, que como se menciono en parrafos previos, tienen como finalidad 
-proveeder a la de red de no linealidades, que le permiten a la red ser capaz de resolver problemas mas complejos. Existe una amplia variedad 
-de tipos de funciones de activacion, como se puede ver en el a Fig. \ref{fig:funciones-activacion} algunas de ellas dejan pasar la informacion
-como esta(la funcion lineal), otras introducen umbrales (sigmoide y escalon) y otras recortan parte de la informacion y dejan igual el resto(funcion Relu).
+La capa de agrupación o pooling se encarga de reducir el tamaño de la imagen ejecutando una función a una submatriz de $n \times n$ de la imagen pasando de tener un elemento, las funciones de polling más utilizadas son:
 
-Es normal entre la capas de convolucion colocar una capa de Pooling,en el caso de la red utilizada es precisamente una capa de MaxPooling,
-no es mas que que una capa que realiza un proceso de reduccion de dimesiones de las matrices que le ingresan, en otras palabras la capa de maxpooling 
-es un submuestreador que toma un conjunto de valores(pixeles al tratarse de imagenes) y devuelve el valor mas representativo, achicando significativamente 
-los mapas de activacion, lo que implica menor cantidad de parametros y costo computacional de la red.
+\begin{itemize}
+    \item MaxPooling: se queda con el valor máximo de la submatriz.
+    \item AveragePooling: calcula la media de los elementos.
+\end{itemize}
 
-En la Fig. \ref{fig:ejemplo-mp} se puede apreciar el comportamiento de una capa de maxpooling, luego de la capa de convolucion, se divide la matriz
-en pequeñas matrices de 2x2 para este caso y se extrae el valor mas representativo de cada submatriz, reduciendo la matriz del ejemplo de un tamaño de 
-5x5 a una de 3x3.
+Otra forma de entender a la capa de pooling es un submuestreo de la imagen de salida de la capa de convolución y devuelve el valor más significativo.
+
+En la Fig. \ref{fig:ejemplo-mp} se puede apreciar el comportamiento de una capa de maxpooling, luego de la capa de convolución, se divide la matriz
+en pequeñas matrices de $2 \times 2$ para este caso y se extrae el valor más representativo de cada submatriz, reduciendo la matriz del ejemplo de un tamaño de
+$5 \times 5$ a una de $3 \times 3$.
 \begin{figure}
     \centering
     \includegraphics[width=1\textwidth]{imgs/ej-maxpooling.jpg}
     \caption{Ejemplo de funcionamiento de Maxpooling.}
     \label{fig:ejemplo-mp}
 \end{figure}
- 
-Como capa siguiente se tiene un capa GlobalAvgPooling o Global Average Pooling, esta reemplaza las fully conect layers o capaz completamente 
-conectada, por lo general se tiene una capa del tipo fully conect unida a todo los mapas de activacion, pero al colocar una capa GlobalAvgPooling
-se busca obtener un unico mapa de activacion para cada categoria buscada,es decir se toma el promedio de cada mapa y se coloca en un vector directamente 
-conectado a una funcion softmax. Esta configuracion reduce la necesidad de ajustar nuevos parametros por lo que se reduce la posibilidad de 
-realizar overfitting(sobre entrenamiento) en la red.[https://arxiv.org/pdf/1312.4400.pdf]
 
-Como capa final de la red se coloca una funcion Softmax, es una de las mas utilizadas como capa final de redes neuronales que buscan realizar
-categorizacion, ya que esta permite obtener la probabilidad de obtener la categorizacion correcta dado que se sabe cual es la categoria correcta.
- 
-\section{Requerimientos necesarios de la red}
-Una vez que tenemos las bases teoricas para comprender el funcionamiento de una CNN, vamos a meternos en los requerimientos propios que posee 
-la red que es utilizada durante este trabajo, segun los datos provistos por el autor la red necesita como entrada una red imagen de la patente
-en blanco y negro de dimensiones 70x140 pixeles.
-Por lo que se ve que es necesario realizarle un tratamiento previo a las imagenes obtenidas antes de ingresalas por la red que realizara el 
-algoritmo de OCR, el tratamiento necesario lo podemos ver en la \ref{fig:Comparativa-imagenes}.
+\subsection{Técnica de Batch-Normalization}
+
+La técnica de Batch-Normalization se utiliza para reducir la covarianza de los datos de entrada, esto se realiza normalizando los datos de entrada en un rango de 0 a 1 evitando trabajar con números grandes. Si bien este proceso se suele realizar con los datos de entrada, es útil realizarlo entre capas antes de la función de activación para trabajar siempre con datos normalizados, lo que permite que un ajuste de parámetros más simple. Finalmente antes de pasar a la capa siguiente se aplica la función de activación.
+
+\section{CCN-OCR}
+
+Para este trabajo se utilizó una CNN diseñada y entrenada por Ankadrew, cuya arquitectura puede verse en Fig. \ref{fig:arquitectura-cnn-ocr}. De la arquitectura de la red se destaca la capa de Global Average Pooling, la cual remplaza a la capa de aplanamiento y calcula la media por cada imagen de salida de la capa anterior, produciendo un valor por cada imagen [incluir figura de la diferencia de una capa de Flatten y un global average pooling].
+\begin{figure}
+    \centering
+    \caption{Arquitectura de la CNN.}
+    \label{fig:arquitectura-cnn-ocr}
+\end{figure}
+
+Otro elemento a destacar de la red son las 7 capas densas conectadas en paralelo, esto se debe a que como se anticipó en secciones anteriores, las patentes poseen 7 caracteres. En esencia cada capa densa es idéntica, solo se diferencian sus pesos los cuales son aprendidos durante el entrenamiento de la misma. Cada capa posee en total 37 caracteres de salida, esto surge de las 26 letras del abecedario, los 10 números del 0 al 9 y el símbolo de guion bajo (\_) utilizado en el caso de las patentes antiguas que solo poseen 6 caracteres.
+
+Como aclaración para el resto del trabajo cada vez que se refiera a CNN-OCR nos estaremos refiriendo a esta red.
+
+\subsection{Requerimientos}
+
+Si bien la CNN es muy útil para la tarea a resolver, posee una serie de requisitos previos en la imagen de entrada.
+Según el autor la CNN necesita como entrada una red imagen de la patente en blanco y negro de dimensiones $70 \times 140$ pixeles.
+Por lo que es necesario realizarle un tratamiento previo a las imágenes obtenidas antes de ingresarlas por la CNN-OCR, el tratamiento necesario se puede observar en la Fig. \ref{fig:Comparativa-imagenes}. Por lo que existen 3 pasos previos luego de sacar la captura antes de ingresarla a la CNN-OCR:
+
+\begin{enumerate}
+    \item Obtener un recorte de la patente.
+    \item Transformar la imagen a escala de grises.
+    \item Redimensionar la imagen al tamaño requerido.
+\end{enumerate}
 \begin{figure}[!tbp]
- \centering
+    \centering
     \begin{subfigure}[b]{0.49\textwidth}
-        \includegraphics[width=\textwidth, height=\textwidth]{imgs/imagen-obtenida.jpg}
-        \caption{Imagen obtenida por la camara.}
+        \centering
+        \includegraphics[width=\textwidth]{imgs/imagen-obtenida.jpg}
+        \caption{Imagen obtenida por la cámara.}
         \label{fig:imagen-obtenida}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.49\textwidth}
-        \includegraphics[width=0.7\textwidth, height=0.7\textwidth]{imgs/imagen-requerida.jpg}
-        \caption{Imagen requerida por la red.}
+        \centering
+        \includegraphics[width=0.7\textwidth]{imgs/imagen-requerida.jpg}
+        \caption{Imagen requerida por la CNN-OCR.}
         \label{fig:imagen-requerida}
     \end{subfigure}
- \caption{Compartiva imagenes a)Obtenida por la camara b)Requerida por la red.}
- \label{fig:Comparativa-imagenes}
+    \caption{Ejemplo de imagen obtenida e imagen requerida por la CNN-OCR.}
+    \label{fig:Comparativa-imagenes}
 \end{figure}
 
-Para logralo, es necesario utilizar otra red nueronal, para que detecte la ubicacion de la patente, y asi poder realizar el recorte e ingresarla 
-a la CNN para que obtenga los caracteres, dicha red es la Yolo (You Only Look Once ) en su version 4. 
+\subsubsection*{Obtención del recorte de la patente}
 
-Este difiere con otro tipo de detectores en que no utiliza la imagen completa y se queda con las regiones en la que obtuvo mayor puntaje y las 
-considera como objeto detectado si no que, mediante una red neuronal tambien del tipo CNN toma la imagen completa, dibuja una serie de cuadrados
-en diversas capas junto con su clasificacion, estas capas deben mesclarse para realizar la correcta deteccion, dicha implementacion se ve en la 
-Fig. \ref{fig:funcionamiento-yolo}, una vez que se tiene la ubicacion del objeto una CNN clasifica la imagen. Esta implementación de YoloV4 
-utiliza el marco Darknet.
+
+Debido a la complejidad de esta etapa se realiza una explicación a detalle, con la idea de poder comprender esta etapa. Para lograr obtener el recorte, el autor de la CNN-OCR recomienda utilizar otra red para que detecte la ubicación de la patente, para luego ingresarla a la CNN-OCR para que obtenga los caracteres, dicha red es la Yolo (You Only Look Once) en su versión 4 desde ahora en más a esta arquitectura se le llamará YoloV4. [agregar link a github de la yolo]
+
+El modelo de la YoloV4 es un sistema de código abierto el cual se centra en la detección de objetos, el cual utiliza una CNN con la arquitectura Darknet [incluir link a la arquitectura]. El objetivo de este algoritmo es encontrar una caja que contenga el objeto a identificar, para este trabajo la implementación de la YoloV4 buscara la ubicación de patentes en la imagen, siendo capaz de detectar más de una patente por imagen. Para llevar a cabo la tarea de reconocimiento por bloques.
+La implementación de la YoloV4 se realizó siguiendo los pasos del tutorial.
+
+
+Este difiere con otro tipo de detectores en que no utiliza la imagen completa y se queda con las regiones en la que obtuvo mayor puntaje y las
+considera como objeto detectado sino que, mediante una red neuronal también del tipo CNN toma la imagen completa, dibuja una serie de cuadrados
+en diversas capas junto con su clasificación, estas capas deben mezclar para realizar la correcta detección, dicha implementación se ve en la
+Fig. \ref{fig:funcionamiento-yolo}, una vez que se tiene la ubicación del objeto una CNN clasifica la imagen. Esta implementación de YoloV4.
 \begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{imgs/funcionamiento-yolo.png}
-    \caption{Funcionamiento del proceso de deteccion de la YoloV4.}
+    \caption{Funcionamiento del proceso de detección de la YoloV4.}
     \label{fig:funcionamiento-yolo}
     %%https://blog.roboflow.com/a-thorough-breakdown-of-yolov4/
 \end{figure}
 
+
+
 \section{Implementación del algoritmo en Python 3}
 
-Para la implementacion del algoritmo se utilizo el lenguaje Python3, ya que este permite una rapida integracion de diversas librerias necesarias
-para el funcionamiento del sistema completo, como es necesario el uso de una camara para la obtencion de las imagenes se utilizo la libreria 
-OpenCv [https://github.com/opencv/opencv] para integrarla al algoritmo, a su vez como se requiere un activador para iniciar la camara, 
-se construyo una libreria para usar un sensor de distancia ultrasonico US-100, esto se vera a detalle en la seccion siguiente.
+Para la implementación del algoritmo se utilizó el lenguaje Python 3, ya que este cuenta con una gran cantidad de librerías necesarias para el funcionamiento del sistema completo. La descripción general del algoritmo se puede observar en Fig. \ref{fig:algoritmo-ocr}.
 
-Entonces la primer parte del algorimo se basa en la obtencion de la imagen, se espera la activacion del sensor mediante un umbral programable 
-por el usuario y dependiendo de la ubicacion del conjunto sensor-camara, una vez que un vehiculo se detecta, se toma una imagen que dependiendo
-del equipo que se este utilizando ya sea sensor SL o sensor SL mini, la existencia de estos 2 dispositivos se vera mejor en la siguiente 
-seccion,se realizan 2 posibles acciones, en el caso del sensor SL, por su capacidades de hardware pueden correr dentro de el ambas redes, por lo
-que el procesamiento de la imagen se realiza dentro de la propia placa, y se envia a un servidor sola la informacion relevante, como lo es la patente y 
-la fecha y hora de ingreso o egreso dependiendo donde se encuentre el sensor. En el caso del sensor SL mini cuyas prestaciones de computo son 
-inferiores este solo se encarga de tomar la foto y enviarla al servidor para que este procese la imagen y devuelva al sensor la habilitacion para el
-ingreso o egreso.
+\begin{figure}
+    \centering
+    \includegraphics[width=.25\textwidth]{imgs/flujo-algoritmo-ocr.png}
+    \caption{Algoritmo general de OCR.}
+    \label{fig:algoritmo-ocr}
+\end{figure}
 
-En ambos casos la secuencia del algoritmo es la siguiente: 
-\begin{itemize}
-    \item cada un tiempo periodico se chequea si ingreso una nueva imagen para procesarla, esto se realiza mirando el contenido de una carpeta especifica.
-    \item Cuando se encuentra una nueva imagen, se ingresa la imagen a la YoloV4, para que detecte la ubicacion de la patente, aqui ocurren 2 posibles acciones, si 
-    se detecto patente se obtiene las coordenadas para realizar el recorte y en el caso de no detectar patente se envia un codigo de error al servidor y se descarta la imagen.
-    \item se realiza el recorte de la imagen.
-    \item Se envia la imagen de la patente recortada para la que la CNN realice la deteccion de caracteres.
-    \item obtenida la patente se envia al servidor para los chequeos de validacion, y registro de horario.
-    \item se recibe del servidor la validacion, y se admite la circulacion del vehiculo.
-\end{itemize}
+La lectura u obtención de una fotografía se realizó mediante OpenCV [https://github.com/opencv/opencv] ya que permite utilizar una gran varidad de fuentes tales como cámaras y archivo. Luego se procesa mediante la YoloV4 la cual devuelve las ubicación relativa de patente en la imagen en un archivo de texto plano, para posteriormente leer el archivo de texto, junto con las dimensiones de la imagen y poder obtener la patente recortada este proceso se puede observar en Fig. \ref{fig:yolo-car-to-plate}. Antes de pasar el recorte a la CNN-OCR se la cambia a escala de grises y se la lleva al tamaño de $70 \times 140$ utilizando una interpolación lineal y se normalizan los valores de la imagen entre 0 y 1. Finalmente se procesa la imagen por la CNN-OCR obteniendo la patente en texto. En capítulos posteriores se explicará en mayor detalle que sucede con la imagen, y la patente obtenida.
+
+\begin{figure}
+    \centering
+
+    \caption{Ejemplificación del proceso realizado para obtener el recorte de la patente.}
+    \label{fig:yolo-car-to-plate}
+\end{figure}
+
+
+
 
 
 
