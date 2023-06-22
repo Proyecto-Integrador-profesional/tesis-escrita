@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 Raspberry
 Raspbian
 RF
@@ -14,3 +15,6 @@ Yolo
 convolucional
 convolucionales
 >>>>>>> capitulo/ocr
+=======
+Comahue
+>>>>>>> capitulo/pruebas
