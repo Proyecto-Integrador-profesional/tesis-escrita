@@ -240,23 +240,8 @@ En cuanto al envío de los registros este se realiza por POST mediante HTTP util
 
 La captura de imágenes se realizó mediante la librería de \textit{OpenCV}, la cual permite una fácil conexión con la cámara USB permitiendo tomar fotografías rápidamente.
 
-\subsection{Drivers}
+\subsection{Diferencias entre SL y SL mini}
 
-El algoritmo implementado en el sistema SL mini se puede apreciar en la Fig. \ref{fig:algoritmo-sl-mini}. Debido a la implementación de las librerías auxiliares el código principal del SL mini es sencillo.
-\begin{figure}
-    \centering
+Como fue nombrado con anterioridad, la mayor diferencia entre ambos sistemas es que el sistema SL es capaz de procesar la imagen de manera local. Esto implica que una conversión de los modelos de Tensorflow [ref tensorflow] utilizados para la CNN-OCR a una versión capaz de correr en ARM, por lo que se compilaron los modelos a Tensorflow Lite [ref tf lite], utilizando las herramientas que Tensorflow provee para estos casos. Por otro lado, se requiere compilar la YoloV4 para arquitectura ARM, este paso se realizó utilizando el compilador de CMake [ref a cmake].
 
-    \caption{Algoritmo implementado en el sistema SL mini.}
-    \label{fig:algoritmo-sl-mini}
-\end{figure}
 
-En cuanto al sistema SL este cuenta con un algoritmo un poco más complejo cuyo diagrama de flujo puede observarse en la Fig. \ref{fig:algoritmo-sl}. En este caso se añadio el algoritmo de OCR, para ello se compilo la YOLOV4 para sistemas ARM, y se compilaron los modelos de la CNN-OCR a la versión de tensorflow lite, ya que es la versión compatible con arquitectura ARM.
-
-\begin{figure}
-    \centering
-
-    \caption{Algoritmo implementado en el sistema SL.}
-    \label{fig:algoritmo-sl}
-\end{figure}
-
-Se puede observar que en ambos casos los drivers no difieren en demasiado, más allá de la implementación del algoritmo de OCR, es por ello que la tarea de implementar librerías facilita el proceso de actualización de drivers para las placas, e incluso aporta versatilidad a la hora de cambiar a una placa con un hardware diferente, siempre que este soporte Python 3.
