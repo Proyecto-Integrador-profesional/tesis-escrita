@@ -75,7 +75,7 @@ A la hora de resolver problemas más complejos es usual necesitar más de una ca
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.5\textwidth]{imgs/Redes-esquema.jpg}
+    \includegraphics[width=0.6\textwidth]{imgs/Redes-esquema.jpg}
     \caption{Esquema simplificado de una red neuronal.}
     \label{fig:esquema-redes}
 \end{figure}
@@ -182,9 +182,11 @@ Como aclaración para el resto del trabajo cada vez que se refiera a CNN-OCR nos
 
 \subsection{Requerimientos}
 
-Si bien la CNN es muy útil para la tarea a resolver, posee una serie de requisitos previos en la imagen de entrada.
-Según el autor la CNN necesita como entrada una red imagen de la patente en blanco y negro de dimensiones $70 \times 140$ pixeles.
-Por lo que es necesario realizarle un tratamiento previo a las imágenes obtenidas antes de ingresarlas por la CNN-OCR, el tratamiento necesario se puede observar en la Fig. \ref{fig:Comparativa-imagenes}. Por lo que existen 3 pasos previos luego de sacar la captura antes de ingresarla a la CNN-OCR:
+Si bien la CNN es muy útil para la tarea a resolver, posee una serie de requisitos previos en la imagen de entrada. Según el autor la CNN 
+necesita como entrada una imagen de la patente en blanco y negro de dimensiones $70 \times 140$ pixeles.
+Por lo que es necesario realizarle un tratamiento previo a las imágenes obtenidas antes de ingresarlas por la CNN-OCR, el tratamiento necesario 
+se puede observar en la Fig. \ref{fig:Comparativa-imagenes}. Por lo que existen 3 pasos previos luego de sacar 
+la captura antes de ingresarla a la CNN-OCR:
 
 \begin{enumerate}
     \item Obtener un recorte de la patente.
@@ -212,23 +214,28 @@ Por lo que es necesario realizarle un tratamiento previo a las imágenes obtenid
 
 \subsubsection*{Obtención del recorte de la patente}
 
-
-Debido a la complejidad de esta etapa se realiza una explicación a detalle, con la idea de poder comprender esta etapa. Para lograr obtener el recorte, el autor de la CNN-OCR recomienda utilizar otra red para que detecte la ubicación de la patente, para luego ingresarla a la CNN-OCR para que obtenga los caracteres, dicha red es la Yolo (You Only Look Once) en su versión 4 desde ahora en más a esta arquitectura se le llamará YoloV4. [agregar link a github de la yolo]
-
-El modelo de la YoloV4 es un sistema de código abierto el cual se centra en la detección de objetos, el cual utiliza una CNN con la arquitectura Darknet [incluir link a la arquitectura]. El objetivo de este algoritmo es encontrar una caja que contenga el objeto a identificar, para este trabajo la implementación de la YoloV4 buscara la ubicación de patentes en la imagen, siendo capaz de detectar más de una patente por imagen. Para llevar a cabo la tarea de reconocimiento por bloques.
-La implementación de la YoloV4 se realizó siguiendo los pasos del tutorial.
+Debido a la importancia de esta etapa y a su complejidad, se realiza una explicación extendida, con la finalidad tener una mejor comprensión del funcionamiento del proceso de recorte necesario para que la CNN-OCR pueda funcionar de manera óptima. Siguiendo la recomendación del autor de CNN-OCR, se utilizó una red complementaria que detecta la ubicación de la patente para luego realizar el recorte para así ingresarla a la CNN para que esta obtenga los caracteres, dicha red es la Yolo (You Only Look Once) en su versión 4 desde ahora en más a esta red se 
+le llamará YoloV4. [agregar link a github de la yolo]
 
 
-Este difiere con otro tipo de detectores en que no utiliza la imagen completa y se queda con las regiones en la que obtuvo mayor puntaje y las
-considera como objeto detectado sino que, mediante una red neuronal también del tipo CNN toma la imagen completa, dibuja una serie de cuadrados
-en diversas capas junto con su clasificación, estas capas deben mezclar para realizar la correcta detección, dicha implementación se ve en la
-Fig. \ref{fig:funcionamiento-yolo}, una vez que se tiene la ubicación del objeto una CNN clasifica la imagen. Esta implementación de YoloV4.
+El modelo de la YoloV4 es un sistema de código abierto el cual se centra en la detección de objetos, el cual utiliza una CNN con la 
+arquitectura Darknet [incluir link a la arquitectura], escrita en C, dicha arquitectura se puede ver en la Fig.\ref{fig:funcionamiento-yolo}.
+Una de las principales características de esta arquitectura es la forma en que realiza el proceso de detección y posterior clasificación, para ello la red se encuentra en 3 partes diferentes, para mantener la nomenclatura de la propia arquitectura, no fueron traducidos y se mantendrán en ingles, estas partes son:
+\begin{itemize}
+    \item Head: es la parte encargada de reconocer objetos, básicamente busca una región en la que pueda llegar a haber un objeto, sin distinguir cuál sea. Se utilizan 2 etapas de detectores, la primera utiliza subimagenes de tamaño fijo, y la otra varía el tamaño de las subimagenes para adecuarse mejor al tamaño de cada objeto.
+    \item Backbone: es una arquitectura de deep learning que actúa como extractor de característica, es en esencia un modelo de clasificación. Esta es la parte encargada de tomar las ubicaciones obtenidas por el Head y clasificar en sí son o no los objetos requeridos. Es la única parte de la red que se modifica y entrena dependiendo el entorno en que se desea utilizar, en el caso de este trabajo el Backbone fue entrenado por el mismo autor de la CNN-OCR, para que reconozca patentes argentinas. 
+    \item Neck: su funcionalidad es la de tomar mapas de característica de diferentes partes del Backbone y agregarle características, para facilitar la clasificación de los objetos.
+\end{itemize}
+
+Se siguieron las instrucciones dadas en el github de Yolo para la compilación e integración de la red al resto del sistema. 
+
+
 \begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{imgs/funcionamiento-yolo.png}
     \caption{Funcionamiento del proceso de detección de la YoloV4.}
     \label{fig:funcionamiento-yolo}
-    %%https://blog.roboflow.com/a-thorough-breakdown-of-yolov4/
+    %%https://medium.com/aiguys/yolo-v4-explained-in-full-detail-5200b77aa825
 \end{figure}
 
 
