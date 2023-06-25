@@ -19,7 +19,23 @@ neuronales recurrentes, otra opción son las CNN por sus siglas en inglés Convo
 Si bien el fin último de ambos tipos de red es obtener los caracteres a partir de la imagen, la forma en
 la que trabajan difiere significativamente, las redes LSTM almacenan información de estados anteriores mediante bucles,
 lo que les permite realizar predicciones de estados futuros usando información pasada almacenada y la información
-del estado actual. En la Fig. \ref{fig:diagrama-LSTM} se observa un bloque LSTM [seguir explicación]
+del estado actual. En la Fig. \ref{fig:diagrama-LSTM} se observa un bloque LSTM básico, en él se puede apreciar las diversas funciones que lo componen, los bloques $\sigma$ corresponden a la función sigmoide, el bloque $g$ y $h$ son funciones de activación diferentes que en la mayoría de los casos suele ser la función tangente hiperbólica.
+Las señales presenten en cada bloque son:
+\begin{itemize}
+    \item $y^{(t-1)}$: corresponde al estado oculto anterior.
+    \item $x^t$: es la entrada del estado actual.
+    \item $c^{(t-1)}$: representa el estado previo del bloque.
+    \item $c^t$: representa el estado actual del bloque.
+    \item $y^t$: corresponde al estado oculto actual.
+\end{itemize}
+
+ Cada bloque LSTM se puede dividir en 3 secciones diferentes, estas son:
+ \begin{itemize}
+    \item Compuerta de memoria: representado por la función $f_{t}$, en ella se decide a que información se le debe prestar atención y cuál debe ser ignorada, en otras palabras es la encargada de ponderar la importancia de la entrada actual respecto a la información pasada.
+    \item Compuerta de entrada: esta se obtiene de la multiplicación de las señales $z$ e $i$, es la encargada de actualizar el estado del bloque con la información ponderada de la compuerta de memoria por el vector $z$, cuyos valores se encuentran entre $-1$ y $1$.
+    \item Compuerta de salida: aquí se determina el valor actual del estado oculto, aquí queda contenida la información de los estados previos, este valor es utilizado para realizar la predicción de estados futuros.
+ \end{itemize}
+ En forma resumida podés decir que la compuerta de memoria determina que información de los estados anteriores es relevante, la compuerta de entrada decide que información es necesaria añadir al estado actual, y la compuerta de salida determinada el estado oculto actual.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\textwidth]{imgs/diagrama-lstm.png}

@@ -58,6 +58,107 @@
       \verb https://www.20minutos.es/noticia/3269456/0/falta-aparcamiento-irrumpe-principales-problemas-madrilenos/
       \endverb
     \endentry
+    \entry{alexey_yolo_2023}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=a0eac53d7dc80c154fa80c1c8f1513e1}{%
+           family={Alexey},
+           familyi={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{a0eac53d7dc80c154fa80c1c8f1513e1}
+      \strng{fullhash}{a0eac53d7dc80c154fa80c1c8f1513e1}
+      \strng{bibnamehash}{a0eac53d7dc80c154fa80c1c8f1513e1}
+      \strng{authorbibnamehash}{a0eac53d7dc80c154fa80c1c8f1513e1}
+      \strng{authornamehash}{a0eac53d7dc80c154fa80c1c8f1513e1}
+      \strng{authorfullhash}{a0eac53d7dc80c154fa80c1c8f1513e1}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{YOLOv4 / Scaled-YOLOv4 / YOLO - Neural Networks for Object Detection (Windows and Linux version of Darknet )}
+      \field{month}{6}
+      \field{note}{original-date: 2016-12-02T11:14:00Z}
+      \field{title}{Yolo v4, v3 and v2 for {Windows} and {Linux}}
+      \field{urlday}{25}
+      \field{urlmonth}{6}
+      \field{urlyear}{2023}
+      \field{year}{2023}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://github.com/AlexeyAB/darknet
+      \endverb
+      \verb{url}
+      \verb https://github.com/AlexeyAB/darknet
+      \endverb
+      \keyw{computer-vision,deep-learning,deep-learning-tutorial,deep-neural-networks,dnn,neural-network,object-detection,scaled-yolov4,scaledyolov4,yolo,yolov3,yolov4}
+    \endentry
+    \entry{ankandrew_localizador_2021}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=825c61cdc5a0f2d8f972f559a4a286cb}{%
+           family={Ankandrew},
+           familyi={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{825c61cdc5a0f2d8f972f559a4a286cb}
+      \strng{fullhash}{825c61cdc5a0f2d8f972f559a4a286cb}
+      \strng{bibnamehash}{825c61cdc5a0f2d8f972f559a4a286cb}
+      \strng{authorbibnamehash}{825c61cdc5a0f2d8f972f559a4a286cb}
+      \strng{authornamehash}{825c61cdc5a0f2d8f972f559a4a286cb}
+      \strng{authorfullhash}{825c61cdc5a0f2d8f972f559a4a286cb}
+      \field{extraname}{1}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Localizador de patentes con YOLO v4}
+      \field{month}{11}
+      \field{note}{original-date: 2020-06-23T21:13:41Z}
+      \field{title}{Localizador de patentes}
+      \field{urlday}{25}
+      \field{urlmonth}{6}
+      \field{urlyear}{2023}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://github.com/ankandrew/LocalizadorPatentes
+      \endverb
+      \verb{url}
+      \verb https://github.com/ankandrew/LocalizadorPatentes
+      \endverb
+      \keyw{localizador-patentes,plate-detection,yolov4-tiny}
+    \endentry
+    \entry{ankandrew_reconocedor_2023}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=825c61cdc5a0f2d8f972f559a4a286cb}{%
+           family={Ankandrew},
+           familyi={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{825c61cdc5a0f2d8f972f559a4a286cb}
+      \strng{fullhash}{825c61cdc5a0f2d8f972f559a4a286cb}
+      \strng{bibnamehash}{825c61cdc5a0f2d8f972f559a4a286cb}
+      \strng{authorbibnamehash}{825c61cdc5a0f2d8f972f559a4a286cb}
+      \strng{authornamehash}{825c61cdc5a0f2d8f972f559a4a286cb}
+      \strng{authorfullhash}{825c61cdc5a0f2d8f972f559a4a286cb}
+      \field{extraname}{2}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{OCR implementado con solo Redes Convolucionales (CNN) de Patentes Argentinas}
+      \field{month}{5}
+      \field{note}{original-date: 2020-08-07T00:46:17Z}
+      \field{title}{Reconocedor de {Texto}({OCR}) para {Patentes} vehiculares de {Argentina}}
+      \field{urlday}{25}
+      \field{urlmonth}{6}
+      \field{urlyear}{2023}
+      \field{year}{2023}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://github.com/ankandrew/cnn-ocr-lp
+      \endverb
+      \verb{url}
+      \verb https://github.com/ankandrew/cnn-ocr-lp
+      \endverb
+      \keyw{license-plate-recognition,plate-ocr,plate-recognition,reconocimiento-patentes}
+    \endentry
     \entry{basco_industria_2018}{book}{}
       \name{author}{4}{}{%
         {{hash=5fd62b76a112d48ba65263d7ca7a9df6}{%
@@ -105,6 +206,58 @@
       \field{year}{2018}
       \keyw{Business \& Economics / Industries / Manufacturing,Technology \& Engineering / Industrial Technology,Technology \& Engineering / Technical \& Manufacturing Industries \& Trades}
     \endentry
+    \entry{bochkovskiy_yolov4_2020}{misc}{}
+      \name{author}{3}{}{%
+        {{hash=c0b2fdc20c37a4bd8d817822d374f809}{%
+           family={Bochkovskiy},
+           familyi={B\bibinitperiod},
+           given={Alexey},
+           giveni={A\bibinitperiod}}}%
+        {{hash=053d491932411950eccf2bb9a1025d11}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Chien-Yao},
+           giveni={C\bibinithyphendelim Y\bibinitperiod}}}%
+        {{hash=c81478c691c1bc1cc01404c44b5bd5bf}{%
+           family={Liao},
+           familyi={L\bibinitperiod},
+           given={Hong-Yuan\bibnamedelima Mark},
+           giveni={H\bibinithyphendelim Y\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{cf5dc5f8f26df49f548c03581fb80644}
+      \strng{fullhash}{cf5dc5f8f26df49f548c03581fb80644}
+      \strng{bibnamehash}{cf5dc5f8f26df49f548c03581fb80644}
+      \strng{authorbibnamehash}{cf5dc5f8f26df49f548c03581fb80644}
+      \strng{authornamehash}{cf5dc5f8f26df49f548c03581fb80644}
+      \strng{authorfullhash}{cf5dc5f8f26df49f548c03581fb80644}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{There are a huge number of features which are said to improve Convolutional Neural Network (CNN) accuracy. Practical testing of combinations of such features on large datasets, and theoretical justification of the result, is required. Some features operate on certain models exclusively and for certain problems exclusively, or only for small-scale datasets; while some features, such as batch-normalization and residual-connections, are applicable to the majority of models, tasks, and datasets. We assume that such universal features include Weighted-Residual-Connections (WRC), Cross-Stage-Partial-connections (CSP), Cross mini-Batch Normalization (CmBN), Self-adversarial-training (SAT) and Mish-activation. We use new features: WRC, CSP, CmBN, SAT, Mish activation, Mosaic data augmentation, CmBN, DropBlock regularization, and CIoU loss, and combine some of them to achieve state-of-the-art results: 43.5\% AP (65.7\% AP50) for the MS COCO dataset at a realtime speed of {\textasciitilde}65 FPS on Tesla V100. Source code is at https://github.com/AlexeyAB/darknet}
+      \field{month}{4}
+      \field{note}{arXiv:2004.10934 [cs, eess]}
+      \field{shorttitle}{{YOLOv4}}
+      \field{title}{{YOLOv4}: {Optimal} {Speed} and {Accuracy} of {Object} {Detection}}
+      \field{urlday}{25}
+      \field{urlmonth}{6}
+      \field{urlyear}{2023}
+      \field{year}{2020}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb arXiv.org Snapshot:/home/lautaroandressaez/Zotero/storage/8LIA5JG3/2004.html:text/html;Full Text PDF:/home/lautaroandressaez/Zotero/storage/PGNKXRXE/Bochkovskiy et al. - 2020 - YOLOv4 Optimal Speed and Accuracy of Object Detec.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2004.10934
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2004.10934
+      \endverb
+      \keyw{Computer Science - Computer Vision and Pattern Recognition,Electrical Engineering and Systems Science - Image and Video Processing}
+    \endentry
     \entry{calalesina_imposible_nodate}{misc}{}
       \name{author}{1}{}{%
         {{hash=d5a4af486d09a74453f551688a0350bb}{%
@@ -136,6 +289,25 @@
       \endverb
       \verb{url}
       \verb https://www.lmneuquen.com/la-imposible-mision-buscar-estacionamiento-el-microcentro-neuquino-n923626
+      \endverb
+    \endentry
+    \entry{noauthor_darknet_nodate}{misc}{}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labeltitlesource}{title}
+      \field{title}{Darknet: {Open} {Source} {Neural} {Networks} in {C}}
+      \field{urlday}{25}
+      \field{urlmonth}{6}
+      \field{urlyear}{2023}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Darknet\: Open Source Neural Networks in C:/home/lautaroandressaez/Zotero/storage/5534BIII/darknet.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://pjreddie.com/darknet/
+      \endverb
+      \verb{url}
+      \verb https://pjreddie.com/darknet/
       \endverb
     \endentry
     \entry{noauthor_documentacion_nodate}{misc}{}
@@ -247,6 +419,39 @@
       \verb http://revistas.um.edu.uy/index.php/ingenieria/article/view/351
       \endverb
       \keyw{ciudades inteligentes,estacionamiento inteligente,Ingeniería de tránsito,Internet de las cosas}
+    \endentry
+    \entry{ibm_que_nodate}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=cbf44511d041dc6d1dd73cc0c033122c}{%
+           family={IBM},
+           familyi={I\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {es-es}%
+      }
+      \strng{namehash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{fullhash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{bibnamehash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{authorbibnamehash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{authornamehash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{authorfullhash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Deep learning simula nuestro cerebro, ayudando a los sistemas a aprender a identificar objetos y a realizar tareas complejas con una precisión cada vez mayor y sin intervención humana.}
+      \field{shorttitle}{¿{Qué} es {Deep} {Learning}?}
+      \field{title}{¿{Qué} es {Deep} {Learning}?}
+      \field{urlday}{25}
+      \field{urlmonth}{6}
+      \field{urlyear}{2023}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.ibm.com/es-es/topics/deep-learning
+      \endverb
+      \verb{url}
+      \verb https://www.ibm.com/es-es/topics/deep-learning
+      \endverb
     \endentry
     \entry{ibrahim_car_2017}{article}{}
       \name{author}{1}{}{%
@@ -405,6 +610,42 @@
       \verb{url}
       \verb https://keepcoding.io/blog/que-es-el-kernel/
       \endverb
+    \endentry
+    \entry{opencv_opencv_2023}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=5bd4c87976f48e6a53919d53e14025e9}{%
+           family={OpenCV},
+           familyi={O\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {OpenCV}%
+      }
+      \strng{namehash}{5bd4c87976f48e6a53919d53e14025e9}
+      \strng{fullhash}{5bd4c87976f48e6a53919d53e14025e9}
+      \strng{bibnamehash}{5bd4c87976f48e6a53919d53e14025e9}
+      \strng{authorbibnamehash}{5bd4c87976f48e6a53919d53e14025e9}
+      \strng{authornamehash}{5bd4c87976f48e6a53919d53e14025e9}
+      \strng{authorfullhash}{5bd4c87976f48e6a53919d53e14025e9}
+      \field{sortinit}{O}
+      \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Open Source Computer Vision Library}
+      \field{month}{6}
+      \field{note}{original-date: 2012-07-19T09:40:17Z}
+      \field{title}{{OpenCV}}
+      \field{urlday}{25}
+      \field{urlmonth}{6}
+      \field{urlyear}{2023}
+      \field{year}{2023}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://github.com/opencv/opencv
+      \endverb
+      \verb{url}
+      \verb https://github.com/opencv/opencv
+      \endverb
+      \keyw{c-plus-plus,computer-vision,deep-learning,image-processing,opencv}
     \endentry
     \entry{presta_10_2021}{misc}{}
       \name{author}{1}{}{%
