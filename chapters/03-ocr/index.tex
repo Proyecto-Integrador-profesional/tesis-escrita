@@ -232,7 +232,47 @@ Debido a que la Darknet está escrita en C es necesario compilar la misma, esto 
     \label{fig:funcionamiento-yolo}
 \end{figure}
 
+\subsubsection*{Transformación a escala de grises}
 
+El proceso de conversión a escala de grises se puede hacer de diversas maneras, la forma más utilizada es realizar un promedio de las capas de color Rojo ($R$), Verde ($G$), Azul ($B$) quedando descripto por la eq. \ref{eq:gray-mean}. Existe otra forma utilizando un promedio ponderado para compensar la sensibilidad relativa del ojo humano la cual se puede observar en la eq. \ref{eq:gray-human}. En la Fig. \ref{fig:comparacion-grises} se observa que el método de escala de grises teniendo en cuenta la sensibilidad del ojo humano obtiene un mejor resultado.
+
+\begin{equation}
+    \label{eq:gray-mean}
+    I = \frac{R + G + B}{3}
+\end{equation}
+
+\begin{equation}
+    \label{eq:gray-human}
+    I = 0.2989R + 0.587G + 0.114B
+\end{equation}
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{imgs/escala-grises-original.jpg}
+        \caption{Imagen original.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{imgs/escala-grises-promedio.jpg}
+        \caption{Promedio.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{imgs/escala-grises-sensibilidad.jpg}
+        \caption{Promedio ponderado.}
+    \end{subfigure}
+    \hfill
+    \caption{En a) se observa la imagen original, mientras que en b) y c) la imagen convertida a escala de grises por los diferentes métodos.}
+    \label{fig:comparacion-grises}
+\end{figure}
+
+\subsubsection*{Redimensionamiento de la imagen}
+
+Para redimensionar la imagen se utiliza una interpolación bilineal la cual no se explicara en este trabajo debido a la complejidad del algoritmo.
 
 \section{Implementación del algoritmo en Python 3}
 
