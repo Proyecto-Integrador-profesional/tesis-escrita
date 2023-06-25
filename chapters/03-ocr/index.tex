@@ -7,6 +7,7 @@ Ankandrew \cite{ankandrew_reconocedor_2023}, con la idea de finalizar en un algo
 que permita obtener los caracteres de una patente mediante una imagen.
 
 \section{Algoritmos de OCR}
+
 Como primera instancia se definirá que es el OCR, por sus siglas en inglés Optical Character
 Recognition o en español Reconocimiento Óptico de Caracteres, es una técnica que permite
 obtener texto en formato ASCII a partir de una imagen.
@@ -22,8 +23,8 @@ del estado actual. En la Fig. \ref{fig:diagrama-LSTM} se observa un bloque LSTM 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\textwidth]{imgs/diagrama-lstm.png}
-    \label{fig:diagrama-LSTM}
     \caption{Diagrama del bloque LSTM.}
+    \label{fig:diagrama-LSTM}
 \end{figure}
 
 Este tipo de redes son las más utilizadas actualmente para realizar reconocimiento de caracteres, pero cuentan con la desventaja de un alto costo computacional, lo que hace que se usó sea desaconsejable en sistemas embebidos.
@@ -47,10 +48,7 @@ Debido a que las patentes tanto las lanzadas en 1994 y 2015 en Argentina Fig. \r
 Se entiende como red neuronal a un algoritmo computacional que intenta imitar el cerebro humano, en otras palabras es un algoritmo de computación compuesto por un gran número de elementos simples que se
 encuentran interconectados, los cuales procesan la información por medio de estados dinámicos, respondiendo a entradas externas, que permite realizar diversas tareas.
 En este caso se centrará el trabajo a la tarea de clasificación de datos.
-Debido a la semejanza que existe entre los algoritmos de Deep Learning (algoritmos de aprendizaje profundo o
-Machine learning [Referencia https://www.ibm.com/topics/machine-learning] compuesto por redes neuronales
-de 3 o más capas)[Referencia https://www.ibm.com/es-es/topics/deep-learning] y el cerebro humano, a la
-unidad fundamental de estos sistemas se la denomina neurona.
+Debido a la semejanza que existe entre los algoritmos de Deep Learning \cite{ibm_que_nodate} (algoritmos de aprendizaje profundo) y el cerebro humano, a la unidad fundamental de estos sistemas se la denomina neurona.
 
 
 \subsection{La neurona}
@@ -212,25 +210,25 @@ la captura antes de ingresarla a la CNN-OCR:
 
 \subsubsection*{Obtención del recorte de la patente}
 
-Debido a la importancia de esta etapa y a su complejidad, se realiza una explicación extendida, con la finalidad tener una mejor comprensión del funcionamiento del proceso de recorte necesario para que la CNN-OCR pueda funcionar de manera óptima. Siguiendo la recomendación del autor de CNN-OCR, se utilizó una red complementaria que detecta la ubicación de la patente y luego realiza el recorte. La red recomendada para esta tarea es la Yolo (You Only Look Once) en su versión 4 desde ahora en más a esta red se le llamará YoloV4. [agregar link a github de la yolo]
+Debido a la importancia de esta etapa y a su complejidad, se realiza una explicación extendida, con la finalidad tener una mejor comprensión del funcionamiento del proceso de recorte necesario para que la CNN-OCR pueda funcionar de manera óptima. Siguiendo la recomendación del autor de CNN-OCR, se utilizó una red complementaria que detecta la ubicación de la patente y luego realiza el recorte. La red recomendada para esta tarea es la Yolo (You Only Look Once) en su versión 4 desde ahora en más a esta red se le llamará YoloV4 \cite{bochkovskiy_yolov4_2020}.
 
 
-El modelo de la YoloV4 es un sistema de código abierto el cual se centra en la detección de objetos, el cual utiliza una arquitectura Darknet [incluir link a la arquitectura pjreddie], escrita en C, dicha arquitectura se puede ver en la Fig.\ref{fig:funcionamiento-yolo}.
+El modelo de la YoloV4 es un sistema de código abierto el cual se centra en la detección de objetos, el cual utiliza una arquitectura Darknet \cite{noauthor_darknet_nodate}, escrita en C, dicha arquitectura se puede ver en la Fig.\ref{fig:funcionamiento-yolo}.
 Una de las principales características de esta arquitectura es la forma en que realiza el proceso de detección y posterior clasificación, para ello la red se puede entender como 3 partes diferentes, para mantener la nomenclatura de la propia arquitectura, no fueron traducidos y se mantendrán en ingles, estas partes son:
 
 \begin{itemize}
     \item Head: es la parte encargada de reconocer objetos, básicamente busca una región en la que pueda llegar a haber un objeto, sin distinguir cuál sea. Se utilizan 2 etapas de detectores, la primera utiliza subimagenes de tamaño fijo, y la otra varía el tamaño de las subimagenes para adecuarse mejor al tamaño de cada objeto.
-    \item Backbone: es una arquitectura de deep learning que actúa como extractor de característica, es en esencia un modelo de clasificación. Esta es la parte encargada de tomar las ubicaciones obtenidas por el Head y clasificar en sí son o no los objetos requeridos. Es la única parte de la red que se modifica y entrena dependiendo el entorno en que se desea utilizar, en el caso de este trabajo el Backbone fue entrenado por el mismo autor de la CNN-OCR, para que reconozca patentes argentinas [ref al github de ankadrew yolo pesos].
+    \item Backbone: es una arquitectura de deep learning que actúa como extractor de característica, es en esencia un modelo de clasificación. Esta es la parte encargada de tomar las ubicaciones obtenidas por el Head y clasificar en sí son o no los objetos requeridos. Es la única parte de la red que se modifica y entrena dependiendo el entorno en que se desea utilizar, en el caso de este trabajo el Backbone fue entrenado por el mismo autor de la CNN-OCR, para que reconozca patentes argentinas \cite{ankandrew_localizador_2021}.
     \item Neck: su funcionalidad es la de tomar mapas de característica de diferentes partes del Backbone y agregarle características, para facilitar la clasificación de los objetos.
 \end{itemize}
 
-Debido a que la Darknet está escrita en C es necesario compilar la misma, esto se hizo siguiendo los pasos del repositorio de AlexeyAB [ref al github].
+Debido a que la Darknet está escrita en C es necesario compilar la misma, esto se hizo siguiendo los pasos del repositorio de AlexeyAB \cite{alexey_yolo_2023}.
 
 
 \begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{imgs/funcionamiento-yolo.png}
-    \caption{Funcionamiento del proceso de detección de la YoloV4 [ref al paper de yolov4].}
+    \caption{Funcionamiento del proceso de detección de la YoloV4 \cite{bochkovskiy_yolov4_2020}.}
     \label{fig:funcionamiento-yolo}
 \end{figure}
 
@@ -247,7 +245,7 @@ Para la implementación del algoritmo se utilizó el lenguaje Python 3, ya que e
     \label{fig:algoritmo-ocr}
 \end{figure}
 
-La lectura u obtención de una fotografía se realizó mediante OpenCV [https://github.com/opencv/opencv] ya que permite utilizar una gran variedad de fuentes tales como cámaras y archivos. Luego se procesa mediante la YoloV4 la cual devuelve la ubicación relativa de la patente en la imagen en un archivo de texto plano, para posteriormente leer el archivo de texto, junto con las dimensiones de la imagen y poder obtener la patente recortada este proceso se puede observar en Fig. \ref{fig:yolo-car-to-plate}. Antes de pasar el recorte a la CNN-OCR se la cambia a escala de grises y se la lleva al tamaño de $70 \times 140$ utilizando una interpolación lineal y se normalizan los valores de la imagen entre 0 y 1. Finalmente se procesa la imagen por la CNN-OCR obteniendo la patente en texto. En capítulos posteriores se explicará en mayor detalle que sucede con la imagen, y la patente obtenida.
+La lectura u obtención de una fotografía se realizó mediante OpenCV \cite{opencv_opencv_2023} ya que permite utilizar una gran variedad de fuentes tales como cámaras y archivos. Luego se procesa mediante la YoloV4 la cual devuelve la ubicación relativa de la patente en la imagen en un archivo de texto plano, para posteriormente leer el archivo de texto, junto con las dimensiones de la imagen y poder obtener la patente recortada este proceso se puede observar en Fig. \ref{fig:yolo-car-to-plate}. Antes de pasar el recorte a la CNN-OCR se la cambia a escala de grises y se la lleva al tamaño de $70 \times 140$ utilizando una interpolación lineal y se normalizan los valores de la imagen entre 0 y 1. Finalmente se procesa la imagen por la CNN-OCR obteniendo la patente en texto. En capítulos posteriores se explicará en mayor detalle que sucede con la imagen, y la patente obtenida.
 
 \begin{figure}
     \centering
