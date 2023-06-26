@@ -1,0 +1,997 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{20minutos_falta_2018}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=c21cde7137f76e4067699478c77b642c}{%
+           family={20minutos},
+           familyi={2\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {es}%
+      }
+      \strng{namehash}{c21cde7137f76e4067699478c77b642c}
+      \strng{fullhash}{c21cde7137f76e4067699478c77b642c}
+      \strng{bibnamehash}{c21cde7137f76e4067699478c77b642c}
+      \strng{authorbibnamehash}{c21cde7137f76e4067699478c77b642c}
+      \strng{authornamehash}{c21cde7137f76e4067699478c77b642c}
+      \strng{authorfullhash}{c21cde7137f76e4067699478c77b642c}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{No es nuevo que aparcar en la ciudad de Madrid se ha convertido en los últimos años en una misión complicada por la falta de aparcamiento. Pero por...}
+      \field{journaltitle}{www.20minutos.es - Últimas Noticias}
+      \field{month}{2}
+      \field{note}{Section: Madrid}
+      \field{title}{La falta de aparcamiento irrumpe entre los principales problemas de los madrileños}
+      \field{urlday}{19}
+      \field{urlmonth}{5}
+      \field{urlyear}{2023}
+      \field{year}{2018}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Snapshot:/home/lautaroandressaez/Zotero/storage/4Y6J4JFM/falta-aparcamiento-irrumpe-principales-problemas-madrilenos.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.20minutos.es/noticia/3269456/0/falta-aparcamiento-irrumpe-principales-problemas-madrilenos/
+      \endverb
+      \verb{url}
+      \verb https://www.20minutos.es/noticia/3269456/0/falta-aparcamiento-irrumpe-principales-problemas-madrilenos/
+      \endverb
+    \endentry
+    \entry{noauthor_acceso_nodate}{misc}{}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labeltitlesource}{title}
+      \field{title}{Acceso sin contacto a barreras mediante {RFID} {|} {SICK}}
+      \field{urlday}{25}
+      \field{urlmonth}{6}
+      \field{urlyear}{2023}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Acceso sin contacto a barreras mediante RFID | SICK:/home/lautaroandressaez/Zotero/storage/EG6R5HWS/p360565.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sick.com/mx/es/sectores/seguridad-de-los-edificios/seguridad-en-los-exteriores/control-de-acceso/acceso-sin-contacto-a-barreras-mediante-rfid/c/p360565
+      \endverb
+      \verb{url}
+      \verb https://www.sick.com/mx/es/sectores/seguridad-de-los-edificios/seguridad-en-los-exteriores/control-de-acceso/acceso-sin-contacto-a-barreras-mediante-rfid/c/p360565
+      \endverb
+    \endentry
+    \entry{alexey_yolo_2023}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=a0eac53d7dc80c154fa80c1c8f1513e1}{%
+           family={Alexey},
+           familyi={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{a0eac53d7dc80c154fa80c1c8f1513e1}
+      \strng{fullhash}{a0eac53d7dc80c154fa80c1c8f1513e1}
+      \strng{bibnamehash}{a0eac53d7dc80c154fa80c1c8f1513e1}
+      \strng{authorbibnamehash}{a0eac53d7dc80c154fa80c1c8f1513e1}
+      \strng{authornamehash}{a0eac53d7dc80c154fa80c1c8f1513e1}
+      \strng{authorfullhash}{a0eac53d7dc80c154fa80c1c8f1513e1}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{YOLOv4 / Scaled-YOLOv4 / YOLO - Neural Networks for Object Detection (Windows and Linux version of Darknet )}
+      \field{month}{6}
+      \field{note}{original-date: 2016-12-02T11:14:00Z}
+      \field{title}{Yolo v4, v3 and v2 for {Windows} and {Linux}}
+      \field{urlday}{25}
+      \field{urlmonth}{6}
+      \field{urlyear}{2023}
+      \field{year}{2023}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://github.com/AlexeyAB/darknet
+      \endverb
+      \verb{url}
+      \verb https://github.com/AlexeyAB/darknet
+      \endverb
+      \keyw{computer-vision,deep-learning,deep-learning-tutorial,deep-neural-networks,dnn,neural-network,object-detection,scaled-yolov4,scaledyolov4,yolo,yolov3,yolov4}
+    \endentry
+    \entry{ankandrew_localizador_2021}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=825c61cdc5a0f2d8f972f559a4a286cb}{%
+           family={Ankandrew},
+           familyi={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{825c61cdc5a0f2d8f972f559a4a286cb}
+      \strng{fullhash}{825c61cdc5a0f2d8f972f559a4a286cb}
+      \strng{bibnamehash}{825c61cdc5a0f2d8f972f559a4a286cb}
+      \strng{authorbibnamehash}{825c61cdc5a0f2d8f972f559a4a286cb}
+      \strng{authornamehash}{825c61cdc5a0f2d8f972f559a4a286cb}
+      \strng{authorfullhash}{825c61cdc5a0f2d8f972f559a4a286cb}
+      \field{extraname}{1}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Localizador de patentes con YOLO v4}
+      \field{month}{11}
+      \field{note}{original-date: 2020-06-23T21:13:41Z}
+      \field{title}{Localizador de patentes}
+      \field{urlday}{25}
+      \field{urlmonth}{6}
+      \field{urlyear}{2023}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://github.com/ankandrew/LocalizadorPatentes
+      \endverb
+      \verb{url}
+      \verb https://github.com/ankandrew/LocalizadorPatentes
+      \endverb
+      \keyw{localizador-patentes,plate-detection,yolov4-tiny}
+    \endentry
+    \entry{ankandrew_reconocedor_2023}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=825c61cdc5a0f2d8f972f559a4a286cb}{%
+           family={Ankandrew},
+           familyi={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{825c61cdc5a0f2d8f972f559a4a286cb}
+      \strng{fullhash}{825c61cdc5a0f2d8f972f559a4a286cb}
+      \strng{bibnamehash}{825c61cdc5a0f2d8f972f559a4a286cb}
+      \strng{authorbibnamehash}{825c61cdc5a0f2d8f972f559a4a286cb}
+      \strng{authornamehash}{825c61cdc5a0f2d8f972f559a4a286cb}
+      \strng{authorfullhash}{825c61cdc5a0f2d8f972f559a4a286cb}
+      \field{extraname}{2}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{OCR implementado con solo Redes Convolucionales (CNN) de Patentes Argentinas}
+      \field{month}{5}
+      \field{note}{original-date: 2020-08-07T00:46:17Z}
+      \field{title}{Reconocedor de {Texto}({OCR}) para {Patentes} vehiculares de {Argentina}}
+      \field{urlday}{25}
+      \field{urlmonth}{6}
+      \field{urlyear}{2023}
+      \field{year}{2023}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://github.com/ankandrew/cnn-ocr-lp
+      \endverb
+      \verb{url}
+      \verb https://github.com/ankandrew/cnn-ocr-lp
+      \endverb
+      \keyw{license-plate-recognition,plate-ocr,plate-recognition,reconocimiento-patentes}
+    \endentry
+    \entry{basco_industria_2018}{book}{}
+      \name{author}{4}{}{%
+        {{hash=5fd62b76a112d48ba65263d7ca7a9df6}{%
+           family={Basco},
+           familyi={B\bibinitperiod},
+           given={Ana\bibnamedelima Inés},
+           giveni={A\bibinitperiod\bibinitdelim I\bibinitperiod}}}%
+        {{hash=3126360740ba01b0e11b1a0c5562f95e}{%
+           family={Beliz},
+           familyi={B\bibinitperiod},
+           given={Gustavo},
+           giveni={G\bibinitperiod}}}%
+        {{hash=77f2fb16797b8d152e3c3c629096676d}{%
+           family={Coatz},
+           familyi={C\bibinitperiod},
+           given={Diego},
+           giveni={D\bibinitperiod}}}%
+        {{hash=46626068fe1b20555214afd61d082f0a}{%
+           family={Garnero},
+           familyi={G\bibinitperiod},
+           given={Paula},
+           giveni={P\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {es}%
+      }
+      \list{publisher}{1}{%
+        {Inter-American Development Bank}%
+      }
+      \strng{namehash}{94d3dbd05f6bf2c8b77bf8d5c861760a}
+      \strng{fullhash}{4e85f6207b88c93b6bc7198a525baedf}
+      \strng{bibnamehash}{94d3dbd05f6bf2c8b77bf8d5c861760a}
+      \strng{authorbibnamehash}{94d3dbd05f6bf2c8b77bf8d5c861760a}
+      \strng{authornamehash}{94d3dbd05f6bf2c8b77bf8d5c861760a}
+      \strng{authorfullhash}{4e85f6207b88c93b6bc7198a525baedf}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{La economía global transita una nueva fase que se caracteriza por la digitalización y la conectividad. “INDUSTRIA 4.0. Fabricando el Futuro” explora los impactos de la denominada Cuarta Revolución Industrial sobre la producción manufacturera, el trabajo, las cadenas globales de valor y el comercio. La publicación reúne las voces de diversos especialistas que analizan los desafíos y oportunidades para la industria que conllevan tecnologías como Internet de las cosas, computación en nube, big data, inteligencia artificial e impresión 3D, entre otras. Asimismo, presenta los estudios de caso realizados sobre la experiencia de dos firmas argentinas que dan cuenta de los alcances de la trasformación digital: Tenaris, dedicada a la producción de tubos para la industria de petróleo y gas; y Sinteplast, dedicada a la fabricación de pinturas. “INDUSTRIA 4.0. Fabricando el Futuro” recorre estas experiencias, así como los aportes de la industria automotriz y de políticas públicas de fomento a la industria, como el caso alemán de “Industrie 4.0” y el “Mapa de ruta de la Industria 4.0” de México. De este modo, se propone ofrecer un marco para la comprensión de un fenómeno complejo cuyas consecuencias apenas se comienzan a vislumbrar.}
+      \field{month}{7}
+      \field{note}{Google-Books-ID: geiGDwAAQBAJ}
+      \field{shorttitle}{Industria 4.0}
+      \field{title}{Industria 4.0: {Fabricando} el {Futuro}}
+      \field{year}{2018}
+      \keyw{Business \& Economics / Industries / Manufacturing,Technology \& Engineering / Industrial Technology,Technology \& Engineering / Technical \& Manufacturing Industries \& Trades}
+    \endentry
+    \entry{bochkovskiy_yolov4_2020}{misc}{}
+      \name{author}{3}{}{%
+        {{hash=c0b2fdc20c37a4bd8d817822d374f809}{%
+           family={Bochkovskiy},
+           familyi={B\bibinitperiod},
+           given={Alexey},
+           giveni={A\bibinitperiod}}}%
+        {{hash=053d491932411950eccf2bb9a1025d11}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Chien-Yao},
+           giveni={C\bibinithyphendelim Y\bibinitperiod}}}%
+        {{hash=c81478c691c1bc1cc01404c44b5bd5bf}{%
+           family={Liao},
+           familyi={L\bibinitperiod},
+           given={Hong-Yuan\bibnamedelima Mark},
+           giveni={H\bibinithyphendelim Y\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{cf5dc5f8f26df49f548c03581fb80644}
+      \strng{fullhash}{cf5dc5f8f26df49f548c03581fb80644}
+      \strng{bibnamehash}{cf5dc5f8f26df49f548c03581fb80644}
+      \strng{authorbibnamehash}{cf5dc5f8f26df49f548c03581fb80644}
+      \strng{authornamehash}{cf5dc5f8f26df49f548c03581fb80644}
+      \strng{authorfullhash}{cf5dc5f8f26df49f548c03581fb80644}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{There are a huge number of features which are said to improve Convolutional Neural Network (CNN) accuracy. Practical testing of combinations of such features on large datasets, and theoretical justification of the result, is required. Some features operate on certain models exclusively and for certain problems exclusively, or only for small-scale datasets; while some features, such as batch-normalization and residual-connections, are applicable to the majority of models, tasks, and datasets. We assume that such universal features include Weighted-Residual-Connections (WRC), Cross-Stage-Partial-connections (CSP), Cross mini-Batch Normalization (CmBN), Self-adversarial-training (SAT) and Mish-activation. We use new features: WRC, CSP, CmBN, SAT, Mish activation, Mosaic data augmentation, CmBN, DropBlock regularization, and CIoU loss, and combine some of them to achieve state-of-the-art results: 43.5\% AP (65.7\% AP50) for the MS COCO dataset at a realtime speed of {\textasciitilde}65 FPS on Tesla V100. Source code is at https://github.com/AlexeyAB/darknet}
+      \field{month}{4}
+      \field{note}{arXiv:2004.10934 [cs, eess]}
+      \field{shorttitle}{{YOLOv4}}
+      \field{title}{{YOLOv4}: {Optimal} {Speed} and {Accuracy} of {Object} {Detection}}
+      \field{urlday}{25}
+      \field{urlmonth}{6}
+      \field{urlyear}{2023}
+      \field{year}{2020}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb arXiv.org Snapshot:/home/lautaroandressaez/Zotero/storage/8LIA5JG3/2004.html:text/html;Full Text PDF:/home/lautaroandressaez/Zotero/storage/PGNKXRXE/Bochkovskiy et al. - 2020 - YOLOv4 Optimal Speed and Accuracy of Object Detec.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2004.10934
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2004.10934
+      \endverb
+      \keyw{Computer Science - Computer Vision and Pattern Recognition,Electrical Engineering and Systems Science - Image and Video Processing}
+    \endentry
+    \entry{calalesina_imposible_nodate}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=d5a4af486d09a74453f551688a0350bb}{%
+           family={Calalesina},
+           familyi={C\bibinitperiod},
+           given={Adriano},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{d5a4af486d09a74453f551688a0350bb}
+      \strng{fullhash}{d5a4af486d09a74453f551688a0350bb}
+      \strng{bibnamehash}{d5a4af486d09a74453f551688a0350bb}
+      \strng{authorbibnamehash}{d5a4af486d09a74453f551688a0350bb}
+      \strng{authornamehash}{d5a4af486d09a74453f551688a0350bb}
+      \strng{authorfullhash}{d5a4af486d09a74453f551688a0350bb}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{La imposible misión de buscar estacionamiento en el microcentro neuquino}
+      \field{urlday}{19}
+      \field{urlmonth}{5}
+      \field{urlyear}{2023}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb La imposible misión de buscar estacionamiento en el microcentro neuquino:/home/lautaroandressaez/Zotero/storage/RZSKSJL7/la-imposible-mision-buscar-estacionamiento-el-microcentro-neuquino-n923626.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.lmneuquen.com/la-imposible-mision-buscar-estacionamiento-el-microcentro-neuquino-n923626
+      \endverb
+      \verb{url}
+      \verb https://www.lmneuquen.com/la-imposible-mision-buscar-estacionamiento-el-microcentro-neuquino-n923626
+      \endverb
+    \endentry
+    \entry{casadomo_sistema_2015}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=127a54660d1f294e5846bf70b5f6c467}{%
+           family={CASADOMO},
+           familyi={C\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {es}%
+      }
+      \strng{namehash}{127a54660d1f294e5846bf70b5f6c467}
+      \strng{fullhash}{127a54660d1f294e5846bf70b5f6c467}
+      \strng{bibnamehash}{127a54660d1f294e5846bf70b5f6c467}
+      \strng{authorbibnamehash}{127a54660d1f294e5846bf70b5f6c467}
+      \strng{authornamehash}{127a54660d1f294e5846bf70b5f6c467}
+      \strng{authorfullhash}{127a54660d1f294e5846bf70b5f6c467}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Desarrollado por CBRE para el centro comercial La Vaguada de Madrid, este sistema detecta si el conductor ha pagado la estancia de su vehículo.}
+      \field{journaltitle}{CASADOMO}
+      \field{month}{7}
+      \field{title}{Sistema de apertura automatizada de barrera que identifica vehículos}
+      \field{urlday}{25}
+      \field{urlmonth}{6}
+      \field{urlyear}{2023}
+      \field{year}{2015}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Snapshot:/home/lautaroandressaez/Zotero/storage/UX3F3UI7/sistema-de-apertura-automatizada-de-barrera-que-identifica-vehiculos.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.casadomo.com/2015/07/01/sistema-de-apertura-automatizada-de-barrera-que-identifica-vehiculos
+      \endverb
+      \verb{url}
+      \verb https://www.casadomo.com/2015/07/01/sistema-de-apertura-automatizada-de-barrera-que-identifica-vehiculos
+      \endverb
+    \endentry
+    \entry{craggs_documentacion_nodate}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=e8b579499766a24ed131d6f4abb8162f}{%
+           family={Craggs},
+           familyi={C\bibinitperiod},
+           given={Ian},
+           giveni={I\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{e8b579499766a24ed131d6f4abb8162f}
+      \strng{fullhash}{e8b579499766a24ed131d6f4abb8162f}
+      \strng{bibnamehash}{e8b579499766a24ed131d6f4abb8162f}
+      \strng{authorbibnamehash}{e8b579499766a24ed131d6f4abb8162f}
+      \strng{authornamehash}{e8b579499766a24ed131d6f4abb8162f}
+      \strng{authorfullhash}{e8b579499766a24ed131d6f4abb8162f}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The Eclipse Foundation - home to a global community, the Eclipse IDE, Jakarta EE and over 415 open source projects, including runtimes, tools and frameworks.}
+      \field{title}{Documentación {Paho} {MQTT}}
+      \field{urlday}{25}
+      \field{urlmonth}{6}
+      \field{urlyear}{2023}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Snapshot:/home/lautaroandressaez/Zotero/storage/W7MCD2LV/index.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.eclipse.org/paho/index.php?page=clients/python/docs/index.php
+      \endverb
+      \verb{url}
+      \verb https://www.eclipse.org/paho/index.php?page=clients/python/docs/index.php
+      \endverb
+    \endentry
+    \entry{noauthor_darknet_nodate}{misc}{}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labeltitlesource}{title}
+      \field{title}{Darknet: {Open} {Source} {Neural} {Networks} in {C}}
+      \field{urlday}{25}
+      \field{urlmonth}{6}
+      \field{urlyear}{2023}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Darknet\: Open Source Neural Networks in C:/home/lautaroandressaez/Zotero/storage/5534BIII/darknet.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://pjreddie.com/darknet/
+      \endverb
+      \verb{url}
+      \verb https://pjreddie.com/darknet/
+      \endverb
+    \endentry
+    \entry{noauthor_documentacion_nodate}{misc}{}
+      \list{language}{1}{%
+        {en}%
+      }
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Nest is a framework for building efficient, scalable Node.js server-side applications. It uses progressive JavaScript, is built with TypeScript and combines elements of OOP (Object Oriented Programming), FP (Functional Programming), and FRP (Functional Reactive Programming).}
+      \field{journaltitle}{Documentation {|} NestJS - A progressive Node.js framework}
+      \field{title}{Documentación de {NestJS}}
+      \field{urlday}{5}
+      \field{urlmonth}{5}
+      \field{urlyear}{2023}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Snapshot:/home/lautaroandressaez/Zotero/storage/IQW7M4I2/docs.nestjs.com.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://docs.nestjs.com
+      \endverb
+      \verb{url}
+      \verb https://docs.nestjs.com
+      \endverb
+    \endentry
+    \entry{noauthor_documentacion_nodate-1}{misc}{}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labeltitlesource}{title}
+      \field{title}{Documentación {PySerial}}
+      \field{urlday}{25}
+      \field{urlmonth}{6}
+      \field{urlyear}{2023}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb pySerial — pySerial 3.4 documentation:/home/lautaroandressaez/Zotero/storage/6GIM8J6M/pyserial.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://pyserial.readthedocs.io/en/latest/pyserial.html
+      \endverb
+      \verb{url}
+      \verb https://pyserial.readthedocs.io/en/latest/pyserial.html
+      \endverb
+    \endentry
+    \entry{noauthor_documentacion_nodate-2}{misc}{}
+      \list{language}{1}{%
+        {en}%
+      }
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The official documentation for Raspberry Pi computers and microcontrollers}
+      \field{title}{Documentación {Raspberry} {Pi}}
+      \field{urlday}{25}
+      \field{urlmonth}{6}
+      \field{urlyear}{2023}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Snapshot:/home/lautaroandressaez/Zotero/storage/PJFBTSEG/documentation.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.raspberrypi.com/documentation/
+      \endverb
+      \verb{url}
+      \verb https://www.raspberrypi.com/documentation/
+      \endverb
+    \endentry
+    \entry{asociacion_de_fabricas_argentinas_de_componentes_flota_2021}{article}{}
+      \name{author}{1}{}{%
+        {{hash=d258409ecaf7ea580936c939d0128950}{%
+           family={Fábricas\bibnamedelimb Argentinas\bibnamedelimb de\bibnamedelima Componentes},
+           familyi={F\bibinitperiod\bibinitdelim A\bibinitperiod\bibinitdelim d\bibinitperiod\bibinitdelim C\bibinitperiod},
+           given={Asociación},
+           giveni={A\bibinitperiod},
+           prefix={de},
+           prefixi={d\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {es}%
+      }
+      \strng{namehash}{d258409ecaf7ea580936c939d0128950}
+      \strng{fullhash}{d258409ecaf7ea580936c939d0128950}
+      \strng{bibnamehash}{d258409ecaf7ea580936c939d0128950}
+      \strng{authorbibnamehash}{d258409ecaf7ea580936c939d0128950}
+      \strng{authornamehash}{d258409ecaf7ea580936c939d0128950}
+      \strng{authorfullhash}{d258409ecaf7ea580936c939d0128950}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{3}
+      \field{title}{Flota circulante en {Argentina} 2021}
+      \field{year}{2021}
+      \verb{file}
+      \verb de - FLOTA CIRCULANTE EN ARGENTINA 202.pdf:/home/lautaroandressaez/Zotero/storage/FSKXQLTY/de - FLOTA CIRCULANTE EN ARGENTINA 202.pdf:application/pdf
+      \endverb
+    \endentry
+    \entry{formoso_parkit_2014}{article}{}
+      \name{author}{3}{}{%
+        {{hash=4d6b245a9cc757e53bc86fd6f7d3cbad}{%
+           family={Formoso},
+           familyi={F\bibinitperiod},
+           given={Agustín},
+           giveni={A\bibinitperiod}}}%
+        {{hash=438b6b4b28cd3a8242dc1198598fc943}{%
+           family={Mazzilli},
+           familyi={M\bibinitperiod},
+           given={Agustín},
+           giveni={A\bibinitperiod}}}%
+        {{hash=e6ad2d4f84646d01bab309c5b899f51b}{%
+           family={Sotelo},
+           familyi={S\bibinitperiod},
+           given={Rafael},
+           giveni={R\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {es}%
+      }
+      \strng{namehash}{47f806870eef4e170b1f41a5c2e2c658}
+      \strng{fullhash}{47f806870eef4e170b1f41a5c2e2c658}
+      \strng{bibnamehash}{47f806870eef4e170b1f41a5c2e2c658}
+      \strng{authorbibnamehash}{47f806870eef4e170b1f41a5c2e2c658}
+      \strng{authornamehash}{47f806870eef4e170b1f41a5c2e2c658}
+      \strng{authorfullhash}{47f806870eef4e170b1f41a5c2e2c658}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Resumen A nivel mundial las ciudades tienen un crecimiento cada vez mayor, y en muchos casos la infraestructura de tránsito que permite la movilización de su población comienza a llegar a su capacidad máxima. Distintos puntos de estas ciudades se ven afectados de una forma negativa por la gran cantidad de vehículos que intentan acceder a zonas congestionadas constantemente, y eso hace que encontrar un estacionamiento público donde aparcar el automóvil muchas veces sea dificultoso. En este marco surge el proyecto ParkIt, una plataforma que brinda información en  tiempo real acerca de la disponibilidad de estacionamiento en la vía pública. Esta plataforma permite obtener el máximo provecho de cada plaza de estacionamiento disponible, y disminuir los retrasos ocasionados por la búsqueda de las mismas. Al tener conocimiento de la ubicación de lugares disponibles, los usuarios de la plataforma se encontrarán menos tiempo en búsqueda activa de estacionamiento, lo que ayuda a descongestionar estas zonas.}
+      \field{issn}{2301-1106}
+      \field{journaltitle}{Memoria Investigaciones en Ingeniería}
+      \field{month}{11}
+      \field{note}{Number: 12}
+      \field{number}{12}
+      \field{title}{{ParkIt} - {Plataforma} inteligente de estacionamiento público}
+      \field{urlday}{19}
+      \field{urlmonth}{5}
+      \field{urlyear}{2023}
+      \field{year}{2014}
+      \field{urldateera}{ce}
+      \field{pages}{85\bibrangedash 94}
+      \range{pages}{10}
+      \verb{file}
+      \verb Full Text PDF:/home/lautaroandressaez/Zotero/storage/W7BSQZ9M/Formoso et al. - 2014 - ParkIt - Plataforma inteligente de estacionamiento.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://revistas.um.edu.uy/index.php/ingenieria/article/view/351
+      \endverb
+      \verb{url}
+      \verb http://revistas.um.edu.uy/index.php/ingenieria/article/view/351
+      \endverb
+      \keyw{ciudades inteligentes,estacionamiento inteligente,Ingeniería de tránsito,Internet de las cosas}
+    \endentry
+    \entry{python_software_foundation_documentacion_nodate}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=9688a568902e4b07b60557b566bdd820}{%
+           family={Foundation},
+           familyi={F\bibinitperiod},
+           given={Python\bibnamedelima Software},
+           giveni={P\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \strng{namehash}{9688a568902e4b07b60557b566bdd820}
+      \strng{fullhash}{9688a568902e4b07b60557b566bdd820}
+      \strng{bibnamehash}{9688a568902e4b07b60557b566bdd820}
+      \strng{authorbibnamehash}{9688a568902e4b07b60557b566bdd820}
+      \strng{authornamehash}{9688a568902e4b07b60557b566bdd820}
+      \strng{authorfullhash}{9688a568902e4b07b60557b566bdd820}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Documentación {Requests}}
+      \field{urlday}{25}
+      \field{urlmonth}{6}
+      \field{urlyear}{2023}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Requests\: HTTP for Humans™ — Requests 2.31.0 documentation:/home/lautaroandressaez/Zotero/storage/YU8IIQ3V/latest.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://requests.readthedocs.io/en/latest/
+      \endverb
+      \verb{url}
+      \verb https://requests.readthedocs.io/en/latest/
+      \endverb
+    \endentry
+    \entry{google_tensorflow_nodate}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=8b36e9207c24c76e6719268e49201d94}{%
+           family={Google},
+           familyi={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{8b36e9207c24c76e6719268e49201d94}
+      \strng{fullhash}{8b36e9207c24c76e6719268e49201d94}
+      \strng{bibnamehash}{8b36e9207c24c76e6719268e49201d94}
+      \strng{authorbibnamehash}{8b36e9207c24c76e6719268e49201d94}
+      \strng{authornamehash}{8b36e9207c24c76e6719268e49201d94}
+      \strng{authorfullhash}{8b36e9207c24c76e6719268e49201d94}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{{TensorFlow}}
+      \field{urlday}{25}
+      \field{urlmonth}{6}
+      \field{urlyear}{2023}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb TensorFlow:/home/lautaroandressaez/Zotero/storage/FF3PMDZ9/www.tensorflow.org.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.tensorflow.org/?hl=es-419
+      \endverb
+      \verb{url}
+      \verb https://www.tensorflow.org/?hl=es-419
+      \endverb
+    \endentry
+    \entry{ibm_que_nodate}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=cbf44511d041dc6d1dd73cc0c033122c}{%
+           family={IBM},
+           familyi={I\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {es-es}%
+      }
+      \strng{namehash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{fullhash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{bibnamehash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{authorbibnamehash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{authornamehash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{authorfullhash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Deep learning simula nuestro cerebro, ayudando a los sistemas a aprender a identificar objetos y a realizar tareas complejas con una precisión cada vez mayor y sin intervención humana.}
+      \field{shorttitle}{¿{Qué} es {Deep} {Learning}?}
+      \field{title}{¿{Qué} es {Deep} {Learning}?}
+      \field{urlday}{25}
+      \field{urlmonth}{6}
+      \field{urlyear}{2023}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.ibm.com/es-es/topics/deep-learning
+      \endverb
+      \verb{url}
+      \verb https://www.ibm.com/es-es/topics/deep-learning
+      \endverb
+    \endentry
+    \entry{ibrahim_car_2017}{article}{}
+      \name{author}{1}{}{%
+        {{hash=9327c4ba2000bfc0cfd8d4343f14c53c}{%
+           family={Ibrahim},
+           familyi={I\bibinitperiod},
+           given={Hossam\bibnamedelima El-Din},
+           giveni={H\bibinitperiod\bibinitdelim E\bibinithyphendelim D\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{9327c4ba2000bfc0cfd8d4343f14c53c}
+      \strng{fullhash}{9327c4ba2000bfc0cfd8d4343f14c53c}
+      \strng{bibnamehash}{9327c4ba2000bfc0cfd8d4343f14c53c}
+      \strng{authorbibnamehash}{9327c4ba2000bfc0cfd8d4343f14c53c}
+      \strng{authornamehash}{9327c4ba2000bfc0cfd8d4343f14c53c}
+      \strng{authorfullhash}{9327c4ba2000bfc0cfd8d4343f14c53c}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Car parking is a major problem in urban areas in both developed and developing countries. Following the rapid incense of car ownership, many cities are suffering from lacking of car parking areas with imbalance between parking supply and demand which can be considered the initial reason for metropolis parking problems. This imbalance is partially due to ineffective land use planning and miscalculations of space requirements during first stages of planning. Shortage of parking space, high parking tariffs, and traffic congestion due to visitors in search for a parking place are only a few examples of everyday parking problems.}
+      \field{issn}{1556-5068}
+      \field{journaltitle}{SSRN Electronic Journal}
+      \field{title}{Car {Parking} {Problem} in {Urban} {Areas}, {Causes} and {Solutions}}
+      \field{urlday}{19}
+      \field{urlmonth}{5}
+      \field{urlyear}{2023}
+      \field{year}{2017}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.2139/ssrn.3163473
+      \endverb
+      \verb{file}
+      \verb Ibrahim - 2017 - Car Parking Problem in Urban Areas, Causes and Sol.pdf:/home/lautaroandressaez/Zotero/storage/UM2WEPLY/Ibrahim - 2017 - Car Parking Problem in Urban Areas, Causes and Sol.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.ssrn.com/abstract=3163473
+      \endverb
+      \verb{url}
+      \verb https://www.ssrn.com/abstract=3163473
+      \endverb
+    \endentry
+    \entry{docker_inc_docker_2023}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=0a6e82dfd0df55343233c1768adf738c}{%
+           family={Inc},
+           familyi={I\bibinitperiod},
+           given={Docker},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{0a6e82dfd0df55343233c1768adf738c}
+      \strng{fullhash}{0a6e82dfd0df55343233c1768adf738c}
+      \strng{bibnamehash}{0a6e82dfd0df55343233c1768adf738c}
+      \strng{authorbibnamehash}{0a6e82dfd0df55343233c1768adf738c}
+      \strng{authornamehash}{0a6e82dfd0df55343233c1768adf738c}
+      \strng{authorfullhash}{0a6e82dfd0df55343233c1768adf738c}
+      \field{extraname}{1}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Learn how to use Docker Compose to define and run multi-container applications with this detailed introduction to the tool.}
+      \field{journaltitle}{Docker Documentation}
+      \field{month}{5}
+      \field{title}{Docker {Compose}}
+      \field{urlday}{5}
+      \field{urlmonth}{5}
+      \field{urlyear}{2023}
+      \field{year}{2023}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://docs.docker.com/compose/
+      \endverb
+      \verb{url}
+      \verb https://docs.docker.com/compose/
+      \endverb
+    \endentry
+    \entry{docker_inc_documentacion_2023}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=0a6e82dfd0df55343233c1768adf738c}{%
+           family={Inc},
+           familyi={I\bibinitperiod},
+           given={Docker},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{0a6e82dfd0df55343233c1768adf738c}
+      \strng{fullhash}{0a6e82dfd0df55343233c1768adf738c}
+      \strng{bibnamehash}{0a6e82dfd0df55343233c1768adf738c}
+      \strng{authorbibnamehash}{0a6e82dfd0df55343233c1768adf738c}
+      \strng{authornamehash}{0a6e82dfd0df55343233c1768adf738c}
+      \strng{authorfullhash}{0a6e82dfd0df55343233c1768adf738c}
+      \field{extraname}{2}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{This section includes the reference documentation for the Docker platform’s various APIs, CLIs, and file formats.}
+      \field{journaltitle}{Docker Documentation}
+      \field{month}{5}
+      \field{title}{Documentación {Docker}}
+      \field{urlday}{5}
+      \field{urlmonth}{5}
+      \field{urlyear}{2023}
+      \field{year}{2023}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://docs.docker.com/reference/
+      \endverb
+      \verb{url}
+      \verb https://docs.docker.com/reference/
+      \endverb
+    \endentry
+    \entry{integralia_sistema_2019}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=e9f8ab044d6881243acdf1b29954a617}{%
+           family={Integralia},
+           familyi={I\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {es}%
+      }
+      \strng{namehash}{e9f8ab044d6881243acdf1b29954a617}
+      \strng{fullhash}{e9f8ab044d6881243acdf1b29954a617}
+      \strng{bibnamehash}{e9f8ab044d6881243acdf1b29954a617}
+      \strng{authorbibnamehash}{e9f8ab044d6881243acdf1b29954a617}
+      \strng{authornamehash}{e9f8ab044d6881243acdf1b29954a617}
+      \strng{authorfullhash}{e9f8ab044d6881243acdf1b29954a617}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{El sistema de control en modo de barreras gestiona el acceso de vehículos a una zona en concreto, como un garaje, parking, una industria, etc.}
+      \field{journaltitle}{Web aradock}
+      \field{month}{5}
+      \field{shorttitle}{Un sistema para controlar los accesos a recintos}
+      \field{title}{Un sistema para controlar los accesos a recintos: {Barreras}}
+      \field{urlday}{25}
+      \field{urlmonth}{6}
+      \field{urlyear}{2023}
+      \field{year}{2019}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Snapshot:/home/lautaroandressaez/Zotero/storage/JKVU324N/nuevos-sistemas-de-control-de-accesos-barreras.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.aradock.es/nuevos-sistemas-de-control-de-accesos-barreras/
+      \endverb
+      \verb{url}
+      \verb https://www.aradock.es/nuevos-sistemas-de-control-de-accesos-barreras/
+      \endverb
+    \endentry
+    \entry{keepcoding_que_2022}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=e2fb2b689e321911f0579de0cf01c7e8}{%
+           family={Keepcoding},
+           familyi={K\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {es}%
+      }
+      \strng{namehash}{e2fb2b689e321911f0579de0cf01c7e8}
+      \strng{fullhash}{e2fb2b689e321911f0579de0cf01c7e8}
+      \strng{bibnamehash}{e2fb2b689e321911f0579de0cf01c7e8}
+      \strng{authorbibnamehash}{e2fb2b689e321911f0579de0cf01c7e8}
+      \strng{authornamehash}{e2fb2b689e321911f0579de0cf01c7e8}
+      \strng{authorfullhash}{e2fb2b689e321911f0579de0cf01c7e8}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Conoce qué es el kernel del sistema operativo, cuáles son sus funciones y cuáles son los tipos de nucleo informatico que existen}
+      \field{month}{3}
+      \field{note}{Section: Blog}
+      \field{shorttitle}{¿{Qué} es el {Kernel}?}
+      \field{title}{¿{Qué} es el {Kernel}?}
+      \field{urlday}{19}
+      \field{urlmonth}{5}
+      \field{urlyear}{2023}
+      \field{year}{2022}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Snapshot:/home/lautaroandressaez/Zotero/storage/GRF9CHLI/que-es-el-kernel.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://keepcoding.io/blog/que-es-el-kernel/
+      \endverb
+      \verb{url}
+      \verb https://keepcoding.io/blog/que-es-el-kernel/
+      \endverb
+    \endentry
+    \entry{nvidia_manual_nodate}{article}{}
+      \name{author}{1}{}{%
+        {{hash=a2fe9051fe051f819bd739ef3e340377}{%
+           family={NVIDIA},
+           familyi={N\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{a2fe9051fe051f819bd739ef3e340377}
+      \strng{fullhash}{a2fe9051fe051f819bd739ef3e340377}
+      \strng{bibnamehash}{a2fe9051fe051f819bd739ef3e340377}
+      \strng{authorbibnamehash}{a2fe9051fe051f819bd739ef3e340377}
+      \strng{authornamehash}{a2fe9051fe051f819bd739ef3e340377}
+      \strng{authorfullhash}{a2fe9051fe051f819bd739ef3e340377}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Manual de usuario {Jetson} {TX1}}
+      \verb{file}
+      \verb Jetson TX1 Developer Kit User Guide.pdf:/home/lautaroandressaez/Zotero/storage/ELMG9N6U/Jetson TX1 Developer Kit User Guide.pdf:application/pdf
+      \endverb
+    \endentry
+    \entry{opencv_opencv_2023}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=5bd4c87976f48e6a53919d53e14025e9}{%
+           family={OpenCV},
+           familyi={O\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {OpenCV}%
+      }
+      \strng{namehash}{5bd4c87976f48e6a53919d53e14025e9}
+      \strng{fullhash}{5bd4c87976f48e6a53919d53e14025e9}
+      \strng{bibnamehash}{5bd4c87976f48e6a53919d53e14025e9}
+      \strng{authorbibnamehash}{5bd4c87976f48e6a53919d53e14025e9}
+      \strng{authornamehash}{5bd4c87976f48e6a53919d53e14025e9}
+      \strng{authorfullhash}{5bd4c87976f48e6a53919d53e14025e9}
+      \field{sortinit}{O}
+      \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Open Source Computer Vision Library}
+      \field{month}{6}
+      \field{note}{original-date: 2012-07-19T09:40:17Z}
+      \field{title}{{OpenCV}}
+      \field{urlday}{25}
+      \field{urlmonth}{6}
+      \field{urlyear}{2023}
+      \field{year}{2023}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://github.com/opencv/opencv
+      \endverb
+      \verb{url}
+      \verb https://github.com/opencv/opencv
+      \endverb
+      \keyw{computer-vision,deep-learning,c-plus-plus,image-processing,opencv}
+    \endentry
+    \entry{presta_10_2021}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=41b3f2da8ee535aef31136057911397a}{%
+           family={Presta},
+           familyi={P\bibinitperiod},
+           given={Mati},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {es-ES}%
+      }
+      \strng{namehash}{41b3f2da8ee535aef31136057911397a}
+      \strng{fullhash}{41b3f2da8ee535aef31136057911397a}
+      \strng{bibnamehash}{41b3f2da8ee535aef31136057911397a}
+      \strng{authorbibnamehash}{41b3f2da8ee535aef31136057911397a}
+      \strng{authornamehash}{41b3f2da8ee535aef31136057911397a}
+      \strng{authorfullhash}{41b3f2da8ee535aef31136057911397a}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Este artículo detalla los diez mejores lenguajes de programación backend. La lista incluye Javascript, Phyton, Java, etc.}
+      \field{month}{2}
+      \field{title}{Los 10 principales lenguajes de programación de backend}
+      \field{urlday}{19}
+      \field{urlmonth}{5}
+      \field{urlyear}{2023}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Snapshot:/home/lautaroandressaez/Zotero/storage/NHVKLQ94/lenguajes-de-programacion-de-backend.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://blog.back4app.com/es/lenguajes-de-programacion-de-backend/
+      \endverb
+      \verb{url}
+      \verb https://blog.back4app.com/es/lenguajes-de-programacion-de-backend/
+      \endverb
+    \endentry
+    \entry{rivera_arroyave_smartparkudea_2021}{book}{}
+      \name{author}{4}{}{%
+        {{hash=ef6ee6ad23b5d865ab92c737fedc38ef}{%
+           family={Rivera\bibnamedelima Arroyave},
+           familyi={R\bibinitperiod\bibinitdelim A\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod}}}%
+        {{hash=c236f00a9bdd80bddb83504d8f6cf2d4}{%
+           family={Tobón},
+           familyi={T\bibinitperiod},
+           given={Juan},
+           giveni={J\bibinitperiod}}}%
+        {{hash=848645c33c34f5ed7a4e6c2890be781d}{%
+           family={Rodríguez},
+           familyi={R\bibinitperiod},
+           given={Raúl},
+           giveni={R\bibinitperiod}}}%
+        {{hash=dce05745cd5757116f232da8b5eb1a64}{%
+           family={Múnera},
+           familyi={M\bibinitperiod},
+           given={Danny},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{45aacab85fb542755f588fe97d256e3f}
+      \strng{fullhash}{01abac8a3a4908e9086a065fe0e783dc}
+      \strng{bibnamehash}{45aacab85fb542755f588fe97d256e3f}
+      \strng{authorbibnamehash}{45aacab85fb542755f588fe97d256e3f}
+      \strng{authornamehash}{45aacab85fb542755f588fe97d256e3f}
+      \strng{authorfullhash}{01abac8a3a4908e9086a065fe0e783dc}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{La gestión de estacionamiento es un problema cada vez más frecuente en las grandes ciudades. En este artículo se presenta una solución de estacionamiento inteligente basada en tecnologías del Internet de las Cosas. Nuestro sistema propone un algoritmo de detección de vehículos con un magnetómetro, acompañado de un sistema de comunicaciones usando la tecno-logía LoRaWAN y una aplicación web completa. Un prototipo funcional fue diseñado e implementado para el estacionamiento de la Universidad de Antioquia. Index Terms-Estacionamiento Inteligente (Smart Parking), LoRaWAN, Internet de las Cosas (IoT)}
+      \field{month}{2}
+      \field{shorttitle}{{SmartParkUdeA}}
+      \field{title}{{SmartParkUdeA}: {Sistema} {IoT} para el estacionamiento inteligente de vehículos en ciudad universitaria}
+      \field{year}{2021}
+      \verb{file}
+      \verb Full Text PDF:/home/lautaroandressaez/Zotero/storage/94ZJJI3U/Rivera Arroyave et al. - 2021 - SmartParkUdeA Sistema IoT para el estacionamiento.pdf:application/pdf
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
