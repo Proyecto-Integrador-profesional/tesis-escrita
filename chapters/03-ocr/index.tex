@@ -302,14 +302,16 @@ Para la implementación del algoritmo se utilizó el lenguaje Python 3, ya que e
     \label{fig:algoritmo-ocr}
 \end{figure}
 
-La lectura u obtención de una fotografía se realizó mediante OpenCV \cite{opencv_opencv_2023} ya que permite utilizar una gran variedad de fuentes tales como cámaras y archivos. Luego se procesa mediante la YoloV4 la cual devuelve la ubicación relativa de la patente en la imagen en un archivo de texto plano, para posteriormente leer el archivo de texto, junto con las dimensiones de la imagen y poder obtener la patente recortada este proceso se puede observar en Fig. \ref{fig:yolo-car-to-plate}. Antes de pasar el recorte a la CNN-OCR se la cambia a escala de grises y se la lleva al tamaño de $70 \times 140$ utilizando una interpolación lineal y se normalizan los valores de la imagen entre 0 y 1. Finalmente se procesa la imagen por la CNN-OCR obteniendo la patente en texto. En capítulos posteriores se explicará en mayor detalle que sucede con la imagen, y la patente obtenida.
 
-\begin{figure}
+\begin{figure}[h]
     \centering
-
-    \caption{Ejemplificación del proceso realizado para obtener el recorte de la patente.}
+    \includegraphics[width=\textwidth]{imgs/pic-to-text.png}
+    \caption{Flujo de una fotografía hasta obtener el texto de la patente.}
     \label{fig:yolo-car-to-plate}
 \end{figure}
+
+
+La lectura u obtención de una fotografía se realizó mediante OpenCV \cite{opencv_opencv_2023} ya que permite utilizar una gran variedad de fuentes tales como cámaras y archivos. Luego se procesa mediante la YoloV4 la cual devuelve la ubicación relativa de la patente en la imagen en un archivo de texto plano, para posteriormente leer el archivo de texto, junto con las dimensiones de la imagen y poder obtener la patente recortada este proceso se puede observar en Fig. \ref{fig:yolo-car-to-plate}. Antes de pasar el recorte a la CNN-OCR se la cambia a escala de grises y se la lleva al tamaño de $70 \times 140$ utilizando una interpolación lineal y se normalizan los valores de la imagen entre 0 y 1. Finalmente se procesa la imagen por la CNN-OCR obteniendo la patente en texto. En capítulos posteriores se explicará en mayor detalle que sucede con la imagen, y la patente obtenida.
 
 
 
