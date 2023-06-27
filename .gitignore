@@ -9,3 +9,7 @@
 *.run.xml
 *.gz
 *.toc
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
