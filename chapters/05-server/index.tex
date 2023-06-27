@@ -2,12 +2,13 @@
 
 En este capítulo se explicara el diseño y la implementación del server. En la Fig. \ref{fig:server-final} se observa la versión final del servicio, mostrando la interacción entre los Clientes, los sistemas SL y el Server.
 
-\begin{figure}
+\begin{figure}[h]
     \centering
-    \includegraphics[width=\textwidth]{imgs/server-esquema.png}
+    \includegraphics[width=.4\textwidth]{imgs/server-esquema.png}
     \caption{Esquema final del servidor.}
     \label{fig:server-final}
 \end{figure}
+
 
 \section{Actualidad del desarrollo web}
 
@@ -85,6 +86,13 @@ Debido a que Mosquitto es el broker MQTT más utilizado, el cual utiliza la vers
 El Backend esta implementado en NestJS \cite{noauthor_documentacion_nodate}. Su principal función es la de administrar la información por que se conecta con la base de datos para realizar las tareas de lectura y escritura de documentos.
 
 Con la idea de generar la mayor documentación posible de este servicio se utilizo una libreria llamada Swagger el cual junto a NestJS genera documentación automatica de los las rutas HTTP. Esto facilita la tarea de crear una nueva aplicación asi como la de incluir una nueva persona al proyecto. El la Fig. \ref{fig:swagger-example} se observa como se ve la documentación generada por Swagger.
+
+\begin{figure}
+    \centering
+
+    \caption{Documentación generada por Swagger.}
+    \label{fig:swagger-example}
+\end{figure}
 
 Debido a la necesidad de autenticación de usuarios, y de los sistemas SL se implemento PassportJS [doc passport] la cual permite la creación de sistemas de validación de forma más sencilla. Los métodos de autenticación implementados fueron:
 
