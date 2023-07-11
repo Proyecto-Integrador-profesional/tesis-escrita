@@ -1,1 +1,27 @@
 \chapter{Conclusiones}
+En este capítulo se realizarán las conclusiones generales correspondientes al uso de redes neuronales convolucionales para el uso de detección de caracteres, más específicamente para detectar patentes argentinas, se detallarán las ventajas y desventajas encontradas en los algoritmos, para finalmente presentar posibles mejoras a futuro con el objetivo de mejorar diferentes aspectos del prototipo.
+
+\section{Conclusiones generales}
+Los algoritmos de reconocimiento de caracteres por redes neuronales han cobrado popularidad y utilidad en los últimos años, ya sea realizando tareas como escanear documentos y transcribirlos o realizar traducciones en tiempo real, por nombrar algunas de las aplicaciones más utilizadas, que en la mayoría de los casos no somos consientes de lo que sucede detrás de la aplicación.
+
+Se han estudiado en profundidad el funcionamiento de redes neuronales, más específicamente las de tipo convolucional y se observó que estas, son las más favorables para la implementación en sistemas embebidos, por su bajo costo computacional en comparación son otro tipo de redes usadas para el OCR, logrando correr el algoritmo diseñado de manera más que satisfactoria, bajo los requerimientos propuestos.
+
+Si bien, ya se contaba con 2 redes pre entrenadas funcionales, el proceso de integración de los algoritmos sobre los diferentes hardwares no represento una tarea sencilla, ya que se tenía la necesidad de recompilarlos para adecuarse a la arquitectura de los sistemas elegidos, corriendo el riesgo de que se desarrollaran bugs o incluso incompatibilidades que dejaran inutilizada alguna de las estructuras ya diseñadas, aunque gracias a las tecnologías modernas que permiten este tipo de conversiones fue posible, llevarlo a cabo, logrando que ambas puedan desempeñarse de la manera en la que fueron planeadas.
+
+Durante el proceso de investigación sobre OCR y sus utilidades, se observó que en nuestro país este tipo de tecnologías son poco explotadas, con aplicaciones escasas, limitándose al uso de herramientas creadas por terceros, por lo que el diseño del prototipo representa una innovación en lo que a control de acceso de estacionamientos respecta, permitiendo una mayor automatización y control del acceso y egreso de los vehículos al recinto con una interacción nula por parte del administrador. 
+
+Otro de los enfoques en los que se profundizó es en el diseño modular de cada parte que conforma el sistema, por lo que si se desea remplazar cualquier elemento dentro del mismo, solo deben respetarse los protocolos de comunicación establecidos para que el funcionamiento no se vea afectado.
+Con esto se hace referencia a que en caso querer implementar otra tecnología se pueda desarrollar de forma autónoma al resto del sistema e integrarlo con
+facilidad.
+
+Se concluye que siempre que se disponga del hardware correcto es posible implementar un sistema robusto que permita realizar el reconocimiento de los caracteres de una patente, basado en redes neuronales del tipo convolucionales, en diferentes entornos de trabajo.
+
+
+\section{Posibles mejoras}
+Finalmente se presentan posibles mejoras en el sistema de obtención de imágenes, para posteriormente realizar la detección y obtención de caracteres estudiados a lo largo de este trabajo:
+\begin{itemize}
+    \item Implementar un nuevo algoritmo para la detección de patentes en otro tipo de vehículos(motos, camiones).
+    \item Desarrollar un algoritmo de recorte de patente que mejore la precisión.
+    \item Búsqueda de hardware mas economico para el equipo de adquisición de imagenes.
+    \item 
+\end{itemize}
