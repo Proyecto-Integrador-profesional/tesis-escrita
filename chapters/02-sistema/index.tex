@@ -1,13 +1,13 @@
 \chapter{Diseño del sistema}
 
-En este capítulo se mostrara el desarrollo general del sistema, comenzando por una visión superficial del sistema hasta obtener la versión final del sistema. En capítulos posteriores se mostrará el proceso de diseño e implementación del mismo. [puede ser que se incluya una versión final del sistema en una figura]
+En este capítulo se mostrará el desarrollo general del sistema, comenzando por una visión superficial del sistema hasta obtener la versión final del sistema. En capítulos posteriores se mostrará el proceso de diseño e implementación del mismo. [puede ser que se incluya una versión final del sistema en una figura]
 
 \section{Descripción general del sistema}
 
-El requisito fundamental de este trabajo fue poder controlar el sistema de entrada y salida de vehículos de al menos un recinto. Por lo tanto primero se explicará el caso particular de como funciona el sistema para el caso de un solo lugar. Adicionalmente existen otros requisitos preestablecidos, como:
+El requisito fundamental de este trabajo fue poder controlar el sistema de entrada y salida de vehículos de al menos un recinto. Por lo tanto primero se explicará el caso particular de cómo funciona el sistema para el caso de un solo lugar. Adicionalmente existen otros requisitos preestablecidos, como:
 
 \begin{itemize}
-    \item Controlar el tiempo que el vehículo estuvo en el establecimiento.
+    \item Controlar el tiempo del vehículo dentro del establecimiento.
     \item Que la entrada y salida sea automática basada en la patente.
 \end{itemize}
 
@@ -18,7 +18,9 @@ El requisito fundamental de este trabajo fue poder controlar el sistema de entra
     \label{fig:sistema-base}
 \end{figure}
 
-De estos requisitos se desprende la forma más general del sistema, la cual cuenta con subsistema que detecta los caracteres del vehículo, le permita el acceso o el egreso del establecimiento al vehículo y basado en la hora de entrada y salida calcule el tiempo que estuvo el vehículo como se muestra en la Fig. \ref{fig:sistema-base}. Existe un gran inconveniente a la hora de obtener el texto de la patente de una imagen y es el tiempo de procesamiento, es por ello que se utilizara un sensor de distancia para garantizar que existe un objeto a una determinada distancia la versión correspondiente del sistema se puede observar en la Fig. \ref{fig:sistema-completa}.
+De estos requisitos se desprende la forma más general del sistema, la cual cuenta con un subsistema que detecta los caracteres del vehículo, permite el acceso o el egreso del establecimiento al vehículo y, basado en la hora de entrada y salida, calcule el tiempo que estuvo el vehículo como se muestra en la Fig. \ref{fig:sistema-base}.
+Existe un gran inconveniente a la hora de obtener el texto de la patente de una imagen y es el tiempo de procesamiento.Es por ello que se utilizará un sensor de distancia para garantizar que existe un objeto a una determinada distancia.
+La versión correspondiente del sistema se puede observar en la Fig. \ref{fig:sistema-completa}.
 
 \begin{figure}
     \centering
@@ -27,15 +29,17 @@ De estos requisitos se desprende la forma más general del sistema, la cual cuen
     \label{fig:sistema-completa}
 \end{figure}
 
-Debido a que los parques de estacionamiento, como los de los supermercados, tienen entradas y salidas diferenciadas, el sistema deberá tener un comportamiento diferente según como se encuentre. Es por ello que se implementaran 2 algoritmos, uno para manejar las entradas y otro para manejar las salidas.
+Debido a que los parques de estacionamiento, como los de los supermercados, tienen entradas y salidas diferenciadas, el sistema deberá tener un comportamiento diferente según donde se encuentre.
+Es por ello que se implementarán dos algoritmos, uno para manejar las entradas y otro para manejar las salidas.
 
 \section{Los algoritmos de entrada y salida}
 
-Una vez establecido como se verá el sistema se debe definir el comportamiento del sistema cuando entra un vehículo y cuando sale.
+Una vez establecido como se verá el sistema, se debe definir su comportamiento cuando un vehículo entra o cuando sale.
 
 \subsection{Algoritmo de entrada}
 
-La toma de una muestras, es decir, una fotografía, se da cuando el sistema detecta que tiene un objeto a menos de $X$cm. Luego, se procesa la imagen, para obtener la patente en formato de texto, en caso de encontrar una patente, se almacena la fecha, junto con la patente y la fotografía Fig. \ref{fig:flujo-entrada}.
+La toma de muestra, es decir, una fotografía, se da cuando el sistema detecta que tiene un objeto a menos de $X$cm. Luego, se procesa la imagen, para obtener la patente en formato de texto.
+En caso de encontrar una patente, se almacena la fecha, junto con la patente y la fotografía Fig. \ref{fig:flujo-entrada}.
 
 \begin{figure}
     \centering
@@ -46,7 +50,7 @@ La toma de una muestras, es decir, una fotografía, se da cuando el sistema dete
 
 \subsection{Algoritmo de salida}
 
-El algoritmo de salida es idéntico, en la toma de muestra, pero antes de guardar la información de salida (foto y fecha), se verifica que exista un registro de entrada correspondiente y se actualiza el mismo Fig. \ref{fig:flujo-salida}.
+El algoritmo de salida es idéntico en la toma de muestra, pero antes de guardar la información de salida (foto y fecha), verifica que exista un registro de entrada correspondiente y se actualiza el mismo Fig. \ref{fig:flujo-salida}.
 
 \begin{figure}
     \centering
@@ -57,12 +61,12 @@ El algoritmo de salida es idéntico, en la toma de muestra, pero antes de guarda
 
 \subsection{El problema de múltiples establecimientos}
 
-Ambos algoritmo poseen un pequeño inconveniente a la hora de extender el proyecto en más de un recinto. Es por ello que cada barrera se vincula a un lugar, y los registros se buscan y actualizan en función del lugar que tiene asignado cada barrera.
+Ambos algoritmos poseen un pequeño inconveniente a la hora de extender el proyecto en más de un recinto. Es por ello que cada barrera se vincula a un lugar, y los registros se buscan y actualizan en función del lugar que tiene asignado cada barrera.
 
 \section{Partes del sistema}
 
-Una vez diseñado y comprendido como está compuesto el sistema a grandes rasgos, es importante entender las partes del mismo y lograr diferenciar que parte del algoritmo se ejecutara en el sistema SL y cuál en el servidor. Para la comunicación del SL con el servidor se optó por utilizar 2 protocolos de comunicación por un lado HTTP para el envío y actualización de registros de entrada/salida, y MQTT para cambios en la configuración de las barreras.
-En la Fig. \ref{fig:sistema-server-barrera} se observa como interactúan los vehículos con la plataforma, la flecha en rojo se utiliza destacar el envío de datos por MQTT.
+Una vez diseñado y comprendido como está compuesto el sistema a grandes rasgos, es importante entender las partes del mismo y lograr diferenciar que parte del algoritmo se ejecutará en el sistema SL y cuál en el servidor. Para la comunicación del SL con el servidor se optó por utilizar 2 protocolos de comunicación: por un lado HTTP para el envío y actualización de registros de entrada/salida, y MQTT para cambios en la configuración de las barreras.
+En la Fig. \ref{fig:sistema-server-barrera} se observa como interactúan los vehículos con la plataforma, la flecha en rojo se utiliza para destacar el envío de datos por MQTT.
 \begin{figure}[h]
     \centering
     \includegraphics[width=.3\textwidth]{imgs/sistema-server-barrera}
@@ -70,11 +74,11 @@ En la Fig. \ref{fig:sistema-server-barrera} se observa como interactúan los veh
     \label{fig:sistema-server-barrera}
 \end{figure}
 
-Esta versión del sistema se desarrollará en los capítulos siguientes, yendo desde la transformación de foto a patente mediante detección óptica de caracteres, pasando por el diseño e implementación del sistema SL, y el diseño e implementación del servidor.
+Esta es la versión que se desarrollará en los capítulos siguientes.
 
 \subsection{Interacción con el cliente}
 
-Debido a que el enfoque del diseño implica un cliente que dese utilizar el sistema se desarrolla una plataforma web para simplificar el manejo de configuración y administración del sistema. En la Fig. \ref{fig:esquema-cliente-servidor-sl} se observa la arquitectura a implementar en el servidor, teniendo en cuenta las interacciones y su manejo entre los sistemas SL y los clientes.
+Debido a que el enfoque del diseño implica un cliente que desea utilizar el sistema se desarrolla una plataforma web para simplificar el manejo de configuración y administración del sistema. En la Fig. \ref{fig:esquema-cliente-servidor-sl} se observa la arquitectura a implementar en el servidor, teniendo en cuenta las interacciones y su manejo entre los sistemas SL y los clientes.
 \begin{figure}
     \centering
     \includegraphics[width=.4\textwidth]{imgs/server-clientes-barreras.png}
