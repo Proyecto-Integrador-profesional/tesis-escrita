@@ -1,6 +1,6 @@
 \chapter{Diseño e implementación de los sistemas SL y SL mini}
 
-En este capítulo se realizará una explicación del diseño de los sistemas SL y SL mini, analizando las diferentes alternativas de placas, junto con sensores seleccionados y el modelado en 3D de la caja que aloja los mismos. Por último se detallará la implementación de los drivers escritos en Python 3, nombrando elecciones de diseño.
+En este capítulo se realizará una explicación del diseño de los sistemas SL y SL mini, analizando las diferentes alternativas de placas, junto con sensores seleccionados y el modelado en 3D de la caja que alojará los mismos. Por último se detallará la implementación de los drivers escritos en Python 3, nombrando elecciones de diseño.
 
 \section{Análisis de requisitos}
 
@@ -12,12 +12,13 @@ Los sistemas actuales más comunes hoy en día son:
 
 \subsubsection*{Sistemas tradicionales de tickets}
 
-Este sistema de control de ingreso y egreso suele generar molestias en muchos de los usuarios, por la necesidad de realizar alguna acción extra, como presionar un pulsador para obtener y guardar un ticket con los datos de entrada este sistema se puede apreciar en Fig. \ref{fig:sistema-tradicional}.
-Los tickets poseen un gran inconveniente, ya que si el usuario los pierde se le cobra un valor fijo, que en general es mayor al tiempo de la estadía.
+Este sistema de control de ingreso y egreso suele generar molestias en muchos de los usuarios, por la necesidad de realizar alguna acción extra, como presionar un pulsador para obtener un ticket con los datos de entrada. Este sistema se puede apreciar en Fig. \ref{fig:sistema-tradicional}.
+Los tickets poseen un gran inconveniente, ya que si el usuario lo pierde se le cobra un valor fijo que, en general, es mayor al tiempo de la estadía.
 Estos sistemas cuentan con el inconveniente de que la impresión del ticket se realiza por impresión térmica, lo que requiere un papel termosensible.
-Otro inconveniente de este sistema es el impacto ambiental del de la emisión de papeles de un solo uso. En promedio un usuario tarda 11 segundos en entrar o salir del establecimiento \cite{casadomo_sistema_2015}.
+Además, la emisión de papel de un solo uso genera un impacto ambiental a tener en cuenta.
+En promedio un usuario tarda 11 segundos en entrar o salir del establecimiento \cite{casadomo_sistema_2015}.
 
-A continuación sé listas las desventajas de este sistema:
+A continuación se lista las desventajas de este sistema:
 
 \begin{enumerate}
     \item Tiempo de acceso.
@@ -32,15 +33,11 @@ A continuación sé listas las desventajas de este sistema:
     \label{fig:sistema-tradicional}
 \end{figure}
 
-Otro de los aspectos que destacan del uso actual del sistema de barreras en sistemas más manuales es la necesidad de
-contar con  operarios trabajando en la barrera el tiempo que la barrera esté disponible, ya que en caso de no disponerlo
-deberá quedar la barrera sin efecto, perdiendo por completo su utilidad.
-
 \subsubsection*{Sistemas de radiofrecuencia}
 
-Con el avance y el abaratamiento de los costos en la electrónica surgieron nuevos métodos que permitieron a los usuarios prescindir de la necesidad de un ticket o una tercera persona que les facilite el acceso, el método principal es el uso de controles remotos que al ser accionados, activan el mecanismo y abren el paso del vehículo.
+Con el avance y el abaratamiento de los costos en la electrónica surgieron nuevos métodos que permitieron a los usuarios prescindir de la necesidad de un ticket o una persona que les permita el acceso. El método principal es el uso de controles remotos que al ser accionados, activan el mecanismo y abren el paso del vehículo.
 
-Otro sistema que está ocupando gran parte del mercado en los últimos años es el que integra a la barrera un sistema de RFID, que mediante la colocación de un emisor RF en el vehículo, Fig.\ref{fig:sistema-moderno} o por el método de tarjetas o monedas de proximidad y un receptor en la barrera, al acercarse al ingreso se produce en el enlace que habilita o no al vehículo a ingresar. La gran desventaja de este sistema es tener que instalar el emisor RF en el vehículo o guardar la tarjeta de lectura.
+Otro sistema que está ocupando gran parte del mercado en los últimos años es el que integra a la barrera un sistema de RFID, que mediante la colocación de un emisor RF en el vehículo, Fig.\ref{fig:sistema-moderno} o por el método de tarjetas o monedas de proximidad y un receptor en la barrera, al acercarse a la entrada se produce el enlace que habilita el ingreso al vehículo. La gran desventaja de este sistema es tener que instalar el emisor RF en el vehículo o guardar la tarjeta de lectura.
 
 Los problemas de este sistema son:
 
@@ -58,7 +55,8 @@ Los problemas de este sistema son:
 
 \subsection{Requisitos de los sistemas SL}
 
-Los métodos anteriormente nombrados son muy útiles en el día a día, pero cuentan con una serie de inconvenientes que pueden ser atenuados mediante el OCR, ya que se utiliza un distintivo único de los autos, como es el sistema de RFID, la distancia de actuación está dada por la distancia máxima de reconocimiento del algoritmo, y los sensores empleados.
+Los métodos anteriormente nombrados son muy útiles en el día a día, pero cuentan con una serie de inconvenientes que pueden ser atenuados mediante el OCR.
+Dicha técnica utiliza un distintivo único de cada vehículo, como en el sistema de RDIF, pero la distancia de actuación está dada por la distancia máxima de reconocimineto del algoritmo y los sensores empleados.
 
 Debido a la necesidad de realizar OCR, se requerirá una cámara. Con la finalidad de poder acoplar algún sistema de activación para la cámara se exigirá que la placa elegida soporte protocolos como I2C, SPI y UART. En cuanto a la comunicación, como se implementara junto con un servidor web existe la necesidad de conexión Ethernet o Wifi. Finalmente para facilitar futuras actualizaciones se requiere que la placa pueda correr un sistema operativo basado en GNU/Linux.
 
@@ -79,7 +77,7 @@ Teniendo en cuenta los requisitos planteados en la sección anterior, se present
 placas de la empresa Raspberry Pi, embebidos de la serie STM32 e incluso placas de la marca Arduino en sus versiones más potentes, por nombrar las más conocidas.
 Aquí es donde surge el primer inconveniente para tomar la elección de placa,
 cuál sería la mejor opción que cumpla tanto las necesidades y que sea accesible para poder realizar el proyecto.
-Luego de realizar una investigación de placas a las que se podía acceder se optó por 2 modelos basados en una Raspberry Pi 3 B+ a la cual se la llamo SL mini, y la otra basada en una NVIDIA Jetson TX1 denominada SL.
+Luego de realizar una investigación de placas a las que se podía acceder se optó por dos modelos: uno basado en Raspberry Pi 3 B+ a la cual se la llamó SL mini, y el otro basado en NVIDIA Jetson TX1 denominada SL.
 
 \subsection{Características del SL mini}
 
@@ -94,19 +92,19 @@ Broadcom BCM2837B0 y un Córtex A53 acompañado de 1 GB de RAM LPDDR2, junto con
 \end{figure}
 
 Otro de los puntos importantes que destacan de la placa son los pines GPIO, pines de entrada/salida de propósito general por sus siglas en inglés, lo que la hace sumamente sencilla a la hora de utilizarla junto a sensores comerciales.
-La amplia conectividad integrada que posee fue un punto que la destacó sobre otras posibles placas de desarrollo, ya que cuenta con puertos de conexión USB 2.0, puerto Ethernet, conexión Wifi 2,4 y 5,8 GHz y comunicación Bluetooth 4.2, suple la necesidad de brindar conexión a internet de manera nativa sin necesidad de contar con periféricos extras que puedan encarecer el sistema.
+La amplia conectividad integrada que posee fue un punto que la destacó sobre otras posibles placas de desarrollo, ya que cuenta con puertos de conexión USB 2.0, puerto Ethernet, conexión Wifi 2,4 y 5,8 GHz y comunicación Bluetooth 4.2, que suple la necesidad de brindar conexión a internet de manera nativa sin necesidad de contar con periféricos extras que pueden encarecer el sistema.
 
-La disponibilidad de la placa en el mercado, fue un punto importante a considerar, ya que pensando en una futura
+La disponibilidad de la placa en el mercado fue un punto importante a considerar, ya que pensando en una futura
 implementación del sistema a mediana o gran escala o la necesidad de cambio por rotura de la misma, podían dejar el
-proyecto parado o inutilizado generando otros inconvenientes. Por otro lado, es posible migrar a un modelo más nuevo como la versión 4, sin tener que realizar grandes cambios en los drivers diseñados.
+proyecto parado o inutilizado, generando otros inconvenientes. Por otro lado, es posible migrar a un modelo más nuevo como la versión 4, sin tener que realizar grandes cambios en los drivers diseñados.
 
-Si bien las capacidades de la Raspberry son amplias, para este proyecto su poder de cómputo no fue suficiente para realizar por sí misma el procesamiento de la imagen en un tiempo menor a 11 segundos, como fue nombrado en el capítulo anterior.
+Si bien las capacidades de la Raspberry son amplias, para este proyecto su poder de cómputo no fue suficiente para realizar por sí misma el procesamiento de la imagen en un tiempo menor a 11 segundos, como fue mencionado en el capítulo anterior.
 
 \subsection{Características del SL}
 
-La placa de la barrera SL es una Nvidia Jetson TX1 \cite{nvidia_manual_nodate}, Fig. \ref{fig:JTX1} la cual cuenta con un procesador Córtex A57, además de contar con 256 núcleos Nvidia Maxwell, lo que la vuelve una opción excelente en lo que se refiere al trabajo con imágenes y videos, junto a 4GB de RAM LPDDR4, la hacen una opción mucho más potente en capacidad de cómputo que la Raspberry Pi 3 B+.
+La placa de la barrera SL es una Nvidia Jetson TX1 \cite{nvidia_manual_nodate}, Fig. \ref{fig:JTX1} la cual cuenta con un procesador Córtex A57. Además contiene 256 núcleos Nvidia Maxwell, lo que la vuelve una opción excelente en lo que se refiere al trabajo con imágenes y videos, junto a 4GB de RAM LPDDR4, la hacen una opción mucho más potente en capacidad de cómputo que la Raspberry Pi 3 B+.
 
-Para realizar la implementación se contó con el kit de desarrollo provisto por la empresa Nvidia, en él se pueden encontrar todas las conexiones mencionadas en la barrera SL mini, lo que permite el paso de los sensores de una placa a otra con suma facilidad.
+Para realizar la implementación se contó con el kit de desarrollo provisto por la empresa Nvidia. En él se pueden encontrar todas las conexiones mencionadas en la barrera SL mini, lo que permite el paso de los sensores de una placa a otra con suma facilidad.
 Este modelo cuenta con un sistema operativo JetPack 4.6.3 basado en Ubuntu 18.04.
 
 \begin{figure}
@@ -121,11 +119,12 @@ En contra parte con el modelo mini, la placa del modelo SL está pensada para el
 
 \section{Evaluación y selección de sensores}
 
-En este apartado se comentará la selección de la cámara y el proceso de selección del sistema de actuación, que como se adelantó en el capítulo 2 se decantó por un sensor de distancia.
+En este apartado se comentará la selección de la cámara y el proceso de selección del sistema de actuación que, como se adelantó en el capítulo 2, se decantó por un sensor de distancia.
 
 \subsection{Selección de cámara}
 
-Una cualidad importante para la selección del tipo de cámara fue la interfaz que esta utilice, lo que permite utilizar el mimo modelo en ambas versiones de placa. Si bien, tanto Raspberry como NVIDIA proveen de módulos de cámara, debido a que los conectores no eran los mismos se descartaron estas opciones. La decisión final terminó siendo una cámara web con interfaz USB, debido a que hoy en día son fáciles de conseguir y son relativamente económicas. Particularmente el modelo utilizado es el que se observa en Fig. \ref{fig:camara-usb}, el cual es un modelo genérico con una resolución de $1280x720$ y $0.9MP$, siendo estas características aceptables para la tarea requerida.
+Una cualidad importante para la selección del tipo de cámara fue la interfaz que esta utilice, lo que permite implementar el mismo modelo en ambas versiones de placa.
+Si bien, tanto Raspberry como NVIDIA proveen de módulos de cámara, debido a que los conectores no eran los mismos se descartaron estas opciones. La decisión final terminó siendo una cámara web con interfaz USB, debido a que hoy en día son fáciles de conseguir y son relativamente económicas. Particularmente el modelo utilizado es el que se observa en Fig. \ref{fig:camara-usb}, el cual es un modelo genérico con una resolución de $1280 \times 720$ y $0.9MP$, siendo estas características aceptables para la tarea requerida.
 
 \begin{figure}
     \centering
@@ -160,7 +159,7 @@ La placa de presión cuenta de una placa que acciona un interruptor cuando es pr
 Los sensores de distancia son muy versátiles y existen una amplia variedad en el mercado es por ello que fueron seleccionados para la implementación de los prototipos.
 En particular para este trabajo se utilizó un sensor ultrasónico US-100.
 
-Los sensores ultrasónicos funcionan emitiendo una onda ultrasónica por el transmisor y medir el tiempo que está tarda en llegar al receptor.
+Los sensores ultrasónicos funcionan emitiendo una onda ultrasónica por el transmisor y medir el tiempo que esta tarda en llegar al receptor.
 
 El US-100 el cual se puede apreciar en Fig. \ref{fig:sensor-US100}, posee un rango de medición de $2cm$ a $350cm$, compensado por temperatura, voltaje de alimentación entre $3V$-$5V$ y usando el protocolo de
 comunicación UART.
@@ -174,15 +173,17 @@ Por lo que es fácilmente integrable en ambas placas por medio del puerto GPIO s
 
 \section{Consumo energético}
 
-El gasto energético es un punto que fue analizado, ya que, pensando en el uso racional de la energía, se busca que los sistemas SL y SL mini no presentaran un consumo excesivo.
-Como la energía suministrada al conjunto cámara-sensor viene dada por las placas, solo se indicara el consumo requerido por las mismas.
+El gasto energético es un punto que fue analizado ya que, pensando en el uso racional de la energía, se busca que los sistemas SL y SL mini no presentaran un consumo excesivo.
+Como la energía suministrada al conjunto cámara-sensor viene dada por las placas, solo se indicará el consumo requerido por las mismas.
 
 
 \subsection{SL mini}
 
 En el caso de la versión SL mini, tiene un consumo similar al de un cargador de celular moderno, es decir $5V$ y
-$2A$, ya que una corriente menor lleva a una notificación por parte de la Raspberry, indicando que la energía no es la
-suficiente reduciendo la frecuencia de su procesador, ralentizando el equipo, sumado a que no garantiza estabilidad en el funcionamiento de la misma. Por lo tanto la potencia máxima requerida del sistema es de $10W$.
+$2A$.
+Una corriente menor lleva a una notificación por parte de la Raspberry, lo que produce una reducción de la frecuencia de su procesador, una relentización del equipo, lo cual no garantiza estabilidad en el funcionamiento de la misma.
+
+Por lo tanto la potencia máxima requerida del sistema es de $10W$.
 
 \subsection{SL}
 
@@ -200,8 +201,8 @@ Para la colocación del conjunto de prueba cámara-sensor, se diseñó e imprimi
 \end{figure}
 
 Se optó por colocar el sensor de proximidad en la zona inferior, ya que el ideal es colocar el contenedor a una altura de unos $60cm$ aproximadamente, con lo que al tener el sensor en la zona baja se garantiza que la lectura que se tome sea de la trompa del automóvil y se obtenga un valor certero de la distancia. Este diseño deja a la cámara en la zona superior del contendor dando una imagen lo más completa de la trompa del vehículo, lo que permite que el sistema reconozca la patente de mejor manera, esto previene que la patente salga recortada permitiendo mejores resultados en la etapa de estimación. Se dispuso un orificio en la zona inferior de la caja con la finalidad de colocar un eje, que permita la orientación del dispositivo, dependiendo
-el lugar donde se desee instalarlo, para la sujeción al eje se realizaron 2 pequeños orificios que permitan el paso de 2 tornillos que dejen fijo
-el contenedor al eje.
+el lugar donde se desee instalarlo.
+Para la sujeción al eje se realizaron dos orificios que permiten el paso de los tornillos que dejan fijo el contenedor al eje.
 \begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{imgs/contenedor-camara.png}
@@ -209,7 +210,7 @@ el contenedor al eje.
     \label{fig:sujecion-contenedor}
 \end{figure}
 
-En la Fig. \ref{fig:contenedor-camara-real} se puede apreciar el contenedor ya con la cámara y el sensor instalados.
+En la Fig. \ref{fig:contenedor-camara-real} se puede apreciar el contenedor con la cámara y el sensor instalados.
 
 \begin{figure}
     \centering
@@ -220,12 +221,14 @@ En la Fig. \ref{fig:contenedor-camara-real} se puede apreciar el contenedor ya c
 
 \section{Implementación de los drivers}
 
-Para terminar el diseño de los sistemas SL y SL mini, se explicará el diseño de los drivers. Durante la etapa de diseño el eje fundamental fue crear piezas de códigos reutilizables y priorizando el diseño modular del sistema, algo que incluso ha sido una decisión general de diseño a lo largo de este trabajo. Es por ello que se implementaron una serie de módulos que permiten una actualización sencilla de los mismos, aíslan responsabilidades en diferentes partes y permiten un crecimiento del sistema más sencillo. La implementación se realizó en Python 3. A continuación se realizará una breve explicación de las librerías creadas.
+Para terminar el diseño de los sistemas SL y SL mini, se explicará el diseño de los drivers. Durante la etapa de diseño el eje fundamental fue crear piezas de códigos reutilizables, priorizando el diseño modular del sistema.
+Es por ello que se implementaron una serie de módulos que permiten ser actualizados de manera sencilla y aíslan responsabilidades en diferentes partes. La implementación se realizó en Python 3. A continuación se realizará una breve explicación de las librerías creadas.
 
 
 \subsubsection*{Lectura de distancia}
 
-Para la lectura de distancia se implementó una librería llamada \textit{us100}, la cual utiliza \textit{pyserial}  \cite{noauthor_documentacion_nodate-1} para la comunicación por puerto serie. Esta librería posee una función la cual devuelve la distancia de un objetivo, pero con la finalidad de disminuir un objeto que se cruza o una mala medición se utiliza una lista anidada que posee las últimas 5 mediciones, y devuelve el promedio de las mismas.
+Para la lectura de distancia se implementó una librería llamada \textit{us100}, la cual utiliza \textit{pyserial}  \cite{noauthor_documentacion_nodate-1} para la comunicación por puerto serie.
+Esta librería posee una función que devuelve la distancia de un objetivo. Con la finalidad de disminuir los falsos positivos se utilizó una lista anidada que posee las últimas 5 mediciones, y devuelve el promedio de las mismas.
 
 \subsubsection*{Utilidades}
 
@@ -235,9 +238,9 @@ Para la conexión con el servidor MQTT se utilizó \textit{paho-mqtt} \cite{crag
 
 En cuanto al envío de los registros este se realiza por POST mediante HTTP utilizando la librería \textit{requests} \cite{python_software_foundation_documentacion_nodate}.
 
-La captura de imágenes se realizó mediante la librería de \textit{OpenCV}, la cual permite una fácil conexión con la cámara USB permitiendo tomar fotografías rápidamente.
+La captura de imágenes se realizó mediante la librería de \textit{OpenCV}, que permite una fácil conexión con la cámara USB logrando tomar fotografías rápidamente.
 
 \subsection{Diferencias entre SL y SL mini}
 
-Como fue nombrado con anterioridad, la mayor diferencia entre ambos sistemas es que el sistema SL es capaz de procesar la imagen de manera local. Esto implica que una conversión de los modelos de Tensorflow \cite{google_tensorflow_nodate} utilizados para la CNN-OCR a una versión capaz de correr en ARM, por lo que se compilaron los modelos a Tensorflow Lite, utilizando las herramientas que Tensorflow provee para estos casos. Por otro lado, se requiere compilar la YoloV4 para arquitectura ARM, este paso se realizó utilizando el compilador de CMake.
+Como fue nombrado con anterioridad, la mayor diferencia entre ambos sistemas es que el sistema SL es capaz de procesar la imagen de manera local. Esto implica que una conversión de los modelos de Tensorflow \cite{google_tensorflow_nodate} utilizados para la CNN-OCR a una versión capaz de correr en ARM, por lo que se compilaron los modelos a Tensorflow Lite, utilizando las herramientas que Tensorflow provee para estos casos. Por otro lado, se requiere compilar la YoloV4 para arquitectura ARM, esto se realizó utilizando el compilador de CMake.
 
