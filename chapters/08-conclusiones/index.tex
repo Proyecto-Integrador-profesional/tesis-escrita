@@ -1,15 +1,15 @@
 \chapter{Conclusiones}
-En este capítulo se realizarán las conclusiones generales correspondientes al uso de redes neuronales convolucionales para el uso de detección de caracteres, más específicamente para detectar patentes argentinas, se detallarán las ventajas y desventajas encontradas en los algoritmos, para finalmente presentar posibles mejoras a futuro con el objetivo de mejorar diferentes aspectos del prototipo.
+En este capítulo se realizarán las conclusiones generales correspondientes al uso de redes neuronales convolucionales para el uso de detección de caracteres, más específicamente para detectar patentes argentinas, se detallarán las ventajas y desventajas encontradas en los algoritmos, para finalmente presentar posibles mejoras a futuro.
 
 \section{Conclusiones generales}
 
 Durante el proceso de investigación sobre OCR y sus utilidades, se observó que en nuestro país este tipo de tecnologías son poco explotadas, con aplicaciones escasas, limitándose al uso de herramientas creadas por terceros.
 Por lo que el diseño de este prototipo representa una innovación en lo que a control de acceso de estacionamientos respecta, permitiendo una automatización y control del acceso de los vehículos al recinto con una interacción nula por parte del usuario.
 
-Se han estudiado en profundidad el funcionamiento de redes neuronales, más específicamente las CNN y se observó que estas son las más favorables para la implementación en sistemas embebidos, por su bajo costo computacional en comparación con las LSTM, logrando reconocer las patentes de manera efectiva.
+Se ha estudiado en profundidad el funcionamiento de redes neuronales, más específicamente las CNN y se observó que estas son las más favorables para la implementación en sistemas embebidos, por su bajo costo computacional en comparación con las LSTM, logrando reconocer las patentes de manera efectiva.
 
-Uno de los enfoques más imporantes de este trabajo fue el diseño modular, buscando que la interindependecia de las partes del sistema sea lo mas baja posible, es decir, permite cambiar partes del sistema disminuyendo los errores al integrar estos nuevos elementos.
-Por ejemplo, es posible cambiar el servicio de detección de patentes por uno mejor, sin necesidad de cambiar el codigo del Backend o del Frontend solo se debe respetar que la comunicación entre el Backend y este servicio sea por HTTP y devuelva el JSON esperado.
+Uno de los enfoques más imporantes de este trabajo fue el diseño modular, buscando que la interindependecia de las partes del sistema sea lo más baja posible, es decir, permite cambiar partes del sistema disminuyendo los errores al integrar estos nuevos elementos.
+Por ejemplo, es posible cambiar el servicio de detección de patentes por uno mejor, sin necesidad de cambiar el código del Backend o del Frontend, respetando solo que la comunicación entre el Backend y este servicio sea por HTTP y devuelva el JSON esperado.
 A su vez este diseño permite cambiar el sensor de distancia o la cámara sin tener un gran impacto en el resto del sistema.
 En síntesis este tipo de diseño permite una mayor flexibilidad a la hora de integrar nuevas tecnologías.
 
