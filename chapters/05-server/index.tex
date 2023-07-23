@@ -11,9 +11,9 @@ En este capítulo se explicará el diseño y la implementación del server. En l
 
 \section{Actualidad del desarrollo web}
 
-En la web existen dos grandes mundos: el Frontend es la parte de la web con la que interactúan los usuarios o clientes. El Backend que es la parte que se conecta con la base de datos y ejecuta las validaciones necesarias para leer o escribir información. En general, el frontend y el backend suelen ser 2 proyectos separados y pueden ser construidos en diferentes lenguajes. Los lenguajes más utilizados son: JavaScript (JS), Python, Ruby, entre otros \cite{presta_10_2021}.
+En la web existen dos grandes mundos: el Frontend es la parte de la web con la que interactúan los usuarios o clientes. El Backend que es la parte que se conecta con la base de datos y ejecuta las validaciones necesarias para leer o escribir información. En general, el frontend y el backend suelen ser dos proyectos separados y pueden ser construidos en diferentes lenguajes. Los lenguajes más utilizados son: JavaScript (JS), Python, Ruby, entre otros \cite{presta_10_2021}.
 
-En la actualidad el formato más utilizado para trasmitir información entre el Backend y el Frontend se utiliza el formato JSON de sus siglas en inglés JavaScript Object Notation o traducido como notación de objetos de JavaScript. En la Fig. \ref{fig:ejemplo-json} se observa un ejemplo de JSON. Este tipo de notación se caracteriza por almacenar los datos en forma clave-valor, permitiendo que el acceso a la información sea rápido y sencillo.
+En la actualidad el formato más utilizado para trasmitir información entre el Backend y el Frontend es el formato JSON de sus siglas en inglés JavaScript Object Notation o traducido como notación de objetos de JavaScript. En la Fig. \ref{fig:ejemplo-json} se observa un ejemplo de JSON. Este tipo de notación se caracteriza por almacenar los datos en forma clave-valor, permitiendo un acceso a la información rápido y sencillo.
 
 \begin{figure}
     \centering
@@ -22,7 +22,7 @@ En la actualidad el formato más utilizado para trasmitir información entre el 
     \label{fig:ejemplo-json}
 \end{figure}
 
-Hoy en día la web se ha transformado en la base de cualquier organización, hace años las organizaciones solían usar aplicaciones de escritorio, pero en la actualidad las aplicaciones web han dominado el mercado.
+Hoy en día la web se ha transformado en la base de cualquier organización. Hace años las organizaciones solían usar aplicaciones de escritorio, pero en la actualidad las aplicaciones web han dominado el mercado.
 
 \section{Docker}
 
@@ -30,11 +30,11 @@ Docker es una tecnología open source desarrollada por Docker Inc, la cual permi
 
 \subsection{¿Qué es un contenedor?}
 
-Un contenedor funciona casi como una máquina virtual, pero sin entorno gráfico y compartiendo el Kernel \cite{keepcoding_que_2022} con el sistema que lo hospeda, lo que hace que los contenedores sean más livianos y mucho más rápidos que una máquina virtual, ya que estas últimas emulan todo el sistema e incluyen un puente entren el kernel del sistema padre y el sistema emulado. Cada contenedor suele especializado para cumplir una determinada tarea, en general se los denomina servicios.
+Un contenedor funciona casi como una máquina virtual, pero sin entorno gráfico y compartiendo el Kernel \cite{keepcoding_que_2022} con el sistema que lo hospeda, lo que hace que los contenedores sean más livianos y mucho más rápidos que una máquina virtual, ya que estas últimas emulan todo el sistema e incluyen un puente entren el kernel del sistema padre y el sistema emulado. Cada contenedor suele estar especializado para cumplir una determinada tarea y, en general, se los denomina servicios.
 
 \subsection{Docker Compose}
 
-Docker es una tecnología muy utilizada, pero por si sola puede ejecutar un único contenedor a la vez, es por ello que existen herramientas para la administración de múltiples contenedores en simultáneo. La más conocida, y muy utilizada en el mundo del desarrollo, es Kubernetes. Debido a que el sistema no es lo suficientemente grande y no se cuenta con múltiples servidores para alojar los servicios, la implementación se realizó mediante Docker Compose \cite{docker_inc_docker_2023}, el cual cumple un rol muy similar a Kubernetes, pero sin tanta complejidad extra que trae la opción de administrar múltiples servidores.
+Docker es una tecnología muy utilizada, pero por si sola puede ejecutar un único contenedor a la vez, es por ello que existen herramientas para la administración de múltiples contenedores en simultáneo. La más conocida, y muy utilizada en el mundo del desarrollo, es Kubernetes. Debido a que el sistema no es lo suficientemente grande y no se cuenta con múltiples servidores para alojar los servicios, la implementación se realizó mediante Docker Compose \cite{docker_inc_docker_2023}, cumple un rol muy similar a Kubernetes, pero sin agregar tanta complejidad debido a poder administrar múltiples servidores.
 \begin{figure}
     \centering
     \includegraphics[width=.5\textwidth]{imgs/docker-compose.png}
@@ -42,7 +42,7 @@ Docker es una tecnología muy utilizada, pero por si sola puede ejecutar un úni
     \label{fig:docker-compose-yml}
 \end{figure}
 
-El proceso de configuración de Docker Compose se hace creando un archivo de extensión YAML como el de la Fig. \ref{fig:docker-compose-yml}. Se puede observar que existen 2 apartados principales.
+El proceso de configuración de Docker Compose se hace creando un archivo de extensión YAML como el de la Fig. \ref{fig:docker-compose-yml}. Se puede observar que existen dos apartados principales.
 
 \subsubsection*{version}
 
@@ -50,21 +50,21 @@ Este atributo le indica a Docker Compose la versión del archivo de configuraci�
 
 \subsubsection*{services}
 
-Dentro del apartado de \textit{services} o por su traducción servicios se definen los servicios que se necesitaran, en este ejemplo se muestran 3 contenedores \textit{api}, \textit{front}, \textit{db}.
+Dentro del apartado de \textit{services} se definen los servicios que se necesitarán. En la Fig. \ref{fig:docker-compose-yml} se muestran tres contenedores \textit{api}, \textit{front}, \textit{db}.
 
-A su vez dentro de cada uno se define el atributo \textit{image} el cual indica que imagen se utilizará. Dicha imagen puede ser privada o  se puede utilizar una imagen pública de Docker Hub el cual es un repositorio de imágenes de Docker.
+Dentro de cada contenedor se define el atributo \textit{image} el cual indica que imagen se utilizará. Dicha imagen puede ser privada o  se puede utilizar una imagen pública de Docker Hub que es un repositorio de imágenes de Docker.
 Las imágenes son en esencia un sistema operativo configurado para algunos entornos, por ejemplo la imagen \textit{node:18-alpine} posee un sistema Alpine, que ya viene instalado con NodeJS en su versión 18, imagen muy utilizada para correr aplicaciones escritas en JS.
 
-Otro campo que se destaca es el \textit{working\_dir} o directorio de trabajo y es donde se almacenará el código de la aplicación. Es importante destacar que esta ruta se toma desde el contenedor, y no tiene por qué ser una ruta válida desde el sistema Host.
+Otro campo que se destaca es el \textit{working\_dir} o directorio de trabajo, que es donde se almacenará el código de la aplicación. Es importante destacar que esta ruta se toma desde el contenedor, y no tiene por qué ser una ruta válida desde el sistema Host.
 
 El atributo \textit{volumes} es un array que vincula una carpeta del sistema Host con una carpeta del contenedor, permitiendo acceder a la información del contenedor.
 Esto es muy utilizado para realizar backup desde el sistema Host.
 
-Por último \textit{ports} es un array que vincula los puertos del sistema anfitrión a los puertos del contenedor, lo que es sumamente útil cuando se desea escuchar un puerto específico para manejar peticiones HTTP, por ejemplo.
+Por último, \textit{ports} es un array que vincula los puertos del sistema anfitrión a los puertos del contenedor, lo que es sumamente útil cuando se desea escuchar un puerto específico para manejar peticiones HTTP, por ejemplo.
 
 \subsubsection*{intranet}
 
-Docker Compose genera una red interna para interconectar los contenedores, lo que permite que el servicio \textit{api} pueda acceder a la base de datos del servicio \textit{db} mediante la ruta \textit{mongodb://db:27017/sl}. La mayor ventaja de esta red es que hace inaccesible la base de datos para usuario que no estén dentro de la red de Docker, disminuyendo la vulnerabilidad del sistema.
+Docker Compose genera una red interna para interconectar los contenedores, lo que permite que el servicio \textit{api} pueda acceder a la base de datos del servicio \textit{db} mediante la ruta \textit{mongodb://db:27017/sl}. La mayor ventaja de esta red es que hace inaccesible la base de datos para usuarios que no estén dentro de la red de Docker, disminuyendo la vulnerabilidad del sistema.
 
 
 \section{Servicios}
@@ -80,11 +80,11 @@ El esquema de base de datos [figura de la base de datos].
 
 \subsection{Broker MQTT}
 
-Debido a que Mosquitto es el broker MQTT más utilizado, el cual utiliza la versión 5.0 del protocolo. El único tópico implementado tiene la forma de ``\textit{id}/config" donde \textit{id} es un identificador único de la barrera, esto permite de que existan tantos tópicos como barreras, y solo pueden escuchar los cambios de configuración de ellas, lo que permite ahorrar procesamiento de datos en la barrera.
+Debido a que Mosquitto es el broker MQTT más utilizado, el cual utiliza la versión 5.0 del protocolo. El único tópico implementado tiene la forma de ``\textit{id}/config" donde \textit{id} es un identificador único de la barrera, esto permite que existan tantos tópicos como barreras, y solo pueden escuchar los cambios de configuración de cada una de ellas, lo que permite ahorrar procesamiento de datos en la barrera.
 
 \subsection{Backend}
 
-El Backend está implementado en NestJS \cite{noauthor_documentacion_nodate}. Su principal función es la de administrar la información porque se conecta con la base de datos para realizar las tareas de lectura y escritura de documentos.
+El Backend está implementado en NestJS \cite{noauthor_documentacion_nodate}. Su principal función es administrar la información porque se conecta con la base de datos para realizar las tareas de lectura y escritura de documentos.
 
 Con la idea de generar la mayor documentación posible de este servicio se utilizó una librería llamada Swagger la cual, junto a NestJS, genera documentación automática de las rutas HTTP. Esto facilita la tarea de crear una nueva aplicación así como la de incluir una nueva persona al proyecto. En la Fig. \ref{fig:swagger-example} se observa como se ve la documentación generada por Swagger.
 
@@ -95,7 +95,7 @@ Con la idea de generar la mayor documentación posible de este servicio se utili
     \label{fig:swagger-example}
 \end{figure}
 
-Debido a la necesidad de autenticación de usuarios, y de los sistemas SL se implementó PassportJS que permite la creación de sistemas de validación de forma más sencilla. Los métodos de autenticación implementados fueron:
+Debido a la necesidad de autenticación de usuarios y de los sistemas SL, se implementó PassportJS que permite la creación de sistemas de validación de forma más sencilla. Los métodos de autenticación implementados fueron:
 
 \begin{enumerate}
     \item Usuario y contraseña: Utilizado para los usuarios que entran/registran desde la web.
@@ -106,11 +106,11 @@ Debido a la necesidad de autenticación de usuarios, y de los sistemas SL se imp
 
 \subsubsection*{JWT}
 
-JSON Web Token o simplemente JWT es un estándar qué está dentro del documento RFC 7519. Su función principal es poder propagar información entre dos partes de forma segura. En la práctica los JWT son muy fáciles de desencriptar por lo que se desaconseja incluir información sensible del usuario en el mismo.
+JSON Web Token o simplemente JWT es un estándar qué está dentro del documento RFC 7519. Su función principal es poder propagar información entre dos partes de forma segura. En la práctica, los JWT son muy fáciles de desencriptar por lo que se desaconseja incluir información sensible del usuario en el mismo.
 
 \subsection{Análisis de imágenes}
 
-Este servicio fue implementado con Flask el cual permite crear aplicaciones Backend en Python de forma fácil y rápida. La función de este servicio es obtener la patente de la fotografía tomada por los sistemas SL mini, es por ello que solo tiene una ruta e internamente ejecuta el algoritmo visto en el capítulo 3.
+Este servicio fue implementado con Flask el cual permite crear aplicaciones Backend en Python de forma fácil y rápida. La función de este servicio es obtener la patente de la fotografía tomada por los SL mini, es por ello que solo tiene una ruta e internamente ejecuta el algoritmo visto en el capítulo 3.
 
 \subsection{Frontend}
 
@@ -121,7 +121,7 @@ El Frontend fue construido en ReactJS, que es una de las librerías de JavaScrip
 Los usuarios puede registrarse y entrar a la plataforma como se ve en la Fig. \ref{fig:login}. Luego de ingresar pueden visualizar sus estacionamientos (Fig. \ref{fig:home}).
 
 Es posible configurar diversos parámetros del estacionamiento, como el nombre, ubicación y precio por hora (Fig. \ref{fig:update-place}).
-Para agregar versatilidad al sistema y permitir su uso para diferentes tareas se implementó un sistema de bloqueo de patentes (Fig. \ref{fig:in-type}), que permite bloquear todas las patentes salvo las que se encuentren en la lista o bloquear solo las que se encuentren en la lista. Adicionalmente pueden visualizar las barreras por barrio (Fig. \ref{fig:barrier-details}) y desde esta vista pueden configurar los parámetros de las mismas en tiempo real (Fig. \ref{fig:update-barrier}).
+Para agregar versatilidad al sistema y permitir su uso para diferentes tareas se implementó un sistema de bloqueo de patentes (Fig. \ref{fig:in-type}), que permite bloquear todas las patentes salvo las que estén en la lista o bloquear solo estas últimas. Adicionalmente pueden visualizar las barreras por barrio (Fig. \ref{fig:barrier-details}) y desde esta vista pueden configurar los parámetros de las mismas en tiempo real (Fig. \ref{fig:update-barrier}).
 
 Para la visualización y control de datos se crearon dos rutas.
 El Dashboard permite ver información resumida: horas estacionadas y cantidad de vehículos estacionados, separados por estacionamiento, filtrar los datos según fecha de inicio y fin, además permite agrupar los registros día, mes o año (Fig. \ref{fig:dashboard}).
