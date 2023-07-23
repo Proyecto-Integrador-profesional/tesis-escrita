@@ -7,19 +7,19 @@ En este capítulo se mostrará el desarrollo general del sistema, comenzando por
 El requisito fundamental de este trabajo fue poder controlar el sistema de entrada y salida de vehículos de al menos un recinto. Por lo tanto primero se explicará el caso particular de cómo funciona el sistema para el caso de un solo lugar. Adicionalmente existen otros requisitos preestablecidos, como:
 
 \begin{itemize}
-    \item Controlar el tiempo del vehículo dentro del establecimiento.
+    \item Medir el tiempo del vehículo dentro del establecimiento.
     \item Que la entrada y salida sea automática basada en la patente.
 \end{itemize}
 
 \begin{figure}
     \centering
     \includegraphics[width=.8\textwidth]{imgs/sistema-base.png}
-    \caption{Versión inicial del sistema}
+    \caption{Versión inicial del sistema.}
     \label{fig:sistema-base}
 \end{figure}
 
-De estos requisitos se desprende la forma más general del sistema, la cual cuenta con un subsistema que detecta los caracteres del vehículo, permite el acceso o el egreso del establecimiento al vehículo y, basado en la hora de entrada y salida, calcule el tiempo que estuvo el vehículo como se muestra en la Fig. \ref{fig:sistema-base}.
-Existe un gran inconveniente a la hora de obtener el texto de la patente de una imagen y es el tiempo de procesamiento.Es por ello que se utilizará un sensor de distancia para garantizar que existe un objeto a una determinada distancia.
+De estos requisitos se desprende la forma más general del sistema, que detecta los caracteres del vehículo, permite el acceso o el egreso del establecimiento al vehículo y, basado en la hora de entrada y salida, calcule el tiempo que estuvo el vehículo como se muestra en la Fig. \ref{fig:sistema-base}.
+Existe un gran inconveniente a la hora de obtener el texto de la patente de una imagen y es el tiempo de procesamiento. Es por ello que se utilizará un sensor de distancia para garantizar que existe un objeto.
 La versión correspondiente del sistema se puede observar en la Fig. \ref{fig:sistema-completa}.
 
 \begin{figure}
@@ -32,7 +32,7 @@ La versión correspondiente del sistema se puede observar en la Fig. \ref{fig:si
 Debido a que los parques de estacionamiento, como los de los supermercados, tienen entradas y salidas diferenciadas, el sistema deberá tener un comportamiento diferente según donde se encuentre.
 Es por ello que se implementarán dos algoritmos, uno para manejar las entradas y otro para manejar las salidas.
 
-\section{Los algoritmos de entrada y salida}
+\section{Algoritmos de entrada y salida}
 
 Una vez establecido como se verá el sistema, se debe definir su comportamiento cuando un vehículo entra o cuando sale.
 
@@ -44,7 +44,7 @@ En caso de encontrar una patente, se almacena la fecha, junto con la patente y l
 \begin{figure}
     \centering
     \includegraphics[width=.5\textwidth]{imgs/flujo-entrada.png}
-    \caption{Diagrama de flujo para la entrada}
+    \caption{Diagrama de flujo para la entrada.}
     \label{fig:flujo-entrada}
 \end{figure}
 
@@ -55,7 +55,7 @@ El algoritmo de salida es idéntico en la toma de muestra, pero antes de guardar
 \begin{figure}
     \centering
     \includegraphics[width=.5\textwidth]{imgs/flujo-salida.png}
-    \caption{Diagrama de flujo para la salida}
+    \caption{Diagrama de flujo para la salida.}
     \label{fig:flujo-salida}
 \end{figure}
 

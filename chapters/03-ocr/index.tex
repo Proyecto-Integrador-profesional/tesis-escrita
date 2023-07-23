@@ -13,7 +13,7 @@ El OCR, por sus siglas en inglés Optical Character
 Recognition o en español Reconocimiento Óptico de Caracteres, es una técnica que permite
 obtener texto en formato ASCII a partir de una imagen.
 Para lograrlo se debe inspeccionar la imagen buscando formas características de los símbolos como los del abecedario.
-La tecnología más utilizada para realizar el OCR son las Redes Neuronales donde se destacan dos tipos: las redes LSTM, por sus siglas en inglés Long-Short Term Memory, que son una variedad de Redes
+La tecnología más utilizada en esta ultima decada para realizar el OCR son las Redes Neuronales donde se destacan dos tipos: las redes LSTM, por sus siglas en inglés Long-Short Term Memory, que son una variedad de Redes
 neuronales recurrentes, y las CNN por sus siglas en inglés Convolutional Neural Network, o en español Red Neuronal Convolucional.
 
 Si bien el fin último de ambos tipos de red es obtener los caracteres a partir de la imagen, la forma en
@@ -37,7 +37,7 @@ Las señales principales son:
 Cada bloque LSTM se puede dividir en tres secciones diferentes que son:
 
 \begin{itemize}
-    \item Compuerta de memoria: representado por la función $f$, en ella se decide a que información se le debe prestar atención y cuál debe ser ignorada, en otras palabras, es la encargada de ponderar la importancia de la entrada actual respecto a la información pasada.
+    \item Compuerta de memoria: representado por la funcion $\sigma$, en ella se decide a que información se le debe prestar atención y cuál debe ser ignorada, en otras palabras, es la encargada de ponderar la importancia de la entrada actual respecto a la información pasada.
     \item Compuerta de entrada: esta se obtiene de la multiplicación de las señales $z$ e $i$, es la encargada de actualizar el estado del bloque con la información ponderada de la compuerta de memoria por el vector $z$, cuyos valores se encuentran entre $-1$ y $1$.
     \item Compuerta de salida: aquí se determina el valor actual del estado oculto y queda contenida la información de los estados previos, este valor es utilizado para realizar la predicción de estados futuros.
 \end{itemize}
@@ -55,7 +55,7 @@ Actualmente, este tipo de redes son las más utilizadas para realizar reconocimi
 
 La otra alternativa que se puede utilizar son las CNN, que mediante filtros bidimensionales y una serie de capas totalmente conectadas se predice el texto más probable.
 Al no requerir almacenar información ni trabajar de forma recursiva, la implementación
-de este tipo de redes se puede hacer en equipos con un hardware de menor potencia, menor tamaño y, por consiguiente, menor costo. La mayor desventaja es que el tamaño del texto debe estar previamente definido.
+de este tipo de redes se puede hacer en equipos con un hardware de menor potencia, menor tamaño y, por consiguiente, menor costo. La mayor desventaja es que la cantidad de caracteres debe estar previamente definido.
 
 Las patentes argentinas han sufrido tres modificaciones a lo largo de los años, que se pueden ver en la Fig. \ref{fig:patentes-arg}. En la actualidad, se pueden encontrar vehículos con las patentes lanzadas en 1994 y 2015. Si se considera un séptimo carácter en las de 1994 como un guion bajo (\_), es posible utilizar una red neuronal del tipo CNN frente a una LSTM.
 \begin{figure}[h]
