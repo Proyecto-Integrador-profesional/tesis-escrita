@@ -42,7 +42,7 @@ Cada bloque LSTM se puede dividir en tres secciones diferentes que son:
     \item Compuerta de salida: aquí se determina el valor actual del estado oculto y queda contenida la información de los estados previos, este valor es utilizado para realizar la predicción de estados futuros.
 \end{itemize}
 En forma resumida se puede decir que la compuerta de memoria determina que información de los estados anteriores es relevante, la compuerta de entrada decide que información es necesaria añadir al estado actual, y la compuerta de salida determinada el estado oculto actual.
-\begin{figure}[h]
+\begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{imgs/diagrama-lstm.png}
     \caption{Diagrama del bloque LSTM.}
@@ -58,7 +58,7 @@ Al no requerir almacenar información ni trabajar de forma recursiva, la impleme
 de este tipo de redes se puede hacer en equipos con un hardware de menor potencia, menor tamaño y, por consiguiente, menor costo. La mayor desventaja es que la cantidad de caracteres debe estar previamente definido.
 
 Las patentes argentinas han sufrido tres modificaciones a lo largo de los años, que se pueden ver en la Fig. \ref{fig:patentes-arg}. En la actualidad, se pueden encontrar vehículos con las patentes lanzadas en 1994 y 2015. Si se considera un séptimo carácter en las de 1994 como un guion bajo (\_), es posible utilizar una red neuronal del tipo CNN frente a una LSTM.
-\begin{figure}[h]
+\begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{imgs/patentes-arg.png}
     \caption{Evolución patentes Argentinas a lo largo de los años.}
@@ -78,7 +78,7 @@ Debido a la semejanza que existe entre los algoritmos de Deep Learning \cite{ibm
 
 La neurona es la unidad fundamental dentro de la red, y su nombre viene de la similitud que existe entre este elemento y una neurona humana, esto se puede apreciar en Fig. \ref{fig:comparativa-neuronas}. La tarea de la neurona es procesar la información que le entra para producir un valor de salida, a este proceso se lo conoce como sinapsis.
 
-\begin{figure}[h]
+\begin{figure}
     \centering
     \includegraphics[width=1\textwidth]{imgs/comparacion-neurona-red.png}
     \caption{Comparación neurona con neurona artificial.}
@@ -93,7 +93,7 @@ $W$ representa los pesos de la neurona y se define como un vector columna de dim
 
 A la hora de resolver problemas más complejos es usual necesitar más de una capa, es por ello que se interconectan para formar una red neuronal en la Fig. \ref{fig:esquema-redes} se observa una red con varias capas.
 
-\begin{figure}[h]
+\begin{figure}
     \centering
     \includegraphics[width=0.6\textwidth]{imgs/Redes-esquema.png}
     \caption{Esquema simplificado de una red neuronal.}
@@ -310,7 +310,7 @@ Para la implementación del algoritmo se utilizó el lenguaje Python 3, ya que c
 \end{figure}
 
 
-\begin{figure}[h]
+\begin{figure}
     \centering
     \includegraphics[width=\textwidth]{imgs/pic-to-text.png}
     \caption{Flujo de una fotografía hasta obtener el texto de la patente.}
