@@ -26,7 +26,7 @@ A continuación se lista las desventajas de este sistema:
     \item Necesidad de acciones por parte del usuario.
 \end{enumerate}
 
-\begin{figure}
+\begin{figure}[bth]
     \centering
     \includegraphics[width=0.5\textwidth]{imgs/sistema-control-acceso-barreras.jpg}
     \caption{Sistema tradicional de acceso por barreras \cite{integralia_sistema_2019}.}
@@ -46,7 +46,7 @@ Los problemas de este sistema son:
     \item Distancia de actuación corta.
 \end{enumerate}
 
-\begin{figure}
+\begin{figure}[bth]
     \centering
     \includegraphics[width=0.8\textwidth]{imgs/sistema-control-acceso-barreras-rfid.jpg}
     \caption{Sistema de acceso por RFID \cite{noauthor_acceso_nodate}.}
@@ -84,7 +84,7 @@ Luego de realizar una investigación de placas a las que se podía acceder se op
 La placa de la barrera SL mini es una Raspberry Pi 3 B+ \cite{noauthor_documentacion_nodate-2}, Fig. \ref{fig:raspberry} la cual cuenta con un procesador
 Broadcom BCM2837B0 y un Córtex A53 acompañado de 1 GB de RAM LPDDR2, junto con un sistema operativo llamado Raspberry Pi OS el cual está basado en Debian.
 
-\begin{figure}
+\begin{figure}[bth]
     \centering
     \includegraphics[width=0.4\textwidth]{imgs/Raspberry-pi3b+.jpg}
     \caption{Raspberry Pi 3B+.}
@@ -107,7 +107,7 @@ La placa de la barrera SL es una Nvidia Jetson TX1 \cite{nvidia_manual_nodate}, 
 Para realizar la implementación se contó con el kit de desarrollo provisto por la empresa Nvidia. En él se pueden encontrar todas las conexiones mencionadas en la barrera SL mini, lo que permite el paso de los sensores de una placa a otra con suma facilidad.
 Este modelo cuenta con un sistema operativo JetPack 4.6.3 basado en Ubuntu 18.04.
 
-\begin{figure}
+\begin{figure}[bth]
     \centering
     \includegraphics[width=0.3\textwidth]{imgs/JTX1-developerkit.png}
     \caption{Nvidia Jetson TX1 developer kit.}
@@ -126,7 +126,7 @@ En este apartado se comentará la selección de la cámara y el proceso de selec
 Una cualidad importante para la selección del tipo de cámara fue la interfaz que esta utilice, lo que permite implementar el mismo modelo en ambas versiones de placa.
 Si bien, tanto Raspberry como NVIDIA proveen de módulos de cámara, debido a que los conectores no eran los mismos se descartaron estas opciones. La decisión final terminó siendo una cámara web con interfaz USB, debido a que hoy en día son fáciles de conseguir y son relativamente económicas. Particularmente el modelo utilizado es el que se observa en Fig. \ref{fig:camara-usb}, el cual es un modelo genérico con una resolución de $1280 \times 720$ y $0.9MP$, siendo estas características aceptables para la tarea requerida.
 
-\begin{figure}
+\begin{figure}[bth]
     \centering
     \includegraphics[width=0.4\textwidth]{imgs/camara-usb.jpg}
     \caption{Cámara utilizada.}
@@ -164,7 +164,7 @@ Los sensores ultrasónicos funcionan emitiendo una onda ultrasónica por el tran
 El US-100 el cual se puede apreciar en Fig. \ref{fig:sensor-US100}, posee un rango de medición de $2cm$ a $350cm$, compensado por temperatura, voltaje de alimentación entre $3V$-$5V$ y usando el protocolo de
 comunicación UART.
 Por lo que es fácilmente integrable en ambas placas por medio del puerto GPIO sin necesidad de utilizar hardware extra.
-\begin{figure}
+\begin{figure}[bth]
     \centering
     \includegraphics[width=0.3\textwidth]{imgs/us-100.jpg}
     \caption{Sensor de distacia ultrasonico US-100.}
@@ -193,7 +193,7 @@ en el cargador que viene dentro del kit es de $19V$ y $4.74A$, dando un máximo 
 \section{Diseño y ensamble}
 
 Para la colocación del conjunto de prueba cámara-sensor, se diseñó e imprimió una caja en 3D, Fig. \ref{fig:contenedor-camara} que permita ser anclada a una pared o poste cercano a la zona de acceso. Este diseño permite una fácil instalación y puesta en marcha del sistema.
-\begin{figure}
+\begin{figure}[bth]
     \centering
     \includegraphics[width=0.5\textwidth]{imgs/contenedor-camara.png}
     \caption{Modelo 3D del contendor.}
@@ -203,7 +203,7 @@ Para la colocación del conjunto de prueba cámara-sensor, se diseñó e imprimi
 Se optó por colocar el sensor de proximidad en la zona inferior, ya que el ideal es colocar el contenedor a una altura de unos $60cm$ aproximadamente, con lo que al tener el sensor en la zona baja se garantiza que la lectura que se tome sea de la trompa del automóvil y se obtenga un valor certero de la distancia. Este diseño deja a la cámara en la zona superior del contendor dando una imagen lo más completa de la trompa del vehículo, lo que permite que el sistema reconozca la patente de mejor manera, esto previene que la patente salga recortada permitiendo mejores resultados en la etapa de estimación. Se dispuso un orificio en la zona inferior de la caja con la finalidad de colocar un eje, que permita la orientación del dispositivo, dependiendo
 el lugar donde se desee instalarlo.
 Para la sujeción al eje se realizaron dos orificios que permiten el paso de los tornillos que dejan fijo el contenedor al eje.
-\begin{figure}
+\begin{figure}[bth]
     \centering
     \includegraphics[width=0.5\textwidth]{imgs/contenedor-camara.png}
     \caption{Sistema de sujeción del contenedor.}
@@ -212,7 +212,7 @@ Para la sujeción al eje se realizaron dos orificios que permiten el paso de los
 
 En la Fig. \ref{fig:contenedor-camara-real} se puede apreciar el contenedor con la cámara y el sensor instalados.
 
-\begin{figure}
+\begin{figure}[bth]
     \centering
     \includegraphics[width=0.5\textwidth]{imgs/contenedor-camara.png}
     \caption{Contendor del paquete cámara-sensor.}

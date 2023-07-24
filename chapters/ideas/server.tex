@@ -7,11 +7,11 @@ En este apartado se busca hablar sobre el servidor, su arquitectura basada en mi
 
 El servidor posee una arquitectura de microservicios Fig \ref{fig:server}, donde todos los servicios corren en Docker. Las barreras interactuan hacia el servicio de NestJS donde se suben los registros de entrada/salida, para luego procesar las imagenes (Solo en el caso del SL mini) mediante el servicio de Flask, para obtener la patente como texto. Los clientes pueden acceder a Grafana para visualizar datos tales como (DAR EJEMPLOS CUANDO ESTEN). La base de datos se mantiene aislada del exterior, por lo que no es posible acceder a ella directamente, y solo se puede interactuar mediante el servicio de NestJS.
 
-\begin{figure}
-        \centering
-        \includegraphics[width=.5\textwidth]{imgs/uncoma.png}
-        \caption{Arquicetura del servidor}
-        \label{fig:server}
+\begin{figure}[bth]
+    \centering
+    \includegraphics[width=.5\textwidth]{imgs/uncoma.png}
+    \caption{Arquicetura del servidor}
+    \label{fig:server}
 \end{figure}
 
 \subsection{Docker}
@@ -24,11 +24,11 @@ Docker es una plataforma de software que permite crear, probar e implementar apl
 Un contenedor de Docker funciona como una maquina virtual, practicamente aislada del sistema. La gran diferencia entre un contenedor y una maquina virtual es que el contenedor solo realiza una virtualización de capas por encima del sistema operativo, por lo que el contenedor comparte el kernel con el sistema padre, mientras que la maquina virtual emula todo incluido el kernel del sistema, esto produce que los contenedores sean más eficientes en el uso del hardware, pero altamente dependientes del kernel del sistema padre. Es por ello que un SO Windows no puede correr contenedores Linux de una forma sencilla y debe recurrir a una virtualización del kernel Linux Fig. \ref{fig:docker-funcinamiento}.
 
 
-\begin{figure}
-        \centering
-        \includegraphics[width=.5\textwidth]{imgs/contenedores-docker.png}
-        \caption{Funcionamiento de Docker}
-        \label{fig:docker-funcinamiento}
+\begin{figure}[bth]
+    \centering
+    \includegraphics[width=.5\textwidth]{imgs/contenedores-docker.png}
+    \caption{Funcionamiento de Docker}
+    \label{fig:docker-funcinamiento}
 
 \end{figure}
 
@@ -52,14 +52,14 @@ La arquitectura de microservicios es una unión de servicios autónomos y peque�
 El servidor cuenta con los siguientes microservicios:
 
 \begin{enumerate}
-        \item Base de datos
-        \item Applicacion backend con nestjs
-              \subitem Usuarios
-              \subitem Barreras
-              \subitem Parques de estacionamiento
-              \subitem Registros
-        \item Frontend con ReactJS
-        \item Applicacion backend con Flask (analisis de patente online)
+    \item Base de datos
+    \item Applicacion backend con nestjs
+          \subitem Usuarios
+          \subitem Barreras
+          \subitem Parques de estacionamiento
+          \subitem Registros
+    \item Frontend con ReactJS
+    \item Applicacion backend con Flask (analisis de patente online)
 \end{enumerate}
 
 
@@ -69,10 +69,10 @@ El servidor cuenta con los siguientes microservicios:
 Para la autenticación se utilizo el module de Passport JS, el cual permite crear estrategias para los diferentes tipos de autenticación, las estrategias utilizadas son:
 
 \begin{enumerate}
-        \item Local
-        \item Apikey aplicaciones de terceros
-        \item Apikey para las barreras
-        \item JWT
+    \item Local
+    \item Apikey aplicaciones de terceros
+    \item Apikey para las barreras
+    \item JWT
 \end{enumerate}
 
 La estrategia Local, hace un logging del usuario segun su nombre de usuario y su contraseña.
@@ -91,8 +91,8 @@ Si bien, las barreras procesan datos antes de enviarlos, la logica del sistema s
 Basicamente se va a hablar del panel admin y algun funciones para los clientes. junto con las librerias implementadas como ZOD,
 
 \begin{enumerate}
-        \item Manejo de estado global: https://docs.pmnd.rs/zustand/getting-started/comparison
-        \item ZOD: https://zod.dev/
+    \item Manejo de estado global: https://docs.pmnd.rs/zustand/getting-started/comparison
+    \item ZOD: https://zod.dev/
 \end{enumerate}
 
 Existen 2 clientes frontend uno para la adminitracion y otro para los clientes.
@@ -112,10 +112,10 @@ Debido a la facilidad de manejar servicios en Docker, el broker mqtt que se util
 La base de datos del servicio es una base de datos no relacional basada en documentos [mongodb docs]. A la forma de los documentos en la base de datos se los denomina esquemas. Los esquemas que se implementaron fueron:
 
 \begin{enumerate}
-        \item Lugares
-        \item Usuarios
-        \item Barreras
-        \item Datos de autenticación de las barreras
+    \item Lugares
+    \item Usuarios
+    \item Barreras
+    \item Datos de autenticación de las barreras
 \end{enumerate}
 
 La informacion que almacena cada documento, es decir, el esquema se muestra detalla acontinuación.

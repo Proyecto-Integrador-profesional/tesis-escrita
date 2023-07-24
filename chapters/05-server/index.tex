@@ -2,7 +2,7 @@
 
 En este capítulo se explicará el diseño y la implementación del server. En la Fig. \ref{fig:server-final} se observa la versión final del servicio, mostrando la interacción entre los Clientes, los sistemas SL y el Server.
 
-\begin{figure}
+\begin{figure}[bth]
     \centering
     \includegraphics[width=.6\textwidth]{imgs/server-esquema.png}
     \caption{Esquema final del servidor.}
@@ -15,7 +15,7 @@ En la web existen dos grandes mundos: el Frontend es la parte de la web con la q
 
 En la actualidad el formato más utilizado para trasmitir información entre el Backend y el Frontend es el formato JSON de sus siglas en inglés JavaScript Object Notation o traducido como notación de objetos de JavaScript. En la Fig. \ref{fig:ejemplo-json} se observa un ejemplo de JSON. Este tipo de notación se caracteriza por almacenar los datos en forma clave-valor, permitiendo un acceso a la información rápido y sencillo.
 
-\begin{figure}
+\begin{figure}[bth]
     \centering
     \includegraphics[width=.5\textwidth]{imgs/json-example.png}
     \caption{Ejemplificación de un JSON.}
@@ -35,7 +35,7 @@ Un contenedor funciona casi como una máquina virtual, pero sin entorno gráfico
 \subsection{Docker Compose}
 
 Docker es una tecnología muy utilizada, pero por si sola puede ejecutar un único contenedor a la vez, es por ello que existen herramientas para la administración de múltiples contenedores en simultáneo. La más conocida, y muy utilizada en el mundo del desarrollo, es Kubernetes. Debido a que el sistema no es lo suficientemente grande y no se cuenta con múltiples servidores para alojar los servicios, la implementación se realizó mediante Docker Compose \cite{docker_inc_docker_2023}, cumple un rol muy similar a Kubernetes, pero sin agregar tanta complejidad debido a poder administrar múltiples servidores.
-\begin{figure}
+\begin{figure}[bth]
     \centering
     \includegraphics[width=.5\textwidth]{imgs/docker-compose.png}
     \caption{Ejemplificación de una archivo \textit{docker-compose.yml}}
@@ -88,7 +88,7 @@ El Backend está implementado en NestJS \cite{noauthor_documentacion_nodate}. Su
 
 Con la idea de generar la mayor documentación posible de este servicio se utilizó una librería llamada Swagger la cual, junto a NestJS, genera documentación automática de las rutas HTTP. Esto facilita la tarea de crear una nueva aplicación así como la de incluir una nueva persona al proyecto. En la Fig. \ref{fig:swagger-example} se observa como se ve la documentación generada por Swagger.
 
-\begin{figure}
+\begin{figure}[bth]
     \centering
     \includegraphics[width=\textwidth]{imgs/server/swagger.png}
     \caption{Documentación generada por Swagger.}
@@ -128,21 +128,21 @@ El Dashboard permite ver información resumida: horas estacionadas y cantidad de
 Por otro lado existe una vista de los registros crudos, dando información particular de cada registro (Fig. \ref{fig:registers})
 
 
-\begin{figure}
+\begin{figure}[bth]
     \centering
     \includegraphics[width=\textwidth]{imgs/server/login.png}
     \caption{Inicio de sesión.}
     \label{fig:login}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[bth]
     \centering
     \includegraphics[width=\textwidth]{imgs/server/places.png}
     \caption{Estacionamientos del cliente.}
     \label{fig:home}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[bth]
     \centering
     \includegraphics[width=\textwidth]{imgs/server/update-place.png}
     \caption{Formulario para actualizar un estacionamiento.}
@@ -150,34 +150,34 @@ Por otro lado existe una vista de los registros crudos, dando información parti
 \end{figure}
 
 
-\begin{figure}
+\begin{figure}[bth]
     \centering
     \includegraphics[width=\textwidth]{imgs/server/in-type.png}
     \caption{Vista de permisos.}
     \label{fig:in-type}
 \end{figure}
-\begin{figure}
+\begin{figure}[bth]
     \centering
     \includegraphics[width=\textwidth]{imgs/server/client-barriers-details.png}
     \caption{Vista de los detalles.}
     \label{fig:barrier-details}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[bth]
     \centering
     \includegraphics[width=\textwidth]{imgs/server/barrier-update-data.png}
     \caption{Formulario para actualizar los datos de la barrera.}
     \label{fig:update-barrier}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[bth]
     \centering
     \includegraphics[width=\textwidth]{imgs/server/resume.png}
     \caption{Visualización de datos para un cliente con 2 estacionamientos.}
     \label{fig:dashboard}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[bth]
     \centering
     \includegraphics[width=\textwidth]{imgs/server/registers.png}
     \caption{Vista de registros.}
@@ -190,14 +190,14 @@ Por otro lado existe una vista de los registros crudos, dando información parti
 
 Los administradores poseen una página para visualizar las barreras según cliente y lugar (Fig. \ref{fig:admin-details}). Por último, poseen una página para agregar barreras (Fig. \ref{fig:add-barrier}).
 
-\begin{figure}
+\begin{figure}[bth]
     \centering
     \includegraphics[width=\textwidth]{imgs/server/admin-details.png}
     \caption{Detalles de las barreras según cliente y estacionamiento.}
     \label{fig:admin-details}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[bth]
     \centering
     \includegraphics[width=\textwidth]{imgs/server/add-barrier.png}
     \caption{Formulario para agregar una barrera.}

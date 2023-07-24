@@ -42,7 +42,7 @@ Cada bloque LSTM se puede dividir en tres secciones diferentes que son:
     \item Compuerta de salida: aquí se determina el valor actual del estado oculto y queda contenida la información de los estados previos, este valor es utilizado para realizar la predicción de estados futuros.
 \end{itemize}
 En forma resumida se puede decir que la compuerta de memoria determina que información de los estados anteriores es relevante, la compuerta de entrada decide que información es necesaria añadir al estado actual, y la compuerta de salida determinada el estado oculto actual.
-\begin{figure}
+\begin{figure}[bth]
     \centering
     \includegraphics[width=0.5\textwidth]{imgs/diagrama-lstm.png}
     \caption{Diagrama del bloque LSTM.}
@@ -58,7 +58,7 @@ Al no requerir almacenar información ni trabajar de forma recursiva, la impleme
 de este tipo de redes se puede hacer en equipos con un hardware de menor potencia, menor tamaño y, por consiguiente, menor costo. La mayor desventaja es que la cantidad de caracteres debe estar previamente definido.
 
 Las patentes argentinas han sufrido tres modificaciones a lo largo de los años, que se pueden ver en la Fig. \ref{fig:patentes-arg}. En la actualidad, se pueden encontrar vehículos con las patentes lanzadas en 1994 y 2015. Si se considera un séptimo carácter en las de 1994 como un guion bajo (\_), es posible utilizar una red neuronal del tipo CNN frente a una LSTM.
-\begin{figure}
+\begin{figure}[bth]
     \centering
     \includegraphics[width=0.5\textwidth]{imgs/patentes-arg.png}
     \caption{Evolución patentes Argentinas a lo largo de los años.}
@@ -78,7 +78,7 @@ Debido a la semejanza que existe entre los algoritmos de Deep Learning \cite{ibm
 
 La neurona es la unidad fundamental dentro de la red, y su nombre viene de la similitud que existe entre este elemento y una neurona humana, esto se puede apreciar en Fig. \ref{fig:comparativa-neuronas}. La tarea de la neurona es procesar la información que le entra para producir un valor de salida, a este proceso se lo conoce como sinapsis.
 
-\begin{figure}
+\begin{figure}[bth]
     \centering
     \includegraphics[width=1\textwidth]{imgs/comparacion-neurona-red.png}
     \caption{Comparación neurona con neurona artificial.}
@@ -93,7 +93,7 @@ $W$ representa los pesos de la neurona y se define como un vector columna de dim
 
 A la hora de resolver problemas más complejos es usual necesitar más de una capa, es por ello que se interconectan para formar una red neuronal en la Fig. \ref{fig:esquema-redes} se observa una red con varias capas.
 
-\begin{figure}
+\begin{figure}[bth]
     \centering
     \includegraphics[width=0.6\textwidth]{imgs/Redes-esquema.png}
     \caption{Esquema simplificado de una red neuronal.}
@@ -104,7 +104,7 @@ Debido a que en esencia el proceso que realiza la neurona es una transformación
 Este problema de linealidad se soluciona aplicando una transformación no lineal, la cual se suele llamar función de activación,
 luego de que la información es procesada por la neurona, obteniendo $y= f(W^T X + b)$. Las funciones de activación más conocidas se pueden observar en la Fig. \ref{fig:funciones-activacion}.
 
-\begin{figure}
+\begin{figure}[bth]
     \centering
     \includegraphics[width=1\textwidth]{imgs/Funciones-de-activacion.jpg}
     \caption{Funciones de activación más comunes.}
@@ -133,13 +133,13 @@ En la Fig. \ref{fig:esquema-CNN} se observa un esquema de la misma.
 
 Si bien la descripción de las capas de convolución, agrupación y función de activación se realizaron de forma separa, se suelen implementar juntas, ya que es común tener varias capas de convolución conectadas en serie, permitiendo extraer información más especifica de la red.
 
-\begin{figure}
+\begin{figure}[bth]
     \centering
     \includegraphics[width=1\textwidth]{imgs/capa-convolucional.jpeg}
     \caption{Esquema de funcionamiento de una capa convolucional.}
     \label{fig:esquema-capa-convolucional}
 \end{figure}
-\begin{figure}
+\begin{figure}[bth]
     \centering
     \includegraphics[width=1\textwidth]{imgs/CNN-completa.png}
     \caption{Ejemplificación de una red neuronal de convolución.}
@@ -175,7 +175,7 @@ Otra forma de entender a la capa de pooling es un submuestreo de la imagen de sa
 
 En la Fig. \ref{fig:ejemplo-mp} se puede apreciar el comportamiento de una capa de maxpooling. Luego de la capa de convolución, se divide la matriz
 en pequeñas matrices de $2 \times 2$ y se extrae el valor más representativo de cada submatriz, reduciendo la matriz de un tamaño de $5 \times 5$ a una de $3 \times 3$, en este caso.
-\begin{figure}
+\begin{figure}[bth]
     \centering
     \includegraphics[width=1\textwidth]{imgs/ej-maxpooling.jpg}
     \caption{Ejemplo de funcionamiento de Maxpooling.}
@@ -189,7 +189,7 @@ La técnica de Batch-Normalization se utiliza para reducir la covarianza de los 
 \section{CCN-OCR}
 
 Para este trabajo se utilizó una CNN diseñada y entrenada por Ankadrew, cuya arquitectura se puede ver en Fig. \ref{fig:arquitectura-cnn-ocr}. De la arquitectura de la red se destaca la capa de Global Average Pooling, la cual remplaza a la capa de aplanamiento y calcula la media por cada imagen de salida de la capa anterior, produciendo un valor por cada imagen [incluir figura de la diferencia de una capa de Flatten y un global average pooling].
-\begin{figure}
+\begin{figure}[bth]
     \centering
     \includegraphics[width=.4\textwidth]{imgs/cnn-ocr.png}
     \caption{Arquitectura de la CNN-OCR.}
@@ -213,7 +213,7 @@ la captura antes de ingresarla a la CNN-OCR:
     \item Transformar la imagen a escala de grises.
     \item Redimensionar la imagen al tamaño requerido.
 \end{enumerate}
-\begin{figure}
+\begin{figure}[bth]
     \centering
     \begin{subfigure}[b]{0.49\textwidth}
         \centering
@@ -249,7 +249,7 @@ Una de las principales características de esta arquitectura es la forma en que 
 Debido a que la Darknet está escrita en C es necesario compilar la misma, esto se hizo siguiendo los pasos del repositorio de AlexeyAB \cite{alexey_yolo_2023}.
 
 
-\begin{figure}
+\begin{figure}[bth]
     \centering
     \includegraphics[width=0.5\textwidth]{imgs/funcionamiento-yolo.png}
     \caption{Funcionamiento del proceso de detección de la YoloV4 \cite{bochkovskiy_yolov4_2020}.}
@@ -270,7 +270,7 @@ El proceso de conversión a escala de grises se puede hacer de diversas maneras.
     I = 0.2989R + 0.587G + 0.114B
 \end{equation}
 
-\begin{figure}
+\begin{figure}[bth]
     \centering
     \begin{subfigure}[b]{0.3\textwidth}
         \centering
@@ -302,7 +302,7 @@ Para redimensionar la imagen se utiliza una interpolación bilineal la cual no s
 
 Para la implementación del algoritmo se utilizó el lenguaje Python 3, ya que cuenta con una gran cantidad de librerías necesarias para el funcionamiento del sistema completo. La descripción general del algoritmo se puede observar en Fig. \ref{fig:algoritmo-ocr}.
 
-\begin{figure}
+\begin{figure}[bth]
     \centering
     \includegraphics[width=.25\textwidth]{imgs/flujo-algoritmo-ocr.png}
     \caption{Algoritmo general de OCR.}
@@ -310,7 +310,7 @@ Para la implementación del algoritmo se utilizó el lenguaje Python 3, ya que c
 \end{figure}
 
 
-\begin{figure}
+\begin{figure}[bth]
     \centering
     \includegraphics[width=\textwidth]{imgs/pic-to-text.png}
     \caption{Flujo de una fotografía hasta obtener el texto de la patente.}

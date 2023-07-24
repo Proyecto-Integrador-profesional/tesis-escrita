@@ -11,7 +11,7 @@ El requisito fundamental de este trabajo fue poder controlar el sistema de entra
     \item Que la entrada y salida sea automática basada en la patente.
 \end{itemize}
 
-\begin{figure}
+\begin{figure}[bth]
     \centering
     \includegraphics[width=.8\textwidth]{imgs/sistema-base.png}
     \caption{Versión inicial del sistema.}
@@ -22,7 +22,7 @@ De estos requisitos se desprende la forma más general del sistema, que detecta 
 Existe un gran inconveniente a la hora de obtener el texto de la patente de una imagen y es el tiempo de procesamiento. Es por ello que se utilizará un sensor de distancia para garantizar que existe un objeto.
 La versión correspondiente del sistema se puede observar en la Fig. \ref{fig:sistema-completa}.
 
-\begin{figure}
+\begin{figure}[bth]
     \centering
     \includegraphics[width=.3\textwidth]{imgs/sistema-con-sensor.png}
     \caption{Sistema con sensor de distancia y cámara.}
@@ -41,7 +41,7 @@ Una vez establecido como se verá el sistema, se debe definir su comportamiento 
 La toma de muestra, es decir, una fotografía, se da cuando el sistema detecta que tiene un objeto a menos de $X$cm. Luego, se procesa la imagen, para obtener la patente en formato de texto.
 En caso de encontrar una patente, se almacena la fecha, junto con la patente y la fotografía Fig. \ref{fig:flujo-entrada}.
 
-\begin{figure}
+\begin{figure}[bth]
     \centering
     \begin{subfigure}{.48\textwidth}
         \includegraphics[width=\textwidth]{imgs/flujo-entrada.png}
@@ -71,7 +71,7 @@ Ambos algoritmos poseen un pequeño inconveniente a la hora de extender el proye
 
 Una vez diseñado y comprendido como está compuesto el sistema a grandes rasgos, es importante entender las partes del mismo y lograr diferenciar que parte del algoritmo se ejecutará en el sistema SL y cuál en el servidor. Para la comunicación del SL con el servidor se optó por utilizar 2 protocolos de comunicación: por un lado HTTP para el envío y actualización de registros de entrada/salida, y MQTT para cambios en la configuración de las barreras.
 En la Fig. \ref{fig:sistema-server-barrera} se observa como interactúan los vehículos con la plataforma, la flecha en rojo se utiliza para destacar el envío de datos por MQTT.
-\begin{figure}
+\begin{figure}[bth]
     \centering
     \includegraphics[width=.3\textwidth]{imgs/sistema-server-barrera}
     \caption{Sistema separado en SL y servidor.}
@@ -83,7 +83,7 @@ Esta es la versión que se desarrollará en los capítulos siguientes.
 \subsection{Interacción con el cliente}
 
 Debido a que el enfoque del diseño implica un cliente que desea utilizar el sistema se desarrolla una plataforma web para simplificar el manejo de configuración y administración del sistema. En la Fig. \ref{fig:esquema-cliente-servidor-sl} se observa la arquitectura a implementar en el servidor, teniendo en cuenta las interacciones y su manejo entre los sistemas SL y los clientes.
-\begin{figure}
+\begin{figure}[bth]
     \centering
     \includegraphics[width=.4\textwidth]{imgs/server-clientes-barreras.png}
     \caption{Esquema de comunicación Cliente-Servidor-SL.}
