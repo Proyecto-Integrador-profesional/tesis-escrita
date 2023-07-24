@@ -1,27 +1,12 @@
 \section{Metodología}
 
-Se desarrollará una investigación sobre la transformación de la imagen de la patente a texto mediante algoritmos de OCR. Para ello se plantea la implementación de algoritmos de deep learning ya entrenados. El eje central de la implementación se hará pensando que el sistema pueda correr en hardware embebido como Raspberry Pi y NVIDIA Jetson TX1. Además, se incluirá un servidor externo para el almacenaje y visualización de información de entrada y salida, con la posibilidad de clasificar por sensor y por franja horaria.
+En primer lugar se diseña el sistema permitiendo obtener los requisitos del sistema. A grandes rasgos, se pueden diferenciar tres tareas principales: implementar un algoritmo de detección óptica de caracteres para obtener la patente de los vehículos, diseñar e implementar un sistema capaz de capturar la fotografía para posteriormente procesarla, y desarrollar una aplicación WEB para permitir el acceso a la información a los dueños del establecimiento.
 
-Luego se procederá a la implementación del software utilizando Docker [8], haciendo que el sistema desarrollado sea fácil de instalar y replicar en otros modelos de placas embebidas.
-Finalmente, se volcarán los resultados en un informe.
+El desarrollo de la obtención de la patente de un vehículo a partir de una fotografía. La conversión fotografía-patente se realiza utilizando un algoritmo de detección óptica de caracteres usando redes neuronales convoluciones. Posteriormente se desarrolla una implementación del algoritmo en Python 3, para poder utilizarlo en un servidor web, y en sistemas embebidos.
 
-Todos los subproyectos serán almacenados en GitHub con la finalidad de emular un entorno de desarrollo real.
+El diseño de las placas secundarias se lleva a cabo con Raspberry Pi 3B+ y NVIDIA Jetson TX1, con la idea de desarrollar dos versiones del sistema, los cuales son denominados como SL mini y SL respectivamente. En esta etapa se definen los sensores necesarios para la tarea de obtener la fotografía de los vehículos. Además se hacen las implementaciones de software necesarias para realizar la tarea.
 
-A continuación se detallan las actividades a realizar:
+Para el desarrollo del servidor se eligió una variedad de tecnologías, principalmente escritas en Python 3 y JavaScript, ya que son muy utilizadas en la actualidad. Esta etapa incluye el diseño de un panel para los dueños de los establecimientos, permitiendo acceder a la información y cambiar algunas configuraciones básicas de los sistemas SL. Además los administradores cuentan con un panel específico para administrar los sistemas SL, permitiendo crear nuevos sistemas.
 
-Etapa 1 - Estudio de algoritmos de OCR: Se profundizará en bibliografía, principalmente en algoritmos que utilicen redes neuronales.
-
-Etapa 2 - Desarrollo del algoritmo de reconocimiento en tiempo real: Se deberá desarrollar un algoritmo que sea capaz de capturar una fotografía desde una cámara y procesarla utilizando un algoritmo estudiado en la Etapa 1. El resultado final debe ser un algoritmo capaz de correr en un SO basado en Linux.
-
-Etapa 3 -  Desarrollo del software para el servidor: En esta etapa se desarrollará el software que pueda correr en un servidor para almacenar los datos de los sensores, junto con la aplicación web que permita la visualización de datos.
-
-Etapa 4 - Evaluación de los sensores: En esta etapa se pretende realizar una evaluación de los sensores necesarios para el funcionamiento del sistema, haciendo foco en la cámara que se utilizara para la obtener las imágenes.
-
-Etapa 5 - Diseño de hardware: Se diseñará el hardware donde irá montado el sistema, teniendo en cuenta la alimentación, según los requerimientos de consumo que este posea.
-
-Etapa 6 - Montaje del hardware del sistema: Se montarán al menos 2 versiones de prueba, una que incluirá una Raspberry Pi (sistema SL mini) y otra que utilizará la NVIDIA Jetson TX1 (sistema SL). En esta etapa se definirán los requerimientos de la cámara que poseerán los sensores.
-
-Etapa 7 - Implementación de los algoritmos en entornos de prueba: Se ejecutará y probará el rendimiento de la etapa 1 en los sensores SL y SL mini, realizando un análisis de costo, teniendo en cuenta costos energéticos y económicos.
-
-
+Para estudiar el rendimiento del sistema se realizan diferentes pruebas tales como: prueba de exterior, distancia y ángulos variables y creación de registros de entrada y salida. La prueba en exterior permite ver el rendimiento del algoritmo de detección óptica de caracteres en un ambiente para el cual no fue diseñado. El análisis de distancia y ángulos hace énfasis en el comportamiento del sistema en entornos controlados, y se realiza con la finalidad de estudiar los límites del algoritmo de detección óptica de caracteres. Por última la prueba sobre el servidor, permite observar si el comportamiento de la aplicación web es correcta, permitiendo crear registros y visualizar los datos de forma correcta.
 
