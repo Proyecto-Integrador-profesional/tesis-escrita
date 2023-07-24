@@ -76,7 +76,14 @@ Una vez que fue descripto cómo se hará la implementación y su arquitectura, s
 La base de datos elegida fue Mongo DB, debido a que es una de las bases de datos más utilizada. Mongo es una base de datos basada en documentos, por lo tanto no posee vínculos fuertes entre los diferentes esquemas.
 Los datos se almacenan en BSON (binary JSON), el cual hace más fácil la transferencia de datos. Por otro lado, permite escalar de manera horizontal de forma más sencilla, ya que se suelen usar identificadores únicos y no incrementales, como es frecuente en bases de datos del tipo SQL.
 
-El esquema de base de datos [figura de la base de datos].
+El esquema de base de datos en UML se observa en la Fig. \ref{fig:db-uml}, las fechas violetas indican una relación entre los documentos, mientras que las grises muestra que existe un documento embebido en el documento padre.
+
+\begin{figure}[bth]
+    \centering
+    \includegraphics[width=.5\textwidth]{imgs/db.png}
+    \caption{Esquema UML de la base de datos.}
+    \label{fig:db-uml}
+\end{figure}
 
 \subsection{Broker MQTT}
 
