@@ -10,7 +10,7 @@ Para obtener algunos requerimientos es necesario entender que alternativas exist
 
 Los sistemas actuales más comunes hoy en día son:
 
-\subsubsection*{Sistemas tradicionales de tickets}
+\subsubsection{Sistemas tradicionales de tickets}
 
 Este sistema de control de ingreso y egreso suele generar molestias en muchos de los usuarios, por la necesidad de realizar alguna acción extra, como presionar un pulsador para obtener un ticket con los datos de entrada. Este sistema se puede apreciar en Fig. \ref{fig:sistema-tradicional}.
 Los tickets poseen un gran inconveniente, ya que si el usuario lo pierde se le cobra un valor fijo que, en general, es mayor al tiempo de la estadía.
@@ -33,7 +33,7 @@ A continuación se lista las desventajas de este sistema:
     \label{fig:sistema-tradicional}
 \end{figure}
 
-\subsubsection*{Sistemas de radiofrecuencia}
+\subsubsection{Sistemas de radiofrecuencia}
 
 Con el avance y el abaratamiento de los costos en la electrónica surgieron nuevos métodos que permitieron a los usuarios prescindir de la necesidad de un ticket o una persona que les permita el acceso. El método principal es el uso de controles remotos que al ser accionados, activan el mecanismo y abren el paso del vehículo.
 
@@ -137,7 +137,7 @@ Si bien, tanto Raspberry como NVIDIA proveen de módulos de cámara, debido a qu
 
 Con la finalidad de minimizar las imágenes sin vehículos, se decidió colocar un sensor capaz de señalar que existe un objeto. A continuación se nombran las opciones analizadas:
 
-\subsubsection*{Barrera infrarroja}
+\subsubsection{Barrera infrarroja}
 
 Este sistema cuenta con un receptor y un emisor, separados lo suficiente para que un vehículo pase entre ellos. La captura se da cuando el vehículo interrumpe el paso de luz entre el receptor y el emisor.
 
@@ -150,11 +150,11 @@ El sistema de barrera infrarroja cuenta con una serie de inconvenientes que difi
     \item Apantallamiento del receptor debido a partículas de suciedad.
 \end{enumerate}
 
-\subsubsection*{Placa de presión}
+\subsubsection{Placa de presión}
 
 La placa de presión cuenta de una placa que acciona un interruptor cuando es presionada. Debido a que no fue posible armar un sistema de placa a presión, y tampoco se consiguió una opción económicamente viable, sumado a que las dimensiones pueden variar dependiendo el estacionamiento esta opción fue descartada.
 
-\subsubsection*{Sensor de distancia}
+\subsubsection{Sensor de distancia}
 
 Los sensores de distancia son muy versátiles y existen una amplia variedad en el mercado es por ello que fueron seleccionados para la implementación de los prototipos.
 En particular para este trabajo se utilizó un sensor ultrasónico US-100.
@@ -225,12 +225,12 @@ Para terminar el diseño de los sistemas SL y SL mini, se explicará el diseño 
 Es por ello que se implementaron una serie de módulos que permiten ser actualizados de manera sencilla y aíslan responsabilidades en diferentes partes. La implementación se realizó en Python 3. A continuación se realizará una breve explicación de las librerías creadas.
 
 
-\subsubsection*{Lectura de distancia}
+\subsubsection{Lectura de distancia}
 
 Para la lectura de distancia se implementó una librería llamada \textit{us100}, la cual utiliza \textit{pyserial}  \cite{noauthor_documentacion_nodate-1} para la comunicación por puerto serie.
 Esta librería posee una función que devuelve la distancia de un objetivo. Con la finalidad de disminuir los falsos positivos se utilizó una lista anidada que posee las últimas 5 mediciones, y devuelve el promedio de las mismas.
 
-\subsubsection*{Utilidades}
+\subsubsection{Utilidades}
 
 Se creó una librería llamada \textit{slutils} la cual tiene como responsabilidad la conexión con el servidor MQTT, el envío de registros de entrada/salida, así como administrar la configuración del sistema y la captura de imágenes.
 

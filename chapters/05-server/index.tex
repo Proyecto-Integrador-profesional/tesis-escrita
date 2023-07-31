@@ -44,11 +44,11 @@ Docker es una tecnología muy utilizada, pero por si sola puede ejecutar un úni
 
 El proceso de configuración de Docker Compose se hace creando un archivo de extensión YAML como el de la Fig. \ref{fig:docker-compose-yml}. Se puede observar que existen dos apartados principales.
 
-\subsubsection*{version}
+\subsubsection{version}
 
 Este atributo le indica a Docker Compose la versión del archivo de configuración que se está utilizando, en general, esta versión impacta directamente en qué atributos se pueden utilizar en el resto del archivo de configuración.
 
-\subsubsection*{services}
+\subsubsection{services}
 
 Dentro del apartado de \textit{services} se definen los servicios que se necesitarán. En la Fig. \ref{fig:docker-compose-yml} se muestran tres contenedores \textit{api}, \textit{front}, \textit{db}.
 
@@ -62,7 +62,7 @@ Esto es muy utilizado para realizar backup desde el sistema Host.
 
 Por último, \textit{ports} es un array que vincula los puertos del sistema anfitrión a los puertos del contenedor, lo que es sumamente útil cuando se desea escuchar un puerto específico para manejar peticiones HTTP, por ejemplo.
 
-\subsubsection*{intranet}
+\subsubsection{intranet}
 
 Docker Compose genera una red interna para interconectar los contenedores, lo que permite que el servicio \textit{api} pueda acceder a la base de datos del servicio \textit{db} mediante la ruta \textit{mongodb://db:27017/sl}. La mayor ventaja de esta red es que hace inaccesible la base de datos para usuarios que no estén dentro de la red de Docker, disminuyendo la vulnerabilidad del sistema.
 
@@ -111,7 +111,7 @@ Debido a la necesidad de autenticación de usuarios y de los sistemas SL, se imp
     \item Json Web Token o JWT: Se utiliza una vez que el usuario entra a la app, y es un hash generado por el servidor.
 \end{enumerate}
 
-\subsubsection*{JWT}
+\subsubsection{JWT}
 
 JSON Web Token o simplemente JWT es un estándar qué está dentro del documento RFC 7519. Su función principal es poder propagar información entre dos partes de forma segura. En la práctica, los JWT son muy fáciles de desencriptar por lo que se desaconseja incluir información sensible del usuario en el mismo.
 
@@ -123,7 +123,7 @@ Este servicio fue implementado con Flask el cual permite crear aplicaciones Back
 
 El Frontend fue construido en ReactJS, que es una de las librerías de JavaScript más utilizadas en la industria. La idea principal de este servicio es brindar un centro de control de las barreras, además de permitir la visualización de registros y datos. Además permite a los administradores crear barreras nuevas y visualizar sus parámetros.
 
-\subsubsection*{Páginas para los usuarios}
+\subsubsection{Páginas para los usuarios}
 
 Los usuarios puede registrarse y entrar a la plataforma como se ve en la Fig. \ref{fig:login}. Luego de ingresar pueden visualizar sus estacionamientos (Fig. \ref{fig:home}).
 
@@ -193,7 +193,7 @@ Por otro lado existe una vista de los registros crudos, dando información parti
 
 
 
-\subsubsection*{Páginas para los administradores}
+\subsubsection{Páginas para los administradores}
 
 Los administradores poseen una página para visualizar las barreras según cliente y lugar (Fig. \ref{fig:admin-details}). Por último, poseen una página para agregar barreras (Fig. \ref{fig:add-barrier}).
 
