@@ -202,32 +202,33 @@ El requerimiento energético previsto por el fabricante para el kit de desarroll
 en el cargador que viene dentro del kit es de $19V$ y $4.74A$, dando un máximo de $90W$, 9 veces mayor al del sistema SL mini.
 
 \section{Diseño y ensamble}
+Para la implementación del prototipo se debe contar con una estructura capaz de contener tanto la cámara, como el sensor escogido en anteriores secciones. Se optó por colocar el sensor de proximidad en la zona inferior, ya que el ideal es colocar el contenedor a una altura de $60cm$, con lo que al tener el sensor en la zona baja se garantiza que la lectura que se tome sea de la trompa del automóvil y se obtenga un valor certero de la distancia. Este diseño deja a la cámara en la zona superior del contendor dando una imagen lo más completa de la trompa del vehículo, lo que permite que el sistema reconozca la patente de mejor manera, esto previene que la patente salga recortada permitiendo mejores resultados en la etapa de estimación. 
+Es necesario disponer de algún método de anclaje por lo que se dispuso de un orificio en la zona inferior de la caja con la finalidad de colocar un eje, que permita modificar la orientación del dispositivo, dependiendo el lugar donde se desee instalarlo.
+Para la sujeción al eje se requieren orificios que permiten el paso de tornillos que fijen el contenedor al eje.
 
-Para la colocación del conjunto de prueba cámara-sensor, se diseñó e imprimió una caja en 3D, Fig. \ref{fig:contenedor-camara} que permita ser anclada a una pared o poste cercano a la zona de acceso. Este diseño permite una fácil instalación y puesta en marcha del sistema.
+Basado en estos requisitos se diseñó e imprimió una caja en 3D, Fig. \ref{fig:contenedor-camara}, este diseño permite una fácil instalación y puesta en marcha del sistema, como también ser fácilmente modificable, por cambios futuros en el hardware.
 \begin{figure}[bth]
     \centering
-    \includegraphics[width=0.5\textwidth]{imgs/contenedor-camara.png}
+    \includegraphics[width=0.4\textwidth]{imgs/contenedor-camara.png}
     \caption{Modelo 3D del contendor.}
     \label{fig:contenedor-camara}
-\end{figure}
-
-Se optó por colocar el sensor de proximidad en la zona inferior, ya que el ideal es colocar el contenedor a una altura de unos $60cm$ aproximadamente, con lo que al tener el sensor en la zona baja se garantiza que la lectura que se tome sea de la trompa del automóvil y se obtenga un valor certero de la distancia. Este diseño deja a la cámara en la zona superior del contendor dando una imagen lo más completa de la trompa del vehículo, lo que permite que el sistema reconozca la patente de mejor manera, esto previene que la patente salga recortada permitiendo mejores resultados en la etapa de estimación. Se dispuso un orificio en la zona inferior de la caja con la finalidad de colocar un eje, que permita la orientación del dispositivo, dependiendo
-el lugar donde se desee instalarlo.
-Para la sujeción al eje se realizaron dos orificios que permiten el paso de los tornillos que dejan fijo el contenedor al eje.
-\begin{figure}[bth]
-    \centering
-    \includegraphics[width=0.5\textwidth]{imgs/sistema-sujecion.jpeg}
-    \caption{Sistema de sujeción del contenedor.}
-    \label{fig:sujecion-contenedor}
 \end{figure}
 
 En la Fig. \ref{fig:contenedor-camara-real} se puede apreciar el contenedor con la cámara y el sensor instalados.
 
 \begin{figure}[bth]
     \centering
-    \includegraphics[width=0.5\textwidth]{imgs/contenedor-real.jpeg}
+    \includegraphics[width=0.4\textwidth]{imgs/contenedor-real.jpeg}
     \caption{Contendor del paquete cámara-sensor.}
     \label{fig:contenedor-camara-real}
+\end{figure}
+En la Fig. \ref{fig:sujecion-contenedor} se puede apreciar el orificio para sujetar el contenedor al eje. 
+
+\begin{figure}[bth]
+    \centering
+    \includegraphics[width=0.4\textwidth]{imgs/sistema-sujecion.jpeg}
+    \caption{Sistema de sujeción del contenedor.}
+    \label{fig:sujecion-contenedor}
 \end{figure}
 
 \section{Implementación de los drivers}
