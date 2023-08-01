@@ -1,10 +1,10 @@
 \chapter{Diseño e implementación de los sistemas SL y SL mini}
 
-En este capítulo se realizará una explicación del diseño de los sistemas SL y SL mini, analizando las diferentes alternativas de placas, junto con sensores seleccionados y el modelado en 3D de la caja que alojará los mismos. Por último se detallará la implementación de los drivers escritos en Python 3, nombrando elecciones de diseño.
+En este capítulo se realizará una explicación del diseño de los sistemas SL y SL mini, analizando las diferentes alternativas de placas, junto con sensores seleccionados y el modelado en 3D de la caja que alojará los mismos. Por último se detallará la implementación de los drivers escritos en Python 3, considerando elecciones de diseño.
 
 \section{Análisis de requisitos}
 
-Para obtener algunos requerimientos es necesario entender que alternativas existen en el mercado de sistemas de acceso, y proponer un sistema capaz de suplir las desventajas o mejorar ventajas para los usuarios.
+Para definir algunos requerimientos es necesario evaluar las alternativas existen en el mercado de sistemas de acceso vehicular, y proponer un sistema capaz de suplir las desventajas o mejorar ventajas para los usuarios.
 
 \subsection{Sistemas actuales}
 
@@ -18,7 +18,7 @@ Estos sistemas cuentan con el inconveniente de que la impresión del ticket se r
 Además, la emisión de papel de un solo uso genera un impacto ambiental a tener en cuenta.
 En promedio un usuario tarda 11 segundos en entrar o salir del establecimiento \cite{casadomo_sistema_2015}.
 
-A continuación se lista las desventajas de este sistema:
+A continuación se resumen las desventajas de este sistema:
 
 \begin{enumerate}
     \item Tiempo de acceso.
@@ -37,13 +37,14 @@ A continuación se lista las desventajas de este sistema:
 
 Con el avance y el abaratamiento de los costos en la electrónica surgieron nuevos métodos que permitieron a los usuarios prescindir de la necesidad de un ticket o una persona que les permita el acceso. El método principal es el uso de controles remotos que al ser accionados, activan el mecanismo y abren el paso del vehículo.
 
-Otro sistema que está ocupando gran parte del mercado en los últimos años es el que integra a la barrera un sistema de RFID, que mediante la colocación de un emisor RF en el vehículo, Fig.\ref{fig:sistema-moderno} o por el método de tarjetas o monedas de proximidad y un receptor en la barrera, al acercarse a la entrada se produce el enlace que habilita el ingreso al vehículo. La gran desventaja de este sistema es tener que instalar el emisor RF en el vehículo o guardar la tarjeta de lectura.
+Otro sistema que está ocupando gran parte del mercado en los últimos años es el que integra a la barrera un sistema de identificador de radiofrecuencia o RFID, que se puede implementar usando de radiofrecuencia (RF) en el vehículo, tarjetas o llaveros RF. Además es necesario instalar un receptor RF en la entrada para producir el enlace y permitir el acceso.
+La gran desventaja de este sistema es tener que instalar un emisor RF por cada vehículo o guardar la tarjeta de lectura.
 
 Los problemas de este sistema son:
 
 \begin{enumerate}
-    \item Necesidad de instalar un emisor RFID.
-    \item Distancia de actuación corta.
+    \item Necesidad de instalar un recetor de RF en los puntos de acceso.
+    \item Instalar un emisor RF por cada vehículo.
 \end{enumerate}
 
 \begin{figure}[bth]
@@ -55,15 +56,15 @@ Los problemas de este sistema son:
 
 \subsection{Requisitos de los sistemas SL}
 
-Los métodos anteriormente nombrados son muy útiles en el día a día, pero cuentan con una serie de inconvenientes que pueden ser atenuados mediante el OCR.
-Dicha técnica utiliza un distintivo único de cada vehículo, como en el sistema de RDIF, pero la distancia de actuación está dada por la distancia máxima de reconocimineto del algoritmo y los sensores empleados.
+Los métodos anteriormente nombrados son muy útiles en el día a día, pero cuentan con una serie de inconvenientes que pueden ser atenuados mediante el OCR como el descrito en el capítulo 3.
+Dicha técnica utiliza un distintivo único de cada vehículo, como en el sistema de RFID, pero la distancia de actuación está dada por la distancia máxima de reconocimiento del algoritmo y los sensores empleados.
 
 Debido a la necesidad de realizar OCR, se requerirá una cámara. Con la finalidad de poder acoplar algún sistema de activación para la cámara se exigirá que la placa elegida soporte protocolos como I2C, SPI y UART. En cuanto a la comunicación, como se implementara junto con un servidor web existe la necesidad de conexión Ethernet o Wifi. Finalmente para facilitar futuras actualizaciones se requiere que la placa pueda correr un sistema operativo basado en GNU/Linux.
 
 En resumen los requerimientos son:
 
 \begin{enumerate}
-    \item Implementación de una cámara.
+    \item Colocación de una cámara.
     \item Soporte a protocolos I2C, SPI, UART.
     \item Conexión Ethernet o Wifi.
     \item Tiempo de acceso menor a 11 segundos.
@@ -73,15 +74,15 @@ En resumen los requerimientos son:
 
 \section{Selección de placas}
 
-Teniendo en cuenta los requisitos planteados en la sección anterior, se presentan varias opciones posibles,
-placas de la empresa Raspberry Pi, embebidos de la serie STM32 e incluso placas de la marca Arduino en sus versiones más potentes, por nombrar las más conocidas.
+Teniendo en cuenta los requisitos planteados en la sección anterior se presentan varias opciones posibles:
+placas de la empresa Raspberry Pi, embebidos de la serie STM32, NVIDIA Jetson e incluso placas de la marca Arduino en sus versiones más potentes, por nombrar las más conocidas.
 Aquí es donde surge el primer inconveniente para tomar la elección de placa,
 cuál sería la mejor opción que cumpla tanto las necesidades y que sea accesible para poder realizar el proyecto.
 Luego de realizar una investigación de placas a las que se podía acceder se optó por dos modelos: uno basado en Raspberry Pi 3 B+ a la cual se la llamó SL mini, y el otro basado en NVIDIA Jetson TX1 denominada SL.
 
 \subsection{Características del SL mini}
 
-La placa de la barrera SL mini es una Raspberry Pi 3 B+ \cite{noauthor_documentacion_nodate-2}, Fig. \ref{fig:raspberry} la cual cuenta con un procesador
+La placa del SL mini es una Raspberry Pi 3 B+ \cite{noauthor_documentacion_nodate-2}, Fig. \ref{fig:raspberry} la cual cuenta con un procesador
 Broadcom BCM2837B0 y un Córtex A53 acompañado de 1 GB de RAM LPDDR2, junto con un sistema operativo llamado Raspberry Pi OS el cual está basado en Debian.
 
 \begin{figure}[bth]
@@ -94,17 +95,14 @@ Broadcom BCM2837B0 y un Córtex A53 acompañado de 1 GB de RAM LPDDR2, junto con
 Otro de los puntos importantes que destacan de la placa son los pines GPIO, pines de entrada/salida de propósito general por sus siglas en inglés, lo que la hace sumamente sencilla a la hora de utilizarla junto a sensores comerciales.
 La amplia conectividad integrada que posee fue un punto que la destacó sobre otras posibles placas de desarrollo, ya que cuenta con puertos de conexión USB 2.0, puerto Ethernet, conexión Wifi 2,4 y 5,8 GHz y comunicación Bluetooth 4.2, que suple la necesidad de brindar conexión a internet de manera nativa sin necesidad de contar con periféricos extras que pueden encarecer el sistema.
 
-La disponibilidad de la placa en el mercado fue un punto importante a considerar, ya que pensando en una futura
-implementación del sistema a mediana o gran escala o la necesidad de cambio por rotura de la misma, podían dejar el
-proyecto parado o inutilizado, generando otros inconvenientes. Por otro lado, es posible migrar a un modelo más nuevo como la versión 4, sin tener que realizar grandes cambios en los drivers diseñados.
+La disponibilidad de la placa en el mercado fue un punto importante a considerar, ya que se considera una futura implementación del sistema a mediana o gran escala o la necesidad de recambio por rotura. Por otro lado, este hardware permite migrar a un modelo más actual como la versión 4, sin tener que realizar grandes cambios en los drivers diseñados.
 
-Si bien las capacidades de la Raspberry son amplias, para este proyecto su poder de cómputo no fue suficiente para realizar por sí misma el procesamiento de la imagen en un tiempo menor a 11 segundos, como fue mencionado en el capítulo anterior.
 
 \subsection{Características del SL}
 
-La placa de la barrera SL es una Nvidia Jetson TX1 \cite{nvidia_manual_nodate}, Fig. \ref{fig:JTX1} la cual cuenta con un procesador Córtex A57. Además contiene 256 núcleos Nvidia Maxwell, lo que la vuelve una opción excelente en lo que se refiere al trabajo con imágenes y videos, junto a 4GB de RAM LPDDR4, la hacen una opción mucho más potente en capacidad de cómputo que la Raspberry Pi 3 B+.
+La placa del SL es una Nvidia Jetson TX1 \cite{nvidia_manual_nodate}, Fig. \ref{fig:JTX1} la cual cuenta con un procesador Cortex A57 y 4GB de RAM LPDDR4. Además contiene  256 núcleos Nvidia Maxwell, lo que la vuelve una opción excelente en lo que se refiere al trabajo con imágenes y videos.
 
-Para realizar la implementación se contó con el kit de desarrollo provisto por la empresa Nvidia. En él se pueden encontrar todas las conexiones mencionadas en la barrera SL mini, lo que permite el paso de los sensores de una placa a otra con suma facilidad.
+Para realizar la implementación se contó con el kit de desarrollo provisto por la empresa Nvidia. En él se pueden encontrar todas las conexiones mencionadas en el SL mini, lo que permite el paso de los sensores de una placa a otra con suma facilidad.
 Este modelo cuenta con un sistema operativo JetPack 4.6.3 basado en Ubuntu 18.04.
 
 \begin{figure}[bth]
@@ -115,7 +113,21 @@ Este modelo cuenta con un sistema operativo JetPack 4.6.3 basado en Ubuntu 18.04
 \end{figure}
 
 
-En contra parte con el modelo mini, la placa del modelo SL está pensada para el trabajo con redes neuronales y el manejo de imágenes, por lo que es posible integrar todo el sistema de reconocimiento de caracteres dentro del mismo algoritmo embebido en la placa, teniendo un tiempo de respuesta de aproximadamente unos 6 segundos, tiempo que se consideró aceptable.
+En contra parte con el modelo mini, la placa del modelo SL está pensada para proyectos basados en redes neuronales y el procesamiento de imágenes, por lo que es posible integrar el algoritmo de OCR dentro del sistema, obteniendo un tiempo de respuesta de aproximadamente unos 6 segundos (Tab. \ref{tab:ocr}), tiempo que se consideró aceptable.
+
+
+\begin{table}[bth]
+    \centering
+    \begin{tabular}{cccc}
+        \toprule
+        Módelo           & Cantidad de nucleos & RAM        & GPU        \\
+        \midrule
+        Raspberry Pi 3b+ & 4 a 1.4GHz          & 1GB LPDDR2 & 2 a 400MHz \\
+        Jeston TX1       & 4 a                 & 4GB LPDDR4 & 256 a 1GHz \\
+        \bottomrule
+    \end{tabular}
+    \caption{Resumen de características de las placas embebidas.}
+\end{table}
 
 \section{Evaluación y selección de sensores}
 
@@ -123,7 +135,7 @@ En este apartado se comentará la selección de la cámara y el proceso de selec
 
 \subsection{Selección de cámara}
 
-Una cualidad importante para la selección del tipo de cámara fue la interfaz que esta utilice, lo que permite implementar el mismo modelo en ambas versiones de placa.
+Una cualidad importante para la selección del tipo de cámara fue la conexión, que permitiera implementar el mismo modelo en ambas versiones de placa.
 Si bien, tanto Raspberry como NVIDIA proveen de módulos de cámara, debido a que los conectores no eran los mismos se descartaron estas opciones. La decisión final terminó siendo una cámara web con interfaz USB, debido a que hoy en día son fáciles de conseguir y son relativamente económicas. Particularmente el modelo utilizado es el que se observa en Fig. \ref{fig:camara-usb}, el cual es un modelo genérico con una resolución de $1280 \times 720$ y $0.9MP$, siendo estas características aceptables para la tarea requerida.
 
 \begin{figure}[bth]
@@ -135,7 +147,7 @@ Si bien, tanto Raspberry como NVIDIA proveen de módulos de cámara, debido a qu
 
 \subsection{Selección de activador}
 
-Con la finalidad de minimizar las imágenes sin vehículos, se decidió colocar un sensor capaz de señalar que existe un objeto. A continuación se nombran las opciones analizadas:
+Con la finalidad de minimizar la captura de imágenes sin vehículos, se decidió colocar un sensor capaz de señalar que existe un objeto. A continuación se nombran las opciones analizadas:
 
 \subsubsection{Barrera infrarroja}
 
@@ -152,7 +164,7 @@ El sistema de barrera infrarroja cuenta con una serie de inconvenientes que difi
 
 \subsubsection{Placa de presión}
 
-La placa de presión cuenta de una placa que acciona un interruptor cuando es presionada. Debido a que no fue posible armar un sistema de placa a presión, y tampoco se consiguió una opción económicamente viable, sumado a que las dimensiones pueden variar dependiendo el estacionamiento esta opción fue descartada.
+La placa de presión cuenta de un accionador que luego de ser pulsado activa el sistema. Debido a que no fue posible armar un sistema de placa a presión, y tampoco se consiguió una opción económicamente viable, sumado a que las dimensiones pueden variar dependiendo el estacionamiento esta opción fue descartada.
 
 \subsubsection{Sensor de distancia}
 
@@ -161,8 +173,7 @@ En particular para este trabajo se utilizó un sensor ultrasónico US-100.
 
 Los sensores ultrasónicos funcionan emitiendo una onda ultrasónica por el transmisor y medir el tiempo que esta tarda en llegar al receptor.
 
-El US-100 el cual se puede apreciar en Fig. \ref{fig:sensor-US100}, posee un rango de medición de $2cm$ a $350cm$, compensado por temperatura, voltaje de alimentación entre $3V$-$5V$ y usando el protocolo de
-comunicación UART.
+El US-100 el cual se puede apreciar en Fig. \ref{fig:sensor-US100}, posee un rango de medición de $2cm$ a $350cm$, compensado por temperatura, voltaje de alimentación entre $3V$-$5V$ y protocolo de comunicación UART.
 Por lo que es fácilmente integrable en ambas placas por medio del puerto GPIO sin necesidad de utilizar hardware extra.
 \begin{figure}[bth]
     \centering
