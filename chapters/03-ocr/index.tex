@@ -37,14 +37,14 @@ Las señales principales son:
 Cada bloque LSTM se puede dividir en tres secciones diferentes que son:
 
 \begin{itemize}
-    \item Compuerta de memoria: representado por la funcion $\sigma$, en ella se decide a que información se le debe prestar atención y cuál debe ser ignorada, en otras palabras, es la encargada de ponderar la importancia de la entrada actual respecto a la información pasada.
+    \item Compuerta de memoria: representado por la función $\sigma$, en ella se decide a que información se le debe prestar atención y cuál debe ser ignorada, en otras palabras, es la encargada de ponderar la importancia de la entrada actual respecto a la información pasada.
     \item Compuerta de entrada: esta se obtiene de la multiplicación de las señales $z$ e $i$, es la encargada de actualizar el estado del bloque con la información ponderada de la compuerta de memoria por el vector $z$, cuyos valores se encuentran entre $-1$ y $1$.
     \item Compuerta de salida: aquí se determina el valor actual del estado oculto y queda contenida la información de los estados previos, este valor es utilizado para realizar la predicción de estados futuros.
 \end{itemize}
 En forma resumida se puede decir que la compuerta de memoria determina que información de los estados anteriores es relevante, la compuerta de entrada decide que información es necesaria añadir al estado actual, y la compuerta de salida determinada el estado oculto actual.
 \begin{figure}[bth]
     \centering
-    \includegraphics[width=0.5\textwidth]{imgs/diagrama-lstm.png}
+    \includegraphics[width=0.7\textwidth]{imgs/diagrama-lstm.png}
     \caption{Diagrama del bloque LSTM.}
     \label{fig:diagrama-LSTM}
 \end{figure}
@@ -148,10 +148,9 @@ Si bien la descripción de las capas de convolución, agrupación y función de 
 
 \subsection{Convolución en 2D}
 
-La convolución bidimensional es similar al caso conocido en 1D, pero en este caso se desplaza una submatriz de un tamaño predefinido, comúnmente denominado kernel, por la matriz o imagen de entrada.
+La convolución bidimensional es similar a la 1D. En el caso de la respuesta al impulso $h[n,m]$ se denomina filtro o kernel y, análogo al caso 1D, recorre todo el arreglo de entrada para producir un nuevo arreglo denominado mapa de características.
+La dimensión del kernel se suele definir como $(2k + 1) \times (2k + 1)$ usualmente se utilizan de $3\times3$ y $5\times5$.
 
-Se define kernel a la respuesta de un sistema discreto, el cual es de dimensión $2k \times 2k$, donde $k$ es un
-valor establecido arbitrario (usualmente se utilizan matrices de $3 \times 3$ o $5 \times 5$) que define cuántos valores de la muestra habrá.
 
 Si se define a $h[n,m]$ como un filtro de dimensión $(2k + 1) \times (2k + 1)$ e $I$ una imagen a escala de grises, cada celda $(i,j)$ de la imagen de salida $O$ es el
 resultado de la convolución entre $h$ e $I$ dado por

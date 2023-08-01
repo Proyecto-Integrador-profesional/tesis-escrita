@@ -26,6 +26,17 @@
 \setcounter{secnumdepth}{3}
 \setcounter{tocdepth}{3}
 
+%% first attempt (but needs modifications in case of optional parameters to \includegraphics)
+
+\newcommand{\vcenteredinclude}[1]{\begingroup
+\setbox0=\hbox{\includegraphics{#1}}%
+\parbox{\wd0}{\box0}\endgroup}
+
+%% better: (general command to vertically center horizontal material)
+\newcommand*{\vcenteredhbox}[1]{\begingroup
+\setbox0=\hbox{#1}\parbox{\wd0}{\box0}\endgroup}
+
+
 \begin{document}
 \input{title.tex}
 \include{chapters/acknowledgements.tex}
