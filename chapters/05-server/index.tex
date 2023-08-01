@@ -11,9 +11,9 @@ En este capítulo se explicará el diseño y la implementación del server. En l
 
 \section{Actualidad del desarrollo web}
 
-En la web existen dos grandes pilares: el Frontend es la parte de la aplicación web con la que interactúan los usuarios o clientes. El Backend que es la parte que se conecta con la base de datos y ejecuta las validaciones necesarias para leer o escribir información. En general, el frontend y el backend suelen ser dos proyectos separados y pueden ser construidos en diferentes lenguajes. Los lenguajes más utilizados para desarrollo Backend son: JavaScript (JS), Python, Ruby, entre otros \cite{presta_10_2021}.
+En la web existen dos grandes pilares: el front-end es la parte de la aplicación web con la que interactúan los usuarios o clientes. El back-end que es la parte que se conecta con la base de datos y ejecuta las validaciones necesarias para leer o escribir información. En general, el front-end y el back-end suelen ser dos proyectos separados y pueden ser construidos en diferentes lenguajes. Los lenguajes más utilizados para desarrollo back-end son: JavaScript (JS), Python, Ruby, entre otros \cite{presta_10_2021}.
 
-En la actualidad el formato más utilizado para trasmitir información entre el Backend y el Frontend es el formato JSON de sus siglas en inglés JavaScript Object Notation o traducido como notación de objetos de JavaScript. En la Fig. \ref{fig:ejemplo-json} se observa un ejemplo de JSON. Este tipo de notación se caracteriza por almacenar los datos en forma clave-valor, permitiendo un acceso a la información rápido y sencillo.
+En la actualidad el formato más utilizado para trasmitir información entre el back-end y el front-end es el formato JSON de sus siglas en inglés JavaScript Object Notation o traducido como notación de objetos de JavaScript. En la Fig. \ref{fig:ejemplo-json} se observa un ejemplo de JSON. Este tipo de notación se caracteriza por almacenar los datos en forma clave-valor, permitiendo un acceso a la información rápido y sencillo.
 
 \begin{figure}[bth]
     \centering
@@ -66,12 +66,12 @@ Por último, \textit{ports} es un array que vincula los puertos del sistema anfi
 
 \subsubsection{intranet}
 
-Si bien en el archivo de configuración no aparace la configuración de \textit{intranet}, Docker Compose genera una red interna para interconectar los contenedores, lo que permite que el servicio \textit{api} pueda acceder a la base de datos del servicio \textit{db} mediante la ruta \textit{mongodb://db:27017/sl}. La mayor ventaja de esta red es que hace inaccesible la base de datos para usuarios que no estén dentro de la red de Docker, disminuyendo la vulnerabilidad del sistema.
+Si bien en el archivo de configuración no aparece la configuración de \textit{intranet}, Docker Compose genera una red interna para interconectar los contenedores, lo que permite que el servicio \textit{api} pueda acceder a la base de datos del servicio \textit{db} mediante la ruta \textit{mongodb://db:27017/sl}. La mayor ventaja de esta red es que hace inaccesible la base de datos para usuarios que no estén dentro de la red de Docker, disminuyendo la vulnerabilidad del sistema.
 
 
 \section{Servicios}
 
-Una vez que fue descripto cómo se hará la implementación y su arquitectura, se procederá a entender cómo fue creada la aplicación web en su totalidad, describiendo cada parte del sistema.
+Una vez que fue descrito cómo se hará la implementación y su arquitectura, se procederá a entender cómo fue creada la aplicación web en su totalidad, describiendo cada parte del sistema.
 
 \subsection{Base de datos}
 
@@ -89,11 +89,12 @@ El esquema de base de datos se observa en la Fig. \ref{fig:db-uml}, las fechas v
 
 \subsection{Broker MQTT}
 
-Debido a que Mosquitto es el broker MQTT más utilizado, el cual utiliza la versión 5.0 del protocolo. El único tópico implementado tiene la forma de ``\textit{id}/config" donde \textit{id} es un identificador único de la barrera, esto permite que existan tantos tópicos como barreras, y solo pueden escuchar los cambios de configuración de cada una de ellas, lo que permite ahorrar procesamiento de datos en los sistemas SL.
+Un broker MQTT es una aplicación back-end que coordina los mensajes entre los diferentes clientes.
+El broker más conocido es Mosquitto, el cual utiliza la versión 5.0 del protocolo. El único tópico implementado tiene la forma de ``\textit{id}/config" donde \textit{id} es un identificador único de los sistemas SL, esto permite que existan tantos tópicos como sistemas SL estén funcionando, y solo pueden escuchar los cambios de configuración de cada una de ellas, lo que permite ahorrar procesamiento de datos en los sistemas SL.
 
-\subsection{Backend}
+\subsection{Back-end}
 
-El Backend está implementado en NestJS \cite{noauthor_documentacion_nodate}. Su principal función es administrar la información porque se conecta con la base de datos para realizar las tareas de lectura y escritura de documentos.
+El back-end está implementado en NestJS \cite{noauthor_documentacion_nodate}. Su principal función es administrar la información porque se conecta con la base de datos para realizar las tareas de lectura y escritura de documentos.
 
 Con la idea de generar la mayor documentación posible de este servicio se utilizó una librería llamada Swagger la cual, junto a NestJS, genera documentación automática de las rutas HTTP. Esto facilita la tarea de crear una nueva aplicación así como la de incluir una nueva persona al proyecto. En la Fig. \ref{fig:swagger-example} se observa como se ve la documentación generada por Swagger.
 
@@ -108,10 +109,18 @@ Debido a la necesidad de autenticación de usuarios y de los sistemas SL, se imp
 
 \begin{enumerate}
     \item Usuario y contraseña: Utilizado para los usuarios que entran/registran desde la web.
-    \item ApiKey de terceros: Una forma de validar si la aplicación que pide datos está autorizada o no.
-    \item ApiKey para barreras: Permite validar si la información del registro de entrada/salida está siendo enviada por una barrera autorizada. Además permite saber qué barrera es la que envía los datos, diminuyendo el tamaño de la petición.
-    \item Json Web Token o JWT: Se utiliza una vez que el usuario entra a la app, y es un hash generado por el servidor.
+    \item Api Key de terceros: Una forma de validar si la aplicación que pide datos está autorizada o no.
+    \item Api Key para sistemas SL: Permite validar si la información del registro de entrada/salida está siendo enviada por un SL/SL mini autorizado. Además permite saber qué sistema es la que envía los datos, diminuyendo el tamaño de la petición.
+    \item Json Web Token o JWT: Se utiliza una vez que el usuario entra a la app, y es un
+          hash \footnote{Es el resultado de una operación criptográfica que genera un identificador único e irrepetible a partir de una información dada.}
+          generado por el servidor.
 \end{enumerate}
+
+\subsubsection{Api Key}
+
+Las Api Key son llaves que generadas en servidor que permiten el accesso a determinados
+endpoints \footnote{Son las URLs que consultan desde el front-end.}.
+Estas sirven para validar las peticiones entrantes al servidor, permitiendo dar acceso a la información o denegar la consulta HTTP.
 
 \subsubsection{JWT}
 
@@ -119,18 +128,18 @@ JSON Web Token o simplemente JWT es un estándar qué está dentro del documento
 
 \subsection{Análisis de imágenes}
 
-Este servicio fue implementado con Flask el cual permite crear aplicaciones Backend en Python de forma fácil y rápida. La función de este servicio es obtener la patente de la fotografía tomada por un SL mini, es por ello que solo tiene una ruta e internamente ejecuta el algoritmo visto en el capítulo 3.
+Este servicio fue implementado con Flask el cual permite crear aplicaciones back-end en Python de forma fácil y rápida. La función de este servicio es obtener la patente de la fotografía tomada por un SL mini, es por ello que solo tiene una ruta e internamente ejecuta el algoritmo visto en el capítulo 3.
 
-\subsection{Frontend}
+\subsection{Front-end}
 
-El Frontend fue construido en ReactJS, que es una de las librerías de JavaScript más utilizadas en la industria. La idea principal de este servicio es brindar un centro de control de las barreras, además de permitir la visualización de registros y datos. Además permite a los administradores crear barreras nuevas y visualizar sus parámetros.
+El front-end fue construido en ReactJS, que es una de las librerías de JavaScript más utilizadas en la industria. La idea principal de este servicio es brindar un centro de control de los sistemas SL, además de permitir la visualización de registros y datos. Además permite a los administradores crear nuevos sistemas SL y visualizar sus parámetros.
 
 \subsubsection{Páginas para los usuarios}
 
 Los usuarios puede registrarse y entrar a la plataforma como se ve en la Fig. \ref{fig:login}. Luego de ingresar pueden visualizar sus estacionamientos (Fig. \ref{fig:home}).
 
 Es posible configurar diversos parámetros del estacionamiento, como el nombre, ubicación y precio por hora (Fig. \ref{fig:update-place}).
-Para agregar versatilidad al sistema y permitir su uso para diferentes tareas se implementó un sistema de bloqueo de patentes (Fig. \ref{fig:in-type}), que permite bloquear todas las patentes salvo las que estén en la lista o bloquear solo estas últimas. Adicionalmente pueden visualizar las barreras por barrio (Fig. \ref{fig:barrier-details}) y desde esta vista pueden configurar los parámetros de las mismas en tiempo real (Fig. \ref{fig:update-barrier}).
+Para agregar versatilidad al sistema y permitir su uso para diferentes tareas se implementó un sistema de bloqueo de patentes (Fig. \ref{fig:in-type}), que permite denegar el acceso a  todas las patentes salvo las que estén en la lista o bloquear solo estas últimas. Adicionalmente pueden visualizar los sistemas SL por barrio (Fig. \ref{fig:barrier-details}) y desde esta vista pueden configurar los parámetros de las mismas en tiempo real (Fig. \ref{fig:update-barrier}).
 
 Para la visualización y control de datos se crearon dos rutas.
 El Dashboard permite ver información resumida: horas estacionadas y cantidad de vehículos estacionados, separados por estacionamiento, filtrar los datos según fecha de inicio y fin, además permite agrupar los registros día, mes o año (Fig. \ref{fig:dashboard}).
@@ -175,7 +184,7 @@ Por otro lado existe una vista de los registros crudos, dando información parti
 \begin{figure}[bth]
     \centering
     \includegraphics[width=\textwidth]{imgs/server/barrier-update-data.png}
-    \caption{Formulario para actualizar los datos de la barrera.}
+    \caption{Formulario para actualizar los datos del sistema SL.}
     \label{fig:update-barrier}
 \end{figure}
 
@@ -197,24 +206,28 @@ Por otro lado existe una vista de los registros crudos, dando información parti
 
 \subsubsection{Páginas para los administradores}
 
-Los administradores poseen una página para visualizar las barreras según cliente y lugar (Fig. \ref{fig:admin-details}). Por último, poseen una página para agregar barreras (Fig. \ref{fig:add-barrier}).
+Los administradores poseen una página para visualizar los sistemas SL según cliente y lugar (Fig. \ref{fig:admin-details}). Por último, poseen una página para agregar sistemas SL (Fig. \ref{fig:add-barrier}).
 
 \begin{figure}[bth]
     \centering
     \includegraphics[width=\textwidth]{imgs/server/admin-details.png}
-    \caption{Detalles de las barreras según cliente y estacionamiento.}
+    \caption{Detalles de los sistemas SL según cliente y estacionamiento.}
     \label{fig:admin-details}
 \end{figure}
 
 \begin{figure}[bth]
     \centering
     \includegraphics[width=\textwidth]{imgs/server/add-barrier.png}
-    \caption{Formulario para agregar una barrera.}
+    \caption{Formulario para agregar un sistema SL.}
     \label{fig:add-barrier}
 \end{figure}
 
 \subsection{Nginx}
 
-Nginx es un servidor web de código abierto que permite la implementación de proxy inverso, cache de HTTP, y balanceo de cargo.
-Su implementación se utiliza como proxy inverso entre el Backend y el Frontend.
+Nginx es un servidor web de código abierto que permite la implementación de
+proxy inverso \footnote{Es una aplicación back-end que se situa delante de otros servicios web, aumentando la seguridad, el rendimiendo y la fiabilidad del servidor.}
+, cache de HTTP, y balanceo de cargo.
+Su implementación se utiliza como proxy inverso entre el back-end y el front-end.
+
+
 

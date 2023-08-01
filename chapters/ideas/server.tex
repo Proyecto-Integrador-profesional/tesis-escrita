@@ -40,9 +40,9 @@ A la hora de manejar varios contenedores el uso del interfaz de linea de comando
 
 Cabe destacar que Docker compose crea una red interna en la cual (salvo que definamos de otra manera) todos los contenedores estan interconectados y podemos relacionarnos usando el nombre del servicio como url.
 
-\subsection{Frontend vs Backend}
+\subsection{Front-end vs Backend}
 
-comparacion de los servicios frontend y backend explicando sus diferencias
+comparacion de los servicios Front-end y backend explicando sus diferencias
 
 
 \subsection{Microservicios}
@@ -58,7 +58,7 @@ El servidor cuenta con los siguientes microservicios:
           \subitem Barreras
           \subitem Parques de estacionamiento
           \subitem Registros
-    \item Frontend con ReactJS
+    \item Front-end con ReactJS
     \item Applicacion backend con Flask (analisis de patente online)
 \end{enumerate}
 
@@ -77,7 +77,7 @@ Para la autenticación se utilizo el module de Passport JS, el cual permite crea
 
 La estrategia Local, hace un logging del usuario segun su nombre de usuario y su contraseña.
 
-Los servicios de apikey buscan que la apikey sea valida, es decir, se encuentre en la base de datos vinculada a una barrera, o este dentro de las apikeys validas de aplicaciones, en este caso solo 2 servicios se encuentran habilitados para realizar peticiones (Frontend y Grafana)
+Los servicios de apikey buscan que la apikey sea valida, es decir, se encuentre en la base de datos vinculada a una barrera, o este dentro de las apikeys validas de aplicaciones, en este caso solo 2 servicios se encuentran habilitados para realizar peticiones (Front-end y Grafana)
 
 Un JSON Web Token es un estandar qué esta dentro del documento RFC 7519, este define un mecanismo para enviar información entre 2 partes, en este caso cliente-servidor de forma segura (utilizando cifrado). Los datos son codificados en un objeto de javascript (JSON),
 
@@ -86,7 +86,7 @@ Un JSON Web Token es un estandar qué esta dentro del documento RFC 7519, este d
 Si bien, las barreras procesan datos antes de enviarlos, la logica del sistema se encuentra implementada en el server, corriendo bajo el servicio de NestJS, es decir el backend de nuestra app. Este servicio se encarga de interconectar la base de datos con lo requerido por los clientes, y las barreas. La idea es describir como maneja las peticiones mas importantes, que serian desde grafana, desde una app externa (como la pagina donde el usuario pide las barreras), y las peticiones de la misma barrera, siendo esta un apartado meramente tecnico de detalles de implementacion.
 
 
-\subsection{Frontend con ReactJS}
+\subsection{Front-end con ReactJS}
 
 Basicamente se va a hablar del panel admin y algun funciones para los clientes. junto con las librerias implementadas como ZOD,
 
@@ -95,7 +95,7 @@ Basicamente se va a hablar del panel admin y algun funciones para los clientes. 
     \item ZOD: https://zod.dev/
 \end{enumerate}
 
-Existen 2 clientes frontend uno para la adminitracion y otro para los clientes.
+Existen 2 clientes Front-end uno para la adminitracion y otro para los clientes.
 
 \subsubsection{Clientes}
 
