@@ -11,7 +11,7 @@ En este capítulo se explicará el diseño y la implementación del server. En l
 
 \section{Actualidad del desarrollo web}
 
-En la web existen dos grandes mundos: el Frontend es la parte de la web con la que interactúan los usuarios o clientes. El Backend que es la parte que se conecta con la base de datos y ejecuta las validaciones necesarias para leer o escribir información. En general, el frontend y el backend suelen ser dos proyectos separados y pueden ser construidos en diferentes lenguajes. Los lenguajes más utilizados son: JavaScript (JS), Python, Ruby, entre otros \cite{presta_10_2021}.
+En la web existen dos grandes pilares: el Frontend es la parte de la aplicación web con la que interactúan los usuarios o clientes. El Backend que es la parte que se conecta con la base de datos y ejecuta las validaciones necesarias para leer o escribir información. En general, el frontend y el backend suelen ser dos proyectos separados y pueden ser construidos en diferentes lenguajes. Los lenguajes más utilizados para desarrollo Backend son: JavaScript (JS), Python, Ruby, entre otros \cite{presta_10_2021}.
 
 En la actualidad el formato más utilizado para trasmitir información entre el Backend y el Frontend es el formato JSON de sus siglas en inglés JavaScript Object Notation o traducido como notación de objetos de JavaScript. En la Fig. \ref{fig:ejemplo-json} se observa un ejemplo de JSON. Este tipo de notación se caracteriza por almacenar los datos en forma clave-valor, permitiendo un acceso a la información rápido y sencillo.
 
@@ -28,13 +28,15 @@ Hoy en día la web se ha transformado en la base de cualquier organización. Hac
 
 Docker es una tecnología open source desarrollada por Docker Inc, la cual permite correr aplicaciones de forma aislada en contenedores.
 
-\subsection{¿Qué es un contenedor?}
+\subsection{Contenedores}
 
 Un contenedor funciona casi como una máquina virtual, pero sin entorno gráfico y compartiendo el Kernel \cite{keepcoding_que_2022} con el sistema que lo hospeda, lo que hace que los contenedores sean más livianos y mucho más rápidos que una máquina virtual, ya que estas últimas emulan todo el sistema e incluyen un puente entren el kernel del sistema padre y el sistema emulado. Cada contenedor suele estar especializado para cumplir una determinada tarea y, en general, se los denomina servicios.
 
 \subsection{Docker Compose}
 
-Docker es una tecnología muy utilizada, pero por si sola puede ejecutar un único contenedor a la vez, es por ello que existen herramientas para la administración de múltiples contenedores en simultáneo. La más conocida, y muy utilizada en el mundo del desarrollo, es Kubernetes. Debido a que el sistema no es lo suficientemente grande y no se cuenta con múltiples servidores para alojar los servicios, la implementación se realizó mediante Docker Compose \cite{docker_inc_docker_2023}, cumple un rol muy similar a Kubernetes, pero sin agregar tanta complejidad debido a poder administrar múltiples servidores.
+A pesar que Docker es una tecnología muy utilizada, por si sola puede ejecutar un único contenedor a la vez, existen herramientas para la administración de múltiples contenedores en simultáneo. La más conocida, y muy utilizada en el mundo del desarrollo es Kubernetes \cite{noauthor_kubernetes_nodate}.
+Debido a que el sistema aun no es lo suficientemente grande y no se cuenta con múltiples servidores para alojar los servicios, la implementación se realizó mediante Docker Compose \cite{docker_inc_docker_2023}, cumple un rol muy similar a Kubernetes, pero sin agregar tanta complejidad debido a poder administrar múltiples servidores.
+
 \begin{figure}[bth]
     \centering
     \includegraphics[width=.5\textwidth]{imgs/docker-compose.png}
@@ -50,7 +52,7 @@ Este atributo le indica a Docker Compose la versión del archivo de configuraci�
 
 \subsubsection{services}
 
-Dentro del apartado de \textit{services} se definen los servicios que se necesitarán. En la Fig. \ref{fig:docker-compose-yml} se muestran tres contenedores \textit{api}, \textit{front}, \textit{db}.
+Se definen los servicios que se necesitarán. En la Fig. \ref{fig:docker-compose-yml} se muestran tres contenedores \textit{api}, \textit{front}, \textit{db}.
 
 Dentro de cada contenedor se define el atributo \textit{image} el cual indica que imagen se utilizará. Dicha imagen puede ser privada o  se puede utilizar una imagen pública de Docker Hub que es un repositorio de imágenes de Docker.
 Las imágenes son en esencia un sistema operativo configurado para algunos entornos, por ejemplo la imagen \textit{node:18-alpine} posee un sistema Alpine, que ya viene instalado con NodeJS en su versión 18, imagen muy utilizada para correr aplicaciones escritas en JS.
@@ -64,7 +66,7 @@ Por último, \textit{ports} es un array que vincula los puertos del sistema anfi
 
 \subsubsection{intranet}
 
-Docker Compose genera una red interna para interconectar los contenedores, lo que permite que el servicio \textit{api} pueda acceder a la base de datos del servicio \textit{db} mediante la ruta \textit{mongodb://db:27017/sl}. La mayor ventaja de esta red es que hace inaccesible la base de datos para usuarios que no estén dentro de la red de Docker, disminuyendo la vulnerabilidad del sistema.
+Si bien en el archivo de configuración no aparace la configuración de \textit{intranet}, Docker Compose genera una red interna para interconectar los contenedores, lo que permite que el servicio \textit{api} pueda acceder a la base de datos del servicio \textit{db} mediante la ruta \textit{mongodb://db:27017/sl}. La mayor ventaja de esta red es que hace inaccesible la base de datos para usuarios que no estén dentro de la red de Docker, disminuyendo la vulnerabilidad del sistema.
 
 
 \section{Servicios}
@@ -73,10 +75,10 @@ Una vez que fue descripto cómo se hará la implementación y su arquitectura, s
 
 \subsection{Base de datos}
 
-La base de datos elegida fue Mongo DB, debido a que es una de las bases de datos más utilizada. Mongo es una base de datos basada en documentos, por lo tanto no posee vínculos fuertes entre los diferentes esquemas.
+La base de datos elegida fue Mongo DB, debido a que es una de las bases de datos más utilizada. Mongo esta basada en documentos, por lo tanto no posee vínculos fuertes entre los diferentes esquemas.
 Los datos se almacenan en BSON (binary JSON), el cual hace más fácil la transferencia de datos. Por otro lado, permite escalar de manera horizontal de forma más sencilla, ya que se suelen usar identificadores únicos y no incrementales, como es frecuente en bases de datos del tipo SQL.
 
-El esquema de base de datos se observa en la Fig. \ref{fig:db-uml}, las fechas violetas indican una relación entre los documentos, mientras que las grises muestra que existe un documento embebido en el documento padre.
+El esquema de base de datos se observa en la Fig. \ref{fig:db-uml}, las fechas violetas indican una relación entre los documentos, mientras que las grises indican que existe un documento embebido en el documento padre.
 
 \begin{figure}[bth]
     \centering
@@ -87,7 +89,7 @@ El esquema de base de datos se observa en la Fig. \ref{fig:db-uml}, las fechas v
 
 \subsection{Broker MQTT}
 
-Debido a que Mosquitto es el broker MQTT más utilizado, el cual utiliza la versión 5.0 del protocolo. El único tópico implementado tiene la forma de ``\textit{id}/config" donde \textit{id} es un identificador único de la barrera, esto permite que existan tantos tópicos como barreras, y solo pueden escuchar los cambios de configuración de cada una de ellas, lo que permite ahorrar procesamiento de datos en la barrera.
+Debido a que Mosquitto es el broker MQTT más utilizado, el cual utiliza la versión 5.0 del protocolo. El único tópico implementado tiene la forma de ``\textit{id}/config" donde \textit{id} es un identificador único de la barrera, esto permite que existan tantos tópicos como barreras, y solo pueden escuchar los cambios de configuración de cada una de ellas, lo que permite ahorrar procesamiento de datos en los sistemas SL.
 
 \subsection{Backend}
 
@@ -102,7 +104,7 @@ Con la idea de generar la mayor documentación posible de este servicio se utili
     \label{fig:swagger-example}
 \end{figure}
 
-Debido a la necesidad de autenticación de usuarios y de los sistemas SL, se implementó PassportJS que permite la creación de sistemas de validación de forma más sencilla. Los métodos de autenticación implementados fueron:
+Debido a la necesidad de autenticación de usuarios y de los sistemas SL, se implementó PassportJS que permite la creación de sistemas de validación de forma sencilla. Los métodos de autenticación implementados fueron:
 
 \begin{enumerate}
     \item Usuario y contraseña: Utilizado para los usuarios que entran/registran desde la web.
@@ -117,7 +119,7 @@ JSON Web Token o simplemente JWT es un estándar qué está dentro del documento
 
 \subsection{Análisis de imágenes}
 
-Este servicio fue implementado con Flask el cual permite crear aplicaciones Backend en Python de forma fácil y rápida. La función de este servicio es obtener la patente de la fotografía tomada por los SL mini, es por ello que solo tiene una ruta e internamente ejecuta el algoritmo visto en el capítulo 3.
+Este servicio fue implementado con Flask el cual permite crear aplicaciones Backend en Python de forma fácil y rápida. La función de este servicio es obtener la patente de la fotografía tomada por un SL mini, es por ello que solo tiene una ruta e internamente ejecuta el algoritmo visto en el capítulo 3.
 
 \subsection{Frontend}
 
