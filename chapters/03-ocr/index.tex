@@ -105,8 +105,28 @@ luego de que la información es procesada por la neurona, obteniendo $y= f(W^T X
 
 \begin{figure}[bth]
     \centering
-    \includegraphics[width=1\textwidth]{imgs/Funciones-de-activacion.jpg}
-    \caption{Funciones de activación más comunes.}
+    \begin{subfigure}{.45\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{imgs/activacion/relu.png}
+        \caption{ReLU: $f(x)=\max{(0,x)}$}
+    \end{subfigure}
+    \begin{subfigure}{.45\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{imgs/activacion/sigmoid.png}
+        \caption{Sigmoide: $f(x)=1 / (1 + e^{-x})$}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{.45\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{imgs/activacion/step.png}
+        \caption{Escalon: $\mu(x)$}
+    \end{subfigure}
+    \begin{subfigure}{.45\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{imgs/activacion/tanh.png}
+        \caption{Tangente hiperbólica: $\tanh(x)$}
+    \end{subfigure}
+    \caption{Funciones de activación más utlizadas.}
     \label{fig:funciones-activacion}
 \end{figure}
 
