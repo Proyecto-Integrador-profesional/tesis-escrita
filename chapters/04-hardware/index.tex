@@ -182,31 +182,12 @@ Por lo que es fácilmente integrable en ambas placas por medio del puerto GPIO s
     \label{fig:sensor-US100}
 \end{figure}
 
-\section{Consumo energético}
-
-El gasto energético es un punto que fue analizado ya que, pensando en el uso racional de la energía, se busca que los sistemas SL y SL mini no presentaran un consumo excesivo.
-Como la energía suministrada al conjunto cámara-sensor viene dada por las placas, solo se indicará el consumo requerido por las mismas.
-
-
-\subsection{SL mini}
-
-En el caso de la versión SL mini, tiene un consumo similar al de un cargador de celular moderno, es decir $5V$ y
-$2A$.
-Una corriente menor lleva a una notificación por parte de la Raspberry, lo que produce una reducción de la frecuencia de su procesador, una relentización del equipo, lo cual no garantiza estabilidad en el funcionamiento de la misma.
-
-Por lo tanto la potencia máxima requerida del sistema es de $10W$.
-
-\subsection{SL}
-
-El requerimiento energético previsto por el fabricante para el kit de desarrollo de la Nvidia Jetson TX1 como se indica
-en el cargador que viene dentro del kit es de $19V$ y $4.74A$, dando un máximo de $90W$, 9 veces mayor al del sistema SL mini.
-
 \section{Diseño y ensamble}
 Para la implementación se definieron una serie de requisitos tales como la distribución de los sensores, la distancia desde el piso a la que se va a instalar, cómo se va a instalar en los establecimientos, entre otros. Las vistas del modelo 3D se pueden observar en la Fig. \ref{fig:contenedor-vistas}.
 El sistema de anclaje utilizado se puede observar en Fig. \ref{fig:contenedor-inferior} y Fig. \ref{fig:contenedor-sujecion}, este sistema permite colocar un cilindro y ajustarlo utilizando los orificios del mismo, una de las ventajas de este sistema es poder ajustar la orientación del dispositivo.
 Se estableció que distancia apropiada para la instalación es de 60cm de altura, ya que permite tomar una captura completa del vehículo, mejorando el rendimiento del algoritmo de OCR.
 Se optó por colocar el sensor de proximidad en la zona inferior con lo que al tener el sensor en la zona baja se garantiza que la lectura que se tome sea de la trompa del automóvil, por lo que la camára queda en la parte superior, como puede observarse en las Fig. \ref{fig:contenedor-frontal} y Fig. \ref{fig:contenedor-trasera}.
-Adicionalmente se diseñó una tapa rectangular que permita sellar el contenedor. En la Fig. \ref{fig:contenedor-camara} se observa el modelo 3D del sistema, mientras que en la Fig. \ref{fig:contenedor-impreso} se ve el contenedor ensamblado y montado sobre un trípode.
+Adicionalmente se diseñó una tapa rectangular que permita sellar el contenedor. En la Fig. \ref{fig:contenedor-impreso} se observa el contenedor ensamblado y montado sobre un trípode.
 
 \begin{figure}[bth]
     \centering
@@ -245,14 +226,6 @@ Adicionalmente se diseñó una tapa rectangular que permita sellar el contenedor
 
 \begin{figure}[bth]
     \centering
-    \includegraphics[width=0.4\textwidth]{imgs/contenedor-camara.png}
-    \caption{Modelo 3D del contendor.}
-    \label{fig:contenedor-camara}
-\end{figure}
-
-
-\begin{figure}[bth]
-    \centering
     \begin{subfigure}{.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{imgs/contenedor-real.jpeg}
@@ -265,12 +238,6 @@ Adicionalmente se diseñó una tapa rectangular que permita sellar el contenedor
     \end{subfigure}
     \caption{Contenedor ensamblado y montado sobre un tripode.}
     \label{fig:contenedor-impreso}
-\end{figure}
-
-\begin{figure}[bth]
-    \centering
-
-    \label{fig:sujecion-contenedor}
 \end{figure}
 
 \section{Implementación de los drivers}
