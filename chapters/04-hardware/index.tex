@@ -202,11 +202,47 @@ El requerimiento energético previsto por el fabricante para el kit de desarroll
 en el cargador que viene dentro del kit es de $19V$ y $4.74A$, dando un máximo de $90W$, 9 veces mayor al del sistema SL mini.
 
 \section{Diseño y ensamble}
-Para la implementación del prototipo se debe contar con una estructura capaz de contener tanto la cámara, como el sensor escogido en anteriores secciones. Se optó por colocar el sensor de proximidad en la zona inferior, ya que el ideal es colocar el contenedor a una altura de $60cm$, con lo que al tener el sensor en la zona baja se garantiza que la lectura que se tome sea de la trompa del automóvil y se obtenga un valor certero de la distancia. Este diseño deja a la cámara en la zona superior del contendor dando una imagen lo más completa de la trompa del vehículo, lo que permite que el sistema reconozca la patente de mejor manera, esto previene que la patente salga recortada permitiendo mejores resultados en la etapa de estimación. 
-Es necesario disponer de algún método de anclaje por lo que se dispuso de un orificio en la zona inferior de la caja con la finalidad de colocar un eje, que permita modificar la orientación del dispositivo, dependiendo el lugar donde se desee instalarlo.
-Para la sujeción al eje se requieren orificios que permiten el paso de tornillos que fijen el contenedor al eje.
+Para la implementación se definieron una serie de requisitos tales como la distribución de los sensores, la distancia desde el piso a la que se va a instalar, cómo se va a instalar en los establecimientos, entre otros. Las vistas del modelo 3D se pueden observar en la Fig. \ref{fig:contenedor-vistas}.
+El sistema de anclaje utilizado se puede observar en Fig. \ref{fig:contenedor-inferior} y Fig. \ref{fig:contenedor-sujecion}, este sistema permite colocar un cilindro y ajustarlo utilizando los orificios del mismo, una de las ventajas de este sistema es poder ajustar la orientación del dispositivo.
+Se estableció que distancia apropiada para la instalación es de 60cm de altura, ya que permite tomar una captura completa del vehículo, mejorando el rendimiento del algoritmo de OCR.
+Se optó por colocar el sensor de proximidad en la zona inferior con lo que al tener el sensor en la zona baja se garantiza que la lectura que se tome sea de la trompa del automóvil, por lo que la camára queda en la parte superior, como puede observarse en las Fig. \ref{fig:contenedor-frontal} y Fig. \ref{fig:contenedor-trasera}.
+Adicionalmente se diseñó una tapa rectangular que permita sellar el contenedor. En la Fig. \ref{fig:contenedor-camara} se observa el modelo 3D del sistema, mientras que en la Fig. \ref{fig:contenedor-impreso} se ve el contenedor ensamblado y montado sobre un trípode.
 
-Basado en estos requisitos se diseñó e imprimió una caja en 3D, Fig. \ref{fig:contenedor-camara}, este diseño permite una fácil instalación y puesta en marcha del sistema, como también ser fácilmente modificable, por cambios futuros en el hardware.
+\begin{figure}[bth]
+    \centering
+    \begin{subfigure}{.35\textwidth}
+        \centering
+        \includegraphics[width=\textwidth
+        ]{imgs/vistas-contenedor/inferior.png}
+        \caption{Vista inferior.}
+        \label{fig:contenedor-inferior}
+    \end{subfigure}
+    \begin{subfigure}{.35\textwidth}
+        \centering
+        \includegraphics[width=\textwidth
+        ]{imgs/vistas-contenedor/sujecion.png}
+        \caption{Sistema de sujeción.}
+        \label{fig:contenedor-sujecion}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{.35\textwidth}
+        \centering
+        \includegraphics[width=\textwidth
+        ]{imgs/vistas-contenedor/frontal.png}
+        \caption{Vista frontal.}
+        \label{fig:contenedor-frontal}
+    \end{subfigure}
+    \begin{subfigure}{.35\textwidth}
+        \centering
+        \includegraphics[width=\textwidth
+        ]{imgs/vistas-contenedor/trasera.png}
+        \caption{Vista trasera.}
+        \label{fig:contenedor-trasera}
+    \end{subfigure}
+    \caption{Vistas del modelo 3D del contendor.}
+    \label{fig:contenedor-vistas}
+\end{figure}
+
 \begin{figure}[bth]
     \centering
     \includegraphics[width=0.4\textwidth]{imgs/contenedor-camara.png}
@@ -214,20 +250,26 @@ Basado en estos requisitos se diseñó e imprimió una caja en 3D, Fig. \ref{fig
     \label{fig:contenedor-camara}
 \end{figure}
 
-En la Fig. \ref{fig:contenedor-camara-real} se puede apreciar el contenedor con la cámara y el sensor instalados.
 
 \begin{figure}[bth]
     \centering
-    \includegraphics[width=0.4\textwidth]{imgs/contenedor-real.jpeg}
-    \caption{Contendor del paquete cámara-sensor.}
-    \label{fig:contenedor-camara-real}
+    \begin{subfigure}{.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{imgs/contenedor-real.jpeg}
+        \caption{Contendor real esamblado.}
+    \end{subfigure}
+    \begin{subfigure}{.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{imgs/sistema-sujecion.jpeg}
+        \caption{Sistema de sujeción del contenedor.}
+    \end{subfigure}
+    \caption{Contenedor ensamblado y montado sobre un tripode.}
+    \label{fig:contenedor-impreso}
 \end{figure}
-En la Fig. \ref{fig:sujecion-contenedor} se puede apreciar el orificio para sujetar el contenedor al eje. 
 
 \begin{figure}[bth]
     \centering
-    \includegraphics[width=0.4\textwidth]{imgs/sistema-sujecion.jpeg}
-    \caption{Sistema de sujeción del contenedor.}
+
     \label{fig:sujecion-contenedor}
 \end{figure}
 
