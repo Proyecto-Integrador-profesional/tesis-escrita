@@ -1,33 +1,14 @@
 \chapter{Pruebas de integración y fiabilidad}
 
-El eje fundamental de este capítulo es mostrar el rendimiento del sistema en diferentes circunstancias, y probar que el mismo es capaz de desenvolverse de forma satisfactoria en la mayoría de escenarios posibles.
+El eje fundamental de este capítulo es mostrar el rendimiento del algoritmo y la integración final en diferentes circunstancias, y probar que el mismo es capaz de desenvolverse de forma satisfactoria en la mayoría de escenarios posibles.
 
-\section{Prueba de exterior}
+\section{Pruebas sobre el algoritmo de OCR}
+Para corroborar el funcionamiento del algoritmo se ensayaron diversas pruebas, con la finalidad de testear el comportamiento del algoritmo sobre diferentes entornos de trabajo, partiendo desde un ambiente ideal para llegar a uno alejado de él en el cual no se puede garantizar el correcto funcionamiento.
 
-Esta prueba se realizó con una cámara Kanon PowerShot SX150 IS \cite{kanon_powershot_nodate} en el estacionamiento de la Facultad de Ingeniería de la Universidad Nacional del Comahue entre las 8 y 9 de la mañana, el martes 6 de junio del 2023. La prueba se realizó colocando la cámara en un trípode con una altura de 70cm respecto del suelo, y se procedió a filmar los vehículos que entraban en el estacionamiento o pasaban por la calle interna de la universidad. De este proceso de medición se obtuvieron dos videos de una duración aproximada de 40min.
-
-Teniendo en cuenta que el algoritmo de OCR tarda 1200ms en procesar un frame es necesario realizar un filtrado, ya que los 40min de filmación equivalen en 72000 imágenes, y la mayoría no poseen vehículos o la patente no está enfocada.
-El proceso de filtrado consistió en un recorte manual de las partes donde no había ningún vehículo, lo que terminó dejando 7min de filmación. Si bien este número es bajo, llevó a obtener un total de 35 vehículos, suficientes para el análisis. Posteriormente se convirtió el video en frames, utilizando Open CV, para luego procesar las 11000 fotografías y eliminar las que no era posible reconocer la patente del vehículo. Luego se obtuvieron 3600 fotografías válidas, que se procesaron por el algoritmo de OCR y se descartaron todas las imágenes con porcentaje de seguridad inferior al $50\%$.
-Las imágenes se clasificaron en una carpeta con el valor predicho por el algoritmo.
-Finalmente se contabilizaron los errores generando el resumen de Tab. \ref{tab:resumen-patente}.
-
-\begin{table}
-    \centering
-    \input{chapters/06-pruebas/plate-resume-table.tex}
-    \caption{Resumen de las patentes reconocidas.}
-    \label{tab:resumen-patente}
-\end{table}
-
-\subsection{Análisis de resultados}
-
-De esta prueba se observa que el rendimiento del algoritmo ronda el $49\%$ de aciertos, que se considera bajo.
-Sin embargo, se debe considerar que el sistema está diseñado para vehículos que tienen que detenerse frente a una barrera y esperar que la misma se active, o no, luego de reconocer la patente. Como las fotografías procesadas se obtuvieron a partir de autos en movimiento, se espera que el porcentaje de aciertos mejore si la captura se realiza con el vehículo detenido.
-
-\section{Pruebas de distancia y ángulo}
-
-Para realizar esta serie de pruebas se colocó un Volkswagen Up modelo 2015 con patente PEY232 en una posición fija y se procedió a medir con una cinta métrica de error 1cm. El ángulo de $0^\circ$ corresponde al centro de la patente, mientras que el origen se tomó desde el centro de la misma.
+\subsection{Pruebas de distancia y ángulo}
+Para realizar esta serie de pruebas se colocó un Volkswagen Up modelo 2015 con patente PEY232 en una posición fija y se procedió a medir con una cinta métrica de error 1 cm. Para las mediciones se consideró que la cámara y la patente están paralelas y enfrentadas. Este escenario define el ángulo de $0^\circ$ y cambia solamente cuando la cámara gira en dirección paralela al suelo, mientras que el origen se tomó desde el centro de la misma.
 En Fig. \ref{fig:sistema-medicion-angulos} se puede apreciar un esquema del sistema de ejes. La medición consistió en la captura de una fotografía con la cámara de los sistemas SL a una distancia y ángulo determinados. Luego, cada medición se procesó con el algoritmo de OCR.
-Debido al espacio con el que se contaba, se realizaron dos pruebas: la primera consistio en fijar el angulo en $0^\circ$ e ir tomando muestras cada 50cm, mientras que en la segunda se fijo la distancia en 50cm y se vario el ángulo cada $30^\circ$.
+Debido al espacio con el que se contaba, se realizaron dos pruebas: la primera consistió en fijar el angulo en $0^\circ$ e ir tomando muestras cada 50cm, mientras que en la segunda se fijó la distancia en 50 cm y se vario el ángulo cada $30^\circ$.
 Las muestras obtenidas para la primera prueba pueden verse en la Fig. \ref{fig:fotos-distancia} y los resultados obtenidos en la Tab. \ref{tab:resumen-distancia}, mientras que para la segunda prueba las muestras se observan en la Fig. \ref{fig:fotos-angulo} y los resultados en la Tab. \ref{tab:resumen-angulo}.
 
 
@@ -41,14 +22,14 @@ Las muestras obtenidas para la primera prueba pueden verse en la Fig. \ref{fig:f
 \begin{table}
     \centering
     \input{chapters/06-pruebas/resume_distance}
-    \caption{Resumen de la prueba de distancia.}
+    \caption{Resumen de la prueba de distancia a $0^\circ$ grados.}
     \label{tab:resumen-distancia}
 \end{table}
 
 \begin{table}
     \centering
     \input{chapters/06-pruebas/resume_angle}
-    \caption{Resumen de la prueba de ángulos.}
+    \caption{Resumen de la prueba de ángulos a 50 cm.}
     \label{tab:resumen-angulo}
 \end{table}
 
@@ -119,9 +100,36 @@ Las muestras obtenidas para la primera prueba pueden verse en la Fig. \ref{fig:f
     \label{fig:fotos-angulo}
 \end{figure}
 
+\subsection{Pruebas de exterior}
+Esta prueba se realizó con una cámara Kanon PowerShot SX150 IS \cite{kanon_powershot_nodate} en el ingreso al estacionamiento de la Facultad de Ingeniería de la Universidad Nacional del Comahue entre las 8 y 9 de la mañana, el martes 6 de junio del 2023. La prueba se realizó colocando la cámara en un trípode con una altura de 70cm respecto del suelo, y se procedió a filmar los vehículos que entraban al estacionamiento o circulaban por la calle interna Libres Pensadores de la universidad. De este proceso de medición se obtuvieron dos videos de una duración aproximada de 40min.
+
+Teniendo en cuenta que el algoritmo de OCR tarda 1200ms en procesar un frame es necesario realizar un filtrado, ya que los 40min de filmación equivalen en 72000 imágenes, y la mayoría no poseen vehículos o la patente no está enfocada.
+El proceso de filtrado consistió en un recorte manual de las partes del video donde no había ningún vehículo, lo que terminó dejando 7min de filmación. Si bien este número es bajo, llevó a obtener un total de 35 vehículos diferentes en distintos frames, suficientes para el análisis. Posteriormente se convirtió el video en frames, utilizando Open CV, para luego procesar las 11000 fotografías y eliminar las que no eran posibles reconocer la patente del vehículo por un ser humano. Luego se obtuvieron 3600 fotografías, que se procesaron por el algoritmo de OCR y se descartaron todas las imágenes con porcentaje de seguridad inferior al $50\%$.
+
+
+Las imágenes se clasificaron en una carpeta con el valor predicho por el algoritmo.
+Finalmente se contabilizaron los errores generando el resumen de Tab. \ref{tab:resumen-patente}.
+
+\begin{table}
+    \centering
+    \input{chapters/06-pruebas/plate-resume-table.tex}
+    \caption{Resumen de las patentes reconocidas.}
+    \label{tab:resumen-patente}
+\end{table}
+
+
 \subsection{Análisis de resultados}
 
-Con esta prueba se logró probar el sistema en diferentes distancias y ángulos obteniendo un resultado satisfactorio en todas las pruebas, probando que el sistema funciona de forma correcta en un entorno controlado.
+De las pruebas realizadas se obtuvo el rango de trabajo óptimo del algoritmo de OCR, probando que en los entornos en los que se pensó en la etapa de diseño se comporta como fue planeado, esto se puede apreciar que en entornos de baja o nula movilidad del vehículo, como lo fue durante la prueba de ángulo y distancia.
+
+En cambio cuando las condiciones de prueba no son las planteadas para esta aplicación, la eficiencia del sistema ronda el $49\%$, esto se puede observar en la prueba de exterior donde no se puede garantizar que los autos se encuentren detenidos, ni en el rango de distancia y ángulo utilizados en la prueba anterior. Se esperaría que si las condiciones de obtención de la imagen se acercaran al ideal de trabajo, aun cuando los vehículos tengan movimiento el porcentaje de acierto aumentaría considerablemente.
+
+En base a estas pruebas se define que las condiciones de trabajo son:
+\begin{enumerate}
+    \item Distancia entre 50cm y 3m.
+    \item Angulo entre $-60^\circ$ y $60^\circ$ 
+    \item Velocidad de circulación 10km/h
+\end{enumerate}
 
 \section{Pruebas sobre el servidor}
 
@@ -133,6 +141,7 @@ Se montó un sistema SL junto con una notebook como servidor [fig del garage con
 
 Para probar el correcto de funcionamiento del servidor, se creó un usuario de admin y un cliente. Se crearon dos lugares junto con un script en Python 3 emulando el envío de datos de las barreras, generando en el servidor 5900 registros para los lugares, probando el funcionamiento del sistema de inicio a fin.
 
+\section{Estado del prototipo}
 
 
 
