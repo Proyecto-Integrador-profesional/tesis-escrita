@@ -206,7 +206,7 @@ La técnica de Batch-Normalization se utiliza para reducir la covarianza de los 
 
 \section{CCN-OCR}
 
-Para este trabajo se utilizó una CNN diseñada y entrenada por Ankadrew \cite{ankandrew_reconocedor_2023}, cuya arquitectura se puede ver en Fig. \ref{fig:arquitectura-cnn-ocr}. De la arquitectura de la red se destaca la capa de Global Average Pooling, la cual remplaza a la capa de aplanamiento y calcula la media por cada imagen de salida de la capa anterior, produciendo un valor por cada imagen [incluir figura de la diferencia de una capa de Flatten y un global average pooling].
+Para este trabajo se utilizó una CNN diseñada y entrenada por Ankadrew \cite{ankandrew_reconocedor_2023}, cuya arquitectura se puede ver en Fig. \ref{fig:arquitectura-cnn-ocr}. De la arquitectura de la red se destaca la capa de Global Average Pooling, la cual remplaza a la capa de aplanamiento y calcula la media por cada imagen de salida de la capa anterior, produciendo un valor por cada imagen la comparación entre estos métodos de aplanamiento se observa en la Fig. \ref{fig:flatten-pooling}.
 \begin{figure}[bth]
     \centering
     \includegraphics[width=.4\textwidth]{imgs/cnn-ocr.png}
@@ -214,11 +214,18 @@ Para este trabajo se utilizó una CNN diseñada y entrenada por Ankadrew \cite{a
     \label{fig:arquitectura-cnn-ocr}
 \end{figure}
 
+\begin{figure}[bth]
+    \centering
+    \includegraphics[width=.8\textwidth]{imgs/flatten-pooling.png}
+    \caption{Comparación entre una capa de Flatten y una de Global Pooling.}
+    \label{fig:flatten-pooling}
+\end{figure}
+
 Otro elemento a destacar de la red son las siete capas densas conectadas en paralelo, que en la Fig. \ref{fig:arquitectura-cnn-ocr} fueron representadas como una única capa densa para mejorar la visualización del esquema, debido a que, como se anticipó en secciones anteriores, las patentes poseen siete caracteres. En esencia cada capa densa es idéntica, solo se diferencian sus pesos que son aprendidos durante el entrenamiento de la misma. Cada capa posee en total treinta y siete caracteres de salida, esto surge de las veintiseis letras del abecedario, los diez números del 0 al 9 y el símbolo de guion bajo (\_) utilizado en el caso de las patentes antiguas que solo poseen seis caracteres.
 
 Como aclaración para el resto del trabajo, se referirá a esta red como CNN-OCR.
 
-\subsection{Requerimientos}
+\section{Requerimientos}
 
 Si bien la CNN es muy útil para la tarea a resolver, posee una serie de requisitos previos en la imagen de entrada. Según el autor, la CNN
 necesita como entrada una imagen de la patente en blanco y negro de dimensiones $70 \times 140$ pixeles.
@@ -250,7 +257,7 @@ la captura antes de ingresarla a la CNN-OCR:
     \label{fig:Comparativa-imagenes}
 \end{figure}
 
-\subsubsection{Obtención del recorte de la patente}
+\subsection{Obtención del recorte de la patente}
 
 Debido a la importancia de esta etapa y a su complejidad, se realiza una explicación extendida, con la finalidad de tener una mejor comprensión del funcionamiento del proceso de recorte necesario para que la CNN-OCR pueda funcionar de manera óptima. Siguiendo la recomendación de \cite{ankandrew_reconocedor_2023}, se utilizó una red complementaria para detectar la ubicación de la patente y luego realiza el recorte. La red recomendada para esta tarea es la Yolo (You Only Look Once) en su versión 4 o YoloV4 \cite{bochkovskiy_yolov4_2020}.
 
@@ -276,7 +283,7 @@ Debido a que la Darknet está escrita en C es necesario compilar la misma, esto 
     \label{fig:funcionamiento-yolo}
 \end{figure}
 
-\subsubsection{Transformación a escala de grises}
+\subsection{Transformación a escala de grises}
 
 El proceso de conversión a escala de grises se puede hacer de diversas maneras. La forma más utilizada es realizar un promedio de las capas de color Rojo ($R$), Verde ($G$), Azul ($B$) quedando descripto por la ec. \ref{eq:gray-mean}.
 Otra forma es emplear un promedio ponderado para compensar la sensibilidad relativa del ojo humano la cual se puede observar en la ec. \ref{eq:gray-human}. En la Fig. \ref{fig:comparacion-grises} se observa que la conversión a escala de grises teniendo en cuenta la sensibilidad del ojo humano obtiene un mejor resultado.
@@ -315,7 +322,7 @@ Otra forma es emplear un promedio ponderado para compensar la sensibilidad relat
     \label{fig:comparacion-grises}
 \end{figure}
 
-\subsubsection{Redimensionamiento de la imagen}
+\subsection{Redimensionamiento de la imagen}
 
 Para redimensionar la imagen se utiliza una interpolación bilineal la cual no se explicará debido a que su complejidad este fuera del alcance de este trabajo.
 
