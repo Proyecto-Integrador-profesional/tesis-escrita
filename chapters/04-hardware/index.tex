@@ -4,7 +4,7 @@ En este capítulo se realizará una explicación del diseño de los sistemas SL 
 
 \section{Análisis de requisitos}
 
-Para definir algunos requerimientos es necesario evaluar las alternativas existen en el mercado de sistemas de acceso vehicular, y proponer un sistema capaz de suplir las desventajas o mejorar ventajas para los usuarios.
+Para definir algunos requerimientos es necesario evaluar las alternativas existen en el mercado de sistemas de acceso vehicular, con que placas de desarrollo y sensores encontramos en el ámbito local y proponer una solución capaz de suplir las desventajas o mejorar ventajas para los usuarios.
 
 \subsection{Sistemas actuales}
 
@@ -83,7 +83,7 @@ Luego de realizar una investigación de placas a las que se podía acceder se op
 \subsection{Características del SL mini}
 
 La placa del SL mini es una Raspberry Pi 3 B+ \cite{noauthor_documentacion_nodate-2}, Fig. \ref{fig:raspberry} la cual cuenta con un procesador
-Broadcom BCM2837B0 y un Córtex A53 acompañado de 1 GB de RAM LPDDR2, junto con un sistema operativo llamado Raspberry Pi OS el cual está basado en Debian.
+Broadcom BCM2837B0 y  una CPU cuadcore Cortex A53 acompañado de 1 GB de RAM LPDDR2, junto con un sistema operativo llamado Raspberry Pi OS el cual está basado en Debian.
 
 \begin{figure}[bth]
     \centering
@@ -100,7 +100,7 @@ La disponibilidad de la placa en el mercado fue un punto importante a considerar
 
 \subsection{Características del SL}
 
-La placa del SL es una Nvidia Jetson TX1 \cite{nvidia_manual_nodate}, Fig. \ref{fig:JTX1} la cual cuenta con un procesador Cortex A57 y 4GB de RAM LPDDR4. Además contiene  256 núcleos Nvidia Maxwell, lo que la vuelve una opción excelente en lo que se refiere al trabajo con imágenes y videos.
+La placa del SL es una Nvidia Jetson TX1 \cite{nvidia_manual_nodate}, Fig. \ref{fig:JTX1} la cual cuenta con un procesador cuadcore Cortex A57 y 4GB de RAM LPDDR4. Además contiene  256 núcleos Nvidia Maxwell, lo que la vuelve una opción excelente en lo que se refiere al trabajo con imágenes y videos.
 
 Para realizar la implementación se contó con el kit de desarrollo provisto por la empresa Nvidia. En él se pueden encontrar todas las conexiones mencionadas en el SL mini, lo que permite el paso de los sensores de una placa a otra con suma facilidad.
 Este modelo cuenta con un sistema operativo JetPack 4.6.3 basado en Ubuntu 18.04.
@@ -120,10 +120,10 @@ En contra parte con el modelo mini, la placa del modelo SL está pensada para pr
     \centering
     \begin{tabular}{cccc}
         \toprule
-        Módelo           & Cantidad de nucleos & RAM        & GPU        \\
+        Módelo           & CPU & RAM        & GPU        \\
         \midrule
-        Raspberry Pi 3b+ & 4 a 1.4GHz          & 1GB LPDDR2 & 2 a 400MHz \\
-        Jeston TX1       & 4 a                 & 4GB LPDDR4 & 256 a 1GHz \\
+        Raspberry Pi 3b+ & 4  a 1.4GHz          & 1GB LPDDR2 & 2 a 400MHz \\
+        Jeston TX1       & 4  a 1.7GHz          & 4GB LPDDR4 & 256 a 1GHz \\
         \bottomrule
     \end{tabular}
     \caption{Resumen de características de las placas embebidas.}

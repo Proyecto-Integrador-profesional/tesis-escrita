@@ -210,7 +210,7 @@ Para este trabajo se utilizó una CNN diseñada y entrenada por Ankadrew \cite{a
 \begin{figure}[bth]
     \centering
     \includegraphics[width=.4\textwidth]{imgs/cnn-ocr.png}
-    \caption{Arquitectura de la CNN-OCR de 1.3 millones de parametros optimizado para CPU.}
+    \caption{Arquitectura de la CNN-OCR de 1.3 millones de parámetros optimizados para CPU.}
     \label{fig:arquitectura-cnn-ocr}
 \end{figure}
 
@@ -261,7 +261,7 @@ la captura antes de ingresarla a la CNN-OCR:
 
 Debido a la importancia de esta etapa y a su complejidad, se realiza una explicación extendida, con la finalidad de tener una mejor comprensión del funcionamiento del proceso de recorte necesario para que la CNN-OCR pueda funcionar de manera óptima. Siguiendo la recomendación de \cite{ankandrew_reconocedor_2023}, se utilizó una red complementaria para detectar la ubicación de la patente y luego realiza el recorte. La red recomendada para esta tarea es la Yolo (You Only Look Once) en su versión 4 o YoloV4 \cite{bochkovskiy_yolov4_2020}.
 
-El modelo de la YoloV4 es un sistema de código abierto el cual se centra en la detección de objetos. Utiliza una arquitectura Darknet \cite{noauthor_darknet_nodate}, escrita en C, que se puede ver en la Fig.\ref{fig:funcionamiento-yolo}.
+El modelo de la YoloV4 es un sistema de código abierto el cual se centra en la detección de objetos. Utiliza una arquitectura Darknet \cite{noauthor_darknet_nodate}, escrita en C, en la Fig.\ref{fig:funcionamiento-yolo} se puede apreciar un detector genérico de 2 etapas, la red utilizada solo tiene implementado un detector de 1 etapa, similar al que se aprecia en la imagen.
 Una de las principales características de esta arquitectura es la forma en que realiza el proceso de detección y posterior clasificación. La red se puede entender como tres partes diferentes que, para mantener la nomenclatura de la propia arquitectura, no fueron traducidas y se mantendrán en inglés. Estas partes son:
 
 \begin{itemize}
@@ -270,7 +270,7 @@ Una de las principales características de esta arquitectura es la forma en que 
     \item Neck: su funcionalidad es tomar mapas de característica de diferentes partes del Backbone y agregarle características, para facilitar la clasificación de los objetos.
 
     \item Head: es la parte encargada de reconocer objetos, básicamente busca una región en la que pueda haber un objeto, sin distinguir cuál sea. La primera utiliza subimágenes de tamaño fijo, y la otra varía el tamaño de las subimágenes para adecuarse mejor al tamaño de cada objeto.
-          En la Fig. \ref{fig:funcionamiento-yolo} se muestra el Head separado en \textit{Dense Prediction} y \textit{Sparse Prediction}.
+          En la Fig. \ref{fig:funcionamiento-yolo} se muestra un Head genérico separado en \textit{Dense Prediction} y \textit{Sparse Prediction}.
 \end{itemize}
 
 Debido a que la Darknet está escrita en C es necesario compilar la misma, esto se hizo siguiendo los pasos del repositorio de AlexeyAB \cite{alexey_yolo_2023}.
@@ -279,7 +279,7 @@ Debido a que la Darknet está escrita en C es necesario compilar la misma, esto 
 \begin{figure}[bth]
     \centering
     \includegraphics[width=\textwidth]{imgs/funcionamiento-yolo.png}
-    \caption{Funcionamiento del proceso de detección de la YoloV4 \cite{bochkovskiy_yolov4_2020}.}
+    \caption{Funcionamiento del proceso de un detector de 2 etapas. \cite{bochkovskiy_yolov4_2020}.}
     \label{fig:funcionamiento-yolo}
 \end{figure}
 
@@ -345,7 +345,7 @@ Para la implementación del algoritmo se utilizó el lenguaje Python 3, ya que c
     \label{fig:pic-to-text}
 \end{figure}
 
-La lectura u obtención de una fotografía se realizó mediante OpenCV \cite{opencv_opencv_2023} ya que permite utilizar una gran variedad de fuentes tales como cámaras y archivos. Luego se procesa mediante la YoloV4, que devuelve la ubicación relativa de la patente en la imagen en un archivo de texto plano para, posteriormente, leer el archivo de texto, junto con las dimensiones de la imagen y poder obtener la patente recortada. Antes de pasar el recorte a la CNN-OCR se lo transforma a escala de grises y se redimensiona a $70 \times 140$ utilizando una interpolación bilineal y se normalizan los valores de la imagen entre 0 y 1 usando OpenCV. Finalmente se procesa la imagen por la CNN-OCR obteniendo la patente en texto. En capítulos posteriores se explicará con mayor detalle que sucede con la imagen, y la patente obtenida (Fig. \ref{fig:pic-to-text}).
+La lectura u obtención de una fotografía se realizó mediante OpenCV \cite{opencv_opencv_2023} ya que permite utilizar una gran variedad de fuentes tales como cámaras y archivos. Luego se procesa mediante la YoloV4, que devuelve la ubicación relativa de la patente en la imagen en un archivo de texto plano lo que permite obtener la patente recortada. Antes de pasar el recorte a la CNN-OCR se lo transforma a escala de grises y se redimensiona a $70 \times 140$ utilizando una interpolación bilineal y se normalizan los valores de la imagen entre 0 y 1 usando OpenCV. Finalmente se procesa la imagen por la CNN-OCR obteniendo la patente en texto. En capítulos posteriores se explicará con mayor detalle que sucede con la imagen, y la patente obtenida (Fig. \ref{fig:pic-to-text}).
 
 
 \subsection{Prueba de rendimiento}
