@@ -120,10 +120,10 @@ En contra parte con el modelo mini, la placa del modelo SL está pensada para pr
     \centering
     \begin{tabular}{cccc}
         \toprule
-        Módelo           & CPU & RAM        & GPU        \\
+        Módelo           & CPU         & RAM        & GPU        \\
         \midrule
-        Raspberry Pi 3b+ & 4  a 1.4GHz          & 1GB LPDDR2 & 2 a 400MHz \\
-        Jeston TX1       & 4  a 1.7GHz          & 4GB LPDDR4 & 256 a 1GHz \\
+        Raspberry Pi 3b+ & 4  a 1.4GHz & 1GB LPDDR2 & 2 a 400MHz \\
+        Jeston TX1       & 4  a 1.7GHz & 4GB LPDDR4 & 256 a 1GHz \\
         \bottomrule
     \end{tabular}
     \caption{Resumen de características de las placas embebidas.}
@@ -247,16 +247,16 @@ Para terminar el diseño de los sistemas SL y SL mini, se explicará el diseño 
 Es por ello que se implementaron una serie de módulos que permiten ser actualizados de manera sencilla y aíslan responsabilidades en diferentes partes. La implementación se realizó en Python 3. A continuación se realizará una breve explicación de las librerías creadas.
 
 
-\subsubsection{Lectura de distancia}
+\subsection{Lectura de distancia}
 
 Para la lectura de distancia se implementó una librería llamada \textit{us100}, la cual utiliza \textit{pyserial}  \cite{noauthor_documentacion_nodate-1} para la comunicación por puerto serie.
 Esta librería posee una función que devuelve la distancia de un objetivo. Con la finalidad de disminuir los falsos positivos se utilizó una lista anidada que posee las últimas 5 mediciones, y devuelve el promedio de las mismas.
 
-\subsubsection{Utilidades}
+\subsection{Utilidades}
 
 Se creó una librería llamada \textit{slutils} la cual tiene como responsabilidad la conexión con el servidor MQTT, el envío de registros de entrada/salida, así como administrar la configuración del sistema y la captura de imágenes.
 
-Para la conexión con el servidor MQTT se utilizó \textit{paho-mqtt} \cite{craggs_documentacion_nodate}, escuchando el tópico \textit{$id/config$} donde el $id$ es un identificador único por cada placa.
+Para la conexión con el servidor MQTT, este protocolo se explicará con mayor detalle en el siguiente capítulo, se utilizó \textit{paho-mqtt} \cite{craggs_documentacion_nodate}, escuchando el tópico \textit{$id/config$} donde el $id$ es un identificador único por cada placa.
 
 En cuanto al envío de los registros este se realiza por POST mediante HTTP utilizando la librería \textit{requests} \cite{python_software_foundation_documentacion_nodate}.
 
