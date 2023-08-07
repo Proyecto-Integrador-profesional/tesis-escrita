@@ -35,7 +35,7 @@ Un contenedor funciona casi como una máquina virtual, pero sin entorno gráfico
 \subsection{Docker Compose}
 
 A pesar que Docker es una tecnología muy utilizada, por si sola puede ejecutar un único contenedor a la vez, existen herramientas para la administración de múltiples contenedores en simultáneo. La más conocida, y muy utilizada en el mundo del desarrollo es Kubernetes \cite{noauthor_kubernetes_nodate}.
-Debido a que el sistema aún no es lo suficientemente grande y no se cuenta con múltiples servidores para alojar los servicios, la implementación se realizó mediante Docker Compose \cite{docker_inc_docker_2023}, cumple un rol muy similar a Kubernetes, pero sin agregar tanta complejidad debido a poder administrar múltiples servidores.
+Debido a que el sistema aun no es lo suficientemente grande y no se cuenta con múltiples servidores para alojar los servicios, la implementación se realizó mediante Docker Compose \cite{docker_inc_docker_2023}, cumple un rol muy similar a Kubernetes, pero sin agregar tanta complejidad debido a poder administrar múltiples servidores.
 
 \begin{figure}[bth]
     \centering
@@ -68,27 +68,6 @@ Por último, \textit{ports} es un array que vincula los puertos del sistema anfi
 
 Si bien en el archivo de configuración no aparece la configuración de \textit{intranet}, Docker Compose genera una red interna para interconectar los contenedores, lo que permite que el servicio \textit{api} pueda acceder a la base de datos del servicio \textit{db} mediante la ruta \textit{mongodb://db:27017/sl}. La mayor ventaja de esta red es que hace inaccesible la base de datos para usuarios que no estén dentro de la red de Docker, disminuyendo la vulnerabilidad del sistema.
 
-\section{Protocolos de comunicación}
-
-Como fue nombrado en el capítulo 2, el sistema utiliza dos protocolos de comunicación: HTTP y MQTT, este apartado se realiza una breve introducción a cada protocolo.
-
-\subsection{HTTP}
-
-HTTP por sus siglas en inglés Hypertext Transfer Protocol o protocolo de transferencia de hipertextos, es la forma en la que se comunican los navegadores web para consultar datos a un servidor.
-Para este trabajo es importante tener en cuenta las siguientes características:
-
-\begin{enumerate}
-    \item Half-Duplex: El cliente es quien pide la información y el servidor es quien responde dicha petición.
-    \item Cuenta con métodos específicos para indicarle al servidor la acción para llevar a cabo: GET (leer), POST (crear), PUT (actualizar), DELETE (eliminar), entre otros.
-\end{enumerate}
-
-Este protocolo se utiliza debido a que permite  a los usuarios visualizar información de sus estacionamientos desde una aplicación web, además permite enviar la información desde los sistemas SL cuando entra o sale un vehículo.
-
-\subsection{MQTT}
-
-MQTT por sus siglas en inglés Message Queing Telemetry Transpor o transporte de telemetría mediante mensajes,
-es un protocolo muy utilizado para aplicaciones de IoT (Internet of Things), debido a: bajo consumo energético, ancho de banda reducido, escalabilidad y confiabilidad.
-Este protocolo es basado en publicación/suscripción: Los clientes pueden publicar mensajes en tópicos, los mensajes son enviados a todos los clientes que estén suscriptos al tópico del mensaje, esto permite establecer una comunicación Full-Duplex entre el back-end de la aplicación y los sistemas SL.
 
 \section{Servicios}
 
@@ -167,58 +146,58 @@ El Dashboard permite ver información resumida: horas estacionadas y cantidad de
 Por otro lado existe una vista de los registros crudos, dando información particular de cada registro (Fig. \ref{fig:registers})
 
 
-\begin{figure}[bth]
+\begin{figure}[!bth]
     \centering
-    \includegraphics[width=\textwidth]{imgs/server/login.png}
+    \includegraphics[width=.8\textwidth]{imgs/server/login.png}
     \caption{Inicio de sesión.}
     \label{fig:login}
 \end{figure}
 
-\begin{figure}[bth]
+\begin{figure}[!bth]
     \centering
-    \includegraphics[width=\textwidth]{imgs/server/places.png}
+    \includegraphics[width=.8\textwidth]{imgs/server/places.png}
     \caption{Estacionamientos del cliente.}
     \label{fig:home}
 \end{figure}
 
-\begin{figure}[bth]
+\begin{figure}[!bth]
     \centering
-    \includegraphics[width=\textwidth]{imgs/server/update-place.png}
+    \includegraphics[width=.8\textwidth]{imgs/server/update-place.png}
     \caption{Formulario para actualizar un estacionamiento.}
     \label{fig:update-place}
 \end{figure}
 
 
-\begin{figure}[bth]
+\begin{figure}[!bth]
     \centering
-    \includegraphics[width=\textwidth]{imgs/server/in-type.png}
+    \includegraphics[width=.8\textwidth]{imgs/server/in-type.png}
     \caption{Vista de permisos.}
     \label{fig:in-type}
 \end{figure}
-\begin{figure}[bth]
+\begin{figure}[!bth]
     \centering
-    \includegraphics[width=\textwidth]{imgs/server/client-barriers-details.png}
+    \includegraphics[width=.8\textwidth]{imgs/server/client-barriers-details.png}
     \caption{Vista de los detalles.}
     \label{fig:barrier-details}
 \end{figure}
 
-\begin{figure}[bth]
+\begin{figure}[!bth]
     \centering
-    \includegraphics[width=\textwidth]{imgs/server/barrier-update-data.png}
+    \includegraphics[width=.8\textwidth]{imgs/server/barrier-update-data.png}
     \caption{Formulario para actualizar los datos del sistema SL.}
     \label{fig:update-barrier}
 \end{figure}
 
-\begin{figure}[bth]
+\begin{figure}[!bth]
     \centering
-    \includegraphics[width=\textwidth]{imgs/server/resume.png}
+    \includegraphics[width=.8\textwidth]{imgs/server/resume.png}
     \caption{Visualización de datos para un cliente con 2 estacionamientos.}
     \label{fig:dashboard}
 \end{figure}
 
-\begin{figure}[bth]
+\begin{figure}[!bth]
     \centering
-    \includegraphics[width=\textwidth]{imgs/server/registers.png}
+    \includegraphics[width=.8\textwidth]{imgs/server/registers.png}
     \caption{Vista de registros.}
     \label{fig:registers}
 \end{figure}
@@ -229,16 +208,16 @@ Por otro lado existe una vista de los registros crudos, dando información parti
 
 Los administradores poseen una página para visualizar los sistemas SL según cliente y lugar (Fig. \ref{fig:admin-details}). Por último, poseen una página para agregar sistemas SL (Fig. \ref{fig:add-barrier}).
 
-\begin{figure}[bth]
+\begin{figure}[!bth]
     \centering
-    \includegraphics[width=\textwidth]{imgs/server/admin-details.png}
+    \includegraphics[width=.8\textwidth]{imgs/server/admin-details.png}
     \caption{Detalles de los sistemas SL según cliente y estacionamiento.}
     \label{fig:admin-details}
 \end{figure}
 
-\begin{figure}[bth]
+\begin{figure}[!bth]
     \centering
-    \includegraphics[width=\textwidth]{imgs/server/add-barrier.png}
+    \includegraphics[width=.8\textwidth]{imgs/server/add-barrier.png}
     \caption{Formulario para agregar un sistema SL.}
     \label{fig:add-barrier}
 \end{figure}
@@ -246,8 +225,7 @@ Los administradores poseen una página para visualizar los sistemas SL según cl
 \subsection{Nginx}
 
 Nginx es un servidor web de código abierto que permite la implementación de
-proxy inverso \footnote{Es una aplicación back-end que se situa delante de otros servicios web, aumentando la seguridad, el rendimiendo y la fiabilidad del servidor.}
-, cache de HTTP, y balanceo de cargo.
+proxy inverso\footnote{Es una aplicación back-end que se situa delante de otros servicios web, aumentando la seguridad, el rendimiendo y la fiabilidad del servidor.}, cache de HTTP, y balanceo de cargo.
 Su implementación se utiliza como proxy inverso entre el back-end y el front-end.
 
 
