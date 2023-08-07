@@ -146,5 +146,26 @@ Para probar el correcto de funcionamiento del servidor, se creó un usuario de a
 
 \section{Estado del prototipo}
 
+En la actualidad se cuentan con 2 prototipos funcionales, uno para la versión SL y otro para el modelo SL mini. 
+El prototipo SL se encuentra montado sobre la placa Nvidia Jetson TX1 en su kit de desarrollo, la cual es capaz de correr el algoritmo de forma local.
+Mientras que la versión SL mini se ejecuta en la placa Raspberry Pi 3 b+, que como se hizo mención en anterior capítulos no es capaz de correr el algoritmo de OCR por lo que esta tarea, se ejecuta en el servidor de prueba. El mismo se encuentra alojado en una notebook de la marca CX, la cual cuenta con un procesador Intel i5-1135G7, con 32 GB de ram, sin gpu dedicada, con lo que el tiempo de procesamiento por imagen es de 1,2s, como se mencionó en la Tab. \ref{tab:ocr}.
+Para ambos modelos se cuenta con la misma cámara usb genérica y el sensor de distancia ultrasónico US-100.
+Ambos prototipos se pueden apreciar en la Fig. \ref{fig:prototipos}.
+\begin{figure}[bth]
+    \centering
+    \begin{subfigure}{.45\textwidth}
+        \includegraphics[width=\textwidth]{imgs/prototipo-sl.jpeg}
+        \caption{Protipo SL.}
+        \label{fig:prot-sl}
+    \end{subfigure}
+    \begin{subfigure}{.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{imgs/prototipo-sl-mini.jpeg}
+        \caption{Protipo SL mini.}
+        \label{fig:prot-sl-mini}
+    \end{subfigure}
+    \caption{Protipos en su estado actual.}
+    \label{fig:prototipos}
+\end{figure}
 
 
