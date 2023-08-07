@@ -69,6 +69,28 @@ Por último, \textit{ports} es un array que vincula los puertos del sistema anfi
 Si bien en el archivo de configuración no aparece la configuración de \textit{intranet}, Docker Compose genera una red interna para interconectar los contenedores, lo que permite que el servicio \textit{api} pueda acceder a la base de datos del servicio \textit{db} mediante la ruta \textit{mongodb://db:27017/sl}. La mayor ventaja de esta red es que hace inaccesible la base de datos para usuarios que no estén dentro de la red de Docker, disminuyendo la vulnerabilidad del sistema.
 
 
+\section{Protocolos de comunicación}
+
+Como fue nombrado en el capítulo 2, el sistema utiliza dos protocolos de comunicación: HTTP y MQTT, este apartado se realiza una breve introducción a cada protocolo.
+
+\subsection{HTTP}
+
+HTTP por sus siglas en inglés Hypertext Transfer Protocol o protocolo de transferencia de hipertextos, es la forma en la que se comunican los navegadores web para consultar datos a un servidor.
+Para este trabajo es importante tener en cuenta las siguientes características:
+
+\begin{enumerate}
+    \item Half-Duplex: El cliente es quien pide la información y el servidor es quien responde dicha petición.
+    \item Cuenta con métodos específicos para indicarle al servidor la acción para llevar a cabo: GET (leer), POST (crear), PUT (actualizar), DELETE (eliminar), entre otros.
+\end{enumerate}
+
+Este protocolo se utiliza debido a que permite  a los usuarios visualizar información de sus estacionamientos desde una aplicación web, además permite enviar la información desde los sistemas SL cuando entra o sale un vehículo.
+
+\subsection{MQTT}
+
+MQTT por sus siglas en inglés Message Queing Telemetry Transpor o transporte de telemetría mediante mensajes,
+es un protocolo muy utilizado para aplicaciones de IoT (Internet of Things), debido a: bajo consumo energético, ancho de banda reducido, escalabilidad y confiabilidad.
+Este protocolo es basado en publicación/suscripción: Los clientes pueden publicar mensajes en tópicos, los mensajes son enviados a todos los clientes que estén suscriptos al tópico del mensaje, esto permite establecer una comunicación Full-Duplex entre el back-end de la aplicación y los sistemas SL.
+
 \section{Servicios}
 
 Una vez que fue descrito cómo se hará la implementación y su arquitectura, se procederá a entender cómo fue creada la aplicación web en su totalidad, describiendo cada parte del sistema.
