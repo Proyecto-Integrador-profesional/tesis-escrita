@@ -137,7 +137,15 @@ Los valores de distancia se toman teniendo en cuenta que el largo de un auto ron
 
 \subsection{Integración de los sistemas SL y servidor}
 
-Se montó un sistema SL junto con una notebook como servidor [fig del garage con el auto] y se crearon registros de entrada, y cambio la configuración de un sistema SL en tiempo real. Con esta prueba se logró probar los cambios de configuración en tiempo real y que los registros se creen de forma correcta.
+Se montó un sistema SL mini junto con una notebook como servidor, el sistema montado se observa en la Fig. \ref{fig:pruebas-integracion-sl-server}, y se crearon registros de entrada, y cambio la configuración de un sistema SL en tiempo real. Con esta prueba se logró probar los cambios de configuración en tiempo real y que los registros se creen de forma correcta.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=.5\textwidth]{imgs/pruebas-server-garage.jpg}
+    \caption{Sistema SL mini y servidor montados para lo pruebas de intregración.}
+    \label{fig:pruebas-integracion-sl-server}
+\end{figure}
+
 
 \subsection{Creación de registros}
 
@@ -151,15 +159,15 @@ Mientras que la versión SL mini se ejecuta en la placa Raspberry Pi 3 b+, que c
 Para ambos modelos se cuenta con la misma cámara usb genérica y el sensor de distancia ultrasónico US-100.
 Ambos prototipos se pueden apreciar en la Fig. \ref{fig:prototipos}.
 \begin{figure}[bth]
-    \centering
     \begin{subfigure}{.45\textwidth}
-        \includegraphics[width=\textwidth]{imgs/prototipo-sl.jpeg}
+        \centering
+        \includegraphics[height=5cm]{imgs/prototipo-sl.jpeg}
         \caption{Protipo SL.}
         \label{fig:prot-sl}
     \end{subfigure}
     \begin{subfigure}{.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{imgs/prototipo-sl-mini.jpeg}
+        \includegraphics[height=5cm]{imgs/prototipo-sl-mini.jpeg}
         \caption{Protipo SL mini.}
         \label{fig:prot-sl-mini}
     \end{subfigure}

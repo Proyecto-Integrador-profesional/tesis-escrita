@@ -108,7 +108,7 @@ Con la idea de generar la mayor documentación posible de este servicio se utili
 Debido a la necesidad de autenticación de usuarios y de los sistemas SL, se implementó PassportJS que permite la creación de sistemas de validación de forma sencilla. Los métodos de autenticación implementados fueron:
 
 \begin{enumerate}
-    \item Usuario y contraseña: Utilizado para los usuarios que entran/registran desde la web.
+    \item Usuario y contraseña: Utilizado para los usuarios que entran desde la web.
     \item Api Key de terceros: Una forma de validar si la aplicación que pide datos está autorizada o no.
     \item Api Key para sistemas SL: Permite validar si la información del registro de entrada/salida está siendo enviada por un SL/SL mini autorizado. Además permite saber qué sistema es la que envía los datos, diminuyendo el tamaño de la petición.
     \item Json Web Token o JWT: Se utiliza una vez que el usuario entra a la app, y es un
@@ -124,7 +124,7 @@ Estas sirven para validar las peticiones entrantes al servidor, permitiendo dar 
 
 \subsubsection{JWT}
 
-JSON Web Token o simplemente JWT es un estándar qué está dentro del documento RFC 7519. Su función principal es poder propagar información entre dos partes de forma segura. En la práctica, los JWT son muy fáciles de desencriptar por lo que se desaconseja incluir información sensible del usuario en el mismo.
+JSON Web Token o simplemente JWT es un estándar qué está dentro del documento RFC 7519 \cite{jones_json_2015}. Su función principal es poder propagar información entre dos partes de forma segura. En la práctica, los JWT son muy fáciles de desencriptar por lo que se desaconseja incluir información sensible del usuario en el mismo.
 
 \subsection{Análisis de imágenes}
 

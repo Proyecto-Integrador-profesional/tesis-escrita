@@ -119,7 +119,7 @@ luego de que la información es procesada por la neurona, obteniendo $y= f(W^T X
     \begin{subfigure}{.45\textwidth}
         \centering
         \includegraphics[width=1\textwidth]{imgs/activacion/step.png}
-        \caption{Escalon: $\mu(x)$}
+        \caption{Escalón: $\mu(x)$}
     \end{subfigure}
     \begin{subfigure}{.45\textwidth}
         \centering
@@ -161,8 +161,8 @@ Si bien la descripción de las capas de convolución, agrupación y función de 
 
 \begin{figure}[bth]
     \centering
-    \includegraphics[width=1\textwidth]{imgs/capa-convolucional.jpeg}
-    \caption{Esquema de funcionamiento de una capa convolucional 2D.}
+    \includegraphics[width=.8\textwidth]{imgs/capa-convolucional.jpg}
+    \caption{Esquema de funcionamiento de una capa convolucional 2D \cite{abril_redes_2021}.}
     \label{fig:esquema-capa-convolucional}
 \end{figure}
 
@@ -221,7 +221,7 @@ Para este trabajo se utilizó una CNN diseñada y entrenada por Ankadrew \cite{a
     \label{fig:flatten-pooling}
 \end{figure}
 
-Otro elemento a destacar de la red son las siete capas densas conectadas en paralelo, que en la Fig. \ref{fig:arquitectura-cnn-ocr} fueron representadas como una única capa densa para mejorar la visualización del esquema, debido a que, como se anticipó en secciones anteriores, las patentes poseen siete caracteres. En esencia cada capa densa es idéntica, solo se diferencian sus pesos que son aprendidos durante el entrenamiento de la misma. Cada capa posee en total treinta y siete caracteres de salida, esto surge de las veintiseis letras del abecedario, los diez números del 0 al 9 y el símbolo de guion bajo (\_) utilizado en el caso de las patentes antiguas que solo poseen seis caracteres.
+Otro elemento a destacar de la red son las siete capas densas conectadas en paralelo, que en la Fig. \ref{fig:arquitectura-cnn-ocr} fueron representadas como una única capa densa para mejorar la visualización del esquema, debido a que, como se anticipó en secciones anteriores, las patentes poseen siete caracteres. En esencia cada capa densa es idéntica, solo se diferencian sus pesos que son aprendidos durante el entrenamiento de la misma. Cada capa posee en total treinta y siete caracteres de salida, esto surge de las veintiseis letras del abecedario, los diez números del 0 al 9 y el símbolo de guion bajo (\_) utilizado en el caso de las patentes antiguas que solo poseen seis caracteres, la salida de cada neurona de la capa de clasificación se puede interpretar como la probabilidad estimada de dicho carácter.
 
 Como aclaración para el resto del trabajo, se referirá a esta red como CNN-OCR.
 
@@ -270,7 +270,7 @@ Una de las principales características de esta arquitectura es la forma en que 
     \item Neck: su funcionalidad es tomar mapas de característica de diferentes partes del Backbone y agregarle características, para facilitar la clasificación de los objetos.
 
     \item Head: es la parte encargada de reconocer objetos, básicamente busca una región en la que pueda haber un objeto, sin distinguir cuál sea. La primera utiliza subimágenes de tamaño fijo, y la otra varía el tamaño de las subimágenes para adecuarse mejor al tamaño de cada objeto.
-          En la Fig. \ref{fig:funcionamiento-yolo} se muestra un Head genérico separado en \textit{Dense Prediction} y \textit{Sparse Prediction}.
+          En la Fig. \ref{fig:funcionamiento-yolo} se muestran dos opciones de Head un \textit{Dense Prediction} y un \textit{Sparse Prediction}.
 \end{itemize}
 
 Debido a que la Darknet está escrita en C es necesario compilar la misma, esto se hizo siguiendo los pasos del repositorio de AlexeyAB \cite{alexey_yolo_2023}.
