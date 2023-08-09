@@ -119,12 +119,13 @@ Finalmente se contabilizaron los errores generando el resumen de Tab. \ref{tab:r
 
 \subsection{Análisis de resultados}
 
-De las pruebas realizadas se obtuvo el rango de trabajo óptimo del algoritmo de OCR, probando que en los entornos en los que se pensó en la etapa de diseño se comporta como fue planeado, esto se puede apreciar que en entornos de baja o nula movilidad del vehículo, como lo fue durante la prueba de ángulo y distancia.
+En base a las pruebas de interior, se logra apreciar que el rendimiento del algoritmo de OCR en entonces controlados, vehiculo detenido, corta distancia y un angulo entre $-60^\circ$ y $60^\circ$, se obtienen resultados satisfactorios. Por otro lado, en la prueba de exterior, al contar con una diversidad de circunstancias tales como velocidad no nula, distancia y angulos fuera de los pensados, los resultados obtenidos cuentan con una baja eficiencia.
 
-En cambio cuando las condiciones de prueba no son las planteadas para esta aplicación, la eficiencia del sistema ronda el $49\%$, esto se puede observar en la prueba de exterior donde no se puede garantizar que los autos se encuentren detenidos, ni en el rango de distancia y ángulo utilizados en la prueba anterior.
+
+Realizando una analisis mas exaustivo de la prueba de exterior es posible obtener que la eficiencia del sistema ronda el $49\%$.
 En la Tab. \ref{tab:resumen-patente} se observa que para patentes de seis caracteres la eficiencia ronda el $34\%$ esto se puede deber a que el dataset de entrenamiento contaba con una mayor tasa de patentes de siete caracteres o a que el estado de las patentes de seis caracteres al ser de mayor antigüedad se encuentran en peores condiciones lo que dificulta su estimación.
 Por otro lado cuando se trata de patentes de siete caracteres estas poseen una eficiencia cercana al $54\%$, valor que se considera aceptable para esta prueba.
-Se observa que para ambos casos los errores se encuentran concentrados en un único carácter, por lo que en condiciones de obtención de la imagen más cercanas al de la primera prueba, aun cuando los vehículos tengan movimiento el porcentaje de acierto aumentaría considerablemente.
+Se observa que para ambos casos la mayor tasa de error se da cuando existe un único carácter erróneo independientemente de su posición, por lo que en condiciones de obtención de la imagen más cercanas al de la primera prueba, aun cuando los vehículos tengan movimiento el porcentaje de acierto aumentaría considerablemente.
 
 En base a estas pruebas se define que los limites para las condiciones de trabajo son:
 \begin{enumerate}

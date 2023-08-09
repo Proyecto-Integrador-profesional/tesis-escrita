@@ -18,7 +18,7 @@ El requisito fundamental de este trabajo fue poder controlar el sistema de entra
     \label{fig:sistema-base}
 \end{figure}
 
-De estos requisitos se desprende la forma más general del sistema, que detecta los caracteres del vehículo, permite la identificación del vehículo, y basado en la hora de entrada y salida, calcula el tiempo que estuvo el vehículo, en la Fig. \ref{fig:sistema-base} se observa un modelo de caja negra del sistema.
+De estos requisitos se desprende la forma más general del sistema, que detecta los caracteres del vehículo, permite la identificación del vehículo, y basado en la hora de entrada y salida, calcula el tiempo que estuvo el vehículo. En la Fig. \ref{fig:sistema-base} se observa un modelo de caja negra del sistema.
 Existe un gran inconveniente a la hora de obtener el texto de la patente de una imagen y es el tiempo de procesamiento. Es por ello que se utilizará un sensor de distancia para garantizar que existe un objeto.
 La versión correspondiente del sistema se puede observar en la Fig. \ref{fig:sistema-completa}.
 
@@ -48,6 +48,7 @@ En caso de encontrar una patente, se almacena la fecha, junto con la patente y l
         \caption{Entrada.}
         \label{fig:flujo-entrada}
     \end{subfigure}
+    \hspace{3cm}
     \begin{subfigure}{.3\textwidth}
         \centering
         \includegraphics[width=\textwidth]{imgs/flujo-salida.png}
@@ -84,7 +85,7 @@ Esta es la versión que se desarrollará en los capítulos siguientes.
 Debido a que el enfoque del diseño implica un cliente que desea utilizar el sistema se desarrolla una plataforma web para simplificar el manejo de configuración y administración del sistema. En la Fig. \ref{fig:esquema-cliente-servidor-sl} se observa la arquitectura a implementar en el servidor, teniendo en cuenta las interacciones y su manejo entre los sistemas SL y los clientes.
 \begin{figure}[bth]
     \centering
-    \includegraphics[width=.4\textwidth]{imgs/server-clientes-barreras.png}
+    \includegraphics[width=.6\textwidth]{imgs/server-clientes-barreras.png}
     \caption{Esquema de comunicación Cliente-Servidor-SL.}
     \label{fig:esquema-cliente-servidor-sl}
 \end{figure}
