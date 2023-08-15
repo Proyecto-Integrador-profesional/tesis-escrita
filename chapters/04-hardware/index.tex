@@ -87,7 +87,7 @@ Broadcom BCM2837B0 y  una CPU cuadcore Cortex A53 acompañado de 1 GB de RAM LPD
 
 \begin{figure}[bth]
     \centering
-    \includegraphics[width=0.4\textwidth]{imgs/Raspberry-pi3b+.jpg}
+    \includegraphics[width=0.4\textwidth]{imgs/rapsberry.png}
     \caption{Raspberry Pi 3B+.}
     \label{fig:raspberry}
 \end{figure}
@@ -107,8 +107,8 @@ Este modelo cuenta con un sistema operativo JetPack 4.6.3 basado en Ubuntu 18.04
 
 \begin{figure}[bth]
     \centering
-    \includegraphics[width=0.3\textwidth]{imgs/JTX1-developerkit.png}
-    \caption{Nvidia Jetson TX1 developer kit.}
+    \includegraphics[width=0.4\textwidth]{imgs/tx1.jpg}
+    \caption{NVIDIA Jetson TX1 development kit.}
     \label{fig:JTX1}
 \end{figure}
 
@@ -250,7 +250,7 @@ Es por ello que se implementaron una serie de módulos que permiten ser actualiz
 \subsection{Lectura de distancia}
 
 Para la lectura de distancia se implementó una librería llamada \textit{us100}, la cual utiliza \textit{pyserial}  \cite{noauthor_documentacion_nodate-1} para la comunicación por puerto serie.
-Esta librería posee una función que devuelve la distancia de un objetivo. Con la finalidad de disminuir los falsos positivos se utilizó una lista anidada que posee las últimas 5 mediciones, y devuelve el promedio de las mismas.
+Esta librería posee una función que devuelve la distancia promedio de un objetivo, para ello se utilizó una lista anidada de las últimas 5 muestras.
 
 \subsection{Utilidades}
 
