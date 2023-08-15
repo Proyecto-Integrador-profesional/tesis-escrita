@@ -168,7 +168,7 @@ Si bien la descripción de las capas de convolución, agrupación y función de 
 
 \subsection{Convolución en 2D}
 
-La convolución bidimensional es similar a la 1D. En el caso de la respuesta al impulso $h[n,m]$ se denomina filtro o kernel y, análogo al caso 1D, recorre todo el arreglo de entrada para producir un nuevo arreglo denominado mapa de características.
+La convolución bidimensional es similar a la 1D. En este caso la respuesta al impulso $h[n,m]$ se denomina filtro o kernel y, análogo al caso 1D, recorre todo el arreglo de entrada para producir un nuevo arreglo denominado mapa de características.
 La dimensión del kernel se suele definir como $(2k + 1) \times (2k + 1)$ usualmente se utilizan de $3\times3$ y $5\times5$.
 
 
@@ -259,16 +259,16 @@ la captura antes de ingresarla a la CNN-OCR:
 
 \subsection{Obtención del recorte de la patente}
 
-Debido a la importancia de esta etapa y a su complejidad, se realiza una explicación extendida, con la finalidad de tener una mejor comprensión del funcionamiento del proceso de recorte necesario para que la CNN-OCR pueda funcionar de manera óptima. Siguiendo la recomendación de \cite{ankandrew_reconocedor_2023}, se utilizó una red complementaria para detectar la ubicación de la patente y luego realizar el recorte. 
+Debido a la importancia de esta etapa y a su complejidad, se realiza una explicación extendida, con la finalidad de tener una mejor comprensión del funcionamiento del proceso de recorte necesario para que la CNN-OCR pueda funcionar de manera óptima. Siguiendo la recomendación de \cite{ankandrew_reconocedor_2023}, se utilizó una red complementaria para detectar la ubicación de la patente y luego realizar el recorte.
 La red recomendada para esta tarea es el detector de una etapa Yolo (You Only Look Once) en su versión 4 o YoloV4 \cite{bochkovskiy_yolov4_2020}, como se muestra en la Fig. \ref{fig:funcionamiento-yolo}. Esta red es un sistema de código abierto el cual se centra en la detección de objetos. Utiliza una arquitectura Darknet \cite{alexey_yolo_2023}, escrita en C.
 
 Los detectores modernos basados en redes neuronales convolucionales (CNN) contienen tres partes importantes: Backbone, Neck y Head que trabajan en conjunto para realizar la detección de objetos en imágenes.
 \begin{itemize}
-\item Backbone: es una arquitectura de deep learning que actúa como extractor de características en la imagen de entrada.
+    \item Backbone: es una arquitectura de deep learning que actúa como extractor de características en la imagen de entrada.
 
-\item Neck: su funcionalidad es tomar mapas de características de diferentes partes del Backbone y agregarle características, para facilitar la clasificación de los objetos.
+    \item Neck: su funcionalidad es tomar mapas de características de diferentes partes del Backbone y agregarle características, para facilitar la clasificación de los objetos.
 
-\item Head: es la parte encargada de reconocer objetos, básicamente busca una región en la que pueda haber un objeto, sin distinguir cual sea. Usualmente se compone de dos partes. La primera utiliza subimagenes de tamaño fijo, y la segunda varía el tamaño de las subimagenes para adecuarse mejor al tamaño de cada objeto. En la Fig. \ref{fig:funcionamiento-yolo} se muestra un Head genérico separado en Dense Prediction y Sparse Prediction.
+    \item Head: es la parte encargada de reconocer objetos, básicamente busca una región en la que pueda haber un objeto, sin distinguir cual sea. Usualmente se compone de dos partes. La primera utiliza subimagenes de tamaño fijo, y la segunda varía el tamaño de las subimagenes para adecuarse mejor al tamaño de cada objeto. En la Fig. \ref{fig:funcionamiento-yolo} se muestra un Head genérico separado en Dense Prediction y Sparse Prediction.
 \end{itemize}
 
 
@@ -324,7 +324,7 @@ Otra forma es emplear un promedio ponderado para compensar la sensibilidad relat
 
 \subsection{Redimensionamiento de la imagen}
 
-Para redimensionar la imagen se utiliza una interpolación bilineal la cual no se explicará debido a que su complejidad este fuera del alcance de este trabajo.
+Para redimensionar la imagen se utiliza un algoritmo de interpolación bilineal la cual no se explicará debido a que su complejidad este fuera del alcance de este trabajo.
 
 \section{Implementación del algoritmo en Python 3}
 
