@@ -1,16 +1,18 @@
 \chapter*{Resumen}
+\addcontentsline{toc}{chapter}{Resumen}
+
 A lo largo de este trabajo se detalla el procedimiento utilizado para desarrollar un prototipo de estacionamiento inteligente, basado en algoritmos de OCR mediante redes neuronales.
 
-Para el desarrollo del algoritmo de OCR se utilizaron dos redes neuronales, la principal procesa una imagen de una patente y estima los caracteres,
-la secundaria es un detector clasificador que procesa la fotografía y entrega la imagen de la patente.
+Para el desarrollo del algoritmo de OCR se utilizaron dos redes neuronales: la principal procesa una imagen de una patente y estima los caracteres,
+mientras que la secundaria es un detector clasificador que procesa la fotografía y entrega la imagen de la patente.
 
 El prototipo contempla un servidor web y un sistema embebido que se instala en las entradas/salidas de un establecimiento.
 El sistema embebido cuenta con un sensor ultrasónico y una cámara USB.
-Con la finalidad de analizar costos se propusieron dos prototipos una versión que es capaz de procesar las imágenes de forma de local basa en NVIDIA Jetson TX1, denominado como SL, y una versión simplificada que captura la imagen y la envía al servidor para posteriormente ser procesada basa en Raspberry Pi 3B+, llamado SL mini.
+Con la finalidad de analizar costos se propusieron dos prototipos: una versión que es capaz de procesar las imágenes de forma de local basa en NVIDIA Jetson TX1, denominado como SL, y una versión simplificada que captura la imagen y la envía al servidor para posteriormente ser procesada basa en Raspberry Pi 3B+, llamado SL mini.
 
-El servidor web cuenta con una arquitectura de microservicios y fue diseñado para que sea fácilmente escalable. Esté permite almacenar la información que recolectan los sistemas SL, adicionalmente los administradores pueden acceder a la información, además de poder configurar los sistemas SL desde la web.
+El servidor web cuenta con una arquitectura de microservicios y fue diseñado para que sea fácilmente escalable. Este permite almacenar la información que recolectan los sistemas SL, adicionalmente los administradores pueden acceder a la información, y además pueden configurar los sistemas SL desde la web.
 
-Finalmente ya con el prototipo funcional se realizaron ensayos a las distintas partes del sistema, con la finalidad de obtener limitaciones del sistema y su capacidad actual de procesamiento.
+Finalmente, ya con el prototipo funcional, se realizaron ensayos a las distintas partes del sistema, con la finalidad de obtener su capacidad actual de procesamiento y sus limitaciones.
 
 \vspace*{\fill}
 \noindent \textbf{Palabres Clave}
@@ -18,11 +20,17 @@ Finalmente ya con el prototipo funcional se realizaron ensayos a las distintas p
 OCR, redes neuronales, sistemas autónomos, detección de patentes, Javascript.
 
 \chapter*{Abstract}
-Throughout this work, the procedure used to develop a smart parking prototype based on OCR algorithms using neural networks will be detailed. Firstly, a portion of the license plate is captured for character detection. Additionally, the operation of the web service responsible for managing the system for entry and exit will be described.
+\addcontentsline{toc}{chapter}{Abstract}
 
-Initially, an introduction to the proposed system will be provided, followed by the development of the SL systems and the server for controlling the access system. Finally, tests will be conducted to analyze various aspects of the system.
+This work details the procedure used to develop a smart parking prototype throughout this thesis, based on OCR algorithms using neural networks.
 
-The study concludes by analyzing the advantages of the proposed system, and suggestions for improvements that could be made to the prototype are noted.
+For the OCR algorithm development, two neural networks were employed: the main network processes an image of a license plate and estimates the characters, while the secondary one is a classifier detector that processes the photograph and provides the license plate image.
+
+The prototype includes a web server and an embedded system that is installed at the entrances/exits of a facility. The embedded system features an ultrasonic sensor and a USB camera. In order to analyze costs, two prototypes were proposed: one version capable of processing images locally based on NVIDIA Jetson TX1, referred to as SL, and a simplified version that captures the image and sends it to the server for later processing based on Raspberry Pi 3B+, called SL mini.
+
+The web server employs a microservices architecture and was designed to be easily scalable. It allows storing the information collected by the SL systems, and administrators can access this information and configure the SL systems through the web.
+
+Finally, with the functional prototype in place, tests were conducted on different parts of the system to determine its current processing capacity and limitations.
 
 \vspace*{\fill}
 \noindent \textbf{Keywords}

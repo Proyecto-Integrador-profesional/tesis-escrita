@@ -12,6 +12,8 @@
 \usepackage{subcaption}
 \usepackage[sorting=none]{biblatex}
 \usepackage{setspace}  
+
+
 \spacing{1.5}
 
 \graphicspath{ {imgs/} }
@@ -30,11 +32,17 @@
 
 \begin{document}
 \input{title.tex}
+
+
+\pagenumbering{roman}
+
 \include{chapters/acknowledgements.tex}
 \include{chapters/abstract.tex}
 \tableofcontents
+\pagenumbering{arabic}
 \listoffigures
 \listoftables
+
 \include{chapters/01-introduccion/index}
 \include{chapters/02-sistema/index}
 \include{chapters/03-ocr/index}
