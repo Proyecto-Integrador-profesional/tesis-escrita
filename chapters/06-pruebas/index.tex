@@ -104,7 +104,7 @@ Las muestras obtenidas para la primera prueba pueden verse en la Fig. \ref{fig:f
 Esta prueba se realizó con una cámara Kanon PowerShot SX150 IS \cite{kanon_powershot_nodate} en el ingreso al estacionamiento de la Facultad de Ingeniería de la Universidad Nacional del Comahue entre las 8 y 9 de la mañana, el martes 6 de junio del 2023. La prueba se realizó colocando la cámara en un trípode con una altura de 70cm respecto del suelo\footnote{Se consideran los 60cm del tripode y los 10cm de la calzada, debido a que no era conveniente colocar la cámara sobre la calle.}, y se procedió a filmar los vehículos que entraban al estacionamiento o circulaban por la calle interna Libres Pensadores de la universidad. De este proceso de medición se obtuvieron dos videos de una duración aproximada de 40min.
 
 Teniendo en cuenta que el algoritmo de OCR tarda 1200ms en procesar un frame es necesario realizar un filtrado, ya que los 40min de filmación equivalen en 72000 imágenes, y la mayoría no poseen vehículos o la patente no está enfocada.
-El proceso de filtrado consistió en un recorte manual de las partes del video donde no había ningún vehículo, lo que terminó dejando 7min de filmación. Si bien este número es bajo, llevó a obtener un total de 35 vehículos diferentes en distintos frames, suficientes para el análisis. Posteriormente se convirtió el video en frames, utilizando Open CV, para luego procesar las 11000 fotografías y eliminar en las que no era posible detectar la forma de una patente por un ser humano. Luego se obtuvieron 3600 fotografías, que se procesaron por el algoritmo de OCR y se descartaron todas las imágenes con porcentaje de confianza inferior al $50\%$, la confianza de la red sobre una patente estimada se define como el promedio de las probabilidades para cada carácter.
+El proceso de filtrado consistió en un recorte manual de las partes del video donde no había ningún vehículo, lo que terminó dejando 7min de filmación. Si bien este número es bajo, llevó a obtener un total de 35 vehículos diferentes en distintos frames, suficientes para el análisis. Posteriormente se convirtió el video en frames, utilizando Open CV, para luego procesar las 11000 fotografías y eliminar en las que no era posible detectar la forma de una patente por un ser humano. Luego se obtuvieron 3600 fotografías, que se procesaron por el algoritmo de OCR y se descartaron todas las imágenes con porcentaje de confianza inferior al $50\%$. La confianza de la red sobre una patente estimada se define como el promedio de las probabilidades para cada carácter.
 
 Las imágenes se clasificaron en una carpeta con el valor predicho por el algoritmo.
 Finalmente se contabilizaron los errores generando el resumen de Tab. \ref{tab:resumen-patente}.
@@ -119,13 +119,21 @@ Finalmente se contabilizaron los errores generando el resumen de Tab. \ref{tab:r
 
 \subsection{Análisis de resultados}
 
-En base a las pruebas de interior, se logra apreciar que el rendimiento del algoritmo de OCR en entonces controlados, vehiculo detenido, corta distancia y un angulo entre $-60^\circ$ y $60^\circ$, se obtienen resultados satisfactorios. Por otro lado, en la prueba de exterior, al contar con una diversidad de circunstancias tales como velocidad no nula, distancia y angulos fuera de los pensados, los resultados obtenidos cuentan con una baja eficiencia.
+En base a las pruebas de interior, se logra apreciar que el rendimiento del algoritmo de OCR resulta satisfactorio en un entorno ideal controlado,  es decir en un escenario de vehículo detenido, corta distancia y un angulo entre $-60^\circ$ y $60^\circ$.
+Por otro lado, en la prueba de exterior en la cual el escenario presenta condiciones extremas y no favorables, como velocidad no nula, distancia variable (corta, media y larga distancia) y ángulos fuera de rango, los resultados obtenidos cuentan con una baja eficiencia.
 
 
-Realizando una analisis mas exaustivo de la prueba de exterior es posible obtener que la eficiencia del sistema ronda el $49\%$.
+Realizando un análisis más exhaustivo de la prueba de exterior es posible obtener que la eficiencia del sistema ronda el $49\%$.
 En la Tab. \ref{tab:resumen-patente} se observa que para patentes de seis caracteres la eficiencia ronda el $34\%$ esto se puede deber a que el dataset de entrenamiento contaba con una mayor tasa de patentes de siete caracteres o a que el estado de las patentes de seis caracteres al ser de mayor antigüedad se encuentran en peores condiciones lo que dificulta su estimación.
 Por otro lado cuando se trata de patentes de siete caracteres estas poseen una eficiencia cercana al $54\%$, valor que se considera aceptable para esta prueba.
-Se observa que para ambos casos la mayor tasa de error se da cuando existe un único carácter erróneo independientemente de su posición, por lo que en condiciones de obtención de la imagen más cercanas al de la primera prueba, aun cuando los vehículos tengan movimiento el porcentaje de acierto aumentaría considerablemente.
+Se observa que para ambos casos la mayor tasa de error se da cuando existe un único carácter erróneo independientemente de su posición. Finalmente, es importante recordar que estos resultados se obtuvieron para un escenario poco favorable como los ejemplificados en la Fig. \ref{fig:collage-autos}. Si se extrapolan a un escenario menos hostil (vehículo cercano a la cámara y velocidad baja), los errores en la Tab. \ref{tab:resumen-patente} disminuirán considerablemente.
+
+\begin{figure}[bth]
+    \centering
+    \includegraphics[width=\textwidth]{imgs/collage-autos.png}
+    \caption{Ejemplificación de las imágenes obtenidas durante la prueba de exterior.}
+    \label{fig:collage-autos}
+\end{figure}
 
 En base a estas pruebas se define que los limites para las condiciones de trabajo son:
 \begin{enumerate}

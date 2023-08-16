@@ -1,10 +1,16 @@
 \chapter*{Resumen}
-A lo largo de este trabajo se detalla el procedimiento utilizado para desarrollar un prototipo de estacionamiento inteligente, basado en algoritmos de OCR mediante redes neuronales. Para lo cual primero se toma un recorte de la patente para luego realizar la detección de los caracteres, a su vez se detallará el funcionamiento del servicio web encargado de la gestión del sistema para el ingreso y egreso.
-En primera instancia se realizará una introducción del sistema planteado, seguido del desarrollo de los sistemas SL y del servidor para el realizar la tarea de control del sistema de acceso, como última instancia se presentan las pruebas realizadas para analizar diferentes aspectos del sistema.
+A lo largo de este trabajo se detalla el procedimiento utilizado para desarrollar un prototipo de estacionamiento inteligente, basado en algoritmos de OCR mediante redes neuronales.
 
-El trabajo concluye al analizar las ventajas del sistema planteado, para luego dejar asentadas las mejoras que podrían realizarle al prototipo.
+Para el desarrollo del algoritmo de OCR se utilizaron dos redes neuronales, la principal procesa una imagen de una patente y estima los caracteres,
+la secundaria es un detector clasificador que procesa la fotografía y entrega la imagen de la patente.
 
+El prototipo contempla un servidor web y un sistema embebido que se instala en las entradas/salidas de un establecimiento.
+El sistema embebido cuenta con un sensor ultrasónico y una cámara USB.
+Con la finalidad de analizar costos se propusieron dos prototipos una versión que es capaz de procesar las imágenes de forma de local basa en NVIDIA Jetson TX1, denominado como SL, y una versión simplificada que captura la imagen y la envía al servidor para posteriormente ser procesada basa en Raspberry Pi 3B+, llamado SL mini.
 
+El servidor web cuenta con una arquitectura de microservicios y fue diseñado para que sea fácilmente escalable. Esté permite almacenar la información que recolectan los sistemas SL, adicionalmente los administradores pueden acceder a la información, además de poder configurar los sistemas SL desde la web.
+
+Finalmente ya con el prototipo funcional se realizaron ensayos a las distintas partes del sistema, con la finalidad de obtener limitaciones del sistema y su capacidad actual de procesamiento.
 
 \vspace*{\fill}
 \noindent \textbf{Palabres Clave}
