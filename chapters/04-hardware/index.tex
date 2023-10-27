@@ -59,7 +59,7 @@ Los problemas de este sistema son:
 Los métodos anteriormente nombrados son muy útiles en el día a día, pero cuentan con una serie de inconvenientes que pueden ser atenuados mediante el OCR como el descrito en el capítulo 3.
 Dicha técnica utiliza un distintivo único de cada vehículo, como en el sistema de RFID, pero la distancia de actuación está dada por la distancia máxima de reconocimiento del algoritmo y los sensores empleados.
 
-Debido a la necesidad de realizar OCR, se requerirá una cámara. Con la finalidad de poder acoplar algún sistema de activación para la cámara se exigirá que la placa elegida soporte protocolos como I2C, SPI y UART. En cuanto a la comunicación, como se implementara junto con un servidor web existe la necesidad de conexión Ethernet o Wifi. Finalmente para facilitar futuras actualizaciones se requiere que la placa pueda correr un sistema operativo basado en GNU/Linux.
+Debido a la necesidad de realizar OCR, se requerirá una cámara. Con la finalidad de poder acoplar algún sistema de activación para la cámara se exigirá que la placa elegida soporte protocolos como I2C, SPI y UART. En cuanto a la comunicación, como se implementará junto con un servidor web existe la necesidad de conexión Ethernet o Wifi. Finalmente para facilitar futuras actualizaciones se requiere que la placa pueda correr un sistema operativo basado en GNU/Linux.
 
 En resumen los requerimientos son:
 
@@ -82,8 +82,8 @@ Luego de realizar una investigación de placas a las que se podía acceder se op
 
 \subsection{Características del SL mini}
 
-La placa del SL mini es una Raspberry Pi 3 B+ \cite{noauthor_documentacion_nodate-2}, Fig. \ref{fig:raspberry} la cual cuenta con un procesador
-Broadcom BCM2837B0 y  una CPU cuadcore Cortex A53 acompañado de 1 GB de RAM LPDDR2, junto con un sistema operativo llamado Raspberry Pi OS el cual está basado en Debian.
+La placa del SL mini es una Raspberry Pi 3 B+ \cite{noauthor_documentacion_nodate-2}, Fig. \ref{fig:raspberry}, la cual cuenta con un procesador
+Broadcom BCM2837B0 y  una CPU cuadcore Cortex A53 acompañada de 1 GB de RAM LPDDR2, junto con un sistema operativo llamado Raspberry Pi OS el cual está basado en Debian.
 
 \begin{figure}[bth]
     \centering
@@ -100,7 +100,7 @@ La disponibilidad de la placa en el mercado fue un punto importante a considerar
 
 \subsection{Características del SL}
 
-La placa del SL es una Nvidia Jetson TX1 \cite{nvidia_manual_nodate}, Fig. \ref{fig:JTX1} la cual cuenta con un procesador cuadcore Cortex A57 y 4GB de RAM LPDDR4. Además contiene  256 núcleos Nvidia Maxwell, lo que la vuelve una opción excelente en lo que se refiere al trabajo con imágenes y videos.
+La placa del SL es una Nvidia Jetson TX1 \cite{nvidia_manual_nodate}, Fig. \ref{fig:JTX1}, la cual cuenta con un procesador cuadcore Cortex A57 y 4GB de RAM LPDDR4. Además contiene  256 núcleos Nvidia Maxwell, lo que la vuelve una opción excelente en lo que se refiere al trabajo con imágenes y videos.
 
 Para realizar la implementación se contó con el kit de desarrollo provisto por la empresa Nvidia. En él se pueden encontrar todas las conexiones mencionadas en el SL mini, lo que permite el paso de los sensores de una placa a otra con suma facilidad.
 Este modelo cuenta con un sistema operativo JetPack 4.6.3 basado en Ubuntu 18.04.
@@ -120,7 +120,7 @@ En contra parte con el modelo mini, la placa del modelo SL está pensada para pr
     \centering
     \begin{tabular}{cccc}
         \toprule
-        Módelo           & CPU         & RAM        & GPU        \\
+        Modelo           & CPU         & RAM        & GPU        \\
         \midrule
         Raspberry Pi 3b+ & 4  a 1.4GHz & 1GB LPDDR2 & 2 a 400MHz \\
         Jeston TX1       & 4  a 1.7GHz & 4GB LPDDR4 & 256 a 1GHz \\
@@ -173,7 +173,7 @@ En particular para este trabajo se utilizó un sensor ultrasónico US-100.
 
 Los sensores ultrasónicos funcionan emitiendo una onda ultrasónica por el transmisor y medir el tiempo que esta tarda en llegar al receptor.
 
-El US-100 el cual se puede apreciar en Fig. \ref{fig:sensor-US100}, posee un rango de medición de $2cm$ a $350cm$, compensado por temperatura, voltaje de alimentación entre $3V$-$5V$ y protocolo de comunicación UART.
+El US-100 el cual se puede apreciar en la Fig. \ref{fig:sensor-US100}, posee un rango de medición de $2cm$ a $350cm$, compensado por temperatura, voltaje de alimentación entre $3V$-$5V$ y protocolo de comunicación UART.
 Por lo que es fácilmente integrable en ambas placas por medio del puerto GPIO sin necesidad de utilizar hardware extra.
 \begin{figure}[bth]
     \centering
@@ -186,8 +186,8 @@ Por lo que es fácilmente integrable en ambas placas por medio del puerto GPIO s
 
 Para la implementación se definieron una serie de requisitos tales como la distribución de los sensores, la distancia desde el piso a la que se va a instalar, cómo se va a instalar en los establecimientos, entre otros. Las vistas del modelo 3D se pueden observar en la Fig. \ref{fig:contenedor-vistas}.
 El sistema de anclaje utilizado se puede observar en Fig. \ref{fig:contenedor-inferior} y Fig. \ref{fig:contenedor-sujecion}, este sistema permite colocar un cilindro y ajustarlo utilizando los orificios del mismo, una de las ventajas de este sistema es poder ajustar la orientación del dispositivo.
-Se estableció que distancia apropiada para la instalación es de 60cm de altura, ya que permite tomar una captura completa del vehículo, mejorando el rendimiento del algoritmo de OCR.
-Se optó por colocar el sensor de proximidad en la zona inferior ya que garantiza que la lectura que se tome sea de la trompa del automóvil, por lo que la cámara queda en la parte superior, como puede observarse en las Fig. \ref{fig:contenedor-frontal} y Fig. \ref{fig:contenedor-trasera}.
+Se estableció que la distancia apropiada para la instalación es de 60cm de altura, ya que permite tomar una captura completa del vehículo y mejora el rendimiento del algoritmo de OCR.
+Se optó por colocar el sensor de proximidad en la zona inferior, ya que garantiza que la lectura que se tome sea de la trompa del automóvil, por lo que la cámara queda en la parte superior, como puede observarse en las Fig. \ref{fig:contenedor-frontal} y Fig. \ref{fig:contenedor-trasera}.
 Adicionalmente se diseñó una tapa rectangular que permita sellar el contenedor. En la Fig. \ref{fig:contenedor-impreso} se observa el contenedor ensamblado y montado sobre un trípode.
 
 \begin{figure}[bth]
@@ -237,7 +237,7 @@ Adicionalmente se diseñó una tapa rectangular que permita sellar el contenedor
         \includegraphics[width=\textwidth]{imgs/sistema-sujecion.jpeg}
         \caption{Sistema de sujeción del contenedor.}
     \end{subfigure}
-    \caption{Contenedor ensamblado y montado sobre un tripode.}
+    \caption{Contenedor ensamblado y montado sobre un trípode.}
     \label{fig:contenedor-impreso}
 \end{figure}
 
@@ -256,7 +256,7 @@ Esta librería posee una función que devuelve la distancia promedio de un objet
 
 Se creó una librería llamada \textit{slutils} la cual tiene como responsabilidad la conexión con el servidor MQTT, el envío de registros de entrada/salida, así como administrar la configuración del sistema y la captura de imágenes.
 
-Para la conexión con el servidor MQTT, este protocolo se explicará con mayor detalle en el siguiente capítulo, se utilizó \textit{paho-mqtt} \cite{craggs_documentacion_nodate}, escuchando el tópico \textit{$id/config$} donde el $id$ es un identificador único por cada placa.
+Para la conexión con el servidor MQTT\footnote{Este protocolo se explicará con mayor detalle en el siguiente capítulo.} se utilizó \textit{paho-mqtt} \cite{craggs_documentacion_nodate}, escuchando el tópico \textit{$id/config$} donde el $id$ es un identificador único por cada placa.
 
 En cuanto al envío de los registros este se realiza por POST mediante HTTP utilizando la librería \textit{requests} \cite{python_software_foundation_documentacion_nodate}.
 
